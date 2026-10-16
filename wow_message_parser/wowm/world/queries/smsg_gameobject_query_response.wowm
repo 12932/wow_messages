@@ -11,7 +11,7 @@ smsg SMSG_GAMEOBJECT_QUERY_RESPONSE = 0x005F {
         CString name3;
         CString name4;
         CString name5;
-        u32[6] raw_data;
+        u32[24] raw_data;
     }
 } {
     versions = "1.12";

@@ -213742,6 +213742,153 @@
         },
         "sizes": {
           "constant_sized": true,
+          "minimum_size": 22,
+          "maximum_size": 22
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "index",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U8"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "item",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "amount",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "display_id",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "unknown",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "random_property_id",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "ty",
+              "data_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "LootSlotType",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
+          "start_position": 87,
+          "end_position": 97
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "LootItem",
+        "object_type": {
+          "container_type_tag": "Struct"
+        },
+        "sizes": {
+          "constant_sized": true,
           "minimum_size": 6,
           "maximum_size": 6
         },
@@ -213803,12 +213950,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -213827,8 +213968,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
-          "start_position": 87,
-          "end_position": 93
+          "start_position": 99,
+          "end_position": 105
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -247619,8 +247760,8 @@
         },
         "sizes": {
           "constant_sized": false,
-          "minimum_size": 16,
-          "maximum_size": 526
+          "minimum_size": 18,
+          "maximum_size": 528
         },
         "members": [
           {
@@ -247673,8 +247814,8 @@
                 "data_type_tag": "Enum",
                 "content": {
                   "type_name": "Class",
-                  "integer_type": "U8",
-                  "upcast": false
+                  "integer_type": "U32",
+                  "upcast": true
                 }
               },
               "constant_value": null,
@@ -247692,8 +247833,8 @@
                 "data_type_tag": "Enum",
                 "content": {
                   "type_name": "Race",
-                  "integer_type": "U8",
-                  "upcast": false
+                  "integer_type": "U32",
+                  "upcast": true
                 }
               },
               "constant_value": null,
@@ -247714,21 +247855,6 @@
                   "integer_type": "U32",
                   "upcast": false
                 }
-              },
-              "constant_value": null,
-              "used_as_size_in": null,
-              "size_of_fields_before_size": null,
-              "used_in_if": false,
-              "tags": {}
-            }
-          },
-          {
-            "struct_member_tag": "Definition",
-            "struct_member_content": {
-              "name": "party_status",
-              "data_type": {
-                "data_type_tag": "Integer",
-                "content": "U32"
               },
               "constant_value": null,
               "used_as_size_in": null,
@@ -247758,7 +247884,7 @@
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
           "start_position": 1,
-          "end_position": 11
+          "end_position": 10
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -247913,8 +248039,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-          "start_position": 13,
-          "end_position": 23
+          "start_position": 12,
+          "end_position": 22
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -248069,8 +248195,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-          "start_position": 13,
-          "end_position": 23
+          "start_position": 12,
+          "end_position": 22
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -266956,7 +267082,7 @@
         "sizes": {
           "constant_sized": false,
           "minimum_size": 4,
-          "maximum_size": 1316
+          "maximum_size": 1388
         },
         "members": [
           {
@@ -267094,7 +267220,7 @@
                         },
                         "size": {
                           "array_size_tag": "Fixed",
-                          "size": "6"
+                          "size": "24"
                         },
                         "compressed": false
                       }
@@ -269172,8 +269298,8 @@
                         },
                         "sizes": {
                           "constant_sized": false,
-                          "minimum_size": 16,
-                          "maximum_size": 526
+                          "minimum_size": 18,
+                          "maximum_size": 528
                         },
                         "members": [
                           {
@@ -269226,8 +269352,8 @@
                                 "data_type_tag": "Enum",
                                 "content": {
                                   "type_name": "Class",
-                                  "integer_type": "U8",
-                                  "upcast": false
+                                  "integer_type": "U32",
+                                  "upcast": true
                                 }
                               },
                               "constant_value": null,
@@ -269245,8 +269371,8 @@
                                 "data_type_tag": "Enum",
                                 "content": {
                                   "type_name": "Race",
-                                  "integer_type": "U8",
-                                  "upcast": false
+                                  "integer_type": "U32",
+                                  "upcast": true
                                 }
                               },
                               "constant_value": null,
@@ -269267,21 +269393,6 @@
                                   "integer_type": "U32",
                                   "upcast": false
                                 }
-                              },
-                              "constant_value": null,
-                              "used_as_size_in": null,
-                              "size_of_fields_before_size": null,
-                              "used_in_if": false,
-                              "tags": {}
-                            }
-                          },
-                          {
-                            "struct_member_tag": "Definition",
-                            "struct_member_content": {
-                              "name": "party_status",
-                              "data_type": {
-                                "data_type_tag": "Integer",
-                                "content": "U32"
                               },
                               "constant_value": null,
                               "used_as_size_in": null,
@@ -269311,7 +269422,7 @@
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
                           "start_position": 1,
-                          "end_position": 11
+                          "end_position": 10
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -269353,8 +269464,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-          "start_position": 25,
-          "end_position": 31
+          "start_position": 24,
+          "end_position": 30
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -269561,8 +269672,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-                          "start_position": 13,
-                          "end_position": 23
+                          "start_position": 12,
+                          "end_position": 22
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -269604,8 +269715,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-          "start_position": 25,
-          "end_position": 31
+          "start_position": 24,
+          "end_position": 30
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -269812,8 +269923,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-                          "start_position": 13,
-                          "end_position": 23
+                          "start_position": 12,
+                          "end_position": 22
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -269855,8 +269966,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/social/smsg_who.wowm",
-          "start_position": 25,
-          "end_position": 31
+          "start_position": 24,
+          "end_position": 30
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -436226,9 +436337,11 @@
               "conditional": {
                 "variable_name": "result",
                 "equations": {
-                  "equation_tag": "NotEquals",
+                  "equation_tag": "Equals",
                   "values": {
-                    "value": "FAILURE"
+                    "value": [
+                      "FAILURE"
+                    ]
                   }
                 }
               },
@@ -451043,6 +451156,329 @@
         "sizes": {
           "constant_sized": false,
           "minimum_size": 14,
+          "maximum_size": 5647
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "guid",
+              "data_type": {
+                "data_type_tag": "Guid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "loot_method",
+              "data_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "LootMethod",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": true,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "IfStatement",
+            "struct_member_content": {
+              "conditional": {
+                "variable_name": "loot_method",
+                "equations": {
+                  "equation_tag": "Equals",
+                  "values": {
+                    "value": [
+                      "ERROR"
+                    ]
+                  }
+                }
+              },
+              "members": [
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "loot_error",
+                    "data_type": {
+                      "data_type_tag": "Enum",
+                      "content": {
+                        "type_name": "LootMethodError",
+                        "integer_type": "U8",
+                        "upcast": false
+                      }
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                }
+              ],
+              "else_if_statements": [],
+              "else_members": [],
+              "original_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "LootMethod",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "part_of_separate_if_statement": false,
+              "is_else_if_flag": false
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "gold",
+              "data_type": {
+                "data_type_tag": "Gold"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "amount_of_items",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U8"
+              },
+              "constant_value": null,
+              "used_as_size_in": "items",
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "items",
+              "data_type": {
+                "data_type_tag": "Array",
+                "content": {
+                  "inner_type": {
+                    "array_type_tag": "Struct",
+                    "content": {
+                      "struct_data": {
+                        "name": "LootItem",
+                        "object_type": {
+                          "container_type_tag": "Struct"
+                        },
+                        "sizes": {
+                          "constant_sized": true,
+                          "minimum_size": 22,
+                          "maximum_size": 22
+                        },
+                        "members": [
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "index",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U8"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "item",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "amount",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "display_id",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "unknown",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "random_property_id",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "ty",
+                              "data_type": {
+                                "data_type_tag": "Enum",
+                                "content": {
+                                  "type_name": "LootSlotType",
+                                  "integer_type": "U8",
+                                  "upcast": false
+                                }
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          }
+                        ],
+                        "tags": {
+                          "version": {
+                            "version_type_tag": "world",
+                            "version_type": {
+                              "world_version_tag": "specific",
+                              "versions": [
+                                {
+                                  "major": 1,
+                                  "minor": null,
+                                  "patch": null,
+                                  "build": null
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "tests": [],
+                        "file_info": {
+                          "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
+                          "start_position": 87,
+                          "end_position": 97
+                        },
+                        "only_has_io_error": false,
+                        "has_manual_size_field": false,
+                        "manual_size_subtraction": null
+                      }
+                    }
+                  },
+                  "size": {
+                    "array_size_tag": "Variable",
+                    "size": "amount_of_items"
+                  },
+                  "compressed": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
+          "start_position": 107,
+          "end_position": 118
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "SMSG_LOOT_RESPONSE",
+        "object_type": {
+          "container_type_tag": "SMsg",
+          "opcode": 352
+        },
+        "sizes": {
+          "constant_sized": false,
+          "minimum_size": 14,
           "maximum_size": 1551
         },
         "members": [
@@ -451235,12 +451671,6 @@
                               "world_version_tag": "specific",
                               "versions": [
                                 {
-                                  "major": 1,
-                                  "minor": null,
-                                  "patch": null,
-                                  "build": null
-                                },
-                                {
                                   "major": 2,
                                   "minor": null,
                                   "patch": null,
@@ -451259,8 +451689,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
-                          "start_position": 87,
-                          "end_position": 93
+                          "start_position": 99,
+                          "end_position": 105
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -451290,12 +451720,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -451314,8 +451738,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/loot/smsg_loot_response.wowm",
-          "start_position": 95,
-          "end_position": 106
+          "start_position": 120,
+          "end_position": 131
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

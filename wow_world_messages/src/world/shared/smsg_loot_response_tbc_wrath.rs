@@ -2,13 +2,13 @@ use std::io::{Read, Write};
 
 use crate::Guid;
 use crate::shared::gold_vanilla_tbc_wrath::Gold;
-use crate::shared::loot_item_vanilla_tbc_wrath::LootItem;
+use crate::shared::loot_item_tbc_wrath::LootItem;
 use wow_world_base::shared::loot_method_error_vanilla_tbc_wrath::LootMethodError;
 use wow_world_base::shared::loot_method_vanilla_tbc_wrath::LootMethod;
 use wow_world_base::shared::loot_slot_type_vanilla_tbc_wrath::LootSlotType;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/loot/smsg_loot_response.wowm:95`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/loot/smsg_loot_response.wowm#L95):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/loot/smsg_loot_response.wowm:120`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/loot/smsg_loot_response.wowm#L120):
 /// ```text
 /// smsg SMSG_LOOT_RESPONSE = 0x0160 {
 ///     Guid guid;
@@ -105,7 +105,7 @@ impl crate::Message for SMSG_LOOT_RESPONSE {
         writeln!(s, "    guid = {};", self.guid.guid()).unwrap();
         writeln!(s, "    loot_method = {};", LootMethod::try_from(self.loot_method.as_int()).unwrap().as_test_case_value()).unwrap();
         match &self.loot_method {
-            crate::shared::smsg_loot_response_vanilla_tbc_wrath::SMSG_LOOT_RESPONSE_LootMethod::ErrorX {
+            crate::shared::smsg_loot_response_tbc_wrath::SMSG_LOOT_RESPONSE_LootMethod::ErrorX {
                 loot_error,
             } => {
                 writeln!(s, "    loot_error = {};", loot_error.as_test_case_value()).unwrap();
@@ -140,7 +140,7 @@ impl crate::Message for SMSG_LOOT_RESPONSE {
         crate::util::write_bytes(&mut s, &mut bytes, 8, "guid", "    ");
         crate::util::write_bytes(&mut s, &mut bytes, 1, "loot_method", "    ");
         match &self.loot_method {
-            crate::shared::smsg_loot_response_vanilla_tbc_wrath::SMSG_LOOT_RESPONSE_LootMethod::ErrorX {
+            crate::shared::smsg_loot_response_tbc_wrath::SMSG_LOOT_RESPONSE_LootMethod::ErrorX {
                 loot_error,
             } => {
                 crate::util::write_bytes(&mut s, &mut bytes, 1, "loot_error", "    ");
@@ -164,7 +164,7 @@ impl crate::Message for SMSG_LOOT_RESPONSE {
 
 
         writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1 2 3".to_string())).unwrap();
+        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("2 3".to_string())).unwrap();
         writeln!(s, "}}\n").unwrap();
 
         Some(s)
@@ -211,9 +211,6 @@ impl crate::Message for SMSG_LOOT_RESPONSE {
     }
 
 }
-
-#[cfg(feature = "vanilla")]
-impl crate::vanilla::ServerMessage for SMSG_LOOT_RESPONSE {}
 
 #[cfg(feature = "tbc")]
 impl crate::tbc::ServerMessage for SMSG_LOOT_RESPONSE {}

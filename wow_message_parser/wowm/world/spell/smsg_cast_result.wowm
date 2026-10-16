@@ -449,7 +449,7 @@ enum CastFailureReason : u8 {
 smsg SMSG_CAST_RESULT = 0x0130 {
     Spell spell;
     SimpleSpellCastResult result;
-    if (result != FAILURE) {
+    if (result == FAILURE) {
         CastFailureReason reason;       
         if (reason == REQUIRES_SPELL_FOCUS) {
             u32 required_spell_focus;

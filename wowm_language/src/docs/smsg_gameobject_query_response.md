@@ -16,7 +16,7 @@ smsg SMSG_GAMEOBJECT_QUERY_RESPONSE = 0x005F {
         CString name3;
         CString name4;
         CString name5;
-        u32[6] raw_data;
+        u32[24] raw_data;
     }
 }
 ```
@@ -48,7 +48,7 @@ Optionally the following fields can be present. This can only be detected by loo
 | - | - / - | CString | name3 |  |  |
 | - | - / - | CString | name4 |  |  |
 | - | - / - | CString | name5 |  |  |
-| - | 24 / - | u32[6] | raw_data |  |  |
+| - | 96 / - | u32[24] | raw_data |  |  |
 
 ## Client Version 2.4.3
 

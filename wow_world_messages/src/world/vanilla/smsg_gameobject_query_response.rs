@@ -13,7 +13,7 @@ use std::io::{Read, Write};
 ///         CString name3;
 ///         CString name4;
 ///         CString name5;
-///         u32[6] raw_data;
+///         u32[24] raw_data;
 ///     }
 /// }
 /// ```
@@ -26,7 +26,7 @@ pub struct SMSG_GAMEOBJECT_QUERY_RESPONSE {
 impl crate::private::Sealed for SMSG_GAMEOBJECT_QUERY_RESPONSE {}
 impl SMSG_GAMEOBJECT_QUERY_RESPONSE {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(4..=1316).contains(&body_size) {
+        if !(4..=1388).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -74,9 +74,9 @@ impl SMSG_GAMEOBJECT_QUERY_RESPONSE {
                 String::from_utf8(name5)?
             };
 
-            // raw_data: u32[6]
+            // raw_data: u32[24]
             let raw_data = {
-                let mut raw_data = [u32::default(); 6];
+                let mut raw_data = [u32::default(); 24];
                 for i in raw_data.iter_mut() {
                     *i = crate::util::read_u32_le(&mut r)?;
                 }
@@ -157,11 +157,11 @@ impl crate::Message for SMSG_GAMEOBJECT_QUERY_RESPONSE {
             crate::util::write_bytes(&mut s, &mut bytes, found.name3.len() + 1, "name3", "    ");
             crate::util::write_bytes(&mut s, &mut bytes, found.name4.len() + 1, "name4", "    ");
             crate::util::write_bytes(&mut s, &mut bytes, found.name5.len() + 1, "name5", "    ");
-            writeln!(s, "    /* raw_data: u32[6] start */").unwrap();
+            writeln!(s, "    /* raw_data: u32[24] start */").unwrap();
             for (i, v) in found.raw_data.iter().enumerate() {
                 crate::util::write_bytes(&mut s, &mut bytes, 4, &format!("raw_data {i}"), "    ");
             }
-            writeln!(s, "    /* raw_data: u32[6] end */").unwrap();
+            writeln!(s, "    /* raw_data: u32[24] end */").unwrap();
         }
 
 
@@ -223,7 +223,7 @@ impl crate::Message for SMSG_GAMEOBJECT_QUERY_RESPONSE {
             // Null terminator
             w.write_all(&[0])?;
 
-            // raw_data: u32[6]
+            // raw_data: u32[24]
             for i in v.raw_data.iter() {
                 w.write_all(&i.to_le_bytes())?;
             }
@@ -253,7 +253,7 @@ impl SMSG_GAMEOBJECT_QUERY_RESPONSE {
             + found.name3.len() + 1 // name3: CString
             + found.name4.len() + 1 // name4: CString
             + found.name5.len() + 1 // name5: CString
-            + 24 // raw_data: u32[6]
+            + 96 // raw_data: u32[24]
         } else {
             0
         }
@@ -269,6 +269,6 @@ pub struct SMSG_GAMEOBJECT_QUERY_RESPONSE_found {
     pub name3: String,
     pub name4: String,
     pub name5: String,
-    pub raw_data: [u32; 6],
+    pub raw_data: [u32; 24],
 }
 

@@ -3863,7 +3863,7 @@
         case SMSG_CAST_RESULT:
             ptvcursor_add(ptv, hf_woww_spell, 4, ENC_LITTLE_ENDIAN);
             ptvcursor_add_ret_uint(ptv, hf_woww_simple_spell_cast_result, 1, ENC_LITTLE_ENDIAN, &result);
-            if (result != SIMPLE_SPELL_CAST_RESULT_FAILURE) {
+            if (result == SIMPLE_SPELL_CAST_RESULT_FAILURE) {
                 ptvcursor_add_ret_uint(ptv, hf_woww_cast_failure_reason, 1, ENC_LITTLE_ENDIAN, &reason);
                 if (reason == CAST_FAILURE_REASON_REQUIRES_SPELL_FOCUS) {
                     ptvcursor_add(ptv, hf_woww_required_spell_focus, 4, ENC_LITTLE_ENDIAN);
@@ -4428,7 +4428,7 @@
                 add_cstring(ptv, &hf_woww_name);
                 add_cstring(ptv, &hf_woww_name);
                 add_cstring(ptv, &hf_woww_name);
-                for (guint32 i1 = 0; i1 < 6; ++i1) {
+                for (guint32 i1 = 0; i1 < 24; ++i1) {
                     ptvcursor_add(ptv, hf_woww_raw_data, 4, ENC_LITTLE_ENDIAN);
                 }
             }
@@ -4871,6 +4871,10 @@
                 ptvcursor_add_text_with_subtree(ptv, SUBTREE_UNDEFINED_LENGTH, ett_message, "LootItem %i", i1);
                 ptvcursor_add(ptv, hf_woww_index, 1, ENC_LITTLE_ENDIAN);
                 ptvcursor_add(ptv, hf_woww_item, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_amount, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_display_id, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_unknown_int, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_random_property_id, 4, ENC_LITTLE_ENDIAN);
                 ptvcursor_add(ptv, hf_woww_loot_slot_type, 1, ENC_LITTLE_ENDIAN);
                 ptvcursor_pop_subtree(ptv);
             }
@@ -6507,10 +6511,9 @@
                 add_cstring(ptv, &hf_woww_name);
                 add_cstring(ptv, &hf_woww_guild);
                 ptvcursor_add(ptv, hf_woww_level, 4, ENC_LITTLE_ENDIAN);
-                ptvcursor_add(ptv, hf_woww_class, 1, ENC_LITTLE_ENDIAN);
-                ptvcursor_add(ptv, hf_woww_race, 1, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_class, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_race, 4, ENC_LITTLE_ENDIAN);
                 ptvcursor_add(ptv, hf_woww_area, 4, ENC_LITTLE_ENDIAN);
-                ptvcursor_add(ptv, hf_woww_party_status, 4, ENC_LITTLE_ENDIAN);
                 ptvcursor_pop_subtree(ptv);
             }
             break;

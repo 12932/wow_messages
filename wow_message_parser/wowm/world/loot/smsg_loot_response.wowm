@@ -87,9 +87,21 @@ enum LootSlotType : u8 {
 struct LootItem {
     u8 index;
     Item item;
+    u32 amount;
+    u32 display_id;
+    u32 unknown;
+    u32 random_property_id;
     LootSlotType ty;
 } {
-    versions = "1 2 3";
+    versions = "1";
+}
+
+struct LootItem {
+    u8 index;
+    Item item;
+    LootSlotType ty;
+} {
+    versions = "2 3";
 }
 
 smsg SMSG_LOOT_RESPONSE = 0x0160 {
@@ -102,5 +114,18 @@ smsg SMSG_LOOT_RESPONSE = 0x0160 {
     u8 amount_of_items;
     LootItem[amount_of_items] items;
 } {
-    versions = "1 2 3";
+    versions = "1";
+}
+
+smsg SMSG_LOOT_RESPONSE = 0x0160 {
+    Guid guid;
+    LootMethod loot_method;
+    if (loot_method == ERROR) {
+        LootMethodError loot_error;       
+    }
+    Gold gold;
+    u8 amount_of_items;
+    LootItem[amount_of_items] items;
+} {
+    versions = "2 3";
 }

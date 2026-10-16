@@ -10,7 +10,7 @@ use crate::vanilla::{
 /// smsg SMSG_CAST_RESULT = 0x0130 {
 ///     u32 spell;
 ///     SimpleSpellCastResult result;
-///     if (result != FAILURE) {
+///     if (result == FAILURE) {
 ///         CastFailureReason reason;
 ///         if (reason == REQUIRES_SPELL_FOCUS) {
 ///             u32 required_spell_focus;
@@ -45,7 +45,8 @@ impl SMSG_CAST_RESULT {
         let result = crate::util::read_u8_le(&mut r)?.try_into()?;
 
         let result_if = match result {
-            SimpleSpellCastResult::Success => {
+            SimpleSpellCastResult::Success => SMSG_CAST_RESULT_SimpleSpellCastResult::Success,
+            SimpleSpellCastResult::Failure => {
                 // reason: CastFailureReason
                 let reason = crate::util::read_u8_le(&mut r)?.try_into()?;
 
@@ -227,11 +228,10 @@ impl SMSG_CAST_RESULT {
                     CastFailureReason::Unknown => SMSG_CAST_RESULT_CastFailureReason::Unknown,
                 };
 
-                SMSG_CAST_RESULT_SimpleSpellCastResult::Success {
+                SMSG_CAST_RESULT_SimpleSpellCastResult::Failure {
                     reason: reason_if,
                 }
             }
-            SimpleSpellCastResult::Failure => SMSG_CAST_RESULT_SimpleSpellCastResult::Failure,
         };
 
         Ok(Self {
@@ -262,7 +262,7 @@ impl crate::Message for SMSG_CAST_RESULT {
         writeln!(s, "    spell = {};", self.spell).unwrap();
         writeln!(s, "    result = {};", SimpleSpellCastResult::try_from(self.result.as_int()).unwrap().as_test_case_value()).unwrap();
         match &self.result {
-            crate::vanilla::SMSG_CAST_RESULT_SimpleSpellCastResult::Success {
+            crate::vanilla::SMSG_CAST_RESULT_SimpleSpellCastResult::Failure {
                 reason,
             } => {
                 writeln!(s, "    reason = {};", CastFailureReason::try_from(reason.as_int()).unwrap().as_test_case_value()).unwrap();
@@ -307,7 +307,7 @@ impl crate::Message for SMSG_CAST_RESULT {
         crate::util::write_bytes(&mut s, &mut bytes, 4, "spell", "    ");
         crate::util::write_bytes(&mut s, &mut bytes, 1, "result", "    ");
         match &self.result {
-            crate::vanilla::SMSG_CAST_RESULT_SimpleSpellCastResult::Success {
+            crate::vanilla::SMSG_CAST_RESULT_SimpleSpellCastResult::Failure {
                 reason,
             } => {
                 crate::util::write_bytes(&mut s, &mut bytes, 1, "reason", "    ");
@@ -359,7 +359,7 @@ impl crate::Message for SMSG_CAST_RESULT {
         w.write_all(&(self.result.as_int().to_le_bytes()))?;
 
         match &self.result {
-            SMSG_CAST_RESULT_SimpleSpellCastResult::Success {
+            SMSG_CAST_RESULT_SimpleSpellCastResult::Failure {
                 reason,
             } => {
                 // reason: CastFailureReason
@@ -923,24 +923,24 @@ impl SMSG_CAST_RESULT_CastFailureReason {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SMSG_CAST_RESULT_SimpleSpellCastResult {
-    Success {
+    Success,
+    Failure {
         reason: SMSG_CAST_RESULT_CastFailureReason,
     },
-    Failure,
 }
 
 impl Default for SMSG_CAST_RESULT_SimpleSpellCastResult {
     fn default() -> Self {
         // First enumerator without any fields
-        Self::Failure
+        Self::Success
     }
 }
 
 impl SMSG_CAST_RESULT_SimpleSpellCastResult {
     pub(crate) const fn as_int(&self) -> u8 {
         match self {
-            Self::Success { .. } => 0,
-            Self::Failure => 2,
+            Self::Success => 0,
+            Self::Failure { .. } => 2,
         }
     }
 
@@ -949,8 +949,8 @@ impl SMSG_CAST_RESULT_SimpleSpellCastResult {
 impl std::fmt::Display for SMSG_CAST_RESULT_SimpleSpellCastResult {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Success{ .. } => f.write_str("Success"),
-            Self::Failure => f.write_str("Failure"),
+            Self::Success => f.write_str("Success"),
+            Self::Failure{ .. } => f.write_str("Failure"),
         }
     }
 }
@@ -958,7 +958,7 @@ impl std::fmt::Display for SMSG_CAST_RESULT_SimpleSpellCastResult {
 impl SMSG_CAST_RESULT_SimpleSpellCastResult {
     pub(crate) const fn size(&self) -> usize {
         match self {
-            Self::Success {
+            Self::Failure {
                 reason,
             } => {
                 1
