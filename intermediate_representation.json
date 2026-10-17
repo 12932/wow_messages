@@ -477101,7 +477101,7 @@
                   "equation_tag": "Equals",
                   "values": {
                     "value": [
-                      "NON_KILL"
+                      "KILL"
                     ]
                   }
                 }
@@ -477155,6 +477155,7 @@
           }
         ],
         "tags": {
+          "comment": "A kill's experience carries its split (mangoszero and cmangos-classic, `Player::SendLogXPGain`).",
           "version": {
             "version_type_tag": "world",
             "version_type": {
@@ -477165,22 +477166,203 @@
                   "minor": null,
                   "patch": null,
                   "build": null
-                },
-                {
-                  "major": 2,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
                 }
               ]
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_LOG_XPGAIN",
+            "members": [
+              {
+                "variable_name": "target",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390967039131674",
+                    "original_string": "0xF13000012B00001A"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "total_exp",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "50",
+                    "original_string": "50"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "exp_type",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "KILL"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "experience_without_rested",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "40",
+                    "original_string": "40"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "exp_group_bonus",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 1.0,
+                    "original_string": "1.0"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              23,
+              208,
+              1,
+              26,
+              0,
+              0,
+              43,
+              1,
+              0,
+              48,
+              241,
+              50,
+              0,
+              0,
+              0,
+              0,
+              40,
+              0,
+              0,
+              0,
+              0,
+              0,
+              128,
+              63
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm",
+              "start_position": 23,
+              "end_position": 39
+            }
+          },
+          {
+            "subject": "SMSG_LOG_XPGAIN",
+            "members": [
+              {
+                "variable_name": "target",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "total_exp",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "100",
+                    "original_string": "100"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "exp_type",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "1",
+                    "original_string": "NON_KILL"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              15,
+              208,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0,
+              0,
+              0,
+              1
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm",
+              "start_position": 41,
+              "end_position": 53
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm",
           "start_position": 8,
-          "end_position": 20
+          "end_position": 21
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -477255,7 +477437,7 @@
                   "equation_tag": "Equals",
                   "values": {
                     "value": [
-                      "NON_KILL"
+                      "KILL"
                     ]
                   }
                 }
@@ -477324,11 +477506,18 @@
           }
         ],
         "tags": {
+          "comment": "A kill's experience carries its split (cmangos-tbc and TrinityCore 3.3.5, `Player::SendLogXPGain`).",
           "version": {
             "version_type_tag": "world",
             "version_type": {
               "world_version_tag": "specific",
               "versions": [
+                {
+                  "major": 2,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                },
                 {
                   "major": 3,
                   "minor": 3,
@@ -477342,8 +477531,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm",
-          "start_position": 22,
-          "end_position": 35
+          "start_position": 55,
+          "end_position": 69
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

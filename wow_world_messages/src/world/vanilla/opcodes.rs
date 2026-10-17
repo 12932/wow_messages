@@ -8401,7 +8401,6 @@ impl ServerOpcodeMessage {
             Self::SMSG_FISH_ESCAPED => crate::Message::to_test_case_string(&SMSG_FISH_ESCAPED{}),
             Self::SMSG_NOTIFICATION(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_PLAYED_TIME(c) => crate::Message::to_test_case_string(c),
-            Self::SMSG_LOG_XPGAIN(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_LEVELUP_INFO(c) => crate::Message::to_test_case_string(c),
             Self::MSG_MINIMAP_PING(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_RESISTLOG(c) => crate::Message::to_test_case_string(c),

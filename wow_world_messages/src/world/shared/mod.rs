@@ -864,8 +864,8 @@ pub mod smsg_logout_cancel_ack_vanilla_tbc_wrath;
 pub mod smsg_logout_complete_vanilla_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod smsg_logout_response_vanilla_tbc_wrath;
-#[cfg(any(feature = "vanilla", feature = "tbc"))]
-pub mod smsg_log_xpgain_vanilla_tbc;
+#[cfg(any(feature = "tbc", feature = "wrath"))]
+pub mod smsg_log_xpgain_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod smsg_loot_all_passed_vanilla_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]

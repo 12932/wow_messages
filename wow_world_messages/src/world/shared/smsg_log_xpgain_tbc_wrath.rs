@@ -1,16 +1,17 @@
 use std::io::{Read, Write};
 
 use crate::Guid;
-use crate::wrath::ExperienceAwardType;
+use wow_world_base::shared::experience_award_type_vanilla_tbc_wrath::ExperienceAwardType;
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm:22`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm#L22):
+/// A kill's experience carries its split (cmangos-tbc and TrinityCore 3.3.5, `Player::SendLogXPGain`).
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm:55`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/exp/smsg_log_xpgain.wowm#L55):
 /// ```text
 /// smsg SMSG_LOG_XPGAIN = 0x01D0 {
 ///     Guid target;
 ///     u32 total_exp;
 ///     ExperienceAwardType exp_type;
-///     if (exp_type == NON_KILL) {
+///     if (exp_type == KILL) {
 ///         u32 experience_without_rested;
 ///         f32 exp_group_bonus;
 ///     }
@@ -41,19 +42,19 @@ impl SMSG_LOG_XPGAIN {
         let exp_type = crate::util::read_u8_le(&mut r)?.try_into()?;
 
         let exp_type_if = match exp_type {
-            ExperienceAwardType::Kill => SMSG_LOG_XPGAIN_ExperienceAwardType::Kill,
-            ExperienceAwardType::NonKill => {
+            ExperienceAwardType::Kill => {
                 // experience_without_rested: u32
                 let experience_without_rested = crate::util::read_u32_le(&mut r)?;
 
                 // exp_group_bonus: f32
                 let exp_group_bonus = crate::util::read_f32_le(&mut r)?;
 
-                SMSG_LOG_XPGAIN_ExperienceAwardType::NonKill {
+                SMSG_LOG_XPGAIN_ExperienceAwardType::Kill {
                     exp_group_bonus,
                     experience_without_rested,
                 }
             }
+            ExperienceAwardType::NonKill => SMSG_LOG_XPGAIN_ExperienceAwardType::NonKill,
         };
 
         // exp_includes_recruit_a_friend_bonus: Bool
@@ -90,7 +91,7 @@ impl crate::Message for SMSG_LOG_XPGAIN {
         writeln!(s, "    total_exp = {};", self.total_exp).unwrap();
         writeln!(s, "    exp_type = {};", ExperienceAwardType::try_from(self.exp_type.as_int()).unwrap().as_test_case_value()).unwrap();
         match &self.exp_type {
-            crate::wrath::SMSG_LOG_XPGAIN_ExperienceAwardType::NonKill {
+            crate::shared::smsg_log_xpgain_tbc_wrath::SMSG_LOG_XPGAIN_ExperienceAwardType::Kill {
                 exp_group_bonus,
                 experience_without_rested,
             } => {
@@ -116,7 +117,7 @@ impl crate::Message for SMSG_LOG_XPGAIN {
         crate::util::write_bytes(&mut s, &mut bytes, 4, "total_exp", "    ");
         crate::util::write_bytes(&mut s, &mut bytes, 1, "exp_type", "    ");
         match &self.exp_type {
-            crate::wrath::SMSG_LOG_XPGAIN_ExperienceAwardType::NonKill {
+            crate::shared::smsg_log_xpgain_tbc_wrath::SMSG_LOG_XPGAIN_ExperienceAwardType::Kill {
                 exp_group_bonus,
                 experience_without_rested,
             } => {
@@ -130,7 +131,7 @@ impl crate::Message for SMSG_LOG_XPGAIN {
 
 
         writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("3.3.5".to_string())).unwrap();
+        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("2 3.3.5".to_string())).unwrap();
         writeln!(s, "}}\n").unwrap();
 
         Some(s)
@@ -151,7 +152,7 @@ impl crate::Message for SMSG_LOG_XPGAIN {
         w.write_all(&(self.exp_type.as_int().to_le_bytes()))?;
 
         match &self.exp_type {
-            SMSG_LOG_XPGAIN_ExperienceAwardType::NonKill {
+            SMSG_LOG_XPGAIN_ExperienceAwardType::Kill {
                 exp_group_bonus,
                 experience_without_rested,
             } => {
@@ -177,6 +178,9 @@ impl crate::Message for SMSG_LOG_XPGAIN {
 
 }
 
+#[cfg(feature = "tbc")]
+impl crate::tbc::ServerMessage for SMSG_LOG_XPGAIN {}
+
 #[cfg(feature = "wrath")]
 impl crate::wrath::ServerMessage for SMSG_LOG_XPGAIN {}
 
@@ -191,25 +195,25 @@ impl SMSG_LOG_XPGAIN {
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub enum SMSG_LOG_XPGAIN_ExperienceAwardType {
-    Kill,
-    NonKill {
+    Kill {
         exp_group_bonus: f32,
         experience_without_rested: u32,
     },
+    NonKill,
 }
 
 impl Default for SMSG_LOG_XPGAIN_ExperienceAwardType {
     fn default() -> Self {
         // First enumerator without any fields
-        Self::Kill
+        Self::NonKill
     }
 }
 
 impl SMSG_LOG_XPGAIN_ExperienceAwardType {
     pub(crate) const fn as_int(&self) -> u8 {
         match self {
-            Self::Kill => 0,
-            Self::NonKill { .. } => 1,
+            Self::Kill { .. } => 0,
+            Self::NonKill => 1,
         }
     }
 
@@ -218,8 +222,8 @@ impl SMSG_LOG_XPGAIN_ExperienceAwardType {
 impl std::fmt::Display for SMSG_LOG_XPGAIN_ExperienceAwardType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Kill => f.write_str("Kill"),
-            Self::NonKill{ .. } => f.write_str("NonKill"),
+            Self::Kill{ .. } => f.write_str("Kill"),
+            Self::NonKill => f.write_str("NonKill"),
         }
     }
 }
@@ -227,7 +231,7 @@ impl std::fmt::Display for SMSG_LOG_XPGAIN_ExperienceAwardType {
 impl SMSG_LOG_XPGAIN_ExperienceAwardType {
     pub(crate) const fn size(&self) -> usize {
         match self {
-            Self::NonKill {
+            Self::Kill {
                 ..
             } => {
                 1

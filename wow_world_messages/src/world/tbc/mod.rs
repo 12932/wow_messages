@@ -1045,7 +1045,7 @@ pub use smsg_login_verify_world::*;
 pub use crate::shared::smsg_logout_cancel_ack_vanilla_tbc_wrath::*;
 pub use crate::shared::smsg_logout_complete_vanilla_tbc_wrath::*;
 pub use crate::shared::smsg_logout_response_vanilla_tbc_wrath::*;
-pub use crate::shared::smsg_log_xpgain_vanilla_tbc::*;
+pub use crate::shared::smsg_log_xpgain_tbc_wrath::*;
 pub use crate::shared::smsg_loot_all_passed_vanilla_tbc_wrath::*;
 pub use crate::shared::smsg_loot_clear_money_vanilla_tbc_wrath::*;
 pub(crate) mod smsg_loot_list;

@@ -9,21 +9,54 @@ smsg SMSG_LOG_XPGAIN = 0x01D0 {
     Guid target;
     u32 total_exp;
     ExperienceAwardType exp_type; 
-    if (exp_type == NON_KILL) {
+    if (exp_type == KILL) {
         u32 experience_without_rested;
         f32 exp_group_bonus {
             comment = "mangoszero sets to 1 and comments: 1 - none 0 - 100% group bonus output";
         }
     }
 } {
-    versions = "1 2";
+    versions = "1";
+    comment = "A kill's experience carries its split (mangoszero and cmangos-classic, `Player::SendLogXPGain`).";
+}
+
+test SMSG_LOG_XPGAIN {
+    target = 0xF13000012B00001A;
+    total_exp = 50;
+    exp_type = KILL;
+    experience_without_rested = 40;
+    exp_group_bonus = 1.0;
+} [
+    0x00, 0x17, /* size */
+    0xD0, 0x01, /* opcode */
+    0x1A, 0x00, 0x00, 0x2B, 0x01, 0x00, 0x30, 0xF1, /* target */
+    0x32, 0x00, 0x00, 0x00, /* total_exp */
+    0x00, /* exp_type */
+    0x28, 0x00, 0x00, 0x00, /* experience_without_rested */
+    0x00, 0x00, 0x80, 0x3F, /* exp_group_bonus */
+] {
+    versions = "1.12";
+}
+
+test SMSG_LOG_XPGAIN {
+    target = 0;
+    total_exp = 100;
+    exp_type = NON_KILL;
+} [
+    0x00, 0x0F, /* size */
+    0xD0, 0x01, /* opcode */
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* target */
+    0x64, 0x00, 0x00, 0x00, /* total_exp */
+    0x01, /* exp_type */
+] {
+    versions = "1.12";
 }
 
 smsg SMSG_LOG_XPGAIN = 0x01D0 {
     Guid target;
     u32 total_exp;
     ExperienceAwardType exp_type; 
-    if (exp_type == NON_KILL) {
+    if (exp_type == KILL) {
         u32 experience_without_rested;
         f32 exp_group_bonus {
             comment = "mangoszero sets to 1 and comments: 1 - none 0 - 100% group bonus output";
@@ -31,5 +64,6 @@ smsg SMSG_LOG_XPGAIN = 0x01D0 {
     }
     Bool exp_includes_recruit_a_friend_bonus;
 } {
-    versions = "3.3.5";
+    versions = "2 3.3.5";
+    comment = "A kill's experience carries its split (cmangos-tbc and TrinityCore 3.3.5, `Player::SendLogXPGain`).";
 }

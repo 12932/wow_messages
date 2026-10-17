@@ -4951,7 +4951,7 @@
             ptvcursor_add(ptv, hf_woww_target, 8, ENC_LITTLE_ENDIAN);
             ptvcursor_add(ptv, hf_woww_total_exp, 4, ENC_LITTLE_ENDIAN);
             ptvcursor_add_ret_uint(ptv, hf_woww_experience_award_type, 1, ENC_LITTLE_ENDIAN, &exp_type);
-            if (exp_type == EXPERIENCE_AWARD_TYPE_NON_KILL) {
+            if (exp_type == EXPERIENCE_AWARD_TYPE_KILL) {
                 ptvcursor_add(ptv, hf_woww_experience_without_rested, 4, ENC_LITTLE_ENDIAN);
                 ptvcursor_add(ptv, hf_woww_exp_group_bonus, 4, ENC_LITTLE_ENDIAN);
             }
