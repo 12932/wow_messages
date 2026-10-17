@@ -257,7 +257,26 @@ fn print_container_example_definition(
             s.w(format!("{b}, "));
         }
         Type::MonsterMoveSplines => {
-            unimplemented!("monster move spline doc printer")
+            // A u32 amount, the first spline as a Vector3d, the rest as
+            // packed u32 offsets.
+            let amount = bytes.take(4).cloned().collect::<Vec<u8>>();
+            let amount_of_splines = u32::from_le_bytes(amount.as_slice().try_into().unwrap());
+            for b in amount {
+                s.w(format!("{b}, "));
+            }
+            s.wln(format!("{comment} amount of splines"));
+
+            for i in 0..amount_of_splines {
+                if i == 0 {
+                    s.bytes(bytes.take(3 * core::mem::size_of::<f32>()));
+                    s.wln(format!("{comment} spline {i} (Vector3d)"));
+                } else {
+                    s.bytes(bytes.take(core::mem::size_of::<u32>()));
+                    s.wln(format!("{comment} spline {i} (packed)"));
+                }
+            }
+
+            return;
         }
         Type::AchievementDoneArray | Type::AchievementInProgressArray => {
             unimplemented!("-1 delimited achievement arrays")

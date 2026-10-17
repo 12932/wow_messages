@@ -10147,7 +10147,6 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_SWIM(c) => crate::Message::to_test_case_string(c),
             Self::MSG_MOVE_SET_FACING(c) => crate::Message::to_test_case_string(c),
             Self::MSG_MOVE_SET_PITCH(c) => crate::Message::to_test_case_string(c),
-            Self::SMSG_MONSTER_MOVE(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_MOVE_WATER_WALK(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_MOVE_LAND_WALK(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_FORCE_RUN_SPEED_CHANGE(c) => crate::Message::to_test_case_string(c),

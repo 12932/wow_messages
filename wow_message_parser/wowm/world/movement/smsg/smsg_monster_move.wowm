@@ -20,12 +20,73 @@ smsg SMSG_MONSTER_MOVE = 0x00DD {
     } else if (move_type == FACING_SPOT) {
         Vector3d position;
     }
-    /* TODO CORRECT_LAYOUT vmangos has STOP that does not include these for SMSG_COMPRESSED_MOVES */
-    SplineFlag spline_flags;
-    u32 duration;
-    MonsterMoveSplines splines;
+    if (move_type != STOP) {
+        SplineFlag spline_flags;
+        u32 duration;
+        MonsterMoveSplines splines;
+    }
 } {
     versions = "1.12 2";
+    comment = "A STOP ends after the move type (mangos-zero, cmangos-classic, cmangos-tbc and vmangos).";
+}
+
+test SMSG_MONSTER_MOVE {
+    guid = 0xF13000012B00001A;
+    spline_point = {
+        x = -8938.5;
+        y = -131.25;
+        z = 83.5;
+    };
+    spline_id = 7;
+    move_type = STOP;
+} [
+    0x00, 0x19, /* size */
+    0xDD, 0x00, /* opcode */
+    0xD9, 0x1A, 0x2B, 0x01, 0x30, 0xF1, /* guid */
+    0x00, 0xAA, 0x0B, 0xC6, /* spline_point.x */
+    0x00, 0x40, 0x03, 0xC3, /* spline_point.y */
+    0x00, 0x00, 0xA7, 0x42, /* spline_point.z */
+    0x07, 0x00, 0x00, 0x00, /* spline_id */
+    0x01, /* move_type */
+] {
+    versions = "1.12";
+}
+
+test SMSG_MONSTER_MOVE {
+    guid = 0xF13000012B00001A;
+    spline_point = {
+        x = -8938.5;
+        y = -131.25;
+        z = 83.5;
+    };
+    spline_id = 8;
+    move_type = NORMAL;
+    spline_flags = RUN_MODE;
+    duration = 1000;
+    splines = [
+        {
+            x = -8937.75;
+            y = -117.5;
+            z = 82.25;
+        },
+    ];
+} [
+    0x00, 0x31, /* size */
+    0xDD, 0x00, /* opcode */
+    0xD9, 0x1A, 0x2B, 0x01, 0x30, 0xF1, /* guid */
+    0x00, 0xAA, 0x0B, 0xC6, /* spline_point.x */
+    0x00, 0x40, 0x03, 0xC3, /* spline_point.y */
+    0x00, 0x00, 0xA7, 0x42, /* spline_point.z */
+    0x08, 0x00, 0x00, 0x00, /* spline_id */
+    0x00, /* move_type */
+    0x00, 0x01, 0x00, 0x00, /* spline_flags */
+    0xE8, 0x03, 0x00, 0x00, /* duration */
+    0x01, 0x00, 0x00, 0x00, /* splines.amount */
+    0x00, 0xA7, 0x0B, 0xC6, /* splines[0].x */
+    0x00, 0x00, 0xEB, 0xC2, /* splines[0].y */
+    0x00, 0x80, 0xA4, 0x42, /* splines[0].z */
+] {
+    versions = "1.12";
 }
 
 smsg SMSG_MONSTER_MOVE = 0x00DD {
