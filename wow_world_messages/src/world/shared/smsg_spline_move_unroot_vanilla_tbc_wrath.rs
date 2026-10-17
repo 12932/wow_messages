@@ -38,37 +38,6 @@ impl crate::Message for SMSG_SPLINE_MOVE_UNROOT {
         "SMSG_SPLINE_MOVE_UNROOT"
     }
 
-    #[cfg(feature = "print-testcase")]
-    fn to_test_case_string(&self) -> Option<String> {
-        use std::fmt::Write;
-        use crate::traits::Message;
-
-        let mut s = String::new();
-
-        writeln!(s, "test SMSG_SPLINE_MOVE_UNROOT {{").unwrap();
-        // Members
-        writeln!(s, "    guid = {};", self.guid.guid()).unwrap();
-
-        writeln!(s, "}} [").unwrap();
-
-        let [a, b] = (u16::try_from(self.size() + 2).unwrap()).to_be_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* size */").unwrap();
-        let [a, b] = 772_u16.to_le_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* opcode */").unwrap();
-        let mut bytes: Vec<u8> = Vec::new();
-        self.write_into_vec(&mut bytes).unwrap();
-        let mut bytes = bytes.into_iter();
-
-        crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&self.guid), "guid", "    ");
-
-
-        writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1.12 2 3".to_string())).unwrap();
-        writeln!(s, "}}\n").unwrap();
-
-        Some(s)
-    }
-
     fn size_without_header(&self) -> u32 {
         self.size() as u32
     }
@@ -99,5 +68,266 @@ impl SMSG_SPLINE_MOVE_UNROOT {
     pub(crate) const fn size(&self) -> usize {
         crate::util::packed_guid_size(&self.guid) // guid: PackedGuid
     }
+}
+
+#[cfg(all(feature = "vanilla", test))]
+mod test_vanilla {
+    #![allow(clippy::missing_const_for_fn)]
+    use super::SMSG_SPLINE_MOVE_UNROOT;
+    use super::*;
+    use super::super::*;
+    use crate::vanilla::opcodes::ServerOpcodeMessage;
+    use crate::Guid;
+    use crate::vanilla::{ClientMessage, ServerMessage};
+
+    const HEADER_SIZE: usize = 2 + 2;
+    fn assert(t: &SMSG_SPLINE_MOVE_UNROOT, expected: &SMSG_SPLINE_MOVE_UNROOT) {
+        assert_eq!(t.guid, expected.guid);
+    }
+
+    const RAW0: [u8; 10] = [ 0x00, 0x08, 0x04, 0x03, 0xD9, 0x1A, 0x2B, 0x01, 0x30,
+         0xF1, ];
+
+    pub(crate) fn expected0() -> SMSG_SPLINE_MOVE_UNROOT {
+        SMSG_SPLINE_MOVE_UNROOT {
+            guid: Guid::new(0xF13000012B00001A),
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW0)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+}
+
+#[cfg(all(feature = "tbc", test))]
+mod test_tbc {
+    #![allow(clippy::missing_const_for_fn)]
+    use super::SMSG_SPLINE_MOVE_UNROOT;
+    use super::*;
+    use super::super::*;
+    use crate::tbc::opcodes::ServerOpcodeMessage;
+    use crate::Guid;
+    use crate::tbc::{ClientMessage, ServerMessage};
+
+    const HEADER_SIZE: usize = 2 + 2;
+    fn assert(t: &SMSG_SPLINE_MOVE_UNROOT, expected: &SMSG_SPLINE_MOVE_UNROOT) {
+        assert_eq!(t.guid, expected.guid);
+    }
+
+    const RAW0: [u8; 10] = [ 0x00, 0x08, 0x04, 0x03, 0xD9, 0x1A, 0x2B, 0x01, 0x30,
+         0xF1, ];
+
+    pub(crate) fn expected0() -> SMSG_SPLINE_MOVE_UNROOT {
+        SMSG_SPLINE_MOVE_UNROOT {
+            guid: Guid::new(0xF13000012B00001A),
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW0)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+}
+
+#[cfg(all(feature = "wrath", test))]
+mod test_wrath {
+    #![allow(clippy::missing_const_for_fn)]
+    use super::SMSG_SPLINE_MOVE_UNROOT;
+    use super::*;
+    use super::super::*;
+    use crate::wrath::opcodes::ServerOpcodeMessage;
+    use crate::Guid;
+    use crate::wrath::{ClientMessage, ServerMessage};
+
+    const HEADER_SIZE: usize = 2 + 2;
+    fn assert(t: &SMSG_SPLINE_MOVE_UNROOT, expected: &SMSG_SPLINE_MOVE_UNROOT) {
+        assert_eq!(t.guid, expected.guid);
+    }
+
+    const RAW0: [u8; 10] = [ 0x00, 0x08, 0x04, 0x03, 0xD9, 0x1A, 0x2B, 0x01, 0x30,
+         0xF1, ];
+
+    pub(crate) fn expected0() -> SMSG_SPLINE_MOVE_UNROOT {
+        SMSG_SPLINE_MOVE_UNROOT {
+            guid: Guid::new(0xF13000012B00001A),
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW0)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm` line 7.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_spline_move_unroot0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_SPLINE_MOVE_UNROOT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_SPLINE_MOVE_UNROOT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
 }
 

@@ -400410,9 +400410,9 @@
           "opcode": 232
         },
         "sizes": {
-          "constant_sized": true,
-          "minimum_size": 12,
-          "maximum_size": 12
+          "constant_sized": false,
+          "minimum_size": 5,
+          "maximum_size": 13
         },
         "members": [
           {
@@ -400420,7 +400420,7 @@
             "struct_member_content": {
               "name": "guid",
               "data_type": {
-                "data_type_tag": "Guid"
+                "data_type_tag": "PackedGuid"
               },
               "constant_value": null,
               "used_as_size_in": null,
@@ -400461,7 +400461,68 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_FORCE_MOVE_ROOT",
+            "members": [
+              {
+                "variable_name": "guid",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "counter",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              8,
+              232,
+              0,
+              1,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_root.wowm",
+              "start_position": 8,
+              "end_position": 18
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_root.wowm",
           "start_position": 1,
@@ -400532,8 +400593,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_root.wowm",
-          "start_position": 8,
-          "end_position": 13
+          "start_position": 1,
+          "end_position": 6
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -400600,8 +400661,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_root.wowm",
-          "start_position": 8,
-          "end_position": 13
+          "start_position": 1,
+          "end_position": 6
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -403147,9 +403208,9 @@
           "opcode": 234
         },
         "sizes": {
-          "constant_sized": true,
-          "minimum_size": 12,
-          "maximum_size": 12
+          "constant_sized": false,
+          "minimum_size": 5,
+          "maximum_size": 13
         },
         "members": [
           {
@@ -403157,7 +403218,7 @@
             "struct_member_content": {
               "name": "guid",
               "data_type": {
-                "data_type_tag": "Guid"
+                "data_type_tag": "PackedGuid"
               },
               "constant_value": null,
               "used_as_size_in": null,
@@ -403198,7 +403259,68 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_FORCE_MOVE_UNROOT",
+            "members": [
+              {
+                "variable_name": "guid",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "counter",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              8,
+              234,
+              0,
+              1,
+              4,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_unroot.wowm",
+              "start_position": 8,
+              "end_position": 18
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_unroot.wowm",
           "start_position": 1,
@@ -403269,8 +403391,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_unroot.wowm",
-          "start_position": 8,
-          "end_position": 13
+          "start_position": 1,
+          "end_position": 6
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -403337,8 +403459,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_force_move_unroot.wowm",
-          "start_position": 8,
-          "end_position": 13
+          "start_position": 1,
+          "end_position": 6
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -579455,7 +579577,69 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_SPLINE_MOVE_UNROOT",
+            "members": [
+              {
+                "variable_name": "guid",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390967039131674",
+                    "original_string": "0xF13000012B00001A"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              8,
+              4,
+              3,
+              217,
+              26,
+              43,
+              1,
+              48,
+              241
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 2,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 3,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm",
+              "start_position": 7,
+              "end_position": 15
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_unroot.wowm",
           "start_position": 3,
@@ -580864,9 +581048,9 @@
           "opcode": 794
         },
         "sizes": {
-          "constant_sized": true,
-          "minimum_size": 8,
-          "maximum_size": 8
+          "constant_sized": false,
+          "minimum_size": 1,
+          "maximum_size": 9
         },
         "members": [
           {
@@ -580874,7 +581058,7 @@
             "struct_member_content": {
               "name": "guid",
               "data_type": {
-                "data_type_tag": "Guid"
+                "data_type_tag": "PackedGuid"
               },
               "constant_value": null,
               "used_as_size_in": null,
@@ -580912,7 +581096,69 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_SPLINE_MOVE_ROOT",
+            "members": [
+              {
+                "variable_name": "guid",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390967039131674",
+                    "original_string": "0xF13000012B00001A"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              8,
+              26,
+              3,
+              217,
+              26,
+              43,
+              1,
+              48,
+              241
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 2,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 3,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_root.wowm",
+              "start_position": 7,
+              "end_position": 15
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_spline_move_root.wowm",
           "start_position": 3,

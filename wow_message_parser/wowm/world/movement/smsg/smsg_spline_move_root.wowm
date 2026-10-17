@@ -1,6 +1,15 @@
 #tag_all versions "1.12 2 3";
 
 smsg SMSG_SPLINE_MOVE_ROOT = 0x031A {
-    Guid guid;
+    PackedGuid guid;
 }
 
+test SMSG_SPLINE_MOVE_ROOT {
+    guid = 0xF13000012B00001A;
+} [
+    0x00, 0x08, /* size */
+    0x1A, 0x03, /* opcode */
+    0xD9, 0x1A, 0x2B, 0x01, 0x30, 0xF1, /* guid */
+] {
+    versions = "1.12";
+}

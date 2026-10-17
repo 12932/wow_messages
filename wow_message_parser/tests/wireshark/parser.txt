@@ -4352,11 +4352,11 @@
             ptvcursor_add(ptv, hf_woww_experience, 4, ENC_LITTLE_ENDIAN);
             break;
         case SMSG_FORCE_MOVE_ROOT:
-            ptvcursor_add(ptv, hf_woww_guid, 8, ENC_LITTLE_ENDIAN);
+            add_packed_guid(ptv, pinfo);
             ptvcursor_add(ptv, hf_woww_counter, 4, ENC_LITTLE_ENDIAN);
             break;
         case SMSG_FORCE_MOVE_UNROOT:
-            ptvcursor_add(ptv, hf_woww_guid, 8, ENC_LITTLE_ENDIAN);
+            add_packed_guid(ptv, pinfo);
             ptvcursor_add(ptv, hf_woww_counter, 4, ENC_LITTLE_ENDIAN);
             break;
         case SMSG_FORCE_RUN_BACK_SPEED_CHANGE:
@@ -6086,7 +6086,7 @@
             add_packed_guid(ptv, pinfo);
             break;
         case SMSG_SPLINE_MOVE_ROOT:
-            ptvcursor_add(ptv, hf_woww_guid, 8, ENC_LITTLE_ENDIAN);
+            add_packed_guid(ptv, pinfo);
             break;
         case SMSG_SPLINE_MOVE_SET_HOVER:
             add_packed_guid(ptv, pinfo);

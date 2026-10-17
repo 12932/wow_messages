@@ -27,3 +27,12 @@ SMSG have a header of 4 bytes.
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
 | - | - / - | [PackedGuid](../types/packed-guid.md) | guid |  |  |
 
+### Examples
+
+#### Example 1
+
+```c
+0, 8, // size
+4, 3, // opcode (772)
+217, 26, 43, 1, 48, 241, // guid: PackedGuid
+```
