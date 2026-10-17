@@ -80,7 +80,7 @@ impl CMSG_CALENDAR_ADD_EVENT {
 
         // invitees: CalendarInvitee[amount_of_invitees]
         let invitees = {
-            let mut invitees = Vec::with_capacity(amount_of_invitees as usize);
+            let mut invitees = Vec::with_capacity(crate::util::capacity(amount_of_invitees as usize, r.len(), 3));
             for _ in 0..amount_of_invitees {
                 invitees.push(CalendarInvitee::read(&mut r)?);
             }

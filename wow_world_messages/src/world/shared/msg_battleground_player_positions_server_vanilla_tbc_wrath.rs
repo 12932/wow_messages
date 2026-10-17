@@ -30,7 +30,7 @@ impl MSG_BATTLEGROUND_PLAYER_POSITIONS_Server {
 
         // teammates: BattlegroundPlayerPosition[amount_of_teammates]
         let teammates = {
-            let mut teammates = Vec::with_capacity(amount_of_teammates as usize);
+            let mut teammates = Vec::with_capacity(crate::util::capacity(amount_of_teammates as usize, r.len(), 16));
             for _ in 0..amount_of_teammates {
                 teammates.push(BattlegroundPlayerPosition::read(&mut r)?);
             }
@@ -42,7 +42,7 @@ impl MSG_BATTLEGROUND_PLAYER_POSITIONS_Server {
 
         // carriers: BattlegroundPlayerPosition[amount_of_carriers]
         let carriers = {
-            let mut carriers = Vec::with_capacity(amount_of_carriers as usize);
+            let mut carriers = Vec::with_capacity(crate::util::capacity(amount_of_carriers as usize, r.len(), 16));
             for _ in 0..amount_of_carriers {
                 carriers.push(BattlegroundPlayerPosition::read(&mut r)?);
             }

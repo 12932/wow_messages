@@ -37,7 +37,7 @@ impl SMSG_HIGHEST_THREAT_UPDATE {
 
         // units: ThreatUpdateUnit[amount_of_units]
         let units = {
-            let mut units = Vec::with_capacity(amount_of_units as usize);
+            let mut units = Vec::with_capacity(crate::util::capacity(amount_of_units as usize, r.len(), 5));
             for _ in 0..amount_of_units {
                 units.push(ThreatUpdateUnit::read(&mut r)?);
             }

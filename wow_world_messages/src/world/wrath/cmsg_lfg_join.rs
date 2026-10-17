@@ -44,7 +44,7 @@ impl CMSG_LFG_JOIN {
 
         // slots: u32[amount_of_slots]
         let slots = {
-            let mut slots = Vec::with_capacity(amount_of_slots as usize);
+            let mut slots = Vec::with_capacity(crate::util::capacity(amount_of_slots as usize, r.len(), 4));
             for _ in 0..amount_of_slots {
                 slots.push(crate::util::read_u32_le(&mut r)?);
             }
@@ -56,7 +56,7 @@ impl CMSG_LFG_JOIN {
 
         // needs: u8[amount_of_needs]
         let needs = {
-            let mut needs = Vec::with_capacity(amount_of_needs as usize);
+            let mut needs = Vec::with_capacity(crate::util::capacity(amount_of_needs as usize, r.len(), 1));
             for _ in 0..amount_of_needs {
                 needs.push(crate::util::read_u8_le(&mut r)?);
             }

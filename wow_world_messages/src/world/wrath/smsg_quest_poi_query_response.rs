@@ -26,7 +26,7 @@ impl SMSG_QUEST_POI_QUERY_RESPONSE {
 
         // quests: QuestPoiList[amount_of_quests]
         let quests = {
-            let mut quests = Vec::with_capacity(amount_of_quests as usize);
+            let mut quests = Vec::with_capacity(crate::util::capacity(amount_of_quests as usize, r.len(), 8));
             for _ in 0..amount_of_quests {
                 quests.push(QuestPoiList::read(&mut r)?);
             }

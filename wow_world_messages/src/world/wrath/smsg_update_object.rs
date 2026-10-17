@@ -30,7 +30,7 @@ impl SMSG_UPDATE_OBJECT {
 
         // objects: Object[amount_of_objects]
         let objects = {
-            let mut objects = Vec::with_capacity(amount_of_objects as usize);
+            let mut objects = Vec::with_capacity(crate::util::capacity(amount_of_objects as usize, r.len(), 1));
             for _ in 0..amount_of_objects {
                 objects.push(Object::read(&mut r)?);
             }

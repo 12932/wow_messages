@@ -34,7 +34,7 @@ impl SMSG_LIST_INVENTORY {
 
         // items: ListInventoryItem[amount_of_items]
         let items = {
-            let mut items = Vec::with_capacity(amount_of_items as usize);
+            let mut items = Vec::with_capacity(crate::util::capacity(amount_of_items as usize, r.len(), 28));
             for _ in 0..amount_of_items {
                 items.push(ListInventoryItem::read(&mut r)?);
             }

@@ -27,7 +27,7 @@ impl SMSG_EQUIPMENT_SET_LIST {
 
         // equipment_sets: EquipmentSetListItem[amount_of_equipment_sets]
         let equipment_sets = {
-            let mut equipment_sets = Vec::with_capacity(amount_of_equipment_sets as usize);
+            let mut equipment_sets = Vec::with_capacity(crate::util::capacity(amount_of_equipment_sets as usize, r.len(), 162));
             for _ in 0..amount_of_equipment_sets {
                 equipment_sets.push(EquipmentSetListItem::read(&mut r)?);
             }

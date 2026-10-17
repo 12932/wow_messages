@@ -1,5 +1,31 @@
 use std::io::Read;
 
+/// The bytes a reservation assumes are left when the reader doesn't say
+/// (a struct's): a client packet's largest body.
+pub const RESERVE_LIMIT: usize = 0xFFFF;
+
+/// How much a zlib stream can grow when decompressed, at most.
+const MAX_DEFLATE_RATIO: usize = 1032;
+
+/// What to reserve for `count` items read off the wire, each at least
+/// `item_size` bytes, out of `remaining` bytes: never more than those bytes
+/// could hold, so a count the packet can't back (a `/who` claiming four
+/// billion strings) doesn't ask for gigabytes before its reading fails.
+pub const fn capacity(count: usize, remaining: usize, item_size: usize) -> usize {
+    let most = remaining / if item_size == 0 { 1 } else { item_size };
+    if count < most {
+        count
+    } else {
+        most
+    }
+}
+
+/// What to reserve for `size` bytes decompressed out of `compressed` bytes
+/// of zlib: no more than those could decompress to.
+pub const fn decompressed_capacity(size: u32, compressed: usize) -> usize {
+    capacity(size as usize, compressed.saturating_mul(MAX_DEFLATE_RATIO), 1)
+}
+
 /// A string up to its null terminator, however long: a quest's details
 /// run past 256 bytes, and stopping there read the rest of the string as
 /// the fields after it.
@@ -15,8 +41,10 @@ pub fn read_c_string_to_vec<R: Read>(r: &mut R) -> Result<Vec<u8>, std::io::Erro
     Ok(v)
 }
 
-/// A string after its size, its terminator counted: a size of 0 is an
-/// error.
+/// A string after its size, its terminator counted. A size of 0 is an
+/// error, and the string is read as it arrives rather than reserved from
+/// the size, so a size the packet can't back fails without asking for
+/// gigabytes.
 pub fn read_sized_c_string_to_vec<R: Read>(
     r: &mut R,
     size: u32,
@@ -28,9 +56,11 @@ pub fn read_sized_c_string_to_vec<R: Read>(
         ));
     };
 
-    let mut v = vec![0_u8; length as usize];
-
-    r.read_exact(&mut v)?;
+    let mut v = Vec::new();
+    r.by_ref().take(length.into()).read_to_end(&mut v)?;
+    if v.len() != length as usize {
+        return Err(std::io::ErrorKind::UnexpectedEof.into());
+    }
 
     let mut null_terminator = [0_u8; 1];
     r.read_exact(&mut null_terminator)?;

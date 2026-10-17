@@ -65,7 +65,7 @@ impl CMSG_WHO {
 
         // zones: u32[amount_of_zones]
         let zones = {
-            let mut zones = Vec::with_capacity(amount_of_zones as usize);
+            let mut zones = Vec::with_capacity(crate::util::capacity(amount_of_zones as usize, r.len(), 4));
             for _ in 0..amount_of_zones {
                 zones.push(crate::util::read_u32_le(&mut r)?);
             }
@@ -77,7 +77,7 @@ impl CMSG_WHO {
 
         // search_strings: CString[amount_of_strings]
         let search_strings = {
-            let mut search_strings = Vec::with_capacity(amount_of_strings as usize);
+            let mut search_strings = Vec::with_capacity(crate::util::capacity(amount_of_strings as usize, r.len(), 1));
             for _ in 0..amount_of_strings {
                 let s = crate::util::read_c_string_to_vec(&mut r)?;
                 search_strings.push(String::from_utf8(s)?);

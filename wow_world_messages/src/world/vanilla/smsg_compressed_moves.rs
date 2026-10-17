@@ -21,23 +21,16 @@ impl SMSG_COMPRESSED_MOVES {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
-        let decompressed_size = crate::util::read_u32_le(r)?;;
-        let decompressed_buffer = vec![0; decompressed_size as usize];
-        let mut r = &mut flate2::read::ZlibDecoder::new_with_buf(r, decompressed_buffer);
-        let mut buf = Vec::with_capacity(decompressed_size as usize);
-        r.read_to_end(&mut buf).unwrap();
+        let decompressed_size = crate::util::read_u32_le(r)?;
+        let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(decompressed_size, r.len()));
+        flate2::read::ZlibDecoder::new(&mut *r).read_to_end(&mut buf).unwrap();
         let mut r = &buf[..];
 
         // moves: CompressedMove[-]
         let moves = {
-            let mut current_size = {
-                0
-            };
-            let mut moves = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut moves = Vec::with_capacity(r.len() / 4);
             while !r.is_empty() {
-                let a = CompressedMove::read(&mut r)?;
-                current_size += a.size();
-                moves.push(a);
+                moves.push(CompressedMove::read(&mut r)?);
             }
             moves
         };

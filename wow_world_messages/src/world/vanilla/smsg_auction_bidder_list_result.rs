@@ -30,7 +30,7 @@ impl SMSG_AUCTION_BIDDER_LIST_RESULT {
 
         // auctions: AuctionListItem[count]
         let auctions = {
-            let mut auctions = Vec::with_capacity(count as usize);
+            let mut auctions = Vec::with_capacity(crate::util::capacity(count as usize, r.len(), 64));
             for _ in 0..count {
                 auctions.push(AuctionListItem::read(&mut r)?);
             }

@@ -99,7 +99,7 @@ impl SMSG_QUESTGIVER_REQUEST_ITEMS {
 
         // required_items: QuestItemRequirement[amount_of_required_items]
         let required_items = {
-            let mut required_items = Vec::with_capacity(amount_of_required_items as usize);
+            let mut required_items = Vec::with_capacity(crate::util::capacity(amount_of_required_items as usize, r.len(), 12));
             for _ in 0..amount_of_required_items {
                 required_items.push(QuestItemRequirement::read(&mut r)?);
             }

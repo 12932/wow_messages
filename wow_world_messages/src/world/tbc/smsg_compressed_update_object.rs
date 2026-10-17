@@ -29,11 +29,9 @@ impl SMSG_COMPRESSED_UPDATE_OBJECT {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
-        let decompressed_size = crate::util::read_u32_le(r)?;;
-        let decompressed_buffer = vec![0; decompressed_size as usize];
-        let mut r = &mut flate2::read::ZlibDecoder::new_with_buf(r, decompressed_buffer);
-        let mut buf = Vec::with_capacity(decompressed_size as usize);
-        r.read_to_end(&mut buf).unwrap();
+        let decompressed_size = crate::util::read_u32_le(r)?;
+        let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(decompressed_size, r.len()));
+        flate2::read::ZlibDecoder::new(&mut *r).read_to_end(&mut buf).unwrap();
         let mut r = &buf[..];
 
         // amount_of_objects: u32
@@ -44,7 +42,7 @@ impl SMSG_COMPRESSED_UPDATE_OBJECT {
 
         // objects: Object[amount_of_objects]
         let objects = {
-            let mut objects = Vec::with_capacity(amount_of_objects as usize);
+            let mut objects = Vec::with_capacity(crate::util::capacity(amount_of_objects as usize, r.len(), 1));
             for _ in 0..amount_of_objects {
                 objects.push(Object::read(&mut r)?);
             }

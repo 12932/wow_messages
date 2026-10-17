@@ -29,7 +29,7 @@ impl SMSG_QUESTGIVER_STATUS_MULTIPLE {
 
         // statuses: QuestGiverStatusReport[amount_of_statuses]
         let statuses = {
-            let mut statuses = Vec::with_capacity(amount_of_statuses as usize);
+            let mut statuses = Vec::with_capacity(crate::util::capacity(amount_of_statuses as usize, r.len(), 9));
             for _ in 0..amount_of_statuses {
                 statuses.push(QuestGiverStatusReport::read(&mut r)?);
             }

@@ -420,7 +420,7 @@ impl MovementBlock {
 
                 // nodes: Vector3d[amount_of_nodes]
                 let nodes = {
-                    let mut nodes = Vec::with_capacity(amount_of_nodes as usize);
+                    let mut nodes = Vec::with_capacity(crate::util::capacity(amount_of_nodes as usize, crate::util::RESERVE_LIMIT, 12));
                     for _ in 0..amount_of_nodes {
                         nodes.push(crate::util::vanilla_tbc_wrath_vector3d_read(&mut r)?);
                     }

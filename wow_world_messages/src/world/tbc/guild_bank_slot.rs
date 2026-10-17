@@ -85,7 +85,7 @@ impl GuildBankSlot {
 
         // sockets: GuildBankSocket[amount_of_sockets]
         let sockets = {
-            let mut sockets = Vec::with_capacity(amount_of_sockets as usize);
+            let mut sockets = Vec::with_capacity(crate::util::capacity(amount_of_sockets as usize, crate::util::RESERVE_LIMIT, 5));
             for _ in 0..amount_of_sockets {
                 sockets.push(GuildBankSocket::read(&mut r)?);
             }

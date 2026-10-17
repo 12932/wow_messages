@@ -109,7 +109,7 @@ impl Arrays {
 
         // simple_2byte_variable_array: u16[index]
         let simple_2byte_variable_array = {
-            let mut simple_2byte_variable_array = Vec::with_capacity(index as usize);
+            let mut simple_2byte_variable_array = Vec::with_capacity(crate::util::capacity(index as usize, crate::util::RESERVE_LIMIT, 2));
             for _ in 0..index {
                 simple_2byte_variable_array.push(crate::util::read_u16_le(&mut r)?);
             }
@@ -118,7 +118,7 @@ impl Arrays {
 
         // simple_4byte_variable_array: u32[index]
         let simple_4byte_variable_array = {
-            let mut simple_4byte_variable_array = Vec::with_capacity(index as usize);
+            let mut simple_4byte_variable_array = Vec::with_capacity(crate::util::capacity(index as usize, crate::util::RESERVE_LIMIT, 4));
             for _ in 0..index {
                 simple_4byte_variable_array.push(crate::util::read_u32_le(&mut r)?);
             }
@@ -127,7 +127,7 @@ impl Arrays {
 
         // simple_8byte_variable_array: u64[index]
         let simple_8byte_variable_array = {
-            let mut simple_8byte_variable_array = Vec::with_capacity(index as usize);
+            let mut simple_8byte_variable_array = Vec::with_capacity(crate::util::capacity(index as usize, crate::util::RESERVE_LIMIT, 8));
             for _ in 0..index {
                 simple_8byte_variable_array.push(crate::util::read_u64_le(&mut r)?);
             }
@@ -145,7 +145,7 @@ impl Arrays {
 
         // complex_variable_array: StructWithAllBuiltInTypes[index]
         let complex_variable_array = {
-            let mut complex_variable_array = Vec::with_capacity(index as usize);
+            let mut complex_variable_array = Vec::with_capacity(crate::util::capacity(index as usize, crate::util::RESERVE_LIMIT, 21));
             for _ in 0..index {
                 complex_variable_array.push(StructWithAllBuiltInTypes::read(&mut r)?);
             }
@@ -164,7 +164,7 @@ impl Arrays {
 
         // variable_cstring_array: CString[index]
         let variable_cstring_array = {
-            let mut variable_cstring_array = Vec::with_capacity(index as usize);
+            let mut variable_cstring_array = Vec::with_capacity(crate::util::capacity(index as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..index {
                 let s = crate::util::read_c_string_to_vec(&mut r)?;
                 variable_cstring_array.push(String::from_utf8(s)?);

@@ -26,7 +26,7 @@ impl SMSG_LOOT_MASTER_LIST {
 
         // guids: Guid[amount_of_players]
         let guids = {
-            let mut guids = Vec::with_capacity(amount_of_players as usize);
+            let mut guids = Vec::with_capacity(crate::util::capacity(amount_of_players as usize, r.len(), 8));
             for _ in 0..amount_of_players {
                 guids.push(crate::util::read_guid(&mut r)?);
             }

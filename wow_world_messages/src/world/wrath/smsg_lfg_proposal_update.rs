@@ -51,7 +51,7 @@ impl SMSG_LFG_PROPOSAL_UPDATE {
 
         // proposals: LfgProposal[amount_of_proposals]
         let proposals = {
-            let mut proposals = Vec::with_capacity(amount_of_proposals as usize);
+            let mut proposals = Vec::with_capacity(crate::util::capacity(amount_of_proposals as usize, r.len(), 9));
             for _ in 0..amount_of_proposals {
                 proposals.push(LfgProposal::read(&mut r)?);
             }

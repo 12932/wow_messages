@@ -49,7 +49,7 @@ impl SMSG_INSPECT_TALENT {
 
         // specs: InspectTalentSpec[amount_of_specs]
         let specs = {
-            let mut specs = Vec::with_capacity(amount_of_specs as usize);
+            let mut specs = Vec::with_capacity(crate::util::capacity(amount_of_specs as usize, r.len(), 1));
             for _ in 0..amount_of_specs {
                 specs.push(InspectTalentSpec::read(&mut r)?);
             }
@@ -61,7 +61,7 @@ impl SMSG_INSPECT_TALENT {
 
         // glyphs: u16[amount_of_glyphs]
         let glyphs = {
-            let mut glyphs = Vec::with_capacity(amount_of_glyphs as usize);
+            let mut glyphs = Vec::with_capacity(crate::util::capacity(amount_of_glyphs as usize, r.len(), 2));
             for _ in 0..amount_of_glyphs {
                 glyphs.push(crate::util::read_u16_le(&mut r)?);
             }

@@ -34,7 +34,7 @@ impl SMSG_WHO {
 
         // players: WhoPlayer[listed_players]
         let players = {
-            let mut players = Vec::with_capacity(listed_players as usize);
+            let mut players = Vec::with_capacity(crate::util::capacity(listed_players as usize, r.len(), 13));
             for _ in 0..listed_players {
                 players.push(WhoPlayer::read(&mut r)?);
             }

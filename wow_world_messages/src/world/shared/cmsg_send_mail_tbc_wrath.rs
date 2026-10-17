@@ -79,7 +79,7 @@ impl CMSG_SEND_MAIL {
 
         // items: MailItem[amount_of_items]
         let items = {
-            let mut items = Vec::with_capacity(amount_of_items as usize);
+            let mut items = Vec::with_capacity(crate::util::capacity(amount_of_items as usize, r.len(), 9));
             for _ in 0..amount_of_items {
                 items.push(MailItem::read(&mut r)?);
             }

@@ -36,7 +36,7 @@ impl SMSG_SPELL_UPDATE_CHAIN_TARGETS {
 
         // targets: Guid[amount_of_targets]
         let targets = {
-            let mut targets = Vec::with_capacity(amount_of_targets as usize);
+            let mut targets = Vec::with_capacity(crate::util::capacity(amount_of_targets as usize, r.len(), 8));
             for _ in 0..amount_of_targets {
                 targets.push(crate::util::read_guid(&mut r)?);
             }

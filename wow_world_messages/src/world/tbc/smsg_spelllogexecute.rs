@@ -39,7 +39,7 @@ impl SMSG_SPELLLOGEXECUTE {
 
         // logs: SpellLog[amount_of_effects]
         let logs = {
-            let mut logs = Vec::with_capacity(amount_of_effects as usize);
+            let mut logs = Vec::with_capacity(crate::util::capacity(amount_of_effects as usize, r.len(), 8));
             for _ in 0..amount_of_effects {
                 logs.push(SpellLog::read(&mut r)?);
             }

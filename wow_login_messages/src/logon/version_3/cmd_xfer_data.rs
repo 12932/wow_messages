@@ -40,7 +40,7 @@ impl CMD_XFER_DATA {
 
         // data: u8[size]
         let data = {
-            let mut data = Vec::with_capacity(size as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(size as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..size {
                 data.push(crate::util::read_u8_le(&mut r)?);
             }
@@ -59,7 +59,7 @@ impl CMD_XFER_DATA {
 
         // data: u8[size]
         let data = {
-            let mut data = Vec::with_capacity(size as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(size as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..size {
                 data.push(crate::util::tokio_read_u8_le(&mut r).await?);
             }
@@ -78,7 +78,7 @@ impl CMD_XFER_DATA {
 
         // data: u8[size]
         let data = {
-            let mut data = Vec::with_capacity(size as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(size as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..size {
                 data.push(crate::util::astd_read_u8_le(&mut r).await?);
             }

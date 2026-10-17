@@ -64,7 +64,7 @@ impl SMSG_GROUP_LIST {
 
         // members: GroupListMember[amount_of_members]
         let members = {
-            let mut members = Vec::with_capacity(amount_of_members as usize);
+            let mut members = Vec::with_capacity(crate::util::capacity(amount_of_members as usize, r.len(), 12));
             for _ in 0..amount_of_members {
                 members.push(GroupListMember::read(&mut r)?);
             }

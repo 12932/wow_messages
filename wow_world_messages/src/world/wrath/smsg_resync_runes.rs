@@ -26,7 +26,7 @@ impl SMSG_RESYNC_RUNES {
 
         // runes: ResyncRune[amount_of_runes]
         let runes = {
-            let mut runes = Vec::with_capacity(amount_of_runes as usize);
+            let mut runes = Vec::with_capacity(crate::util::capacity(amount_of_runes as usize, r.len(), 2));
             for _ in 0..amount_of_runes {
                 runes.push(ResyncRune::read(&mut r)?);
             }

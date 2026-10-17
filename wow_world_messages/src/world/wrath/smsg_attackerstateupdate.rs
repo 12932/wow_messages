@@ -87,7 +87,7 @@ impl SMSG_ATTACKERSTATEUPDATE {
 
         // damage_infos: DamageInfo[amount_of_damages]
         let damage_infos = {
-            let mut damage_infos = Vec::with_capacity(amount_of_damages as usize);
+            let mut damage_infos = Vec::with_capacity(crate::util::capacity(amount_of_damages as usize, r.len(), 12));
             for _ in 0..amount_of_damages {
                 damage_infos.push(DamageInfo::read(&mut r)?);
             }

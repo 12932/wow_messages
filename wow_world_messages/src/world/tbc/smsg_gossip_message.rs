@@ -50,7 +50,7 @@ impl SMSG_GOSSIP_MESSAGE {
 
         // gossips: GossipItem[amount_of_gossip_items]
         let gossips = {
-            let mut gossips = Vec::with_capacity(amount_of_gossip_items as usize);
+            let mut gossips = Vec::with_capacity(crate::util::capacity(amount_of_gossip_items as usize, r.len(), 12));
             for _ in 0..amount_of_gossip_items {
                 gossips.push(GossipItem::read(&mut r)?);
             }
@@ -62,7 +62,7 @@ impl SMSG_GOSSIP_MESSAGE {
 
         // quests: QuestItem[amount_of_quests]
         let quests = {
-            let mut quests = Vec::with_capacity(amount_of_quests as usize);
+            let mut quests = Vec::with_capacity(crate::util::capacity(amount_of_quests as usize, r.len(), 13));
             for _ in 0..amount_of_quests {
                 quests.push(QuestItem::read(&mut r)?);
             }

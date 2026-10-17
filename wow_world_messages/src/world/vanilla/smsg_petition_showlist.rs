@@ -32,7 +32,7 @@ impl SMSG_PETITION_SHOWLIST {
 
         // petitions: PetitionShowlist[amount_of_petitions]
         let petitions = {
-            let mut petitions = Vec::with_capacity(amount_of_petitions as usize);
+            let mut petitions = Vec::with_capacity(crate::util::capacity(amount_of_petitions as usize, r.len(), 20));
             for _ in 0..amount_of_petitions {
                 petitions.push(PetitionShowlist::read(&mut r)?);
             }

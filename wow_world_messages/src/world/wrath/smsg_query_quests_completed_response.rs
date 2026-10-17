@@ -24,7 +24,7 @@ impl SMSG_QUERY_QUESTS_COMPLETED_RESPONSE {
 
         // reward_quests: u32[amount_of_reward_quests]
         let reward_quests = {
-            let mut reward_quests = Vec::with_capacity(amount_of_reward_quests as usize);
+            let mut reward_quests = Vec::with_capacity(crate::util::capacity(amount_of_reward_quests as usize, r.len(), 4));
             for _ in 0..amount_of_reward_quests {
                 reward_quests.push(crate::util::read_u32_le(&mut r)?);
             }

@@ -37,7 +37,7 @@ impl MSG_GUILD_BANK_LOG_QUERY_Server {
 
         // money_logs: MoneyLogItem[amount_of_money_logs]
         let money_logs = {
-            let mut money_logs = Vec::with_capacity(amount_of_money_logs as usize);
+            let mut money_logs = Vec::with_capacity(crate::util::capacity(amount_of_money_logs as usize, r.len(), 17));
             for _ in 0..amount_of_money_logs {
                 money_logs.push(MoneyLogItem::read(&mut r)?);
             }

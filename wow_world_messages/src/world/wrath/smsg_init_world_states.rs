@@ -43,7 +43,7 @@ impl SMSG_INIT_WORLD_STATES {
 
         // states: WorldState[amount_of_states]
         let states = {
-            let mut states = Vec::with_capacity(amount_of_states as usize);
+            let mut states = Vec::with_capacity(crate::util::capacity(amount_of_states as usize, r.len(), 8));
             for _ in 0..amount_of_states {
                 states.push(WorldState::read(&mut r)?);
             }

@@ -60,7 +60,7 @@ impl SMSG_SPELL_GO {
 
         // hits: Guid[amount_of_hits]
         let hits = {
-            let mut hits = Vec::with_capacity(amount_of_hits as usize);
+            let mut hits = Vec::with_capacity(crate::util::capacity(amount_of_hits as usize, r.len(), 8));
             for _ in 0..amount_of_hits {
                 hits.push(crate::util::read_guid(&mut r)?);
             }
@@ -72,7 +72,7 @@ impl SMSG_SPELL_GO {
 
         // misses: SpellMiss[amount_of_misses]
         let misses = {
-            let mut misses = Vec::with_capacity(amount_of_misses as usize);
+            let mut misses = Vec::with_capacity(crate::util::capacity(amount_of_misses as usize, r.len(), 12));
             for _ in 0..amount_of_misses {
                 misses.push(SpellMiss::read(&mut r)?);
             }

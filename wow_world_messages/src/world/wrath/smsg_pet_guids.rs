@@ -26,7 +26,7 @@ impl SMSG_PET_GUIDS {
 
         // guids: Guid[amount_of_guids]
         let guids = {
-            let mut guids = Vec::with_capacity(amount_of_guids as usize);
+            let mut guids = Vec::with_capacity(crate::util::capacity(amount_of_guids as usize, r.len(), 8));
             for _ in 0..amount_of_guids {
                 guids.push(crate::util::read_guid(&mut r)?);
             }

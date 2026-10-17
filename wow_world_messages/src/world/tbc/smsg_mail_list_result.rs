@@ -30,7 +30,7 @@ impl SMSG_MAIL_LIST_RESULT {
 
         // mails: Mail[amount_of_mails]
         let mails = {
-            let mut mails = Vec::with_capacity(amount_of_mails as usize);
+            let mut mails = Vec::with_capacity(crate::util::capacity(amount_of_mails as usize, r.len(), 41));
             for _ in 0..amount_of_mails {
                 mails.push(Mail::read(&mut r)?);
             }

@@ -61,7 +61,7 @@ impl SMSG_UPDATE_LFG_LIST {
 
                 // deleted_guids: Guid[amount_of_deleted_guids]
                 let deleted_guids = {
-                    let mut deleted_guids = Vec::with_capacity(amount_of_deleted_guids as usize);
+                    let mut deleted_guids = Vec::with_capacity(crate::util::capacity(amount_of_deleted_guids as usize, r.len(), 8));
                     for _ in 0..amount_of_deleted_guids {
                         deleted_guids.push(crate::util::read_guid(&mut r)?);
                     }
@@ -83,7 +83,7 @@ impl SMSG_UPDATE_LFG_LIST {
 
         // groups: LfgListGroup[amount_of_groups]
         let groups = {
-            let mut groups = Vec::with_capacity(amount_of_groups as usize);
+            let mut groups = Vec::with_capacity(crate::util::capacity(amount_of_groups as usize, r.len(), 24));
             for _ in 0..amount_of_groups {
                 groups.push(LfgListGroup::read(&mut r)?);
             }
@@ -98,7 +98,7 @@ impl SMSG_UPDATE_LFG_LIST {
 
         // players: LfgListPlayer[amount_of_players]
         let players = {
-            let mut players = Vec::with_capacity(amount_of_players as usize);
+            let mut players = Vec::with_capacity(crate::util::capacity(amount_of_players as usize, r.len(), 24));
             for _ in 0..amount_of_players {
                 players.push(LfgListPlayer::read(&mut r)?);
             }

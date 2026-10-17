@@ -27,7 +27,7 @@ impl SMSG_INITIALIZE_FACTIONS {
 
         // factions: FactionInitializer[amount_of_factions]
         let factions = {
-            let mut factions = Vec::with_capacity(amount_of_factions as usize);
+            let mut factions = Vec::with_capacity(crate::util::capacity(amount_of_factions as usize, r.len(), 5));
             for _ in 0..amount_of_factions {
                 factions.push(FactionInitializer::read(&mut r)?);
             }

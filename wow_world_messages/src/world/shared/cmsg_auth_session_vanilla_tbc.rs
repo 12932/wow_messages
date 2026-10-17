@@ -62,20 +62,11 @@ impl CMSG_AUTH_SESSION {
         let addon_info = {
             let addon_info_decompressed_size = crate::util::read_u32_le(&mut r)?;
 
-            let mut buf = Vec::with_capacity(addon_info_decompressed_size as usize);
-            let mut decoder = &mut flate2::read::ZlibDecoder::new(r);
-            decoder.read_to_end(&mut buf).unwrap();
+            let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(addon_info_decompressed_size, r.len()));
+            flate2::read::ZlibDecoder::new(&mut r).read_to_end(&mut buf).unwrap();
             let mut r = &buf[..];
 
-            let mut current_size = {
-                4 // build: u32
-                + 4 // server_id: u32
-                + username.len() + 1 // username: CString
-                + 4 // client_seed: u32
-                + 20 // client_proof: u8[20]
-            };
-            current_size += 4; // addon_info_decompressed_size: u32
-            let mut addon_info = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut addon_info = Vec::with_capacity(r.len() / 10);
             while !r.is_empty() {
                 addon_info.push(AddonInfo::read(&mut r)?);
             }

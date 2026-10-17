@@ -23,7 +23,7 @@ impl CMSG_WARDEN_DATA {
             let mut current_size = {
                 0
             };
-            let mut encrypted_data = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut encrypted_data = Vec::with_capacity(r.len() / 1);
             while current_size < (body_size as usize) {
                 encrypted_data.push(crate::util::read_u8_le(&mut r)?);
                 current_size += 1;

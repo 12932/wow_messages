@@ -28,7 +28,7 @@ impl SMSG_SET_FORCED_REACTIONS {
 
         // reactions: ForcedReaction[amount_of_reactions]
         let reactions = {
-            let mut reactions = Vec::with_capacity(amount_of_reactions as usize);
+            let mut reactions = Vec::with_capacity(crate::util::capacity(amount_of_reactions as usize, r.len(), 6));
             for _ in 0..amount_of_reactions {
                 reactions.push(ForcedReaction::read(&mut r)?);
             }

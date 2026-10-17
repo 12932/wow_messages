@@ -56,7 +56,7 @@ impl CMD_SURVEY_RESULT {
 
         // data: u8[compressed_data_length]
         let data = {
-            let mut data = Vec::with_capacity(compressed_data_length as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(compressed_data_length as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..compressed_data_length {
                 data.push(crate::util::read_u8_le(&mut r)?);
             }
@@ -83,7 +83,7 @@ impl CMD_SURVEY_RESULT {
 
         // data: u8[compressed_data_length]
         let data = {
-            let mut data = Vec::with_capacity(compressed_data_length as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(compressed_data_length as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..compressed_data_length {
                 data.push(crate::util::tokio_read_u8_le(&mut r).await?);
             }
@@ -110,7 +110,7 @@ impl CMD_SURVEY_RESULT {
 
         // data: u8[compressed_data_length]
         let data = {
-            let mut data = Vec::with_capacity(compressed_data_length as usize);
+            let mut data = Vec::with_capacity(crate::util::capacity(compressed_data_length as usize, crate::util::RESERVE_LIMIT, 1));
             for _ in 0..compressed_data_length {
                 data.push(crate::util::astd_read_u8_le(&mut r).await?);
             }

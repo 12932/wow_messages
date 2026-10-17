@@ -1,5 +1,5 @@
 use crate::parser::types::array::{Array, ArraySize, ArrayType};
-use crate::parser::types::container::Container;
+use crate::parser::types::container::{Container, ContainerType};
 use crate::parser::types::if_statement::{Equation, IfStatement};
 use crate::parser::types::objects::Objects;
 use crate::parser::types::sizes::GUID_SIZE;
@@ -64,8 +64,10 @@ fn print_read_array(
         }
         ArraySize::Variable(m) => {
             s.wln(format!(
-                "let mut {name} = Vec::with_capacity({length} as usize);",
-                length = m.name()
+                "let mut {name} = Vec::with_capacity(crate::util::capacity({length} as usize, {remaining}, {item_size}));",
+                length = m.name(),
+                remaining = remaining_bytes(e),
+                item_size = array_item_minimum_size(array),
             ));
 
             s.body(format!("for _ in 0..{length}", length = m.name()), |s| {
@@ -80,29 +82,21 @@ fn print_read_array(
                 s.newline();
 
                 s.wln(format!(
-                    "let mut buf = Vec::with_capacity({name}_decompressed_size as usize);"
+                    "let mut buf = Vec::with_capacity(crate::util::decompressed_capacity({name}_decompressed_size, {remaining}));",
+                    remaining = remaining_bytes(e),
                 ));
-
-                s.wln(format!(
-                    "let mut decoder = &mut flate2::read::ZlibDecoder::new(r);"
-                ));
-                // TODO: I want to know if this fails, should this be a separate error mode?
-                s.wln("decoder.read_to_end(&mut buf).unwrap();");
+                print_decompress(s, "&mut r");
                 s.wln("let mut r = &buf[..];");
                 s.newline();
             }
 
-            // The fields before the array, which the body's size counts,
-            // and a compressed array's size decompressed. An uncompressed
-            // array has no size before it.
-            print_size_before_variable(s, e, d.name());
-            if array.compressed() {
-                s.wln(format!(
-                    "current_size += 4; // {name}_decompressed_size: u32"
-                ));
+            // Read from the decompressed bytes to their end, or from the
+            // body to its size, counted from the fields before the array.
+            let use_decoder = array.compressed() || e.tags().compressed();
+            if !use_decoder {
+                print_size_before_variable(s, e, d.name());
             }
 
-            let use_decoder = array.compressed() || e.tags().compressed() && array.is_endless();
             let loop_condition = if use_decoder {
                 "while !r.is_empty()"
             } else {
@@ -110,7 +104,9 @@ fn print_read_array(
             };
 
             s.wln(format!(
-                "let mut {name} = Vec::with_capacity((body_size as usize).saturating_sub(current_size));",
+                "let mut {name} = Vec::with_capacity({remaining} / {item_size});",
+                remaining = remaining_bytes(e),
+                item_size = array_item_minimum_size(array),
             ));
             s.body(loop_condition, |s| {
                 let array_prefix = "let a = ".to_string();
@@ -131,7 +127,7 @@ fn print_read_array(
                 };
 
                 let static_sized = array.ty().sizes().is_constant().is_some();
-                let intermediate_variable = !static_sized && !array.compressed();
+                let intermediate_variable = !static_sized && !use_decoder;
 
                 let array_override = if intermediate_variable {
                     Some((array_prefix, array_postfix))
@@ -141,7 +137,7 @@ fn print_read_array(
 
                 print_array_ty(s, array, d, prefix, postfix, false, array_override);
 
-                if !array.compressed() {
+                if !use_decoder {
                     s.wln(format!("current_size += {size};"));
                 }
 
@@ -154,6 +150,31 @@ fn print_read_array(
 
     s.wln(d.name());
     s.closing_curly_with(";");
+}
+
+/// What a container's reader has left, to cap a reservation by: a world
+/// message reads from a slice of its body; a struct or a login message from
+/// a reader that doesn't say.
+fn remaining_bytes(e: &Container) -> &'static str {
+    match e.container_type() {
+        ContainerType::Msg(_) | ContainerType::CMsg(_) | ContainerType::SMsg(_) => "r.len()",
+        ContainerType::Struct | ContainerType::CLogin(_) | ContainerType::SLogin(_) => {
+            "crate::util::RESERVE_LIMIT"
+        }
+    }
+}
+
+/// The fewest bytes an array's item takes, at least 1.
+fn array_item_minimum_size(array: &Array) -> i128 {
+    array.ty().sizes().minimum().max(1)
+}
+
+/// Decompress all of `reader` into `buf`.
+fn print_decompress(s: &mut Writer, reader: &str) {
+    // TODO: I want to know if this fails, should this be a separate error mode?
+    s.wln(format!(
+        "flate2::read::ZlibDecoder::new({reader}).read_to_end(&mut buf).unwrap();"
+    ));
 }
 
 fn print_array_ty(
@@ -807,19 +828,16 @@ pub(crate) fn print_read(
         s.newline();
     }
 
-    // For fully compressed messages, replace the reader with a ZLibDecoder.
+    // For fully compressed messages, read the rest of the body from its decompression.
     if e.tags().compressed() {
-        // Fully compressed messages always start with a u32 containing the decompressed size.
-        // We don't care about that, so we just ignore it.
-        s.wln("let decompressed_size = crate::util::read_u32_le(r)?;;");
-        s.wln("let decompressed_buffer = vec![0; decompressed_size as usize];");
-        s.wln("let mut r = &mut flate2::read::ZlibDecoder::new_with_buf(r, decompressed_buffer);");
-
+        // Fully compressed messages always start with a u32 containing the decompressed size,
+        // which only sizes the reservation.
+        s.wln("let decompressed_size = crate::util::read_u32_le(r)?;");
         s.wln(format!(
-            "let mut buf = Vec::with_capacity(decompressed_size as usize);"
+            "let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(decompressed_size, {remaining}));",
+            remaining = remaining_bytes(e),
         ));
-        // TODO: I want to know if this fails, should this be a separate error mode?
-        s.wln("r.read_to_end(&mut buf).unwrap();");
+        print_decompress(s, "&mut *r");
         s.wln("let mut r = &buf[..];");
         s.newline();
     }

@@ -53,7 +53,7 @@ impl SMSG_GUILD_ROSTER {
 
         // rights: GuildRights[amount_of_rights]
         let rights = {
-            let mut rights = Vec::with_capacity(amount_of_rights as usize);
+            let mut rights = Vec::with_capacity(crate::util::capacity(amount_of_rights as usize, r.len(), 56));
             for _ in 0..amount_of_rights {
                 rights.push(GuildRights::read(&mut r)?);
             }
@@ -62,7 +62,7 @@ impl SMSG_GUILD_ROSTER {
 
         // members: GuildMember[amount_of_members]
         let members = {
-            let mut members = Vec::with_capacity(amount_of_members as usize);
+            let mut members = Vec::with_capacity(crate::util::capacity(amount_of_members as usize, r.len(), 23));
             for _ in 0..amount_of_members {
                 members.push(GuildMember::read(&mut r)?);
             }

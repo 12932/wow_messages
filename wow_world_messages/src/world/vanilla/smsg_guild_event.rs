@@ -31,7 +31,7 @@ impl SMSG_GUILD_EVENT {
 
         // event_descriptions: CString[amount_of_events]
         let event_descriptions = {
-            let mut event_descriptions = Vec::with_capacity(amount_of_events as usize);
+            let mut event_descriptions = Vec::with_capacity(crate::util::capacity(amount_of_events as usize, r.len(), 1));
             for _ in 0..amount_of_events {
                 let s = crate::util::read_c_string_to_vec(&mut r)?;
                 event_descriptions.push(String::from_utf8(s)?);

@@ -30,7 +30,7 @@ impl SMSG_FRIEND_LIST {
 
         // friends: Friend[amount_of_friends]
         let friends = {
-            let mut friends = Vec::with_capacity(amount_of_friends as usize);
+            let mut friends = Vec::with_capacity(crate::util::capacity(amount_of_friends as usize, r.len(), 9));
             for _ in 0..amount_of_friends {
                 friends.push(Friend::read(&mut r)?);
             }

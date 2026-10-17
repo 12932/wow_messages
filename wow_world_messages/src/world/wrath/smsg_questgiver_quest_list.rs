@@ -53,7 +53,7 @@ impl SMSG_QUESTGIVER_QUEST_LIST {
 
         // quest_items: QuestItem[amount_of_entries]
         let quest_items = {
-            let mut quest_items = Vec::with_capacity(amount_of_entries as usize);
+            let mut quest_items = Vec::with_capacity(crate::util::capacity(amount_of_entries as usize, r.len(), 18));
             for _ in 0..amount_of_entries {
                 quest_items.push(QuestItem::read(&mut r)?);
             }

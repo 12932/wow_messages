@@ -46,7 +46,7 @@ impl SMSG_ACCOUNT_DATA_TIMES {
                 + 1 // unknown1: u8
                 + 4 // mask: CacheMask
             };
-            let mut data = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut data = Vec::with_capacity(r.len() / 4);
             while current_size < (body_size as usize) {
                 data.push(crate::util::read_u32_le(&mut r)?);
                 current_size += 4;

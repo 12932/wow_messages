@@ -26,7 +26,7 @@ impl SMSG_AUCTION_LIST_PENDING_SALES {
 
         // pending_sales: PendingAuctionSale[amount_of_pending_sales]
         let pending_sales = {
-            let mut pending_sales = Vec::with_capacity(amount_of_pending_sales as usize);
+            let mut pending_sales = Vec::with_capacity(crate::util::capacity(amount_of_pending_sales as usize, r.len(), 14));
             for _ in 0..amount_of_pending_sales {
                 pending_sales.push(PendingAuctionSale::read(&mut r)?);
             }

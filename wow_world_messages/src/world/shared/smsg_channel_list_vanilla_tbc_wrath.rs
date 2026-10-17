@@ -42,7 +42,7 @@ impl SMSG_CHANNEL_LIST {
 
         // members: ChannelMember[amount_of_members]
         let members = {
-            let mut members = Vec::with_capacity(amount_of_members as usize);
+            let mut members = Vec::with_capacity(crate::util::capacity(amount_of_members as usize, r.len(), 9));
             for _ in 0..amount_of_members {
                 members.push(ChannelMember::read(&mut r)?);
             }

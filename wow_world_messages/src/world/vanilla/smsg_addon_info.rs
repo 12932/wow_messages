@@ -27,7 +27,7 @@ impl SMSG_ADDON_INFO {
             let mut current_size = {
                 0
             };
-            let mut addons = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut addons = Vec::with_capacity(r.len() / 3);
             while current_size < (body_size as usize) {
                 let a = Addon::read(&mut r)?;
                 current_size += a.size();

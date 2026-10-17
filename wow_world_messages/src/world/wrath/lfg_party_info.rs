@@ -44,7 +44,7 @@ impl LfgPartyInfo {
 
         // dungeons: LfgJoinLockedDungeon[amount_of_dungeons]
         let dungeons = {
-            let mut dungeons = Vec::with_capacity(amount_of_dungeons as usize);
+            let mut dungeons = Vec::with_capacity(crate::util::capacity(amount_of_dungeons as usize, crate::util::RESERVE_LIMIT, 8));
             for _ in 0..amount_of_dungeons {
                 dungeons.push(LfgJoinLockedDungeon::read(&mut r)?);
             }

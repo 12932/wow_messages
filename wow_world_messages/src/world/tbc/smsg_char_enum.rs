@@ -31,7 +31,7 @@ impl SMSG_CHAR_ENUM {
 
         // characters: Character[amount_of_characters]
         let characters = {
-            let mut characters = Vec::with_capacity(amount_of_characters as usize);
+            let mut characters = Vec::with_capacity(crate::util::capacity(amount_of_characters as usize, r.len(), 239));
             for _ in 0..amount_of_characters {
                 characters.push(Character::read(&mut r)?);
             }

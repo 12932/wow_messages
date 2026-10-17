@@ -29,7 +29,7 @@ impl MSG_GUILD_EVENT_LOG_QUERY_Server {
 
         // events: GuildLogEvent[amount_of_events]
         let events = {
-            let mut events = Vec::with_capacity(amount_of_events as usize);
+            let mut events = Vec::with_capacity(crate::util::capacity(amount_of_events as usize, r.len(), 13));
             for _ in 0..amount_of_events {
                 events.push(GuildLogEvent::read(&mut r)?);
             }

@@ -34,7 +34,7 @@ impl SMSG_AURA_UPDATE_ALL {
             let mut current_size = {
                 crate::util::packed_guid_size(&unit) // unit: PackedGuid
             };
-            let mut aura_updates = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut aura_updates = Vec::with_capacity(r.len() / 8);
             while current_size < (body_size as usize) {
                 let a = AuraUpdate::read(&mut r)?;
                 current_size += a.size();

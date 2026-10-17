@@ -87,7 +87,7 @@ impl CMD_REALM_LIST_Server {
 
         // realms: Realm[number_of_realms]
         let realms = {
-            let mut realms = Vec::with_capacity(number_of_realms as usize);
+            let mut realms = Vec::with_capacity(crate::util::capacity(number_of_realms as usize, crate::util::RESERVE_LIMIT, 12));
             for _ in 0..number_of_realms {
                 realms.push(Realm::read(&mut r)?);
             }
@@ -118,7 +118,7 @@ impl CMD_REALM_LIST_Server {
 
         // realms: Realm[number_of_realms]
         let realms = {
-            let mut realms = Vec::with_capacity(number_of_realms as usize);
+            let mut realms = Vec::with_capacity(crate::util::capacity(number_of_realms as usize, crate::util::RESERVE_LIMIT, 12));
             for _ in 0..number_of_realms {
                 realms.push(Realm::tokio_read(&mut r).await?);
             }
@@ -149,7 +149,7 @@ impl CMD_REALM_LIST_Server {
 
         // realms: Realm[number_of_realms]
         let realms = {
-            let mut realms = Vec::with_capacity(number_of_realms as usize);
+            let mut realms = Vec::with_capacity(crate::util::capacity(number_of_realms as usize, crate::util::RESERVE_LIMIT, 12));
             for _ in 0..number_of_realms {
                 realms.push(Realm::astd_read(&mut r).await?);
             }

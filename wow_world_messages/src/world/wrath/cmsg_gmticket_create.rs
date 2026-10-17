@@ -59,7 +59,7 @@ impl CMSG_GMTICKET_CREATE {
 
         // times: u32[num_of_times]
         let times = {
-            let mut times = Vec::with_capacity(num_of_times as usize);
+            let mut times = Vec::with_capacity(crate::util::capacity(num_of_times as usize, r.len(), 4));
             for _ in 0..num_of_times {
                 times.push(crate::util::read_u32_le(&mut r)?);
             }
@@ -70,22 +70,11 @@ impl CMSG_GMTICKET_CREATE {
         let compressed_data = {
             let compressed_data_decompressed_size = crate::util::read_u32_le(&mut r)?;
 
-            let mut buf = Vec::with_capacity(compressed_data_decompressed_size as usize);
-            let mut decoder = &mut flate2::read::ZlibDecoder::new(r);
-            decoder.read_to_end(&mut buf).unwrap();
+            let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(compressed_data_decompressed_size, r.len()));
+            flate2::read::ZlibDecoder::new(&mut r).read_to_end(&mut buf).unwrap();
             let mut r = &buf[..];
 
-            let mut current_size = {
-                4 // map: Map
-                + 12 // position: Vector3d
-                + message.len() + 1 // message: CString
-                + 1 // needs_response: Bool
-                + 1 // needs_more_help: Bool
-                + 4 // num_of_times: u32
-                + times.len() * core::mem::size_of::<u32>() // times: u32[num_of_times]
-            };
-            current_size += 4; // compressed_data_decompressed_size: u32
-            let mut compressed_data = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut compressed_data = Vec::with_capacity(r.len() / 1);
             while !r.is_empty() {
                 compressed_data.push(crate::util::read_u8_le(&mut r)?);
             }

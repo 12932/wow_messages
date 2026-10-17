@@ -55,7 +55,7 @@ impl SMSG_GUILD_BANK_LIST {
 
                 // tabs: GuildBankTab[amount_of_bank_tabs]
                 let tabs = {
-                    let mut tabs = Vec::with_capacity(amount_of_bank_tabs as usize);
+                    let mut tabs = Vec::with_capacity(crate::util::capacity(amount_of_bank_tabs as usize, r.len(), 2));
                     for _ in 0..amount_of_bank_tabs {
                         tabs.push(GuildBankTab::read(&mut r)?);
                     }
@@ -73,7 +73,7 @@ impl SMSG_GUILD_BANK_LIST {
 
         // slot_updates: GuildBankSlot[amount_of_slot_updates]
         let slot_updates = {
-            let mut slot_updates = Vec::with_capacity(amount_of_slot_updates as usize);
+            let mut slot_updates = Vec::with_capacity(crate::util::capacity(amount_of_slot_updates as usize, r.len(), 16));
             for _ in 0..amount_of_slot_updates {
                 slot_updates.push(GuildBankSlot::read(&mut r)?);
             }

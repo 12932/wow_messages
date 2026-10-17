@@ -44,7 +44,7 @@ impl SMSG_PERIODICAURALOG {
 
         // auras: AuraLog[amount_of_auras]
         let auras = {
-            let mut auras = Vec::with_capacity(amount_of_auras as usize);
+            let mut auras = Vec::with_capacity(crate::util::capacity(amount_of_auras as usize, r.len(), 4));
             for _ in 0..amount_of_auras {
                 auras.push(AuraLog::read(&mut r)?);
             }

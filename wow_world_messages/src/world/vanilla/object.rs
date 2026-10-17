@@ -209,7 +209,7 @@ impl Object {
 
                 // guids: PackedGuid[count]
                 let guids = {
-                    let mut guids = Vec::with_capacity(count as usize);
+                    let mut guids = Vec::with_capacity(crate::util::capacity(count as usize, crate::util::RESERVE_LIMIT, 1));
                     for _ in 0..count {
                         guids.push(crate::util::read_packed_guid(&mut r)?);
                     }
@@ -226,7 +226,7 @@ impl Object {
 
                 // guids: PackedGuid[count]
                 let guids = {
-                    let mut guids = Vec::with_capacity(count as usize);
+                    let mut guids = Vec::with_capacity(crate::util::capacity(count as usize, crate::util::RESERVE_LIMIT, 1));
                     for _ in 0..count {
                         guids.push(crate::util::read_packed_guid(&mut r)?);
                     }

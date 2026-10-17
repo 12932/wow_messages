@@ -43,7 +43,7 @@ impl SMSG_SHOWTAXINODES {
                 + 8 // guid: Guid
                 + 4 // nearest_node: u32
             };
-            let mut nodes = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut nodes = Vec::with_capacity(r.len() / 4);
             while current_size < (body_size as usize) {
                 nodes.push(crate::util::read_u32_le(&mut r)?);
                 current_size += 4;

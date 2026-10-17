@@ -38,7 +38,7 @@ impl SMSG_SPELL_COOLDOWN {
                 8 // guid: Guid
                 + 1 // flags: u8
             };
-            let mut cooldowns = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut cooldowns = Vec::with_capacity(r.len() / 8);
             while current_size < (body_size as usize) {
                 cooldowns.push(SpellCooldownStatus::read(&mut r)?);
                 current_size += 8;

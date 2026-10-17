@@ -44,7 +44,7 @@ impl SMSG_SPELLLOGMISS {
 
         // targets: SpellLogMiss[amount_of_targets]
         let targets = {
-            let mut targets = Vec::with_capacity(amount_of_targets as usize);
+            let mut targets = Vec::with_capacity(crate::util::capacity(amount_of_targets as usize, r.len(), 12));
             for _ in 0..amount_of_targets {
                 targets.push(SpellLogMiss::read(&mut r)?);
             }

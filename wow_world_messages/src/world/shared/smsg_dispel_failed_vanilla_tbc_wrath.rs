@@ -36,7 +36,7 @@ impl SMSG_DISPEL_FAILED {
                 8 // caster: Guid
                 + 8 // target: Guid
             };
-            let mut spells = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut spells = Vec::with_capacity(r.len() / 4);
             while current_size < (body_size as usize) {
                 spells.push(crate::util::read_u32_le(&mut r)?);
                 current_size += 4;

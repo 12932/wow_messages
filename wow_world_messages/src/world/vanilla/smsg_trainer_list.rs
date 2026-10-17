@@ -41,7 +41,7 @@ impl SMSG_TRAINER_LIST {
 
         // spells: TrainerSpell[amount_of_spells]
         let spells = {
-            let mut spells = Vec::with_capacity(amount_of_spells as usize);
+            let mut spells = Vec::with_capacity(crate::util::capacity(amount_of_spells as usize, r.len(), 38));
             for _ in 0..amount_of_spells {
                 spells.push(TrainerSpell::read(&mut r)?);
             }

@@ -49,7 +49,7 @@ impl SMSG_TALENTS_INFO {
 
                 // specs: TalentInfoSpec[amount_of_specs]
                 let specs = {
-                    let mut specs = Vec::with_capacity(amount_of_specs as usize);
+                    let mut specs = Vec::with_capacity(crate::util::capacity(amount_of_specs as usize, r.len(), 2));
                     for _ in 0..amount_of_specs {
                         specs.push(TalentInfoSpec::read(&mut r)?);
                     }
@@ -67,7 +67,7 @@ impl SMSG_TALENTS_INFO {
 
                 // talents: InspectTalent[amount_of_talents]
                 let talents = {
-                    let mut talents = Vec::with_capacity(amount_of_talents as usize);
+                    let mut talents = Vec::with_capacity(crate::util::capacity(amount_of_talents as usize, r.len(), 5));
                     for _ in 0..amount_of_talents {
                         talents.push(InspectTalent::read(&mut r)?);
                     }

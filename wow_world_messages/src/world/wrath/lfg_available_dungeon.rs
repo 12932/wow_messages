@@ -83,7 +83,7 @@ impl LfgAvailableDungeon {
 
         // rewards: LfgQuestReward[amount_of_rewards]
         let rewards = {
-            let mut rewards = Vec::with_capacity(amount_of_rewards as usize);
+            let mut rewards = Vec::with_capacity(crate::util::capacity(amount_of_rewards as usize, crate::util::RESERVE_LIMIT, 12));
             for _ in 0..amount_of_rewards {
                 rewards.push(LfgQuestReward::read(&mut r)?);
             }

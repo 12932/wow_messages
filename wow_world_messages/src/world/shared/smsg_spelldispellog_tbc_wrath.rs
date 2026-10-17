@@ -49,7 +49,7 @@ impl SMSG_SPELLDISPELLOG {
 
         // spells: DispelledSpell[amount_of_spells]
         let spells = {
-            let mut spells = Vec::with_capacity(amount_of_spells as usize);
+            let mut spells = Vec::with_capacity(crate::util::capacity(amount_of_spells as usize, r.len(), 5));
             for _ in 0..amount_of_spells {
                 spells.push(DispelledSpell::read(&mut r)?);
             }

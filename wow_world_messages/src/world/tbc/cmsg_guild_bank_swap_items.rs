@@ -165,7 +165,7 @@ impl CMSG_GUILD_BANK_SWAP_ITEMS {
                 8 // bank: Guid
                 + 1 // source: CMSG_GUILD_BANK_SWAP_ITEMS_BankSwapSource
             };
-            let mut unknown5 = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+            let mut unknown5 = Vec::with_capacity(r.len() / 1);
             while current_size < (body_size as usize) {
                 unknown5.push(crate::util::read_u8_le(&mut r)?);
                 current_size += 1;

@@ -55,7 +55,7 @@ impl SMSG_LFG_UPDATE_PLAYER {
 
                 // dungeons: u32[amount_of_dungeons]
                 let dungeons = {
-                    let mut dungeons = Vec::with_capacity(amount_of_dungeons as usize);
+                    let mut dungeons = Vec::with_capacity(crate::util::capacity(amount_of_dungeons as usize, r.len(), 4));
                     for _ in 0..amount_of_dungeons {
                         dungeons.push(crate::util::read_u32_le(&mut r)?);
                     }

@@ -29,7 +29,7 @@ impl SMSG_LFG_PARTY_INFO {
 
         // infos: LfgPartyInfo[amount_of_infos]
         let infos = {
-            let mut infos = Vec::with_capacity(amount_of_infos as usize);
+            let mut infos = Vec::with_capacity(crate::util::capacity(amount_of_infos as usize, r.len(), 12));
             for _ in 0..amount_of_infos {
                 infos.push(LfgPartyInfo::read(&mut r)?);
             }

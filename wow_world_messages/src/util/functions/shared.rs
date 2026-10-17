@@ -79,7 +79,12 @@ pub(crate) fn read_monster_move_spline(
     mut r: &mut impl Read,
 ) -> Result<Vec<Vector3d>, crate::errors::ParseErrorKind> {
     let amount_of_splines = read_u32_le(&mut r)?;
-    let mut splines = Vec::with_capacity(amount_of_splines.try_into().unwrap());
+    // The first spline is 12 bytes, the rest 4.
+    let mut splines = Vec::with_capacity(crate::util::capacity(
+        amount_of_splines as usize,
+        crate::util::RESERVE_LIMIT,
+        4,
+    ));
 
     for i in 0..amount_of_splines {
         if i == 0 {

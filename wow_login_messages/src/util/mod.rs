@@ -14,6 +14,22 @@ use std::io::Read;
 
 pub(crate) const CSTRING_LARGEST_ALLOWED: usize = 256;
 
+/// The bytes a reservation assumes are left, the reader not saying.
+pub(crate) const RESERVE_LIMIT: usize = 0xFFFF;
+
+/// What to reserve for `count` items read off the wire, each at least
+/// `item_size` bytes, out of `remaining` bytes: never more than those bytes
+/// could hold, so a count the message can't back doesn't ask for gigabytes
+/// before its reading fails.
+pub(crate) const fn capacity(count: usize, remaining: usize, item_size: usize) -> usize {
+    let most = remaining / if item_size == 0 { 1 } else { item_size };
+    if count < most {
+        count
+    } else {
+        most
+    }
+}
+
 #[cfg(feature = "sync")]
 pub fn read_fixed_string_to_vec<R: Read>(
     r: &mut R,

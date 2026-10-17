@@ -48,7 +48,7 @@ impl SMSG_SPELLSTEALLOG {
 
         // spell_steals: SpellSteal[amount_of_spell_steals]
         let spell_steals = {
-            let mut spell_steals = Vec::with_capacity(amount_of_spell_steals as usize);
+            let mut spell_steals = Vec::with_capacity(crate::util::capacity(amount_of_spell_steals as usize, r.len(), 5));
             for _ in 0..amount_of_spell_steals {
                 spell_steals.push(SpellSteal::read(&mut r)?);
             }

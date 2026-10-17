@@ -34,7 +34,7 @@ impl CMSG_LEARN_PREVIEW_TALENTS_PET {
 
         // talents: PreviewTalent[amount_of_talents]
         let talents = {
-            let mut talents = Vec::with_capacity(amount_of_talents as usize);
+            let mut talents = Vec::with_capacity(crate::util::capacity(amount_of_talents as usize, r.len(), 8));
             for _ in 0..amount_of_talents {
                 talents.push(PreviewTalent::read(&mut r)?);
             }

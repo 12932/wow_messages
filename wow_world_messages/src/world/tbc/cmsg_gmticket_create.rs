@@ -69,20 +69,11 @@ impl CMSG_GMTICKET_CREATE {
                 let compressed_chat_data = {
                     let compressed_chat_data_decompressed_size = crate::util::read_u32_le(&mut r)?;
 
-                    let mut buf = Vec::with_capacity(compressed_chat_data_decompressed_size as usize);
-                    let mut decoder = &mut flate2::read::ZlibDecoder::new(r);
-                    decoder.read_to_end(&mut buf).unwrap();
+                    let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(compressed_chat_data_decompressed_size, r.len()));
+                    flate2::read::ZlibDecoder::new(&mut r).read_to_end(&mut buf).unwrap();
                     let mut r = &buf[..];
 
-                    let mut current_size = {
-                        1 // category: CMSG_GMTICKET_CREATE_GmTicketType
-                        + 4 // map: Map
-                        + 12 // position: Vector3d
-                        + message.len() + 1 // message: CString
-                        + reserved_for_future_use.len() + 1 // reserved_for_future_use: CString
-                    };
-                    current_size += 4; // compressed_chat_data_decompressed_size: u32
-                    let mut compressed_chat_data = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
+                    let mut compressed_chat_data = Vec::with_capacity(r.len() / 1);
                     while !r.is_empty() {
                         compressed_chat_data.push(crate::util::read_u8_le(&mut r)?);
                     }

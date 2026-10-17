@@ -134,7 +134,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
         // telemetry_keys: TelemetryKey[number_of_telemetry_keys]
         let telemetry_keys = {
-            let mut telemetry_keys = Vec::with_capacity(number_of_telemetry_keys as usize);
+            let mut telemetry_keys = Vec::with_capacity(crate::util::capacity(number_of_telemetry_keys as usize, crate::util::RESERVE_LIMIT, 30));
             for _ in 0..number_of_telemetry_keys {
                 telemetry_keys.push(TelemetryKey::read(&mut r)?);
             }
@@ -190,7 +190,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
             // tokens: u8[amount_of_tokens]
             let tokens = {
-                let mut tokens = Vec::with_capacity(amount_of_tokens as usize);
+                let mut tokens = Vec::with_capacity(crate::util::capacity(amount_of_tokens as usize, crate::util::RESERVE_LIMIT, 1));
                 for _ in 0..amount_of_tokens {
                     tokens.push(crate::util::read_u8_le(&mut r)?);
                 }
@@ -249,7 +249,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
         // telemetry_keys: TelemetryKey[number_of_telemetry_keys]
         let telemetry_keys = {
-            let mut telemetry_keys = Vec::with_capacity(number_of_telemetry_keys as usize);
+            let mut telemetry_keys = Vec::with_capacity(crate::util::capacity(number_of_telemetry_keys as usize, crate::util::RESERVE_LIMIT, 30));
             for _ in 0..number_of_telemetry_keys {
                 telemetry_keys.push(TelemetryKey::tokio_read(&mut r).await?);
             }
@@ -305,7 +305,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
             // tokens: u8[amount_of_tokens]
             let tokens = {
-                let mut tokens = Vec::with_capacity(amount_of_tokens as usize);
+                let mut tokens = Vec::with_capacity(crate::util::capacity(amount_of_tokens as usize, crate::util::RESERVE_LIMIT, 1));
                 for _ in 0..amount_of_tokens {
                     tokens.push(crate::util::tokio_read_u8_le(&mut r).await?);
                 }
@@ -364,7 +364,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
         // telemetry_keys: TelemetryKey[number_of_telemetry_keys]
         let telemetry_keys = {
-            let mut telemetry_keys = Vec::with_capacity(number_of_telemetry_keys as usize);
+            let mut telemetry_keys = Vec::with_capacity(crate::util::capacity(number_of_telemetry_keys as usize, crate::util::RESERVE_LIMIT, 30));
             for _ in 0..number_of_telemetry_keys {
                 telemetry_keys.push(TelemetryKey::astd_read(&mut r).await?);
             }
@@ -420,7 +420,7 @@ impl CMD_AUTH_LOGON_PROOF_Client {
 
             // tokens: u8[amount_of_tokens]
             let tokens = {
-                let mut tokens = Vec::with_capacity(amount_of_tokens as usize);
+                let mut tokens = Vec::with_capacity(crate::util::capacity(amount_of_tokens as usize, crate::util::RESERVE_LIMIT, 1));
                 for _ in 0..amount_of_tokens {
                     tokens.push(crate::util::astd_read_u8_le(&mut r).await?);
                 }
