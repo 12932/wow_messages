@@ -133,6 +133,70 @@ pub(crate) fn monster_move_spline_size(splines: &[Vector3d]) -> usize {
     size
 }
 
+/// The most questions a GM survey answers.
+#[cfg(feature = "vanilla")]
+const GM_SURVEY_QUESTIONS: usize = 10;
+
+/// A GM survey's questions as 1.12 sends them: up to ten, each its id, its
+/// answer and a comment, and when there are fewer, a question id of 0 after
+/// the last (mangos-zero's `GMTicket::SaveSurveyData`).
+#[cfg(feature = "vanilla")]
+pub(crate) fn read_gm_survey_questions(
+    mut r: &mut impl Read,
+) -> Result<Vec<crate::vanilla::GmSurveyQuestion>, crate::errors::ParseErrorKind> {
+    let mut questions = Vec::new();
+
+    while questions.len() < GM_SURVEY_QUESTIONS {
+        let question_id = read_u32_le(&mut r)?;
+        if question_id == 0 {
+            break;
+        }
+
+        let answer = read_u8_le(&mut r)?;
+        let comment = String::from_utf8(crate::util::read_c_string_to_vec(&mut r)?)?;
+
+        questions.push(crate::vanilla::GmSurveyQuestion {
+            question_id,
+            answer,
+            comment,
+        });
+    }
+
+    Ok(questions)
+}
+
+/// The first ten questions, and the question id of 0 after them when there
+/// are fewer.
+#[cfg(feature = "vanilla")]
+pub(crate) fn write_gm_survey_questions(
+    questions: &[crate::vanilla::GmSurveyQuestion],
+    mut w: impl Write,
+) -> Result<(), std::io::Error> {
+    for question in questions.iter().take(GM_SURVEY_QUESTIONS) {
+        question.write_into_vec(&mut w)?;
+    }
+
+    if questions.len() < GM_SURVEY_QUESTIONS {
+        w.write_all(&0_u32.to_le_bytes())?;
+    }
+
+    Ok(())
+}
+
+#[cfg(feature = "vanilla")]
+pub(crate) fn gm_survey_questions_size(questions: &[crate::vanilla::GmSurveyQuestion]) -> usize {
+    let size = questions
+        .iter()
+        .take(GM_SURVEY_QUESTIONS)
+        .fold(0, |acc, question| acc + question.size());
+
+    if questions.len() < GM_SURVEY_QUESTIONS {
+        size + core::mem::size_of::<u32>()
+    } else {
+        size
+    }
+}
+
 pub const fn packed_guid_size(guid: &crate::Guid) -> usize {
     let mut amount_of_bytes = 1;
 

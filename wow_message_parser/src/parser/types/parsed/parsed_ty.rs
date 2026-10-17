@@ -16,7 +16,8 @@ use crate::parser::types::ty::Type;
 use crate::parser::types::IntegerType;
 use crate::{
     CSTRING_LARGEST_ALLOWED, CSTRING_SMALLEST_ALLOWED, ENCHANT_MASK_LARGEST_ALLOWED,
-    ENCHANT_MASK_SMALLEST_ALLOWED, INSPECT_TALENT_GEAR_MASK_LARGEST_ALLOWED,
+    ENCHANT_MASK_SMALLEST_ALLOWED, GM_SURVEY_QUESTION_ARRAY_LARGEST_ALLOWED,
+    GM_SURVEY_QUESTION_ARRAY_SMALLEST_ALLOWED, INSPECT_TALENT_GEAR_MASK_LARGEST_ALLOWED,
     INSPECT_TALENT_GEAR_MASK_SMALLEST_ALLOWED, MONSTER_MOVE_SPLINE_LARGEST_ALLOWED,
     MONSTER_MOVE_SPLINE_SMALLEST_ALLOWED, SIZED_CSTRING_LARGEST_ALLOWED,
     SIZED_CSTRING_SMALLEST_ALLOWED, STRING_LARGEST_POSSIBLE, STRING_SMALLEST_POSSIBLE,
@@ -45,6 +46,7 @@ pub(crate) enum ParsedType {
     MonsterMoveSpline,
     AchievementDoneArray,
     AchievementInProgressArray,
+    GmSurveyQuestionArray,
     EnchantMask,
     InspectTalentGearMask,
     VariableItemRandomProperty,
@@ -79,6 +81,7 @@ impl ParsedType {
             ParsedType::AchievementInProgressArray => {
                 Type::ACHIEVEMENT_IN_PROGRESS_ARRAY_NAME.to_string()
             }
+            ParsedType::GmSurveyQuestionArray => Type::GM_SURVEY_QUESTION_ARRAY_NAME.to_string(),
             ParsedType::MonsterMoveSpline => Type::MONSTER_MOVE_SPLINES_NAME.to_string(),
             ParsedType::EnchantMask => Type::ENCHANT_MASK_NAME.to_string(),
             ParsedType::InspectTalentGearMask => Type::INSPECT_TALENT_GEAR_MASK_NAME.to_string(),
@@ -107,6 +110,9 @@ impl ParsedType {
             ParsedType::AchievementDoneArray => Type::ACHIEVEMENT_DONE_ARRAY_RUST_NAME.to_string(),
             ParsedType::AchievementInProgressArray => {
                 Type::ACHIEVEMENT_IN_PROGRESS_ARRAY_RUST_NAME.to_string()
+            }
+            ParsedType::GmSurveyQuestionArray => {
+                Type::GM_SURVEY_QUESTION_ARRAY_RUST_NAME.to_string()
             }
             ParsedType::MonsterMoveSpline => Type::MONSTER_MOVE_SPLINES_RUST_NAME.to_string(),
             ParsedType::AddonArray => Type::ADDON_ARRAY_RUST_NAME.to_string(),
@@ -145,6 +151,10 @@ impl ParsedType {
             ParsedType::AchievementDoneArray | ParsedType::AchievementInProgressArray => {
                 (0, usize::MAX.try_into().unwrap())
             }
+            ParsedType::GmSurveyQuestionArray => (
+                GM_SURVEY_QUESTION_ARRAY_SMALLEST_ALLOWED.into(),
+                GM_SURVEY_QUESTION_ARRAY_LARGEST_ALLOWED.into(),
+            ),
             ParsedType::MonsterMoveSpline => (
                 MONSTER_MOVE_SPLINE_SMALLEST_ALLOWED.into(),
                 MONSTER_MOVE_SPLINE_LARGEST_ALLOWED,
@@ -326,6 +336,7 @@ impl ParsedType {
             Type::MONSTER_MOVE_SPLINES_NAME => Self::MonsterMoveSpline,
             Type::ACHIEVEMENT_DONE_ARRAY_NAME => Self::AchievementDoneArray,
             Type::ACHIEVEMENT_IN_PROGRESS_ARRAY_NAME => Self::AchievementInProgressArray,
+            Type::GM_SURVEY_QUESTION_ARRAY_NAME => Self::GmSurveyQuestionArray,
             Type::ENCHANT_MASK_NAME => Self::EnchantMask,
             Type::INSPECT_TALENT_GEAR_MASK_NAME => Self::InspectTalentGearMask,
             Type::VARIABLE_ITEM_RANDOM_PROPERTY_NAME => Self::VariableItemRandomProperty,

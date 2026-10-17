@@ -38,6 +38,7 @@ pub(crate) enum Type {
     AuraMask,
     AchievementDoneArray,
     AchievementInProgressArray,
+    GmSurveyQuestionArray,
     EnchantMask,
     InspectTalentGearMask,
     Gold,
@@ -72,6 +73,7 @@ impl Type {
     pub(crate) const ACHIEVEMENT_DONE_ARRAY_NAME: &'static str = "AchievementDoneArray";
     pub(crate) const ACHIEVEMENT_IN_PROGRESS_ARRAY_NAME: &'static str =
         "AchievementInProgressArray";
+    pub(crate) const GM_SURVEY_QUESTION_ARRAY_NAME: &'static str = "GmSurveyQuestionArray";
     pub(crate) const ENCHANT_MASK_NAME: &'static str = "EnchantMask";
     pub(crate) const INSPECT_TALENT_GEAR_MASK_NAME: &'static str = "InspectTalentGearMask";
     pub(crate) const NAMED_GUID_NAME: &'static str = "NamedGuid";
@@ -89,6 +91,7 @@ impl Type {
     pub(crate) const ACHIEVEMENT_DONE_ARRAY_RUST_NAME: &'static str = "Vec<AchievementDone>";
     pub(crate) const ACHIEVEMENT_IN_PROGRESS_ARRAY_RUST_NAME: &'static str =
         "Vec<AchievementInProgress>";
+    pub(crate) const GM_SURVEY_QUESTION_ARRAY_RUST_NAME: &'static str = "Vec<GmSurveyQuestion>";
     pub(crate) const ADDON_ARRAY_RUST_NAME: &'static str = "Vec<Addon>";
     pub(crate) const IP_ADDRESS_RUST_NAME: &'static str = "Ipv4Addr";
     pub(crate) const DURATIONS_RUST_NAME: &'static str = "Duration";
@@ -130,6 +133,7 @@ impl Type {
             Type::AuraMask => ParsedType::AuraMask,
             Type::AchievementDoneArray => ParsedType::AchievementDoneArray,
             Type::AchievementInProgressArray => ParsedType::AchievementInProgressArray,
+            Type::GmSurveyQuestionArray => ParsedType::GmSurveyQuestionArray,
             Type::EnchantMask => ParsedType::EnchantMask,
             Type::InspectTalentGearMask => ParsedType::InspectTalentGearMask,
             Type::Gold => ParsedType::Gold,
@@ -261,6 +265,7 @@ impl Type {
             | Type::SizedCString
             | Type::AchievementDoneArray
             | Type::AchievementInProgressArray
+            | Type::GmSurveyQuestionArray
             | Type::String { .. }
             | Type::Array(_)
             | Type::Enum { .. }

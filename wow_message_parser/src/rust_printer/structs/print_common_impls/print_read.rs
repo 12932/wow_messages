@@ -444,6 +444,11 @@ fn print_read_definition(
                 "crate::util::read_achievement_in_progress(&mut r){postfix}?;",
             ));
         }
+        Type::GmSurveyQuestionArray => {
+            s.wln_no_indent(format!(
+                "crate::util::read_gm_survey_questions(&mut r){postfix}?;",
+            ));
+        }
         Type::AddonArray => {
             s.wln_no_indent(format!("crate::util::read_addon_array(&mut r){postfix}?;",));
         }

@@ -1087,6 +1087,9 @@
         "AchievementInProgressArray": {
           "properties": {}
         },
+        "GmSurveyQuestionArray": {
+          "properties": {}
+        },
         "EnchantMask": {
           "properties": {}
         },

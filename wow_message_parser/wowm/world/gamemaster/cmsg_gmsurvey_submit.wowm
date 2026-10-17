@@ -1,5 +1,3 @@
-#tag_all versions "1 2 3";
-
 struct GmSurveyQuestion {
     u32 question_id {
         comment = "cmangos: questions found in GMSurveyQuestions.dbc";
@@ -12,6 +10,129 @@ struct GmSurveyQuestion {
         comment = "Usage: `GMSurveyAnswerSubmit(question, rank, comment)`";
         comment = "cmangos: Unused in stock UI, can be only set by calling Lua function";
     }
+} {
+    versions = "1 2 3";
+}
+
+cmsg CMSG_GMSURVEY_SUBMIT = 0x032A {
+    /* Enum for survey id */
+    u32 survey_id {
+        comment = "cmangos: Survey ID: found in GMSurveySurveys.dbc";
+    }
+    GmSurveyQuestionArray questions {
+        comment = "mangoszero/cmangos: Up to 10, a question id of 0 ending them when there are fewer";
+    }
+    CString answer_comment {
+        comment = "cmangos: Answer comment: Unused in stock UI, can be only set by calling Lua function"; 
+        comment = "cmangos: Answer comment max sizes in bytes: Vanilla - 8106:8110, TBC - 11459:11463, Wrath - 582:586";
+    }
+} {
+    versions = "1";
+}
+
+test CMSG_GMSURVEY_SUBMIT {
+    survey_id = 1;
+    questions = [
+        {
+            question_id = 7;
+            answer = 5;
+            comment = "";
+        },
+        {
+            question_id = 8;
+            answer = 3;
+            comment = "ok";
+        },
+    ];
+    answer_comment = "Thanks";
+} [
+    0x00, 0x21, /* size */
+    0x2A, 0x03, 0x00, 0x00, /* opcode */
+    0x01, 0x00, 0x00, 0x00, /* survey_id */
+    0x07, 0x00, 0x00, 0x00, /* questions[0].question_id */
+    0x05, /* questions[0].answer */
+    0x00, /* questions[0].comment */
+    0x08, 0x00, 0x00, 0x00, /* questions[1].question_id */
+    0x03, /* questions[1].answer */
+    0x6F, 0x6B, 0x00, /* questions[1].comment */
+    0x00, 0x00, 0x00, 0x00, /* end of questions */
+    0x54, 0x68, 0x61, 0x6E, 0x6B, 0x73, 0x00, /* answer_comment */
+] {
+    versions = "1.12";
+}
+
+test CMSG_GMSURVEY_SUBMIT {
+    survey_id = 1;
+    questions = [
+        {
+            question_id = 1;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 2;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 3;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 4;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 5;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 6;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 7;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 8;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 9;
+            answer = 1;
+            comment = "";
+        },
+        {
+            question_id = 10;
+            answer = 1;
+            comment = "";
+        },
+    ];
+    answer_comment = "";
+} [
+    0x00, 0x45, /* size */
+    0x2A, 0x03, 0x00, 0x00, /* opcode */
+    0x01, 0x00, 0x00, 0x00, /* survey_id */
+    0x01, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[0] */
+    0x02, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[1] */
+    0x03, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[2] */
+    0x04, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[3] */
+    0x05, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[4] */
+    0x06, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[5] */
+    0x07, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[6] */
+    0x08, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[7] */
+    0x09, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[8] */
+    0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, /* questions[9] */
+    0x00, /* answer_comment */
+] {
+    versions = "1.12";
 }
 
 cmsg CMSG_GMSURVEY_SUBMIT = 0x032A {
@@ -24,5 +145,6 @@ cmsg CMSG_GMSURVEY_SUBMIT = 0x032A {
         comment = "cmangos: Answer comment: Unused in stock UI, can be only set by calling Lua function"; 
         comment = "cmangos: Answer comment max sizes in bytes: Vanilla - 8106:8110, TBC - 11459:11463, Wrath - 582:586";
     }
+} {
+    versions = "2 3";
 }
-

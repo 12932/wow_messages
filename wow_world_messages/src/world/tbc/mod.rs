@@ -378,7 +378,7 @@ pub use cmsg_get_channel_member_count::*;
 pub use crate::shared::cmsg_get_mail_list_vanilla_tbc_wrath::*;
 pub(crate) mod cmsg_get_mirrorimage_data;
 pub use cmsg_get_mirrorimage_data::*;
-pub use crate::shared::cmsg_gmsurvey_submit_vanilla_tbc_wrath::*;
+pub use crate::shared::cmsg_gmsurvey_submit_tbc_wrath::*;
 pub use crate::shared::cmsg_gmticketsystem_toggle_tbc_wrath::*;
 pub(crate) mod cmsg_gmticket_create;
 pub use cmsg_gmticket_create::*;

@@ -304,6 +304,11 @@ pub(crate) fn print_write_definition(
                  "crate::util::write_achievement_in_progress({variable_prefix}{name}.as_slice(), &mut w){postfix}?;",
              ));
         }
+        Type::GmSurveyQuestionArray => {
+            s.wln(format!(
+                 "crate::util::write_gm_survey_questions({variable_prefix}{name}.as_slice(), &mut w){postfix}?;",
+             ));
+        }
         Type::AddonArray => {
             s.wln(format!(
                 "crate::util::write_addon_array({variable_prefix}{name}.as_slice(), &mut w){postfix}?;",

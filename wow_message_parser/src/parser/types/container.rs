@@ -602,6 +602,10 @@ impl Container {
                     format!("crate::{}", version.as_major_world().module_name()),
                     "AchievementInProgress".to_string(),
                 ),
+                Type::GmSurveyQuestionArray => (
+                    format!("crate::{}", version.as_major_world().module_name()),
+                    "GmSurveyQuestion".to_string(),
+                ),
                 Type::AddonArray => {
                     let tags = ObjectTags::new_with_world_versions(&[
                         MajorWorldVersion::BurningCrusade,
@@ -835,6 +839,7 @@ impl Container {
                         | Type::AuraMask
                         | Type::AchievementDoneArray
                         | Type::AchievementInProgressArray
+                        | Type::GmSurveyQuestionArray
                         | Type::EnchantMask
                         | Type::InspectTalentGearMask
                         | Type::Population

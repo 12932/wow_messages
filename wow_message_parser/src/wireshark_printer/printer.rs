@@ -514,6 +514,28 @@ fn print_definition(
         Type::MonsterMoveSplines => {
             s.wln("add_monster_move_spline(ptv);");
         }
+        Type::GmSurveyQuestionArray => {
+            // GmSurveyQuestion's fields, until a question id of 0 or ten of them.
+            let depth = depth + 1;
+            if !variables.iter().any(|a| a == "question_id") {
+                variables.push("question_id".to_string());
+            }
+            s.open_curly(format!(
+                "for (guint32 i{depth} = 0; i{depth} < 10; ++i{depth})"
+            ));
+            s.wln(format!(
+                "ptvcursor_add_text_with_subtree(ptv, SUBTREE_UNDEFINED_LENGTH, ett_message, \"GmSurveyQuestion %i\", i{depth});"
+            ));
+            s.wln("ptvcursor_add_ret_uint(ptv, hf_woww_question_id, 4, ENC_LITTLE_ENDIAN, &question_id);");
+            s.open_curly("if (question_id == 0)");
+            s.wln("ptvcursor_pop_subtree(ptv);");
+            s.wln("break;");
+            s.closing_curly();
+            s.wln("ptvcursor_add(ptv, hf_woww_answer, 1, ENC_LITTLE_ENDIAN);");
+            s.wln("add_cstring(ptv, &hf_woww_comment);");
+            s.wln("ptvcursor_pop_subtree(ptv);");
+            s.closing_curly();
+        }
         Type::String { .. } => unreachable!("Strings are only in login messages"),
         Type::AchievementInProgressArray | Type::AchievementDoneArray => {
             unreachable!("achievement arrays are only in 3.3.5")

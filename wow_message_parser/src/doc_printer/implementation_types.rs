@@ -131,6 +131,13 @@ fn print_implementation_type(table: &mut WriterTable<3>, ty: &Type) {
                 "-",
             ]);
         }
+        Type::GmSurveyQuestionArray => {
+            table.add_row([
+                name.as_ref(),
+                "Up to 10 [GmSurveyQuestion](../docs/gmsurveyquestion.md)s, followed by a `u32` question id of 0 if there are fewer.",
+                "-",
+            ]);
+        }
         Type::EnchantMask => {
             table.add_row([
                 name.as_ref(),

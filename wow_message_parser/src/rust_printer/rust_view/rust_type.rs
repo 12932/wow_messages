@@ -51,6 +51,7 @@ pub(crate) enum RustType {
     MonsterMoveSpline,
     AchievementDoneArray,
     AchievementInProgressArray,
+    GmSurveyQuestionArray,
     EnchantMask,
     InspectTalentGearMask,
     Gold,
@@ -103,6 +104,7 @@ impl RustType {
             RustType::MonsterMoveSpline => Type::MonsterMoveSplines,
             RustType::AchievementDoneArray => Type::AchievementDoneArray,
             RustType::AchievementInProgressArray => Type::AchievementInProgressArray,
+            RustType::GmSurveyQuestionArray => Type::GmSurveyQuestionArray,
             RustType::EnchantMask => Type::EnchantMask,
             RustType::InspectTalentGearMask => Type::InspectTalentGearMask,
             RustType::Gold => Type::Gold,
@@ -151,6 +153,7 @@ impl RustType {
             | RustType::MonsterMoveSpline
             | RustType::AchievementDoneArray
             | RustType::AchievementInProgressArray
+            | RustType::GmSurveyQuestionArray
             | RustType::EnchantMask
             | RustType::InspectTalentGearMask
             | RustType::VariableItemRandomProperty
@@ -219,6 +222,7 @@ impl RustType {
             | RustType::NamedGuid
             | RustType::AchievementDoneArray
             | RustType::AchievementInProgressArray
+            | RustType::GmSurveyQuestionArray
             | RustType::VariableItemRandomProperty
             | RustType::AddonArray
             | RustType::String

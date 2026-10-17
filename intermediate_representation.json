@@ -207617,8 +207617,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
-          "start_position": 3,
-          "end_position": 17
+          "start_position": 1,
+          "end_position": 15
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -586282,6 +586282,709 @@
         },
         "sizes": {
           "constant_sized": false,
+          "minimum_size": 9,
+          "maximum_size": 2870
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "survey_id",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {
+                "comment": "cmangos: Survey ID: found in GMSurveySurveys.dbc"
+              }
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "questions",
+              "data_type": {
+                "data_type_tag": "GmSurveyQuestionArray"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {
+                "comment": "mangoszero/cmangos: Up to 10, a question id of 0 ending them when there are fewer"
+              }
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "answer_comment",
+              "data_type": {
+                "data_type_tag": "CString"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {
+                "comment": "cmangos: Answer comment: Unused in stock UI, can be only set by calling Lua function\ncmangos: Answer comment max sizes in bytes: Vanilla - 8106:8110, TBC - 11459:11463, Wrath - 582:586"
+              }
+            }
+          }
+        ],
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [
+          {
+            "subject": "CMSG_GMSURVEY_SUBMIT",
+            "members": [
+              {
+                "variable_name": "survey_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "questions",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "GmSurveyQuestion",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "7",
+                              "original_string": "7"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "5",
+                              "original_string": "5"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "8",
+                              "original_string": "8"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "3",
+                              "original_string": "3"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": "ok"
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Endless"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "answer_comment",
+                "value": {
+                  "test_value_tag": "String",
+                  "content": "Thanks"
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              33,
+              42,
+              3,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              5,
+              0,
+              8,
+              0,
+              0,
+              0,
+              3,
+              111,
+              107,
+              0,
+              0,
+              0,
+              0,
+              0,
+              84,
+              104,
+              97,
+              110,
+              107,
+              115,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
+              "start_position": 33,
+              "end_position": 62
+            }
+          },
+          {
+            "subject": "CMSG_GMSURVEY_SUBMIT",
+            "members": [
+              {
+                "variable_name": "survey_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "questions",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "GmSurveyQuestion",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "2",
+                              "original_string": "2"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "3",
+                              "original_string": "3"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "4",
+                              "original_string": "4"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "5",
+                              "original_string": "5"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "6",
+                              "original_string": "6"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "7",
+                              "original_string": "7"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "8",
+                              "original_string": "8"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "9",
+                              "original_string": "9"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "question_id",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "10",
+                              "original_string": "10"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "answer",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "1",
+                              "original_string": "1"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "comment",
+                          "value": {
+                            "test_value_tag": "String",
+                            "content": ""
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Endless"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "answer_comment",
+                "value": {
+                  "test_value_tag": "String",
+                  "content": ""
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              69,
+              42,
+              3,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              2,
+              0,
+              0,
+              0,
+              1,
+              0,
+              3,
+              0,
+              0,
+              0,
+              1,
+              0,
+              4,
+              0,
+              0,
+              0,
+              1,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1,
+              0,
+              6,
+              0,
+              0,
+              0,
+              1,
+              0,
+              7,
+              0,
+              0,
+              0,
+              1,
+              0,
+              8,
+              0,
+              0,
+              0,
+              1,
+              0,
+              9,
+              0,
+              0,
+              0,
+              1,
+              0,
+              10,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
+              "start_position": 64,
+              "end_position": 136
+            }
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
+          "start_position": 17,
+          "end_position": 31
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "CMSG_GMSURVEY_SUBMIT",
+        "object_type": {
+          "container_type_tag": "CMsg",
+          "opcode": 810
+        },
+        "sizes": {
+          "constant_sized": false,
           "minimum_size": 65,
           "maximum_size": 2870
         },
@@ -586406,8 +587109,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
-                          "start_position": 3,
-                          "end_position": 17
+                          "start_position": 1,
+                          "end_position": 15
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -586453,12 +587156,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -586477,8 +587174,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm",
-          "start_position": 17,
-          "end_position": 29
+          "start_position": 138,
+          "end_position": 150
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

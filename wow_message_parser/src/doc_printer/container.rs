@@ -281,6 +281,35 @@ fn print_container_example_definition(
         Type::AchievementDoneArray | Type::AchievementInProgressArray => {
             unimplemented!("-1 delimited achievement arrays")
         }
+        Type::GmSurveyQuestionArray => {
+            // Up to ten questions of a u32 id, a u8 answer and a CString
+            // comment, and a u32 id of 0 after them if there are fewer.
+            for i in 0..10 {
+                let id = bytes.take(4).cloned().collect::<Vec<u8>>();
+                let question_id = u32::from_le_bytes(id.as_slice().try_into().unwrap());
+                for b in id {
+                    s.w(format!("{b}, "));
+                }
+                if question_id == 0 {
+                    s.wln(format!("{comment} end of questions"));
+                    break;
+                }
+                s.wln(format!("{comment} questions[{i}].question_id"));
+
+                s.bytes(bytes.take(1));
+                s.wln(format!("{comment} questions[{i}].answer"));
+
+                let mut b = bytes.next().unwrap();
+                while *b != 0 {
+                    s.w(format!("{b}, "));
+                    b = bytes.next().unwrap();
+                }
+                s.w(format!("{b}, "));
+                s.wln(format!("{comment} questions[{i}].comment"));
+            }
+
+            return;
+        }
         Type::EnchantMask => {
             unimplemented!("enchant mask example")
         }
@@ -626,6 +655,9 @@ fn print_container_field(
                 Type::AchievementInProgressArray => {
                     "[AchievementInProgressArray](../types/achievement-in-progress-array.md)"
                         .to_string()
+                }
+                Type::GmSurveyQuestionArray => {
+                    "[GmSurveyQuestion](gmsurveyquestion.md)[-]".to_string()
                 }
                 Type::VariableItemRandomProperty => {
                     "[VariableItemRandomProperty](../types/variable-item-random-property.md)"

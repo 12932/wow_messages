@@ -358,6 +358,7 @@ fn print_member_definition(
         | Type::AuraMask
         | Type::AchievementDoneArray
         | Type::AchievementInProgressArray
+        | Type::GmSurveyQuestionArray
         | Type::EnchantMask
         | Type::InspectTalentGearMask
         | Type::VariableItemRandomProperty

@@ -2849,7 +2849,6 @@ impl ClientOpcodeMessage {
             Self::CMSG_RESET_INSTANCES => crate::Message::to_test_case_string(&CMSG_RESET_INSTANCES{}),
             Self::MSG_RAID_TARGET_UPDATE(c) => crate::Message::to_test_case_string(c),
             Self::MSG_RAID_READY_CHECK(c) => crate::Message::to_test_case_string(c),
-            Self::CMSG_GMSURVEY_SUBMIT(c) => crate::Message::to_test_case_string(c),
             _ => None,
         }
     }

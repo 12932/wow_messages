@@ -254,8 +254,8 @@ pub mod cmsg_gameobject_query_vanilla_tbc_wrath;
 pub mod cmsg_gameobj_use_vanilla_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod cmsg_get_mail_list_vanilla_tbc_wrath;
-#[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
-pub mod cmsg_gmsurvey_submit_vanilla_tbc_wrath;
+#[cfg(any(feature = "tbc", feature = "wrath"))]
+pub mod cmsg_gmsurvey_submit_tbc_wrath;
 #[cfg(any(feature = "tbc", feature = "wrath"))]
 pub mod cmsg_gmticketsystem_toggle_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]

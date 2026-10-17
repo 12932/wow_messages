@@ -670,7 +670,11 @@
             ptvcursor_add(ptv, hf_woww_survey_id, 4, ENC_LITTLE_ENDIAN);
             for (guint32 i1 = 0; i1 < 10; ++i1) {
                 ptvcursor_add_text_with_subtree(ptv, SUBTREE_UNDEFINED_LENGTH, ett_message, "GmSurveyQuestion %i", i1);
-                ptvcursor_add(ptv, hf_woww_question_id, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add_ret_uint(ptv, hf_woww_question_id, 4, ENC_LITTLE_ENDIAN, &question_id);
+                if (question_id == 0) {
+                    ptvcursor_pop_subtree(ptv);
+                    break;
+                }
                 ptvcursor_add(ptv, hf_woww_answer, 1, ENC_LITTLE_ENDIAN);
                 add_cstring(ptv, &hf_woww_comment);
                 ptvcursor_pop_subtree(ptv);

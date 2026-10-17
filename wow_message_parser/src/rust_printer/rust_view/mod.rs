@@ -402,6 +402,7 @@ fn create_struct_member_definition(
         Type::SizedCString => RustType::SizedCString,
         Type::AchievementDoneArray => RustType::AchievementDoneArray,
         Type::AchievementInProgressArray => RustType::AchievementInProgressArray,
+        Type::GmSurveyQuestionArray => RustType::GmSurveyQuestionArray,
         Type::MonsterMoveSplines => RustType::MonsterMoveSpline,
         Type::EnchantMask => RustType::EnchantMask,
         Type::InspectTalentGearMask => RustType::InspectTalentGearMask,

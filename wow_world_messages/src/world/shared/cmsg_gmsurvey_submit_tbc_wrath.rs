@@ -3,7 +3,7 @@ use std::io::{Read, Write};
 use crate::shared::gm_survey_question_vanilla_tbc_wrath::GmSurveyQuestion;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm:17`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm#L17):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm:138`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/gamemaster/cmsg_gmsurvey_submit.wowm#L138):
 /// ```text
 /// cmsg CMSG_GMSURVEY_SUBMIT = 0x032A {
 ///     u32 survey_id;
@@ -109,7 +109,7 @@ impl crate::Message for CMSG_GMSURVEY_SUBMIT {
 
 
         writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1 2 3".to_string())).unwrap();
+        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("2 3".to_string())).unwrap();
         writeln!(s, "}}\n").unwrap();
 
         Some(s)
@@ -143,9 +143,6 @@ impl crate::Message for CMSG_GMSURVEY_SUBMIT {
     }
 
 }
-
-#[cfg(feature = "vanilla")]
-impl crate::vanilla::ClientMessage for CMSG_GMSURVEY_SUBMIT {}
 
 #[cfg(feature = "tbc")]
 impl crate::tbc::ClientMessage for CMSG_GMSURVEY_SUBMIT {}

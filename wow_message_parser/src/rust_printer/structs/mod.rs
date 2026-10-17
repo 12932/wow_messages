@@ -187,6 +187,7 @@ fn can_derive_copy(members: &[&RustMember]) -> bool {
             RustType::AddonArray
             | RustType::AchievementInProgressArray
             | RustType::AchievementDoneArray
+            | RustType::GmSurveyQuestionArray
             | RustType::MonsterMoveSpline
             | RustType::UpdateMask { .. }
             | RustType::String

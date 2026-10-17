@@ -101,6 +101,7 @@ fn parsed_type_to_type(
         ParsedType::AuraMask => Type::AuraMask,
         ParsedType::AchievementDoneArray => Type::AchievementDoneArray,
         ParsedType::AchievementInProgressArray => Type::AchievementInProgressArray,
+        ParsedType::GmSurveyQuestionArray => Type::GmSurveyQuestionArray,
         ParsedType::MonsterMoveSpline => Type::MonsterMoveSplines,
         ParsedType::EnchantMask => Type::EnchantMask,
         ParsedType::InspectTalentGearMask => Type::InspectTalentGearMask,
@@ -551,6 +552,7 @@ fn convert_parsed_test_case_value_to_test_case_value(
 
                     return TestValue::MonsterMoveSpline(v);
                 }
+                ParsedType::GmSurveyQuestionArray => "GmSurveyQuestion",
                 _ => unimplemented!(),
             };
 
@@ -567,12 +569,14 @@ fn convert_parsed_test_case_value_to_test_case_value(
                 v.push(members);
             }
 
-            let array = match ty {
-                ParsedType::Array(array) => array,
+            let size = match ty {
+                ParsedType::Array(array) => {
+                    parsed_array_to_array(c, array.clone(), containers, definers, c.tags()).size()
+                }
+                // Read into a Vec, as an endless array is.
+                ParsedType::GmSurveyQuestionArray => ArraySize::Endless,
                 _ => unreachable!(),
             };
-            let size =
-                parsed_array_to_array(c, array.clone(), containers, definers, c.tags()).size();
 
             let c = if let Some(c) = get_container(containers, ty_name, c.tags()) {
                 parsed_container_to_container(c.clone(), containers, definers)
@@ -678,6 +682,7 @@ fn convert_parsed_test_case_value_to_test_case_value(
         | ParsedType::MonsterMoveSpline
         | ParsedType::AchievementDoneArray
         | ParsedType::AchievementInProgressArray
+        | ParsedType::GmSurveyQuestionArray
         | ParsedType::UpdateMask
         | ParsedType::AuraMask => {
             unimplemented!()

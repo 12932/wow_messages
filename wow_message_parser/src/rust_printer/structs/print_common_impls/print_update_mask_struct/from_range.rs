@@ -93,6 +93,7 @@ pub(crate) fn create_from_range(s: &mut Writer, words: &[Vec<UpdateMaskMember>])
                     | Type::AuraMask
                     | Type::AchievementDoneArray
                     | Type::AchievementInProgressArray
+                    | Type::GmSurveyQuestionArray
                     | Type::EnchantMask
                     | Type::InspectTalentGearMask
                     | Type::PackedGuid
@@ -152,6 +153,7 @@ pub(crate) fn create_from_range(s: &mut Writer, words: &[Vec<UpdateMaskMember>])
                         | Type::AuraMask
                         | Type::AchievementDoneArray
                         | Type::AchievementInProgressArray
+                        | Type::GmSurveyQuestionArray
                         | Type::EnchantMask
                         | Type::InspectTalentGearMask
                         | Type::PackedGuid

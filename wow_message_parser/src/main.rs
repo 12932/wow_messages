@@ -95,6 +95,11 @@ const STRING_LARGEST_POSSIBLE: u16 = 257;
 const MONSTER_MOVE_SPLINE_SMALLEST_ALLOWED: u8 = 4;
 const MONSTER_MOVE_SPLINE_LARGEST_ALLOWED: i128 = 4 + 3 + u32::MAX as i128;
 
+// No questions, only the question id of 0 that ends them, up to ten
+// questions of their id, answer and comment.
+const GM_SURVEY_QUESTION_ARRAY_SMALLEST_ALLOWED: u8 = 4;
+const GM_SURVEY_QUESTION_ARRAY_LARGEST_ALLOWED: u16 = 10 * (4 + 1 + CSTRING_LARGEST_ALLOWED);
+
 const ENCHANT_MASK_SMALLEST_ALLOWED: u8 = 2;
 const ENCHANT_MASK_LARGEST_ALLOWED: u8 = 2 + 16 * 2;
 

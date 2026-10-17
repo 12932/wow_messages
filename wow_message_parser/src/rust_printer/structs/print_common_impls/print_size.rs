@@ -55,6 +55,9 @@ pub(crate) fn print_size_of_ty_rust_view(s: &mut Writer, m: &RustMember, prefix:
         RustType::AchievementInProgressArray => {
             format!("{prefix}{name}.iter().fold(0, |acc, x| acc + x.size())",)
         }
+        RustType::GmSurveyQuestionArray => {
+            format!("crate::util::gm_survey_questions_size({prefix}{name}.as_slice())",)
+        }
 
         RustType::VariableItemRandomProperty
         | RustType::NamedGuid
