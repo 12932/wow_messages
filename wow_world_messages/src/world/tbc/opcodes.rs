@@ -10341,7 +10341,6 @@ impl ServerOpcodeMessage {
             Self::SMSG_CHAT_PLAYER_NOT_FOUND(c) => crate::Message::to_test_case_string(c),
             Self::MSG_TALENT_WIPE_CONFIRM(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_SUMMON_REQUEST(c) => crate::Message::to_test_case_string(c),
-            Self::SMSG_MONSTER_MOVE_TRANSPORT(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_PET_BROKEN => crate::Message::to_test_case_string(&SMSG_PET_BROKEN{}),
             Self::MSG_MOVE_FEATHER_FALL(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_FEIGN_DEATH_RESISTED => crate::Message::to_test_case_string(&SMSG_FEIGN_DEATH_RESISTED{}),
