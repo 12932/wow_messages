@@ -92,10 +92,15 @@ fn print_read_array(
                 s.newline();
             }
 
+            // The fields before the array, which the body's size counts,
+            // and a compressed array's size decompressed. An uncompressed
+            // array has no size before it.
             print_size_before_variable(s, e, d.name());
-            s.wln(format!(
-                "current_size += 4; // {name}_decompressed_size: u32"
-            ));
+            if array.compressed() {
+                s.wln(format!(
+                    "current_size += 4; // {name}_decompressed_size: u32"
+                ));
+            }
 
             let use_decoder = array.compressed() || e.tags().compressed() && array.is_endless();
             let loop_condition = if use_decoder {
@@ -105,7 +110,7 @@ fn print_read_array(
             };
 
             s.wln(format!(
-                "let mut {name} = Vec::with_capacity(body_size as usize - current_size);",
+                "let mut {name} = Vec::with_capacity((body_size as usize).saturating_sub(current_size));",
             ));
             s.body(loop_condition, |s| {
                 let array_prefix = "let a = ".to_string();

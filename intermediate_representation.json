@@ -468017,11 +468017,159 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_SHOWTAXINODES",
+            "members": [
+              {
+                "variable_name": "unknown1",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "guid",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390962039521296",
+                    "original_string": "0xF130000001000010"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "nearest_node",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "2",
+                    "original_string": "2"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "nodes",
+                "value": {
+                  "test_value_tag": "Array",
+                  "content": {
+                    "values": [
+                      "6",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "1"
+                    ],
+                    "size": {
+                      "array_size_tag": "Endless"
+                    }
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              50,
+              169,
+              1,
+              1,
+              0,
+              0,
+              0,
+              16,
+              0,
+              0,
+              1,
+              0,
+              0,
+              48,
+              241,
+              2,
+              0,
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 2,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    },
+                    {
+                      "major": 3,
+                      "minor": null,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_showtaxinodes.wowm",
+              "start_position": 13,
+              "end_position": 34
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/smsg/smsg_showtaxinodes.wowm",
           "start_position": 3,
-          "end_position": 12
+          "end_position": 13
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -571089,7 +571237,66 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "CMSG_WARDEN_DATA",
+            "members": [
+              {
+                "variable_name": "encrypted_data",
+                "value": {
+                  "test_value_tag": "Array",
+                  "content": {
+                    "values": [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5"
+                    ],
+                    "size": {
+                      "array_size_tag": "Endless"
+                    }
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              9,
+              231,
+              2,
+              0,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/warden/cmsg_warden_data.wowm",
+              "start_position": 8,
+              "end_position": 16
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/warden/cmsg_warden_data.wowm",
           "start_position": 1,

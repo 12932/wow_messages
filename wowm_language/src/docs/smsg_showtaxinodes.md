@@ -33,3 +33,16 @@ SMSG have a header of 4 bytes.
 | - | 4 / Little | u32 | nearest_node |  |  |
 | - | ? / - | u32[-] | nodes |  |  |
 
+### Examples
+
+#### Example 1
+
+```c
+0, 50, // size
+169, 1, // opcode (425)
+1, 0, 0, 0, // unknown1: u32
+16, 0, 0, 1, 0, 0, 48, 241, // guid: Guid
+2, 0, 0, 0, // nearest_node: u32
+6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 1, 0, 0, 0, // nodes: u32[-]
+```

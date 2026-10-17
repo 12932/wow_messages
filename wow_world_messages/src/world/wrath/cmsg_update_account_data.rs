@@ -47,7 +47,7 @@ impl CMSG_UPDATE_ACCOUNT_DATA {
                 + 4 // unix_time: u32
             };
             current_size += 4; // compressed_data_decompressed_size: u32
-            let mut compressed_data = Vec::with_capacity(body_size as usize - current_size);
+            let mut compressed_data = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
             while !r.is_empty() {
                 compressed_data.push(crate::util::read_u8_le(&mut r)?);
             }

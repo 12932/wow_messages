@@ -32,8 +32,7 @@ impl SMSG_SPELL_COOLDOWN {
             let mut current_size = {
                 8 // guid: Guid
             };
-            current_size += 4; // cooldowns_decompressed_size: u32
-            let mut cooldowns = Vec::with_capacity(body_size as usize - current_size);
+            let mut cooldowns = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
             while current_size < (body_size as usize) {
                 cooldowns.push(SpellCooldownStatus::read(&mut r)?);
                 current_size += 8;

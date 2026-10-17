@@ -27,3 +27,12 @@ CMSG have a header of 6 bytes.
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
 | 0x06 | ? / - | u8[-] | encrypted_data |  |  |
 
+### Examples
+
+#### Example 1
+
+```c
+0, 9, // size
+231, 2, 0, 0, // opcode (743)
+1, 2, 3, 4, 5, // encrypted_data: u8[-]
+```

@@ -15,11 +15,20 @@ pub fn read_c_string_to_vec<R: Read>(r: &mut R) -> Result<Vec<u8>, std::io::Erro
     Ok(v)
 }
 
+/// A string after its size, its terminator counted: a size of 0 is an
+/// error.
 pub fn read_sized_c_string_to_vec<R: Read>(
     r: &mut R,
     size: u32,
 ) -> Result<Vec<u8>, std::io::Error> {
-    let mut v = vec![0_u8; (size - 1) as usize];
+    let Some(length) = size.checked_sub(1) else {
+        return Err(std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            "sized string without room for its terminator",
+        ));
+    };
+
+    let mut v = vec![0_u8; length as usize];
 
     r.read_exact(&mut v)?;
 

@@ -41,8 +41,7 @@ impl SMSG_COMPRESSED_MOVES {
             let mut current_size = {
                 4 // size: u32
             };
-            current_size += 4; // moves_decompressed_size: u32
-            let mut moves = Vec::with_capacity(body_size as usize - current_size);
+            let mut moves = Vec::with_capacity((body_size as usize).saturating_sub(current_size));
             while !r.is_empty() {
                 let a = MiniMoveMessage::read(&mut r)?;
                 current_size += a.size();
