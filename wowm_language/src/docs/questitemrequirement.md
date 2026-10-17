@@ -23,6 +23,7 @@ struct QuestItemRequirement {
 
 Used in:
 * [SMSG_QUESTGIVER_OFFER_REWARD](smsg_questgiver_offer_reward.md)
+* [SMSG_QUESTGIVER_QUEST_DETAILS](smsg_questgiver_quest_details.md)
 * [SMSG_QUESTGIVER_REQUEST_ITEMS](smsg_questgiver_request_items.md)
 * [SMSG_QUEST_QUERY_RESPONSE](smsg_quest_query_response.md)
 

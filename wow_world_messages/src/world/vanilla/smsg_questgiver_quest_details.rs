@@ -3,7 +3,7 @@ use std::io::{Read, Write};
 use crate::Guid;
 use crate::shared::gold_vanilla_tbc_wrath::Gold;
 use crate::vanilla::{
-    QuestDetailsEmote, QuestItemReward,
+    QuestDetailsEmote, QuestItemRequirement,
 };
 use std::time::Duration;
 
@@ -18,9 +18,9 @@ use std::time::Duration;
 ///     CString objectives;
 ///     Bool32 auto_finish;
 ///     u32 amount_of_choice_item_rewards;
-///     QuestItemReward[amount_of_choice_item_rewards] choice_item_rewards;
+///     QuestItemRequirement[amount_of_choice_item_rewards] choice_item_rewards;
 ///     u32 amount_of_item_rewards;
-///     QuestItemReward[amount_of_item_rewards] item_rewards;
+///     QuestItemRequirement[amount_of_item_rewards] item_rewards;
 ///     Gold money_reward;
 ///     u32 reward_spell;
 ///     u32 amount_of_emotes;
@@ -34,8 +34,9 @@ pub struct SMSG_QUESTGIVER_QUEST_DETAILS {
     pub details: String,
     pub objectives: String,
     pub auto_finish: bool,
-    pub choice_item_rewards: Vec<QuestItemReward>,
-    pub item_rewards: Vec<QuestItemReward>,
+    /// mangos-zero, vmangos and Thistle Tea send each item's display id.
+    pub choice_item_rewards: Vec<QuestItemRequirement>,
+    pub item_rewards: Vec<QuestItemRequirement>,
     pub money_reward: Gold,
     pub reward_spell: u32,
     pub emotes: Vec<QuestDetailsEmote>,
@@ -78,11 +79,11 @@ impl SMSG_QUESTGIVER_QUEST_DETAILS {
         // amount_of_choice_item_rewards: u32
         let amount_of_choice_item_rewards = crate::util::read_u32_le(&mut r)?;
 
-        // choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards]
+        // choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards]
         let choice_item_rewards = {
             let mut choice_item_rewards = Vec::with_capacity(amount_of_choice_item_rewards as usize);
             for _ in 0..amount_of_choice_item_rewards {
-                choice_item_rewards.push(QuestItemReward::read(&mut r)?);
+                choice_item_rewards.push(QuestItemRequirement::read(&mut r)?);
             }
             choice_item_rewards
         };
@@ -90,11 +91,11 @@ impl SMSG_QUESTGIVER_QUEST_DETAILS {
         // amount_of_item_rewards: u32
         let amount_of_item_rewards = crate::util::read_u32_le(&mut r)?;
 
-        // item_rewards: QuestItemReward[amount_of_item_rewards]
+        // item_rewards: QuestItemRequirement[amount_of_item_rewards]
         let item_rewards = {
             let mut item_rewards = Vec::with_capacity(amount_of_item_rewards as usize);
             for _ in 0..amount_of_item_rewards {
-                item_rewards.push(QuestItemReward::read(&mut r)?);
+                item_rewards.push(QuestItemRequirement::read(&mut r)?);
             }
             item_rewards
         };
@@ -164,6 +165,7 @@ impl crate::Message for SMSG_QUESTGIVER_QUEST_DETAILS {
             // Members
             writeln!(s, "            item = {};", v.item).unwrap();
             writeln!(s, "            item_count = {};", v.item_count).unwrap();
+            writeln!(s, "            item_display_id = {};", v.item_display_id).unwrap();
 
             writeln!(s, "        }},").unwrap();
         }
@@ -175,6 +177,7 @@ impl crate::Message for SMSG_QUESTGIVER_QUEST_DETAILS {
             // Members
             writeln!(s, "            item = {};", v.item).unwrap();
             writeln!(s, "            item_count = {};", v.item_count).unwrap();
+            writeln!(s, "            item_display_id = {};", v.item_display_id).unwrap();
 
             writeln!(s, "        }},").unwrap();
         }
@@ -211,25 +214,27 @@ impl crate::Message for SMSG_QUESTGIVER_QUEST_DETAILS {
         crate::util::write_bytes(&mut s, &mut bytes, 4, "auto_finish", "    ");
         crate::util::write_bytes(&mut s, &mut bytes, 4, "amount_of_choice_item_rewards", "    ");
         if !self.choice_item_rewards.is_empty() {
-            writeln!(s, "    /* choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards] start */").unwrap();
+            writeln!(s, "    /* choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards] start */").unwrap();
             for (i, v) in self.choice_item_rewards.iter().enumerate() {
-                writeln!(s, "    /* choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards] {i} start */").unwrap();
+                writeln!(s, "    /* choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards] {i} start */").unwrap();
                 crate::util::write_bytes(&mut s, &mut bytes, 4, "item", "        ");
                 crate::util::write_bytes(&mut s, &mut bytes, 4, "item_count", "        ");
-                writeln!(s, "    /* choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards] {i} end */").unwrap();
+                crate::util::write_bytes(&mut s, &mut bytes, 4, "item_display_id", "        ");
+                writeln!(s, "    /* choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards] {i} end */").unwrap();
             }
-            writeln!(s, "    /* choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards] end */").unwrap();
+            writeln!(s, "    /* choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards] end */").unwrap();
         }
         crate::util::write_bytes(&mut s, &mut bytes, 4, "amount_of_item_rewards", "    ");
         if !self.item_rewards.is_empty() {
-            writeln!(s, "    /* item_rewards: QuestItemReward[amount_of_item_rewards] start */").unwrap();
+            writeln!(s, "    /* item_rewards: QuestItemRequirement[amount_of_item_rewards] start */").unwrap();
             for (i, v) in self.item_rewards.iter().enumerate() {
-                writeln!(s, "    /* item_rewards: QuestItemReward[amount_of_item_rewards] {i} start */").unwrap();
+                writeln!(s, "    /* item_rewards: QuestItemRequirement[amount_of_item_rewards] {i} start */").unwrap();
                 crate::util::write_bytes(&mut s, &mut bytes, 4, "item", "        ");
                 crate::util::write_bytes(&mut s, &mut bytes, 4, "item_count", "        ");
-                writeln!(s, "    /* item_rewards: QuestItemReward[amount_of_item_rewards] {i} end */").unwrap();
+                crate::util::write_bytes(&mut s, &mut bytes, 4, "item_display_id", "        ");
+                writeln!(s, "    /* item_rewards: QuestItemRequirement[amount_of_item_rewards] {i} end */").unwrap();
             }
-            writeln!(s, "    /* item_rewards: QuestItemReward[amount_of_item_rewards] end */").unwrap();
+            writeln!(s, "    /* item_rewards: QuestItemRequirement[amount_of_item_rewards] end */").unwrap();
         }
         crate::util::write_bytes(&mut s, &mut bytes, 4, "money_reward", "    ");
         crate::util::write_bytes(&mut s, &mut bytes, 4, "reward_spell", "    ");
@@ -291,7 +296,7 @@ impl crate::Message for SMSG_QUESTGIVER_QUEST_DETAILS {
         // amount_of_choice_item_rewards: u32
         w.write_all(&(self.choice_item_rewards.len() as u32).to_le_bytes())?;
 
-        // choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards]
+        // choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards]
         for i in self.choice_item_rewards.iter() {
             i.write_into_vec(&mut w)?;
         }
@@ -299,7 +304,7 @@ impl crate::Message for SMSG_QUESTGIVER_QUEST_DETAILS {
         // amount_of_item_rewards: u32
         w.write_all(&(self.item_rewards.len() as u32).to_le_bytes())?;
 
-        // item_rewards: QuestItemReward[amount_of_item_rewards]
+        // item_rewards: QuestItemRequirement[amount_of_item_rewards]
         for i in self.item_rewards.iter() {
             i.write_into_vec(&mut w)?;
         }
@@ -339,9 +344,9 @@ impl SMSG_QUESTGIVER_QUEST_DETAILS {
         + self.objectives.len() + 1 // objectives: CString
         + 4 // auto_finish: Bool32
         + 4 // amount_of_choice_item_rewards: u32
-        + self.choice_item_rewards.len() * 8 // choice_item_rewards: QuestItemReward[amount_of_choice_item_rewards]
+        + self.choice_item_rewards.len() * 12 // choice_item_rewards: QuestItemRequirement[amount_of_choice_item_rewards]
         + 4 // amount_of_item_rewards: u32
-        + self.item_rewards.len() * 8 // item_rewards: QuestItemReward[amount_of_item_rewards]
+        + self.item_rewards.len() * 12 // item_rewards: QuestItemRequirement[amount_of_item_rewards]
         + 4 // money_reward: Gold
         + 4 // reward_spell: u32
         + 4 // amount_of_emotes: u32

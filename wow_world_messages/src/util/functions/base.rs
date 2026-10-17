@@ -1,16 +1,15 @@
 use std::io::Read;
 
+/// A string up to its null terminator, however long: a quest's details
+/// run past 256 bytes, and stopping there read the rest of the string as
+/// the fields after it.
 pub fn read_c_string_to_vec<R: Read>(r: &mut R) -> Result<Vec<u8>, std::io::Error> {
-    const CSTRING_LARGEST_ALLOWED: usize = 256;
-
-    let mut v = Vec::with_capacity(CSTRING_LARGEST_ALLOWED);
+    let mut v = Vec::with_capacity(256);
 
     let mut byte = read_u8_le(r)?;
-    let mut count = 0;
-    while byte != 0 && count != CSTRING_LARGEST_ALLOWED {
+    while byte != 0 {
         v.push(byte);
         byte = read_u8_le(r)?;
-        count += 1;
     }
 
     Ok(v)
@@ -82,4 +81,17 @@ pub const fn u32_to_u16s(a: u32) -> (u16, u16) {
     let high = ((a & (u16::MAX as u32) << 16) >> 16) as u16;
 
     (high, low)
+}
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn a_c_string_runs_to_its_terminator() {
+        let long = "x".repeat(466);
+        let mut bytes = long.clone().into_bytes();
+        bytes.extend_from_slice(&[0, 7, 0, 0, 0]);
+        let mut r = bytes.as_slice();
+        assert_eq!(super::read_c_string_to_vec(&mut r).unwrap(), long.into_bytes());
+        assert_eq!(super::read_u32_le(&mut r).unwrap(), 7);
+    }
 }

@@ -239015,8 +239015,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-          "start_position": 54,
-          "end_position": 60
+          "start_position": 56,
+          "end_position": 62
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -458761,14 +458761,14 @@
                     "array_type_tag": "Struct",
                     "content": {
                       "struct_data": {
-                        "name": "QuestItemReward",
+                        "name": "QuestItemRequirement",
                         "object_type": {
                           "container_type_tag": "Struct"
                         },
                         "sizes": {
                           "constant_sized": true,
-                          "minimum_size": 8,
-                          "maximum_size": 8
+                          "minimum_size": 12,
+                          "maximum_size": 12
                         },
                         "members": [
                           {
@@ -458790,6 +458790,21 @@
                             "struct_member_tag": "Definition",
                             "struct_member_content": {
                               "name": "item_count",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "item_display_id",
                               "data_type": {
                                 "data_type_tag": "Integer",
                                 "content": "U32"
@@ -458832,9 +458847,9 @@
                         },
                         "tests": [],
                         "file_info": {
-                          "file_name": "wow_message_parser/wowm/world/quest/quest_common.wowm",
-                          "start_position": 174,
-                          "end_position": 179
+                          "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_request_item.wowm",
+                          "start_position": 1,
+                          "end_position": 7
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -458853,7 +458868,9 @@
               "used_as_size_in": null,
               "size_of_fields_before_size": null,
               "used_in_if": false,
-              "tags": {}
+              "tags": {
+                "comment": "mangos-zero, vmangos and Thistle Tea send each item's display id."
+              }
             }
           },
           {
@@ -458882,14 +458899,14 @@
                     "array_type_tag": "Struct",
                     "content": {
                       "struct_data": {
-                        "name": "QuestItemReward",
+                        "name": "QuestItemRequirement",
                         "object_type": {
                           "container_type_tag": "Struct"
                         },
                         "sizes": {
                           "constant_sized": true,
-                          "minimum_size": 8,
-                          "maximum_size": 8
+                          "minimum_size": 12,
+                          "maximum_size": 12
                         },
                         "members": [
                           {
@@ -458911,6 +458928,21 @@
                             "struct_member_tag": "Definition",
                             "struct_member_content": {
                               "name": "item_count",
+                              "data_type": {
+                                "data_type_tag": "Integer",
+                                "content": "U32"
+                              },
+                              "constant_value": null,
+                              "used_as_size_in": null,
+                              "size_of_fields_before_size": null,
+                              "used_in_if": false,
+                              "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "Definition",
+                            "struct_member_content": {
+                              "name": "item_display_id",
                               "data_type": {
                                 "data_type_tag": "Integer",
                                 "content": "U32"
@@ -458953,9 +458985,9 @@
                         },
                         "tests": [],
                         "file_info": {
-                          "file_name": "wow_message_parser/wowm/world/quest/quest_common.wowm",
-                          "start_position": 174,
-                          "end_position": 179
+                          "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_request_item.wowm",
+                          "start_position": 1,
+                          "end_position": 7
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -459147,7 +459179,7 @@
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
           "start_position": 8,
-          "end_position": 25
+          "end_position": 27
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -459726,8 +459758,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-          "start_position": 27,
-          "end_position": 52
+          "start_position": 29,
+          "end_position": 54
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -459995,8 +460027,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-                          "start_position": 54,
-                          "end_position": 60
+                          "start_position": 56,
+                          "end_position": 62
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -460119,8 +460151,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-                          "start_position": 54,
-                          "end_position": 60
+                          "start_position": 56,
+                          "end_position": 62
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -460519,8 +460551,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-          "start_position": 62,
-          "end_position": 112
+          "start_position": 64,
+          "end_position": 114
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -498191,8 +498223,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/quest/smsg_questgiver_quest_details.wowm",
-                          "start_position": 54,
-                          "end_position": 60
+                          "start_position": 56,
+                          "end_position": 62
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,

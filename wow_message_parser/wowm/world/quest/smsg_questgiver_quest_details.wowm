@@ -13,9 +13,11 @@ smsg SMSG_QUESTGIVER_QUEST_DETAILS = 0x0188 {
     CString objectives;
     Bool32 auto_finish;
     u32 amount_of_choice_item_rewards;
-    QuestItemReward[amount_of_choice_item_rewards] choice_item_rewards;
+    QuestItemRequirement[amount_of_choice_item_rewards] choice_item_rewards {
+        comment = "mangos-zero, vmangos and Thistle Tea send each item's display id.";
+    }
     u32 amount_of_item_rewards;
-    QuestItemReward[amount_of_item_rewards] item_rewards;
+    QuestItemRequirement[amount_of_item_rewards] item_rewards;
     Gold money_reward;
     Spell reward_spell;
     u32 amount_of_emotes;
