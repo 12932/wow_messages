@@ -1,45 +1,31 @@
 use std::io::{Read, Write};
 
-use crate::vanilla::{
-    Map, TransferAbortReason,
-};
+use crate::vanilla::TransferAbortReason;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm:11`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm#L11):
+/// mangoszero and cmangos-classic (`WorldSession::SendTransferAborted`) send the reason alone.
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm:14`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm#L14):
 /// ```text
 /// smsg SMSG_TRANSFER_ABORTED = 0x0040 {
-///     Map map;
 ///     TransferAbortReason reason;
-///     u8 argument;
 /// }
 /// ```
 pub struct SMSG_TRANSFER_ABORTED {
-    pub map: Map,
     pub reason: TransferAbortReason,
-    /// Possibly not needed.
-    pub argument: u8,
 }
 
 impl crate::private::Sealed for SMSG_TRANSFER_ABORTED {}
 impl SMSG_TRANSFER_ABORTED {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if body_size != 6 {
+        if body_size != 1 {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
-
-        // map: Map
-        let map = crate::util::read_u32_le(&mut r)?.try_into()?;
 
         // reason: TransferAbortReason
         let reason = crate::util::read_u8_le(&mut r)?.try_into()?;
 
-        // argument: u8
-        let argument = crate::util::read_u8_le(&mut r)?;
-
         Ok(Self {
-            map,
             reason,
-            argument,
         })
     }
 
@@ -53,54 +39,13 @@ impl crate::Message for SMSG_TRANSFER_ABORTED {
         "SMSG_TRANSFER_ABORTED"
     }
 
-    #[cfg(feature = "print-testcase")]
-    fn to_test_case_string(&self) -> Option<String> {
-        use std::fmt::Write;
-        use crate::traits::Message;
-
-        let mut s = String::new();
-
-        writeln!(s, "test SMSG_TRANSFER_ABORTED {{").unwrap();
-        // Members
-        writeln!(s, "    map = {};", self.map.as_test_case_value()).unwrap();
-        writeln!(s, "    reason = {};", self.reason.as_test_case_value()).unwrap();
-        writeln!(s, "    argument = {};", self.argument).unwrap();
-
-        writeln!(s, "}} [").unwrap();
-
-        let [a, b] = 8_u16.to_be_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* size */").unwrap();
-        let [a, b] = 64_u16.to_le_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* opcode */").unwrap();
-        let mut bytes: Vec<u8> = Vec::new();
-        self.write_into_vec(&mut bytes).unwrap();
-        let mut bytes = bytes.into_iter();
-
-        crate::util::write_bytes(&mut s, &mut bytes, 4, "map", "    ");
-        crate::util::write_bytes(&mut s, &mut bytes, 1, "reason", "    ");
-        crate::util::write_bytes(&mut s, &mut bytes, 1, "argument", "    ");
-
-
-        writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1.12".to_string())).unwrap();
-        writeln!(s, "}}\n").unwrap();
-
-        Some(s)
-    }
-
     fn size_without_header(&self) -> u32 {
-        6
+        1
     }
 
     fn write_into_vec(&self, mut w: impl Write) -> Result<(), std::io::Error> {
-        // map: Map
-        w.write_all(&(self.map.as_int().to_le_bytes()))?;
-
         // reason: TransferAbortReason
         w.write_all(&(self.reason.as_int().to_le_bytes()))?;
-
-        // argument: u8
-        w.write_all(&self.argument.to_le_bytes())?;
 
         Ok(())
     }
@@ -113,4 +58,89 @@ impl crate::Message for SMSG_TRANSFER_ABORTED {
 
 #[cfg(feature = "vanilla")]
 impl crate::vanilla::ServerMessage for SMSG_TRANSFER_ABORTED {}
+
+#[cfg(test)]
+mod test {
+    #![allow(clippy::missing_const_for_fn)]
+    use super::SMSG_TRANSFER_ABORTED;
+    use super::*;
+    use super::super::*;
+    use crate::vanilla::opcodes::ServerOpcodeMessage;
+    use crate::vanilla::{ClientMessage, ServerMessage};
+
+    const HEADER_SIZE: usize = 2 + 2;
+    fn assert(t: &SMSG_TRANSFER_ABORTED, expected: &SMSG_TRANSFER_ABORTED) {
+        assert_eq!(t.reason, expected.reason);
+    }
+
+    const RAW0: [u8; 5] = [ 0x00, 0x03, 0x40, 0x00, 0x01, ];
+
+    pub(crate) fn expected0() -> SMSG_TRANSFER_ABORTED {
+        SMSG_TRANSFER_ABORTED {
+            reason: TransferAbortReason::IsFull,
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm` line 21.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_transfer_aborted0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW0)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_TRANSFER_ABORTED(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_TRANSFER_ABORTED, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(1 + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm` line 21.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_transfer_aborted0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_TRANSFER_ABORTED(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_TRANSFER_ABORTED, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(1 + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/smsg/smsg_transfer_aborted.wowm` line 21.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_transfer_aborted0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_TRANSFER_ABORTED(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_TRANSFER_ABORTED, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(1 + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+}
 

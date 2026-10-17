@@ -3,18 +3,28 @@ enum TransferAbortReason : u8 {
     IS_FULL = 0x01;
     NOT_FOUND = 0x02;
     TOO_MANY_INSTANCES = 0x03;
+    SILENTLY = 0x04 {
+        comment = "mangoszero: no message shown, as for any value above 5";
+    }
     ZONE_IS_IN_COMBAT = 0x05;
 } {
     versions = "1.12";
 }
 
 smsg SMSG_TRANSFER_ABORTED = 0x0040 {
-    Map map;
     TransferAbortReason reason;
-    u8 argument {
-        comment = "Possibly not needed.";
-    }
 } {
+    versions = "1.12";
+    comment = "mangoszero and cmangos-classic (`WorldSession::SendTransferAborted`) send the reason alone.";
+}
+
+test SMSG_TRANSFER_ABORTED {
+    reason = IS_FULL;
+} [
+    0x00, 0x03, /* size */
+    0x40, 0x00, /* opcode */
+    0x01, /* reason */
+] {
     versions = "1.12";
 }
 

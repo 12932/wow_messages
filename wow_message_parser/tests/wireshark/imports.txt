@@ -79,7 +79,6 @@ static int hf_woww_answer_comment = -1;
 static int hf_woww_apply = -1;
 static int hf_woww_arcane_resistance = -1;
 static int hf_woww_area = -1;
-static int hf_woww_argument = -1;
 static int hf_woww_armor = -1;
 static int hf_woww_attacker = -1;
 static int hf_woww_auction_command_action = -1;

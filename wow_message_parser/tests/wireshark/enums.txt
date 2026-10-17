@@ -8949,6 +8949,7 @@ typedef enum {
     TRANSFER_ABORT_REASON_IS_FULL = 0x1,
     TRANSFER_ABORT_REASON_NOT_FOUND = 0x2,
     TRANSFER_ABORT_REASON_TOO_MANY_INSTANCES = 0x3,
+    TRANSFER_ABORT_REASON_SILENTLY = 0x4,
     TRANSFER_ABORT_REASON_ZONE_IS_IN_COMBAT = 0x5,
 } e_transfer_abort_reason;
 static const value_string e_transfer_abort_reason_strings[] =  {
@@ -8956,6 +8957,7 @@ static const value_string e_transfer_abort_reason_strings[] =  {
     { TRANSFER_ABORT_REASON_IS_FULL, "Is Full" },
     { TRANSFER_ABORT_REASON_NOT_FOUND, "Not Found" },
     { TRANSFER_ABORT_REASON_TOO_MANY_INSTANCES, "Too Many Instances" },
+    { TRANSFER_ABORT_REASON_SILENTLY, "Silently" },
     { TRANSFER_ABORT_REASON_ZONE_IS_IN_COMBAT, "Zone Is In Combat" },
     { 0, NULL }
 };

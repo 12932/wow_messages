@@ -5,6 +5,7 @@
 ///     IS_FULL = 0x01;
 ///     NOT_FOUND = 0x02;
 ///     TOO_MANY_INSTANCES = 0x03;
+///     SILENTLY = 0x04;
 ///     ZONE_IS_IN_COMBAT = 0x05;
 /// }
 /// ```
@@ -15,6 +16,8 @@ pub enum TransferAbortReason {
     IsFull,
     NotFound,
     TooManyInstances,
+    /// mangoszero: no message shown, as for any value above 5
+    Silently,
     ZoneIsInCombat,
 }
 
@@ -25,16 +28,18 @@ impl TransferAbortReason {
             Self::IsFull => 0x1,
             Self::NotFound => 0x2,
             Self::TooManyInstances => 0x3,
+            Self::Silently => 0x4,
             Self::ZoneIsInCombat => 0x5,
         }
     }
 
-    pub const fn variants() -> [Self; 5] {
+    pub const fn variants() -> [Self; 6] {
         [
             Self::None,
             Self::IsFull,
             Self::NotFound,
             Self::TooManyInstances,
+            Self::Silently,
             Self::ZoneIsInCombat,
         ]
     }
@@ -49,6 +54,7 @@ impl TransferAbortReason {
             Self::IsFull => "IS_FULL",
             Self::NotFound => "NOT_FOUND",
             Self::TooManyInstances => "TOO_MANY_INSTANCES",
+            Self::Silently => "SILENTLY",
             Self::ZoneIsInCombat => "ZONE_IS_IN_COMBAT",
         }
     }
@@ -70,6 +76,7 @@ impl std::fmt::Display for TransferAbortReason {
             Self::IsFull => f.write_str("IsFull"),
             Self::NotFound => f.write_str("NotFound"),
             Self::TooManyInstances => f.write_str("TooManyInstances"),
+            Self::Silently => f.write_str("Silently"),
             Self::ZoneIsInCombat => f.write_str("ZoneIsInCombat"),
         }
     }
@@ -83,6 +90,7 @@ impl TryFrom<u8> for TransferAbortReason {
             1 => Ok(Self::IsFull),
             2 => Ok(Self::NotFound),
             3 => Ok(Self::TooManyInstances),
+            4 => Ok(Self::Silently),
             5 => Ok(Self::ZoneIsInCombat),
             v => Err(crate::errors::EnumError::new(NAME, v.into()),)
         }
