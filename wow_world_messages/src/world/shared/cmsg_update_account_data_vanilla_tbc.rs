@@ -33,7 +33,7 @@ impl CMSG_UPDATE_ACCOUNT_DATA {
             let compressed_data_decompressed_size = crate::util::read_u32_le(&mut r)?;
 
             let mut buf = Vec::with_capacity(crate::util::decompressed_capacity(compressed_data_decompressed_size, r.len()));
-            flate2::read::ZlibDecoder::new(&mut r).read_to_end(&mut buf).unwrap();
+            flate2::read::ZlibDecoder::new(&mut r).read_to_end(&mut buf).map_err(crate::errors::ParseErrorKind::Decompression)?;
             let mut r = &buf[..];
 
             let mut compressed_data = Vec::with_capacity(r.len() / 1);

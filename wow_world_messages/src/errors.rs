@@ -47,6 +47,7 @@ impl Error for ParseError {
             ParseErrorKind::Enum(e) => Some(e),
             ParseErrorKind::String(e) => Some(e),
             ParseErrorKind::BufferSizeTooSmall(io) => Some(io),
+            ParseErrorKind::Decompression(io) => Some(io),
             ParseErrorKind::InvalidSize { .. } => None,
         }
     }
@@ -107,6 +108,8 @@ pub enum ParseErrorKind {
     String(std::string::FromUtf8Error),
     InvalidSize,
     BufferSizeTooSmall(std::io::Error),
+    /// Compressed data that isn't a whole zlib stream.
+    Decompression(std::io::Error),
 }
 
 impl Display for ParseErrorKind {
@@ -118,6 +121,9 @@ impl Display for ParseErrorKind {
             ParseErrorKind::InvalidSize => f.write_fmt(format_args!("message has invalid size")),
             ParseErrorKind::BufferSizeTooSmall(io) => {
                 f.write_fmt(format_args!("buffer too small with io error: '{io}'"))
+            }
+            ParseErrorKind::Decompression(io) => {
+                f.write_fmt(format_args!("compressed data is invalid: '{io}'"))
             }
         }
     }

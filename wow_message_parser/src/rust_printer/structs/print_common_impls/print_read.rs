@@ -14,7 +14,7 @@ use crate::rust_printer::structs::print_common_impls::print_size::{
     print_rust_members_sizes, print_size_of_ty_rust_view,
 };
 use crate::rust_printer::writer::Writer;
-use crate::rust_printer::{get_new_flag_type_name, DefinerType};
+use crate::rust_printer::{get_new_flag_type_name, DefinerType, PARSE_ERROR_KIND};
 use crate::UTILITY_PATH;
 
 fn print_read_array(
@@ -169,11 +169,10 @@ fn array_item_minimum_size(array: &Array) -> i128 {
     array.ty().sizes().minimum().max(1)
 }
 
-/// Decompress all of `reader` into `buf`.
+/// Decompress all of `reader` into `buf`, a bad stream an error.
 fn print_decompress(s: &mut Writer, reader: &str) {
-    // TODO: I want to know if this fails, should this be a separate error mode?
     s.wln(format!(
-        "flate2::read::ZlibDecoder::new({reader}).read_to_end(&mut buf).unwrap();"
+        "flate2::read::ZlibDecoder::new({reader}).read_to_end(&mut buf).map_err({PARSE_ERROR_KIND}::Decompression)?;"
     ));
 }
 

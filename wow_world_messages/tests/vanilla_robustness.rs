@@ -173,6 +173,14 @@ fn auth_session(decompressed_size: u32) -> Vec<u8> {
 }
 
 #[test]
+fn an_auth_session_whose_addons_are_not_zlib_is_an_error() {
+    let mut b = auth_session(u32::MAX);
+    b.extend_from_slice(b"not zlib at all");
+    let e = read_client(0x1ED, &b).unwrap_err();
+    assert!(e.contains("compressed data is invalid"), "{e}");
+}
+
+#[test]
 fn an_auth_session_claiming_four_gigabytes_of_addons_reads_what_it_has() {
     let mut addon = b"Blizzard_AuctionUI\0".to_vec();
     addon.push(1);
@@ -185,6 +193,19 @@ fn an_auth_session_claiming_four_gigabytes_of_addons_reads_what_it_has() {
     };
     assert_eq!(m.addon_info.len(), 1);
     assert_eq!(m.addon_info[0].addon_name, "Blizzard_AuctionUI");
+}
+
+#[test]
+fn a_harassment_ticket_whose_chat_is_not_zlib_is_an_error() {
+    let mut b = vec![2];
+    b.extend_from_slice(&0_u32.to_le_bytes());
+    b.extend_from_slice(&[0; 12]);
+    b.extend_from_slice(b"help\0\0");
+    b.extend_from_slice(&1_u32.to_le_bytes());
+    b.extend_from_slice(&u32::MAX.to_le_bytes());
+    b.extend_from_slice(b"not zlib at all");
+    let e = read_client(0x205, &b).unwrap_err();
+    assert!(e.contains("compressed data is invalid"), "{e}");
 }
 
 #[test]
@@ -202,6 +223,22 @@ fn warden_data_reads_to_the_end_of_its_body() {
         panic!("not warden data");
     };
     assert_eq!(m.encrypted_data, body);
+}
+
+#[test]
+fn compressed_moves_that_are_not_zlib_are_an_error() {
+    let mut b = u32::MAX.to_le_bytes().to_vec();
+    b.extend_from_slice(b"not zlib at all");
+    let e = read_server(0x2FB, &b).unwrap_err();
+    assert!(e.contains("compressed data is invalid"), "{e}");
+}
+
+#[test]
+fn a_compressed_update_that_is_not_zlib_is_an_error() {
+    let mut b = u32::MAX.to_le_bytes().to_vec();
+    b.extend_from_slice(b"not zlib at all");
+    let e = read_server(0x1F6, &b).unwrap_err();
+    assert!(e.contains("compressed data is invalid"), "{e}");
 }
 
 #[test]
