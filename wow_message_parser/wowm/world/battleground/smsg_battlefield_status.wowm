@@ -1,3 +1,24 @@
+enum StatusId : u32 {
+    NONE = 0 {
+        comment = "first status, should mean bg is not instance";
+    }
+    WAIT_QUEUE = 1 {
+        comment = "means bg is empty and waiting for queue";
+    }
+    WAIT_JOIN = 2 {
+        comment = "this means, that BG has already started and it is waiting for more players";
+    }
+    IN_PROGRESS = 3 {
+        comment = "means bg is running";
+    }
+    WAIT_LEAVE = 4 {
+        comment = "means some faction has won BG and it is ending";
+    }
+} {
+    versions = "1.12";
+    comment = "1.12 sends the status as a u32 (mangos-zero, vmangos, Thistle Tea).";
+}
+
 enum StatusId : u8 {
     NONE = 0 {
         comment = "first status, should mean bg is not instance";
@@ -15,7 +36,7 @@ enum StatusId : u8 {
         comment = "means some faction has won BG and it is ending";
     }
 } {
-    versions = "1 2 3";
+    versions = "2 3";
 }
 
 smsg SMSG_BATTLEFIELD_STATUS = 0x2D4 {
@@ -43,6 +64,40 @@ smsg SMSG_BATTLEFIELD_STATUS = 0x2D4 {
         }
     }
 } {
+    versions = "1.12";
+}
+
+test SMSG_BATTLEFIELD_STATUS {
+    queue_slot = 0;
+    map = WARSONG_GULCH;
+    bracket = SIXTY;
+    client_instance_id = 7;
+    status_id = IN_PROGRESS;
+    time_to_bg_autoleave_in_ms = 0;
+    time_to_bg_start_in_ms = 1234;
+} [
+    0x00, 0x1B, /* size */
+    0xD4, 0x02, /* opcode */
+    0x00, 0x00, 0x00, 0x00, /* queue_slot */
+    0xE9, 0x01, 0x00, 0x00, /* map */
+    0x05, /* bracket */
+    0x07, 0x00, 0x00, 0x00, /* client_instance_id */
+    0x03, 0x00, 0x00, 0x00, /* status_id */
+    0x00, 0x00, 0x00, 0x00, /* time_to_bg_autoleave_in_ms */
+    0xD2, 0x04, 0x00, 0x00, /* time_to_bg_start_in_ms */
+] {
+    versions = "1.12";
+}
+
+test SMSG_BATTLEFIELD_STATUS {
+    queue_slot = 0;
+    map = EASTERN_KINGDOMS;
+} [
+    0x00, 0x0A, /* size */
+    0xD4, 0x02, /* opcode */
+    0x00, 0x00, 0x00, 0x00, /* queue_slot */
+    0x00, 0x00, 0x00, 0x00, /* map */
+] {
     versions = "1.12";
 }
 

@@ -177,7 +177,7 @@ pub use crate::shared::spell_school_vanilla_tbc_wrath::*;
 pub use crate::shared::spell_steal_action_tbc_wrath::*;
 pub use crate::shared::spell_trigger_type_tbc_wrath::*;
 pub use crate::shared::stable_result_vanilla_tbc::*;
-pub use crate::shared::status_id_vanilla_tbc_wrath::*;
+pub use crate::shared::status_id_tbc_wrath::*;
 pub(crate) mod talent;
 pub use talent::*;
 pub(crate) mod text_emote;

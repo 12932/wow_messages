@@ -360,8 +360,16 @@ fn print_container_example_member(
                             }
                         }
                     }
-                    Equation::NotEquals { .. } => {
-                        unimplemented!("examples for not equals")
+                    Equation::NotEquals { value } => {
+                        let ne_value = definer_ty
+                            .fields()
+                            .iter()
+                            .find(|a| value == a.name())
+                            .unwrap()
+                            .value()
+                            .int();
+
+                        set = ne_value != enum_value;
                     }
                 }
                 set

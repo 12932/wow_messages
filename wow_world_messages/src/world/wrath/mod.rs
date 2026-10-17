@@ -96,7 +96,7 @@ pub use wow_world_base::shared::spell_miss_info_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::spell_school_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::spell_steal_action_tbc_wrath::*;
 pub use wow_world_base::shared::spell_trigger_type_tbc_wrath::*;
-pub use wow_world_base::shared::status_id_vanilla_tbc_wrath::*;
+pub use wow_world_base::shared::status_id_tbc_wrath::*;
 pub use wow_world_base::shared::timer_type_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::title_earn_status_tbc_wrath::*;
 pub use wow_world_base::shared::trade_status_vanilla_tbc_wrath::*;

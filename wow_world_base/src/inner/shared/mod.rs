@@ -233,8 +233,8 @@ pub mod spell_steal_action_tbc_wrath;
 pub mod spell_trigger_type_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc"))]
 pub mod stable_result_vanilla_tbc;
-#[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
-pub mod status_id_vanilla_tbc_wrath;
+#[cfg(any(feature = "shared", feature = "tbc", feature = "wrath"))]
+pub mod status_id_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod timer_type_vanilla_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "tbc", feature = "wrath"))]

@@ -3814,7 +3814,7 @@
             if (map != MAP_EASTERN_KINGDOMS) {
                 ptvcursor_add(ptv, hf_woww_battleground_bracket, 1, ENC_LITTLE_ENDIAN);
                 ptvcursor_add(ptv, hf_woww_client_instance_id, 4, ENC_LITTLE_ENDIAN);
-                ptvcursor_add_ret_uint(ptv, hf_woww_status_id, 1, ENC_LITTLE_ENDIAN, &status_id);
+                ptvcursor_add_ret_uint(ptv, hf_woww_status_id, 4, ENC_LITTLE_ENDIAN, &status_id);
                 if (status_id == STATUS_ID_WAIT_QUEUE) {
                     ptvcursor_add(ptv, hf_woww_average_wait_time_in_ms, 4, ENC_LITTLE_ENDIAN);
                     ptvcursor_add(ptv, hf_woww_time_in_queue_in_ms, 4, ENC_LITTLE_ENDIAN);

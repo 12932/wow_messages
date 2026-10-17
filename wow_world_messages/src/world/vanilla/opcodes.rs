@@ -8484,7 +8484,6 @@ impl ServerOpcodeMessage {
             Self::SMSG_INSTANCE_SAVE_CREATED(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_RAID_INSTANCE_INFO(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_PLAY_SOUND(c) => crate::Message::to_test_case_string(c),
-            Self::SMSG_BATTLEFIELD_STATUS(c) => crate::Message::to_test_case_string(c),
             Self::MSG_INSPECT_HONOR_STATS(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_FORCE_WALK_SPEED_CHANGE(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_FORCE_SWIM_BACK_SPEED_CHANGE(c) => crate::Message::to_test_case_string(c),

@@ -80,7 +80,6 @@ pub use wow_world_base::shared::skill_category_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::spell_miss_info_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::spell_school_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::stable_result_vanilla_tbc::*;
-pub use wow_world_base::shared::status_id_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::timer_type_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::trade_status_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::trainer_spell_state_vanilla_tbc_wrath::*;

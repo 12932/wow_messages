@@ -92142,8 +92142,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 89,
-          "end_position": 94
+          "start_position": 144,
+          "end_position": 149
         }
       },
       {
@@ -92611,8 +92611,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 80,
-          "end_position": 87
+          "start_position": 135,
+          "end_position": 142
         }
       },
       {
@@ -173323,8 +173323,9 @@
             }
           }
         ],
-        "integer_type": "U8",
+        "integer_type": "U32",
         "tags": {
+          "comment": "1.12 sends the status as a u32 (mangos-zero, vmangos, Thistle Tea).",
           "version": {
             "version_type_tag": "world",
             "version_type": {
@@ -173332,10 +173333,88 @@
               "versions": [
                 {
                   "major": 1,
-                  "minor": null,
+                  "minor": 12,
                   "patch": null,
                   "build": null
-                },
+                }
+              ]
+            }
+          }
+        },
+        "objects_used_in": [
+          {
+            "object_name": "SMSG_BATTLEFIELD_STATUS",
+            "definer_usage": "InIfStatement"
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
+          "start_position": 1,
+          "end_position": 20
+        }
+      },
+      {
+        "name": "StatusId",
+        "definer_type": "Enum",
+        "enumerators": [
+          {
+            "name": "NONE",
+            "value": {
+              "value": "0",
+              "original_string": "0"
+            },
+            "tags": {
+              "comment": "first status, should mean bg is not instance"
+            }
+          },
+          {
+            "name": "WAIT_QUEUE",
+            "value": {
+              "value": "1",
+              "original_string": "1"
+            },
+            "tags": {
+              "comment": "means bg is empty and waiting for queue"
+            }
+          },
+          {
+            "name": "WAIT_JOIN",
+            "value": {
+              "value": "2",
+              "original_string": "2"
+            },
+            "tags": {
+              "comment": "this means, that BG has already started and it is waiting for more players"
+            }
+          },
+          {
+            "name": "IN_PROGRESS",
+            "value": {
+              "value": "3",
+              "original_string": "3"
+            },
+            "tags": {
+              "comment": "means bg is running"
+            }
+          },
+          {
+            "name": "WAIT_LEAVE",
+            "value": {
+              "value": "4",
+              "original_string": "4"
+            },
+            "tags": {
+              "comment": "means some faction has won BG and it is ending"
+            }
+          }
+        ],
+        "integer_type": "U8",
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
                 {
                   "major": 2,
                   "minor": null,
@@ -173360,8 +173439,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 1,
-          "end_position": 19
+          "start_position": 22,
+          "end_position": 40
         }
       },
       {
@@ -559489,7 +559568,7 @@
         "sizes": {
           "constant_sized": false,
           "minimum_size": 8,
-          "maximum_size": 22
+          "maximum_size": 25
         },
         "members": [
           {
@@ -559583,7 +559662,7 @@
                       "data_type_tag": "Enum",
                       "content": {
                         "type_name": "StatusId",
-                        "integer_type": "U8",
+                        "integer_type": "U32",
                         "upcast": false
                       }
                     },
@@ -559676,7 +559755,7 @@
                           "data_type_tag": "Enum",
                           "content": {
                             "type_name": "StatusId",
-                            "integer_type": "U8",
+                            "integer_type": "U32",
                             "upcast": false
                           }
                         },
@@ -559733,7 +559812,7 @@
                           "data_type_tag": "Enum",
                           "content": {
                             "type_name": "StatusId",
-                            "integer_type": "U8",
+                            "integer_type": "U32",
                             "upcast": false
                           }
                         },
@@ -559746,7 +559825,7 @@
                       "data_type_tag": "Enum",
                       "content": {
                         "type_name": "StatusId",
-                        "integer_type": "U8",
+                        "integer_type": "U32",
                         "upcast": false
                       }
                     },
@@ -559786,11 +559865,208 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_BATTLEFIELD_STATUS",
+            "members": [
+              {
+                "variable_name": "queue_slot",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "map",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "489",
+                    "original_string": "WARSONG_GULCH"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "bracket",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "5",
+                    "original_string": "SIXTY"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "client_instance_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "7",
+                    "original_string": "7"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "status_id",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "3",
+                    "original_string": "IN_PROGRESS"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "time_to_bg_autoleave_in_ms",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "time_to_bg_start_in_ms",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1234",
+                    "original_string": "1234"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              27,
+              212,
+              2,
+              0,
+              0,
+              0,
+              0,
+              233,
+              1,
+              0,
+              0,
+              5,
+              7,
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              210,
+              4,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
+              "start_position": 70,
+              "end_position": 90
+            }
+          },
+          {
+            "subject": "SMSG_BATTLEFIELD_STATUS",
+            "members": [
+              {
+                "variable_name": "queue_slot",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "map",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "EASTERN_KINGDOMS"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              10,
+              212,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
+              "start_position": 92,
+              "end_position": 102
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 21,
-          "end_position": 47
+          "start_position": 42,
+          "end_position": 68
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -560127,8 +560403,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 49,
-          "end_position": 78
+          "start_position": 104,
+          "end_position": 133
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -560586,8 +560862,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/smsg_battlefield_status.wowm",
-          "start_position": 96,
-          "end_position": 136
+          "start_position": 151,
+          "end_position": 191
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

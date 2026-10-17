@@ -4152,7 +4152,7 @@
         },
         { &hf_woww_status_id,
             { "Status Id", "woww.status.id",
-                FT_UINT8, BASE_HEX_DEC, VALS(e_status_id_strings), 0,
+                FT_UINT32, BASE_HEX_DEC, VALS(e_status_id_strings), 0,
                 NULL, HFILL
             }
         },
