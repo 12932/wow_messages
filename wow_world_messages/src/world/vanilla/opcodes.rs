@@ -5387,6 +5387,7 @@ pub enum ServerOpcodeMessage {
     MSG_MOVE_STOP_PITCH(MSG_MOVE_STOP_PITCH_Server),
     MSG_MOVE_SET_RUN_MODE(MSG_MOVE_SET_RUN_MODE_Server),
     MSG_MOVE_SET_WALK_MODE(MSG_MOVE_SET_WALK_MODE_Server),
+    MSG_MOVE_TELEPORT(MSG_MOVE_TELEPORT_Server),
     MSG_MOVE_TELEPORT_ACK(MSG_MOVE_TELEPORT_ACK_Server),
     MSG_MOVE_FALL_LAND(MSG_MOVE_FALL_LAND_Server),
     MSG_MOVE_START_SWIM(MSG_MOVE_START_SWIM_Server),
@@ -5401,6 +5402,8 @@ pub enum ServerOpcodeMessage {
     SMSG_FORCE_SWIM_SPEED_CHANGE(SMSG_FORCE_SWIM_SPEED_CHANGE),
     SMSG_FORCE_MOVE_ROOT(SMSG_FORCE_MOVE_ROOT),
     SMSG_FORCE_MOVE_UNROOT(SMSG_FORCE_MOVE_UNROOT),
+    MSG_MOVE_ROOT(MSG_MOVE_ROOT_Server),
+    MSG_MOVE_UNROOT(MSG_MOVE_UNROOT_Server),
     MSG_MOVE_HEARTBEAT(MSG_MOVE_HEARTBEAT_Server),
     SMSG_MOVE_KNOCK_BACK(SMSG_MOVE_KNOCK_BACK),
     SMSG_MOVE_FEATHER_FALL(SMSG_MOVE_FEATHER_FALL),
@@ -5742,6 +5745,7 @@ impl ServerOpcodeMessage {
             0x00C1 => Ok(Self::MSG_MOVE_STOP_PITCH(<MSG_MOVE_STOP_PITCH_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00C2 => Ok(Self::MSG_MOVE_SET_RUN_MODE(<MSG_MOVE_SET_RUN_MODE_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00C3 => Ok(Self::MSG_MOVE_SET_WALK_MODE(<MSG_MOVE_SET_WALK_MODE_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
+            0x00C5 => Ok(Self::MSG_MOVE_TELEPORT(<MSG_MOVE_TELEPORT_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00C7 => Ok(Self::MSG_MOVE_TELEPORT_ACK(<MSG_MOVE_TELEPORT_ACK_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00C9 => Ok(Self::MSG_MOVE_FALL_LAND(<MSG_MOVE_FALL_LAND_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00CA => Ok(Self::MSG_MOVE_START_SWIM(<MSG_MOVE_START_SWIM_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
@@ -5756,6 +5760,8 @@ impl ServerOpcodeMessage {
             0x00E6 => Ok(Self::SMSG_FORCE_SWIM_SPEED_CHANGE(<SMSG_FORCE_SWIM_SPEED_CHANGE as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00E8 => Ok(Self::SMSG_FORCE_MOVE_ROOT(<SMSG_FORCE_MOVE_ROOT as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00EA => Ok(Self::SMSG_FORCE_MOVE_UNROOT(<SMSG_FORCE_MOVE_UNROOT as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
+            0x00EC => Ok(Self::MSG_MOVE_ROOT(<MSG_MOVE_ROOT_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
+            0x00ED => Ok(Self::MSG_MOVE_UNROOT(<MSG_MOVE_UNROOT_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00EE => Ok(Self::MSG_MOVE_HEARTBEAT(<MSG_MOVE_HEARTBEAT_Server as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00EF => Ok(Self::SMSG_MOVE_KNOCK_BACK(<SMSG_MOVE_KNOCK_BACK as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
             0x00F2 => Ok(Self::SMSG_MOVE_FEATHER_FALL(<SMSG_MOVE_FEATHER_FALL as crate::Message>::read_body::<crate::traits::private::Internal>(&mut r, body_size).map_err(|a| a.opcode_convert())?)),
@@ -6165,6 +6171,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.write_encrypted_server(w, e),
+            Self::MSG_MOVE_TELEPORT(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_FALL_LAND(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_START_SWIM(c) => c.write_encrypted_server(w, e),
@@ -6179,6 +6186,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.write_encrypted_server(w, e),
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.write_encrypted_server(w, e),
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.write_encrypted_server(w, e),
+            Self::MSG_MOVE_ROOT(c) => c.write_encrypted_server(w, e),
+            Self::MSG_MOVE_UNROOT(c) => c.write_encrypted_server(w, e),
             Self::MSG_MOVE_HEARTBEAT(c) => c.write_encrypted_server(w, e),
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.write_encrypted_server(w, e),
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.write_encrypted_server(w, e),
@@ -6521,6 +6530,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.write_unencrypted_server(w),
+            Self::MSG_MOVE_TELEPORT(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_FALL_LAND(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_START_SWIM(c) => c.write_unencrypted_server(w),
@@ -6535,6 +6545,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.write_unencrypted_server(w),
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.write_unencrypted_server(w),
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.write_unencrypted_server(w),
+            Self::MSG_MOVE_ROOT(c) => c.write_unencrypted_server(w),
+            Self::MSG_MOVE_UNROOT(c) => c.write_unencrypted_server(w),
             Self::MSG_MOVE_HEARTBEAT(c) => c.write_unencrypted_server(w),
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.write_unencrypted_server(w),
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.write_unencrypted_server(w),
@@ -6877,6 +6889,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.tokio_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_TELEPORT(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_FALL_LAND(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_START_SWIM(c) => c.tokio_write_encrypted_server(w, e).await,
@@ -6891,6 +6904,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.tokio_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_ROOT(c) => c.tokio_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_UNROOT(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_HEARTBEAT(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.tokio_write_encrypted_server(w, e).await,
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.tokio_write_encrypted_server(w, e).await,
@@ -7233,6 +7248,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.tokio_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_TELEPORT(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_FALL_LAND(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_START_SWIM(c) => c.tokio_write_unencrypted_server(w).await,
@@ -7247,6 +7263,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.tokio_write_unencrypted_server(w).await,
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.tokio_write_unencrypted_server(w).await,
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.tokio_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_ROOT(c) => c.tokio_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_UNROOT(c) => c.tokio_write_unencrypted_server(w).await,
             Self::MSG_MOVE_HEARTBEAT(c) => c.tokio_write_unencrypted_server(w).await,
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.tokio_write_unencrypted_server(w).await,
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.tokio_write_unencrypted_server(w).await,
@@ -7589,6 +7607,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.astd_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_TELEPORT(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_FALL_LAND(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_START_SWIM(c) => c.astd_write_encrypted_server(w, e).await,
@@ -7603,6 +7622,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.astd_write_encrypted_server(w, e).await,
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.astd_write_encrypted_server(w, e).await,
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.astd_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_ROOT(c) => c.astd_write_encrypted_server(w, e).await,
+            Self::MSG_MOVE_UNROOT(c) => c.astd_write_encrypted_server(w, e).await,
             Self::MSG_MOVE_HEARTBEAT(c) => c.astd_write_encrypted_server(w, e).await,
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.astd_write_encrypted_server(w, e).await,
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.astd_write_encrypted_server(w, e).await,
@@ -7945,6 +7966,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_SET_RUN_MODE(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_SET_WALK_MODE(c) => c.astd_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_TELEPORT(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_TELEPORT_ACK(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_FALL_LAND(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_START_SWIM(c) => c.astd_write_unencrypted_server(w).await,
@@ -7959,6 +7981,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(c) => c.astd_write_unencrypted_server(w).await,
             Self::SMSG_FORCE_MOVE_ROOT(c) => c.astd_write_unencrypted_server(w).await,
             Self::SMSG_FORCE_MOVE_UNROOT(c) => c.astd_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_ROOT(c) => c.astd_write_unencrypted_server(w).await,
+            Self::MSG_MOVE_UNROOT(c) => c.astd_write_unencrypted_server(w).await,
             Self::MSG_MOVE_HEARTBEAT(c) => c.astd_write_unencrypted_server(w).await,
             Self::SMSG_MOVE_KNOCK_BACK(c) => c.astd_write_unencrypted_server(w).await,
             Self::SMSG_MOVE_FEATHER_FALL(c) => c.astd_write_unencrypted_server(w).await,
@@ -8601,6 +8625,7 @@ impl ServerOpcodeMessage {
             Self::MSG_MOVE_STOP_PITCH(_) => "MSG_MOVE_STOP_PITCH_Server",
             Self::MSG_MOVE_SET_RUN_MODE(_) => "MSG_MOVE_SET_RUN_MODE_Server",
             Self::MSG_MOVE_SET_WALK_MODE(_) => "MSG_MOVE_SET_WALK_MODE_Server",
+            Self::MSG_MOVE_TELEPORT(_) => "MSG_MOVE_TELEPORT_Server",
             Self::MSG_MOVE_TELEPORT_ACK(_) => "MSG_MOVE_TELEPORT_ACK_Server",
             Self::MSG_MOVE_FALL_LAND(_) => "MSG_MOVE_FALL_LAND_Server",
             Self::MSG_MOVE_START_SWIM(_) => "MSG_MOVE_START_SWIM_Server",
@@ -8615,6 +8640,8 @@ impl ServerOpcodeMessage {
             Self::SMSG_FORCE_SWIM_SPEED_CHANGE(_) => "SMSG_FORCE_SWIM_SPEED_CHANGE",
             Self::SMSG_FORCE_MOVE_ROOT(_) => "SMSG_FORCE_MOVE_ROOT",
             Self::SMSG_FORCE_MOVE_UNROOT(_) => "SMSG_FORCE_MOVE_UNROOT",
+            Self::MSG_MOVE_ROOT(_) => "MSG_MOVE_ROOT_Server",
+            Self::MSG_MOVE_UNROOT(_) => "MSG_MOVE_UNROOT_Server",
             Self::MSG_MOVE_HEARTBEAT(_) => "MSG_MOVE_HEARTBEAT_Server",
             Self::SMSG_MOVE_KNOCK_BACK(_) => "SMSG_MOVE_KNOCK_BACK",
             Self::SMSG_MOVE_FEATHER_FALL(_) => "SMSG_MOVE_FEATHER_FALL",
@@ -8959,6 +8986,7 @@ impl std::fmt::Display for ServerOpcodeMessage {
             ServerOpcodeMessage::MSG_MOVE_STOP_PITCH(_) => "MSG_MOVE_STOP_PITCH_Server",
             ServerOpcodeMessage::MSG_MOVE_SET_RUN_MODE(_) => "MSG_MOVE_SET_RUN_MODE_Server",
             ServerOpcodeMessage::MSG_MOVE_SET_WALK_MODE(_) => "MSG_MOVE_SET_WALK_MODE_Server",
+            ServerOpcodeMessage::MSG_MOVE_TELEPORT(_) => "MSG_MOVE_TELEPORT_Server",
             ServerOpcodeMessage::MSG_MOVE_TELEPORT_ACK(_) => "MSG_MOVE_TELEPORT_ACK_Server",
             ServerOpcodeMessage::MSG_MOVE_FALL_LAND(_) => "MSG_MOVE_FALL_LAND_Server",
             ServerOpcodeMessage::MSG_MOVE_START_SWIM(_) => "MSG_MOVE_START_SWIM_Server",
@@ -8973,6 +9001,8 @@ impl std::fmt::Display for ServerOpcodeMessage {
             ServerOpcodeMessage::SMSG_FORCE_SWIM_SPEED_CHANGE(_) => "SMSG_FORCE_SWIM_SPEED_CHANGE",
             ServerOpcodeMessage::SMSG_FORCE_MOVE_ROOT(_) => "SMSG_FORCE_MOVE_ROOT",
             ServerOpcodeMessage::SMSG_FORCE_MOVE_UNROOT(_) => "SMSG_FORCE_MOVE_UNROOT",
+            ServerOpcodeMessage::MSG_MOVE_ROOT(_) => "MSG_MOVE_ROOT_Server",
+            ServerOpcodeMessage::MSG_MOVE_UNROOT(_) => "MSG_MOVE_UNROOT_Server",
             ServerOpcodeMessage::MSG_MOVE_HEARTBEAT(_) => "MSG_MOVE_HEARTBEAT_Server",
             ServerOpcodeMessage::SMSG_MOVE_KNOCK_BACK(_) => "SMSG_MOVE_KNOCK_BACK",
             ServerOpcodeMessage::SMSG_MOVE_FEATHER_FALL(_) => "SMSG_MOVE_FEATHER_FALL",
@@ -9648,6 +9678,12 @@ impl From<MSG_MOVE_SET_WALK_MODE_Server> for ServerOpcodeMessage {
     }
 }
 
+impl From<MSG_MOVE_TELEPORT_Server> for ServerOpcodeMessage {
+    fn from(c: MSG_MOVE_TELEPORT_Server) -> Self {
+        Self::MSG_MOVE_TELEPORT(c)
+    }
+}
+
 impl From<MSG_MOVE_TELEPORT_ACK_Server> for ServerOpcodeMessage {
     fn from(c: MSG_MOVE_TELEPORT_ACK_Server) -> Self {
         Self::MSG_MOVE_TELEPORT_ACK(c)
@@ -9729,6 +9765,18 @@ impl From<SMSG_FORCE_MOVE_ROOT> for ServerOpcodeMessage {
 impl From<SMSG_FORCE_MOVE_UNROOT> for ServerOpcodeMessage {
     fn from(c: SMSG_FORCE_MOVE_UNROOT) -> Self {
         Self::SMSG_FORCE_MOVE_UNROOT(c)
+    }
+}
+
+impl From<MSG_MOVE_ROOT_Server> for ServerOpcodeMessage {
+    fn from(c: MSG_MOVE_ROOT_Server) -> Self {
+        Self::MSG_MOVE_ROOT(c)
+    }
+}
+
+impl From<MSG_MOVE_UNROOT_Server> for ServerOpcodeMessage {
+    fn from(c: MSG_MOVE_UNROOT_Server) -> Self {
+        Self::MSG_MOVE_UNROOT(c)
     }
 }
 

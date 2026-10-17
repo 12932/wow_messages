@@ -2,8 +2,36 @@ smsg MSG_MOVE_ROOT_Server = 0x00EC {
     PackedGuid player;
     MovementInfo info;
 } {
-    paste_versions = "2.4.3";
+    paste_versions = "1.12 2.4.3";
     comment = "There does not appear to be a CMSG version of this MSG.";
+}
+
+test MSG_MOVE_ROOT_Server {
+    player = 5;
+    info = {
+        flags = ROOT;
+        timestamp = 24785222;
+        position = {
+            x = -8945.774;
+            y = -112.21678;
+            z = 82.978714;
+        };
+        orientation = 2.5674446;
+        fall_time = 0.0;
+    };
+} [
+    0x00, 0x20, /* size */
+    0xEC, 0x00, /* opcode */
+    0x01, 0x05, /* player */
+    0x00, 0x10, 0x00, 0x00, /* info.flags */
+    0x46, 0x31, 0x7A, 0x01, /* info.timestamp */
+    0x19, 0xC7, 0x0B, 0xC6, /* info.position.x */
+    0xFE, 0x6E, 0xE0, 0xC2, /* info.position.y */
+    0x1A, 0xF5, 0xA5, 0x42, /* info.position.z */
+    0x03, 0x51, 0x24, 0x40, /* info.orientation */
+    0x00, 0x00, 0x00, 0x00, /* info.fall_time */
+] {
+    versions = "1.12";
 }
 
 smsg MSG_MOVE_ROOT_Server = 0x00EC {

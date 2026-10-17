@@ -365150,6 +365150,873 @@
       {
         "name": "MSG_MOVE_TELEPORT_Server",
         "object_type": {
+          "container_type_tag": "SMsg",
+          "opcode": 197
+        },
+        "sizes": {
+          "constant_sized": false,
+          "minimum_size": 29,
+          "maximum_size": 90
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "player",
+              "data_type": {
+                "data_type_tag": "PackedGuid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "info",
+              "data_type": {
+                "data_type_tag": "Struct",
+                "content": {
+                  "struct_data": {
+                    "name": "MovementInfo",
+                    "object_type": {
+                      "container_type_tag": "Struct"
+                    },
+                    "sizes": {
+                      "constant_sized": false,
+                      "minimum_size": 28,
+                      "maximum_size": 81
+                    },
+                    "members": [
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "flags",
+                          "data_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": true,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "timestamp",
+                          "data_type": {
+                            "data_type_tag": "Integer",
+                            "content": "U32"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "position",
+                          "data_type": {
+                            "data_type_tag": "Struct",
+                            "content": {
+                              "struct_data": {
+                                "name": "Vector3d",
+                                "object_type": {
+                                  "container_type_tag": "Struct"
+                                },
+                                "sizes": {
+                                  "constant_sized": true,
+                                  "minimum_size": 12,
+                                  "maximum_size": 12
+                                },
+                                "members": [
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "x",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "y",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "z",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  }
+                                ],
+                                "tags": {
+                                  "version": {
+                                    "version_type_tag": "world",
+                                    "version_type": {
+                                      "world_version_tag": "specific",
+                                      "versions": [
+                                        {
+                                          "major": 1,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 2,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 3,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "tests": [],
+                                "file_info": {
+                                  "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                  "start_position": 4,
+                                  "end_position": 10
+                                },
+                                "only_has_io_error": true,
+                                "has_manual_size_field": false,
+                                "manual_size_subtraction": null
+                              }
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "orientation",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "ON_TRANSPORT"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "transport",
+                                "data_type": {
+                                  "data_type_tag": "Struct",
+                                  "content": {
+                                    "struct_data": {
+                                      "name": "TransportInfo",
+                                      "object_type": {
+                                        "container_type_tag": "Struct"
+                                      },
+                                      "sizes": {
+                                        "constant_sized": false,
+                                        "minimum_size": 21,
+                                        "maximum_size": 29
+                                      },
+                                      "members": [
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "guid",
+                                            "data_type": {
+                                              "data_type_tag": "PackedGuid"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "position",
+                                            "data_type": {
+                                              "data_type_tag": "Struct",
+                                              "content": {
+                                                "struct_data": {
+                                                  "name": "Vector3d",
+                                                  "object_type": {
+                                                    "container_type_tag": "Struct"
+                                                  },
+                                                  "sizes": {
+                                                    "constant_sized": true,
+                                                    "minimum_size": 12,
+                                                    "maximum_size": 12
+                                                  },
+                                                  "members": [
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "x",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "y",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "z",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    }
+                                                  ],
+                                                  "tags": {
+                                                    "version": {
+                                                      "version_type_tag": "world",
+                                                      "version_type": {
+                                                        "world_version_tag": "specific",
+                                                        "versions": [
+                                                          {
+                                                            "major": 1,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 2,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 3,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "tests": [],
+                                                  "file_info": {
+                                                    "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                                    "start_position": 4,
+                                                    "end_position": 10
+                                                  },
+                                                  "only_has_io_error": true,
+                                                  "has_manual_size_field": false,
+                                                  "manual_size_subtraction": null
+                                                }
+                                              }
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "orientation",
+                                            "data_type": {
+                                              "data_type_tag": "FloatingPoint"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "timestamp",
+                                            "data_type": {
+                                              "data_type_tag": "Integer",
+                                              "content": "U32"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        }
+                                      ],
+                                      "tags": {
+                                        "version": {
+                                          "version_type_tag": "world",
+                                          "version_type": {
+                                            "world_version_tag": "specific",
+                                            "versions": [
+                                              {
+                                                "major": 1,
+                                                "minor": 12,
+                                                "patch": null,
+                                                "build": null
+                                              },
+                                              {
+                                                "major": 2,
+                                                "minor": null,
+                                                "patch": null,
+                                                "build": null
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "tests": [],
+                                      "file_info": {
+                                        "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                                        "start_position": 3,
+                                        "end_position": 10
+                                      },
+                                      "only_has_io_error": true,
+                                      "has_manual_size_field": false,
+                                      "manual_size_subtraction": null
+                                    }
+                                  }
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SWIMMING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "pitch",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "fall_time",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "JUMPING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "z_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "cos_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "sin_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "xy_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SPLINE_ELEVATION"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "spline_elevation",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      }
+                    ],
+                    "tags": {
+                      "version": {
+                        "version_type_tag": "world",
+                        "version_type": {
+                          "world_version_tag": "specific",
+                          "versions": [
+                            {
+                              "major": 1,
+                              "minor": 12,
+                              "patch": null,
+                              "build": null
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "tests": [],
+                    "file_info": {
+                      "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                      "start_position": 40,
+                      "end_position": 63
+                    },
+                    "only_has_io_error": true,
+                    "has_manual_size_field": false,
+                    "manual_size_subtraction": null
+                  }
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "comment": "Sent to those who see a unit teleport (mangos-classic's Unit::SendTeleportPacket).",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [
+          {
+            "subject": "MSG_MOVE_TELEPORT_Server",
+            "members": [
+              {
+                "variable_name": "player",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "5",
+                    "original_string": "5"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "info",
+                "value": {
+                  "test_value_tag": "SubObject",
+                  "content": {
+                    "type_name": "MovementInfo",
+                    "members": [
+                      {
+                        "variable_name": "flags",
+                        "value": {
+                          "test_value_tag": "Flag",
+                          "content": [
+                            "NONE"
+                          ]
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "timestamp",
+                        "value": {
+                          "test_value_tag": "Integer",
+                          "content": {
+                            "value": "24785222",
+                            "original_string": "24785222"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "position",
+                        "value": {
+                          "test_value_tag": "SubObject",
+                          "content": {
+                            "type_name": "Vector3d",
+                            "members": [
+                              {
+                                "variable_name": "x",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -8945.774,
+                                    "original_string": "-8945.774"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "y",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -112.21678,
+                                    "original_string": "-112.21678"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "z",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": 82.978714,
+                                    "original_string": "82.978714"
+                                  }
+                                },
+                                "tags": {}
+                              }
+                            ]
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "orientation",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 2.5674446,
+                            "original_string": "2.5674446"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "fall_time",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 0.0,
+                            "original_string": "0.0"
+                          }
+                        },
+                        "tags": {}
+                      }
+                    ]
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              32,
+              197,
+              0,
+              1,
+              5,
+              0,
+              0,
+              0,
+              0,
+              70,
+              49,
+              122,
+              1,
+              25,
+              199,
+              11,
+              198,
+              254,
+              110,
+              224,
+              194,
+              26,
+              245,
+              165,
+              66,
+              3,
+              81,
+              36,
+              64,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_teleport.wowm",
+              "start_position": 9,
+              "end_position": 35
+            }
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_teleport.wowm",
+          "start_position": 1,
+          "end_position": 7
+        },
+        "only_has_io_error": true,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "MSG_MOVE_TELEPORT_Server",
+        "object_type": {
           "container_type_tag": "CMsg",
           "opcode": 197
         },
@@ -365890,8 +366757,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_teleport.wowm",
-          "start_position": 1,
-          "end_position": 7
+          "start_position": 37,
+          "end_position": 43
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -366938,8 +367805,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_teleport.wowm",
-          "start_position": 1,
-          "end_position": 7
+          "start_position": 37,
+          "end_position": 43
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -406007,6 +406874,873 @@
         },
         "sizes": {
           "constant_sized": false,
+          "minimum_size": 29,
+          "maximum_size": 90
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "player",
+              "data_type": {
+                "data_type_tag": "PackedGuid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "info",
+              "data_type": {
+                "data_type_tag": "Struct",
+                "content": {
+                  "struct_data": {
+                    "name": "MovementInfo",
+                    "object_type": {
+                      "container_type_tag": "Struct"
+                    },
+                    "sizes": {
+                      "constant_sized": false,
+                      "minimum_size": 28,
+                      "maximum_size": 81
+                    },
+                    "members": [
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "flags",
+                          "data_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": true,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "timestamp",
+                          "data_type": {
+                            "data_type_tag": "Integer",
+                            "content": "U32"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "position",
+                          "data_type": {
+                            "data_type_tag": "Struct",
+                            "content": {
+                              "struct_data": {
+                                "name": "Vector3d",
+                                "object_type": {
+                                  "container_type_tag": "Struct"
+                                },
+                                "sizes": {
+                                  "constant_sized": true,
+                                  "minimum_size": 12,
+                                  "maximum_size": 12
+                                },
+                                "members": [
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "x",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "y",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "z",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  }
+                                ],
+                                "tags": {
+                                  "version": {
+                                    "version_type_tag": "world",
+                                    "version_type": {
+                                      "world_version_tag": "specific",
+                                      "versions": [
+                                        {
+                                          "major": 1,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 2,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 3,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "tests": [],
+                                "file_info": {
+                                  "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                  "start_position": 4,
+                                  "end_position": 10
+                                },
+                                "only_has_io_error": true,
+                                "has_manual_size_field": false,
+                                "manual_size_subtraction": null
+                              }
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "orientation",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "ON_TRANSPORT"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "transport",
+                                "data_type": {
+                                  "data_type_tag": "Struct",
+                                  "content": {
+                                    "struct_data": {
+                                      "name": "TransportInfo",
+                                      "object_type": {
+                                        "container_type_tag": "Struct"
+                                      },
+                                      "sizes": {
+                                        "constant_sized": false,
+                                        "minimum_size": 21,
+                                        "maximum_size": 29
+                                      },
+                                      "members": [
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "guid",
+                                            "data_type": {
+                                              "data_type_tag": "PackedGuid"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "position",
+                                            "data_type": {
+                                              "data_type_tag": "Struct",
+                                              "content": {
+                                                "struct_data": {
+                                                  "name": "Vector3d",
+                                                  "object_type": {
+                                                    "container_type_tag": "Struct"
+                                                  },
+                                                  "sizes": {
+                                                    "constant_sized": true,
+                                                    "minimum_size": 12,
+                                                    "maximum_size": 12
+                                                  },
+                                                  "members": [
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "x",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "y",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "z",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    }
+                                                  ],
+                                                  "tags": {
+                                                    "version": {
+                                                      "version_type_tag": "world",
+                                                      "version_type": {
+                                                        "world_version_tag": "specific",
+                                                        "versions": [
+                                                          {
+                                                            "major": 1,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 2,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 3,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "tests": [],
+                                                  "file_info": {
+                                                    "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                                    "start_position": 4,
+                                                    "end_position": 10
+                                                  },
+                                                  "only_has_io_error": true,
+                                                  "has_manual_size_field": false,
+                                                  "manual_size_subtraction": null
+                                                }
+                                              }
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "orientation",
+                                            "data_type": {
+                                              "data_type_tag": "FloatingPoint"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "timestamp",
+                                            "data_type": {
+                                              "data_type_tag": "Integer",
+                                              "content": "U32"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        }
+                                      ],
+                                      "tags": {
+                                        "version": {
+                                          "version_type_tag": "world",
+                                          "version_type": {
+                                            "world_version_tag": "specific",
+                                            "versions": [
+                                              {
+                                                "major": 1,
+                                                "minor": 12,
+                                                "patch": null,
+                                                "build": null
+                                              },
+                                              {
+                                                "major": 2,
+                                                "minor": null,
+                                                "patch": null,
+                                                "build": null
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "tests": [],
+                                      "file_info": {
+                                        "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                                        "start_position": 3,
+                                        "end_position": 10
+                                      },
+                                      "only_has_io_error": true,
+                                      "has_manual_size_field": false,
+                                      "manual_size_subtraction": null
+                                    }
+                                  }
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SWIMMING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "pitch",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "fall_time",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "JUMPING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "z_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "cos_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "sin_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "xy_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SPLINE_ELEVATION"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "spline_elevation",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      }
+                    ],
+                    "tags": {
+                      "version": {
+                        "version_type_tag": "world",
+                        "version_type": {
+                          "world_version_tag": "specific",
+                          "versions": [
+                            {
+                              "major": 1,
+                              "minor": 12,
+                              "patch": null,
+                              "build": null
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "tests": [],
+                    "file_info": {
+                      "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                      "start_position": 40,
+                      "end_position": 63
+                    },
+                    "only_has_io_error": true,
+                    "has_manual_size_field": false,
+                    "manual_size_subtraction": null
+                  }
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "comment": "There does not appear to be a CMSG version of this MSG.",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [
+          {
+            "subject": "MSG_MOVE_ROOT_Server",
+            "members": [
+              {
+                "variable_name": "player",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "5",
+                    "original_string": "5"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "info",
+                "value": {
+                  "test_value_tag": "SubObject",
+                  "content": {
+                    "type_name": "MovementInfo",
+                    "members": [
+                      {
+                        "variable_name": "flags",
+                        "value": {
+                          "test_value_tag": "Flag",
+                          "content": [
+                            "ROOT"
+                          ]
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "timestamp",
+                        "value": {
+                          "test_value_tag": "Integer",
+                          "content": {
+                            "value": "24785222",
+                            "original_string": "24785222"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "position",
+                        "value": {
+                          "test_value_tag": "SubObject",
+                          "content": {
+                            "type_name": "Vector3d",
+                            "members": [
+                              {
+                                "variable_name": "x",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -8945.774,
+                                    "original_string": "-8945.774"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "y",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -112.21678,
+                                    "original_string": "-112.21678"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "z",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": 82.978714,
+                                    "original_string": "82.978714"
+                                  }
+                                },
+                                "tags": {}
+                              }
+                            ]
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "orientation",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 2.5674446,
+                            "original_string": "2.5674446"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "fall_time",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 0.0,
+                            "original_string": "0.0"
+                          }
+                        },
+                        "tags": {}
+                      }
+                    ]
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              32,
+              236,
+              0,
+              1,
+              5,
+              0,
+              16,
+              0,
+              0,
+              70,
+              49,
+              122,
+              1,
+              25,
+              199,
+              11,
+              198,
+              254,
+              110,
+              224,
+              194,
+              26,
+              245,
+              165,
+              66,
+              3,
+              81,
+              36,
+              64,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_root.wowm",
+              "start_position": 9,
+              "end_position": 35
+            }
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_root.wowm",
+          "start_position": 1,
+          "end_position": 7
+        },
+        "only_has_io_error": true,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "MSG_MOVE_ROOT_Server",
+        "object_type": {
+          "container_type_tag": "SMsg",
+          "opcode": 236
+        },
+        "sizes": {
+          "constant_sized": false,
           "minimum_size": 30,
           "maximum_size": 91
         },
@@ -407776,8 +409510,874 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_root.wowm",
-          "start_position": 9,
-          "end_position": 14
+          "start_position": 37,
+          "end_position": 42
+        },
+        "only_has_io_error": true,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "MSG_MOVE_UNROOT_Server",
+        "object_type": {
+          "container_type_tag": "SMsg",
+          "opcode": 237
+        },
+        "sizes": {
+          "constant_sized": false,
+          "minimum_size": 29,
+          "maximum_size": 90
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "player",
+              "data_type": {
+                "data_type_tag": "PackedGuid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "info",
+              "data_type": {
+                "data_type_tag": "Struct",
+                "content": {
+                  "struct_data": {
+                    "name": "MovementInfo",
+                    "object_type": {
+                      "container_type_tag": "Struct"
+                    },
+                    "sizes": {
+                      "constant_sized": false,
+                      "minimum_size": 28,
+                      "maximum_size": 81
+                    },
+                    "members": [
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "flags",
+                          "data_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": true,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "timestamp",
+                          "data_type": {
+                            "data_type_tag": "Integer",
+                            "content": "U32"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "position",
+                          "data_type": {
+                            "data_type_tag": "Struct",
+                            "content": {
+                              "struct_data": {
+                                "name": "Vector3d",
+                                "object_type": {
+                                  "container_type_tag": "Struct"
+                                },
+                                "sizes": {
+                                  "constant_sized": true,
+                                  "minimum_size": 12,
+                                  "maximum_size": 12
+                                },
+                                "members": [
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "x",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "y",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  },
+                                  {
+                                    "struct_member_tag": "Definition",
+                                    "struct_member_content": {
+                                      "name": "z",
+                                      "data_type": {
+                                        "data_type_tag": "FloatingPoint"
+                                      },
+                                      "constant_value": null,
+                                      "used_as_size_in": null,
+                                      "size_of_fields_before_size": null,
+                                      "used_in_if": false,
+                                      "tags": {}
+                                    }
+                                  }
+                                ],
+                                "tags": {
+                                  "version": {
+                                    "version_type_tag": "world",
+                                    "version_type": {
+                                      "world_version_tag": "specific",
+                                      "versions": [
+                                        {
+                                          "major": 1,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 2,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        },
+                                        {
+                                          "major": 3,
+                                          "minor": null,
+                                          "patch": null,
+                                          "build": null
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "tests": [],
+                                "file_info": {
+                                  "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                  "start_position": 4,
+                                  "end_position": 10
+                                },
+                                "only_has_io_error": true,
+                                "has_manual_size_field": false,
+                                "manual_size_subtraction": null
+                              }
+                            }
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "orientation",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "ON_TRANSPORT"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "transport",
+                                "data_type": {
+                                  "data_type_tag": "Struct",
+                                  "content": {
+                                    "struct_data": {
+                                      "name": "TransportInfo",
+                                      "object_type": {
+                                        "container_type_tag": "Struct"
+                                      },
+                                      "sizes": {
+                                        "constant_sized": false,
+                                        "minimum_size": 21,
+                                        "maximum_size": 29
+                                      },
+                                      "members": [
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "guid",
+                                            "data_type": {
+                                              "data_type_tag": "PackedGuid"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "position",
+                                            "data_type": {
+                                              "data_type_tag": "Struct",
+                                              "content": {
+                                                "struct_data": {
+                                                  "name": "Vector3d",
+                                                  "object_type": {
+                                                    "container_type_tag": "Struct"
+                                                  },
+                                                  "sizes": {
+                                                    "constant_sized": true,
+                                                    "minimum_size": 12,
+                                                    "maximum_size": 12
+                                                  },
+                                                  "members": [
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "x",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "y",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    },
+                                                    {
+                                                      "struct_member_tag": "Definition",
+                                                      "struct_member_content": {
+                                                        "name": "z",
+                                                        "data_type": {
+                                                          "data_type_tag": "FloatingPoint"
+                                                        },
+                                                        "constant_value": null,
+                                                        "used_as_size_in": null,
+                                                        "size_of_fields_before_size": null,
+                                                        "used_in_if": false,
+                                                        "tags": {}
+                                                      }
+                                                    }
+                                                  ],
+                                                  "tags": {
+                                                    "version": {
+                                                      "version_type_tag": "world",
+                                                      "version_type": {
+                                                        "world_version_tag": "specific",
+                                                        "versions": [
+                                                          {
+                                                            "major": 1,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 2,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          },
+                                                          {
+                                                            "major": 3,
+                                                            "minor": null,
+                                                            "patch": null,
+                                                            "build": null
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "tests": [],
+                                                  "file_info": {
+                                                    "file_name": "wow_message_parser/wowm/world/vector.wowm",
+                                                    "start_position": 4,
+                                                    "end_position": 10
+                                                  },
+                                                  "only_has_io_error": true,
+                                                  "has_manual_size_field": false,
+                                                  "manual_size_subtraction": null
+                                                }
+                                              }
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "orientation",
+                                            "data_type": {
+                                              "data_type_tag": "FloatingPoint"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        },
+                                        {
+                                          "struct_member_tag": "Definition",
+                                          "struct_member_content": {
+                                            "name": "timestamp",
+                                            "data_type": {
+                                              "data_type_tag": "Integer",
+                                              "content": "U32"
+                                            },
+                                            "constant_value": null,
+                                            "used_as_size_in": null,
+                                            "size_of_fields_before_size": null,
+                                            "used_in_if": false,
+                                            "tags": {}
+                                          }
+                                        }
+                                      ],
+                                      "tags": {
+                                        "version": {
+                                          "version_type_tag": "world",
+                                          "version_type": {
+                                            "world_version_tag": "specific",
+                                            "versions": [
+                                              {
+                                                "major": 1,
+                                                "minor": 12,
+                                                "patch": null,
+                                                "build": null
+                                              },
+                                              {
+                                                "major": 2,
+                                                "minor": null,
+                                                "patch": null,
+                                                "build": null
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "tests": [],
+                                      "file_info": {
+                                        "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                                        "start_position": 3,
+                                        "end_position": 10
+                                      },
+                                      "only_has_io_error": true,
+                                      "has_manual_size_field": false,
+                                      "manual_size_subtraction": null
+                                    }
+                                  }
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SWIMMING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "pitch",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "Definition",
+                        "struct_member_content": {
+                          "name": "fall_time",
+                          "data_type": {
+                            "data_type_tag": "FloatingPoint"
+                          },
+                          "constant_value": null,
+                          "used_as_size_in": null,
+                          "size_of_fields_before_size": null,
+                          "used_in_if": false,
+                          "tags": {}
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "JUMPING"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "z_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "cos_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "sin_angle",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            },
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "xy_speed",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      },
+                      {
+                        "struct_member_tag": "IfStatement",
+                        "struct_member_content": {
+                          "conditional": {
+                            "variable_name": "flags",
+                            "equations": {
+                              "equation_tag": "BitwiseAnd",
+                              "values": {
+                                "value": [
+                                  "SPLINE_ELEVATION"
+                                ]
+                              }
+                            }
+                          },
+                          "members": [
+                            {
+                              "struct_member_tag": "Definition",
+                              "struct_member_content": {
+                                "name": "spline_elevation",
+                                "data_type": {
+                                  "data_type_tag": "FloatingPoint"
+                                },
+                                "constant_value": null,
+                                "used_as_size_in": null,
+                                "size_of_fields_before_size": null,
+                                "used_in_if": false,
+                                "tags": {}
+                              }
+                            }
+                          ],
+                          "else_if_statements": [],
+                          "else_members": [],
+                          "original_type": {
+                            "data_type_tag": "Flag",
+                            "content": {
+                              "type_name": "MovementFlags",
+                              "integer_type": "U32",
+                              "upcast": false
+                            }
+                          },
+                          "part_of_separate_if_statement": false,
+                          "is_else_if_flag": false
+                        }
+                      }
+                    ],
+                    "tags": {
+                      "version": {
+                        "version_type_tag": "world",
+                        "version_type": {
+                          "world_version_tag": "specific",
+                          "versions": [
+                            {
+                              "major": 1,
+                              "minor": 12,
+                              "patch": null,
+                              "build": null
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "tests": [],
+                    "file_info": {
+                      "file_name": "wow_message_parser/wowm/world/movement/common_movement.wowm",
+                      "start_position": 40,
+                      "end_position": 63
+                    },
+                    "only_has_io_error": true,
+                    "has_manual_size_field": false,
+                    "manual_size_subtraction": null
+                  }
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [
+          {
+            "subject": "MSG_MOVE_UNROOT_Server",
+            "members": [
+              {
+                "variable_name": "player",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "5",
+                    "original_string": "5"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "info",
+                "value": {
+                  "test_value_tag": "SubObject",
+                  "content": {
+                    "type_name": "MovementInfo",
+                    "members": [
+                      {
+                        "variable_name": "flags",
+                        "value": {
+                          "test_value_tag": "Flag",
+                          "content": [
+                            "NONE"
+                          ]
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "timestamp",
+                        "value": {
+                          "test_value_tag": "Integer",
+                          "content": {
+                            "value": "24785222",
+                            "original_string": "24785222"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "position",
+                        "value": {
+                          "test_value_tag": "SubObject",
+                          "content": {
+                            "type_name": "Vector3d",
+                            "members": [
+                              {
+                                "variable_name": "x",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -8945.774,
+                                    "original_string": "-8945.774"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "y",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": -112.21678,
+                                    "original_string": "-112.21678"
+                                  }
+                                },
+                                "tags": {}
+                              },
+                              {
+                                "variable_name": "z",
+                                "value": {
+                                  "test_value_tag": "FloatingPoint",
+                                  "content": {
+                                    "value": 82.978714,
+                                    "original_string": "82.978714"
+                                  }
+                                },
+                                "tags": {}
+                              }
+                            ]
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "orientation",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 2.5674446,
+                            "original_string": "2.5674446"
+                          }
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "fall_time",
+                        "value": {
+                          "test_value_tag": "FloatingPoint",
+                          "content": {
+                            "value": 0.0,
+                            "original_string": "0.0"
+                          }
+                        },
+                        "tags": {}
+                      }
+                    ]
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              32,
+              237,
+              0,
+              1,
+              5,
+              0,
+              0,
+              0,
+              0,
+              70,
+              49,
+              122,
+              1,
+              25,
+              199,
+              11,
+              198,
+              254,
+              110,
+              224,
+              194,
+              26,
+              245,
+              165,
+              66,
+              3,
+              81,
+              36,
+              64,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_unroot.wowm",
+              "start_position": 8,
+              "end_position": 34
+            }
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_unroot.wowm",
+          "start_position": 1,
+          "end_position": 6
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -409558,8 +412158,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/movement/msg/msg_move_unroot.wowm",
-          "start_position": 8,
-          "end_position": 12
+          "start_position": 36,
+          "end_position": 40
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,

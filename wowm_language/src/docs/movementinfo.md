@@ -90,6 +90,7 @@ Used in:
 * [MSG_MOVE_HEARTBEAT_Server](msg_move_heartbeat_server.md)
 * [MSG_MOVE_JUMP_Client](msg_move_jump_client.md)
 * [MSG_MOVE_JUMP_Server](msg_move_jump_server.md)
+* [MSG_MOVE_ROOT_Server](msg_move_root_server.md)
 * [MSG_MOVE_SET_FACING_Client](msg_move_set_facing_client.md)
 * [MSG_MOVE_SET_FACING_Server](msg_move_set_facing_server.md)
 * [MSG_MOVE_SET_PITCH_Client](msg_move_set_pitch_client.md)
@@ -127,6 +128,8 @@ Used in:
 * [MSG_MOVE_STOP_TURN_Client](msg_move_stop_turn_client.md)
 * [MSG_MOVE_STOP_TURN_Server](msg_move_stop_turn_server.md)
 * [MSG_MOVE_TELEPORT_ACK_Server](msg_move_teleport_ack_server.md)
+* [MSG_MOVE_TELEPORT_Server](msg_move_teleport_server.md)
+* [MSG_MOVE_UNROOT_Server](msg_move_unroot_server.md)
 * [MSG_MOVE_WATER_WALK](msg_move_water_walk.md)
 
 ## Client Version 2.4.3
