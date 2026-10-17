@@ -5077,6 +5077,7 @@
             ptvcursor_add_ret_uint(ptv, hf_woww_chat_type, 1, ENC_LITTLE_ENDIAN, &chat_type);
             ptvcursor_add(ptv, hf_woww_language, 4, ENC_LITTLE_ENDIAN);
             if (chat_type == CHAT_TYPE_MONSTER_WHISPER
+             || chat_type == CHAT_TYPE_RAID_BOSS_WHISPER
              || chat_type == CHAT_TYPE_RAID_BOSS_EMOTE
              || chat_type == CHAT_TYPE_MONSTER_EMOTE) {
                 add_sized_cstring(ptv, &hf_woww_monster_name);

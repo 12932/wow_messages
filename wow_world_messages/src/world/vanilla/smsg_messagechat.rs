@@ -12,6 +12,7 @@ use crate::vanilla::{
 ///     ChatType chat_type;
 ///     Language language;
 ///     if (chat_type == MONSTER_WHISPER
+///         || chat_type == RAID_BOSS_WHISPER
 ///         || chat_type == RAID_BOSS_EMOTE
 ///         || chat_type == MONSTER_EMOTE) {
 ///         SizedCString monster_name;
@@ -374,11 +375,19 @@ impl SMSG_MESSAGECHAT {
                 }
             }
             ChatType::RaidBossWhisper => {
-                // sender2: Guid
-                let sender2 = crate::util::read_guid(&mut r)?;
+                // monster_name: SizedCString
+                let monster_name = {
+                    let monster_name = crate::util::read_u32_le(&mut r)?;
+                    let monster_name = crate::util::read_sized_c_string_to_vec(&mut r, monster_name)?;
+                    String::from_utf8(monster_name)?
+                };
+
+                // monster: Guid
+                let monster = crate::util::read_guid(&mut r)?;
 
                 SMSG_MESSAGECHAT_ChatType::RaidBossWhisper {
-                    sender2,
+                    monster,
+                    monster_name,
                 }
             }
             ChatType::RaidBossEmote => {
@@ -733,10 +742,17 @@ impl crate::Message for SMSG_MESSAGECHAT {
 
             }
             SMSG_MESSAGECHAT_ChatType::RaidBossWhisper {
-                sender2,
+                monster,
+                monster_name,
             } => {
-                // sender2: Guid
-                w.write_all(&sender2.guid().to_le_bytes())?;
+                // monster_name: SizedCString
+                w.write_all(&((monster_name.len() + 1) as u32).to_le_bytes())?;
+                w.write_all(monster_name.as_bytes())?;
+                // Null terminator
+                w.write_all(&[0])?;
+
+                // monster: Guid
+                w.write_all(&monster.guid().to_le_bytes())?;
 
             }
             SMSG_MESSAGECHAT_ChatType::RaidBossEmote {
@@ -906,7 +922,8 @@ pub enum SMSG_MESSAGECHAT_ChatType {
         sender2: Guid,
     },
     RaidBossWhisper {
-        sender2: Guid,
+        monster: Guid,
+        monster_name: String,
     },
     RaidBossEmote {
         monster: Guid,
@@ -1221,10 +1238,12 @@ impl SMSG_MESSAGECHAT_ChatType {
                 + 8 // sender2: Guid
             }
             Self::RaidBossWhisper {
+                monster_name,
                 ..
             } => {
                 1
-                + 8 // sender2: Guid
+                + 8 // monster: Guid
+                + monster_name.len() + 5 // monster_name: SizedCString
             }
             Self::RaidBossEmote {
                 monster_name,
@@ -1287,7 +1306,7 @@ mod test {
 
     }
 
-    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 54.
     #[cfg(feature = "sync")]
     #[cfg_attr(feature = "sync", test)]
     fn smsg_messagechat0() {
@@ -1307,7 +1326,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 54.
     #[cfg(feature = "tokio")]
     #[cfg_attr(feature = "tokio", tokio::test)]
     async fn tokio_smsg_messagechat0() {
@@ -1327,7 +1346,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 54.
     #[cfg(feature = "async-std")]
     #[cfg_attr(feature = "async-std", async_std::test)]
     async fn astd_smsg_messagechat0() {
@@ -1345,6 +1364,84 @@ mod test {
         expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 34] = [ 0x00, 0x20, 0x96, 0x00, 0x59, 0x00, 0x00, 0x00, 0x00,
+         0x05, 0x00, 0x00, 0x00, 0x48, 0x6F, 0x73, 0x74, 0x00, 0x04, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x48, 0x69, 0x00,
+         0x00, ];
+
+    pub(crate) fn expected1() -> SMSG_MESSAGECHAT {
+        SMSG_MESSAGECHAT {
+            chat_type: SMSG_MESSAGECHAT_ChatType::RaidBossWhisper {
+                monster: Guid::new(0x4),
+                monster_name: String::from("Host"),
+            },
+            language: Language::Universal,
+            message: String::from("Hi"),
+            tag: PlayerChatTag::None,
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 76.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_messagechat1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_MESSAGECHAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_MESSAGECHAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 76.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_messagechat1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_MESSAGECHAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_MESSAGECHAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/chat/smsg_messagechat.wowm` line 76.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_messagechat1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_MESSAGECHAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_MESSAGECHAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
     }
 
 }

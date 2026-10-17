@@ -156660,8 +156660,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
-          "start_position": 75,
-          "end_position": 84
+          "start_position": 98,
+          "end_position": 107
         }
       },
       {
@@ -281365,6 +281365,7 @@
                   "values": {
                     "value": [
                       "MONSTER_WHISPER",
+                      "RAID_BOSS_WHISPER",
                       "RAID_BOSS_EMOTE",
                       "MONSTER_EMOTE"
                     ]
@@ -281855,15 +281856,137 @@
             },
             "file_info": {
               "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
-              "start_position": 53,
-              "end_position": 73
+              "start_position": 54,
+              "end_position": 74
+            }
+          },
+          {
+            "subject": "SMSG_MESSAGECHAT",
+            "members": [
+              {
+                "variable_name": "chat_type",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "89",
+                    "original_string": "RAID_BOSS_WHISPER"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "language",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "UNIVERSAL"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "monster_name",
+                "value": {
+                  "test_value_tag": "String",
+                  "content": "Host"
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "monster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "message",
+                "value": {
+                  "test_value_tag": "String",
+                  "content": "Hi"
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "tag",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "NONE"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              32,
+              150,
+              0,
+              89,
+              0,
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              72,
+              111,
+              115,
+              116,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0,
+              72,
+              105,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
+              "start_position": 76,
+              "end_position": 96
             }
           }
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
           "start_position": 10,
-          "end_position": 51
+          "end_position": 52
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -282150,8 +282273,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
-          "start_position": 86,
-          "end_position": 116
+          "start_position": 109,
+          "end_position": 139
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -282613,8 +282736,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/chat/smsg_messagechat.wowm",
-          "start_position": 118,
-          "end_position": 167
+          "start_position": 141,
+          "end_position": 190
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
