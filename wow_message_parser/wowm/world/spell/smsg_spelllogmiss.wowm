@@ -1,8 +1,166 @@
+enum SpellLogMissLayout : u8 {
+    NORMAL = 0;
+    DEBUG = 1 {
+        comment = "Each target has two floats after its reason. The 1.12 client reads them for any value but 0.";
+    }
+} {
+    versions = "1.12";
+}
+
 struct SpellLogMiss {
     Guid target;
     SpellMissInfo miss_info;
 } {
-    versions = "1 2 3";
+    versions = "1.12";
+}
+
+struct SpellLogMissDebug {
+    Guid target;
+    SpellMissInfo miss_info;
+    f32 hit_roll {
+        comment = "The 1.12 client hands this and `hit_roll_needed` only to a log call that does nothing in its release build. Named as TC master's `SpellLogMissDebug` (a later client's packet) names them.";
+    }
+    f32 hit_roll_needed;
+} {
+    versions = "1.12";
+}
+
+smsg SMSG_SPELLLOGMISS = 0x024B {
+    Spell id;
+    Guid caster;
+    SpellLogMissLayout layout {
+        comment = "cmangos/mangoszero: can be 0 or 1";
+    }
+    if (layout == NORMAL) {
+        u32 amount_of_targets;
+        SpellLogMiss[amount_of_targets] targets;
+    } else if (layout == DEBUG) {
+        u32 amount_of_debug_targets;
+        SpellLogMissDebug[amount_of_debug_targets] debug_targets;
+    }
+} {
+    versions = "1.12";
+    comment = "mangos-classic's `Unit::SendSpellMiss` writes the spell, the caster, a byte of 0, the count and each target's guid and reason (a byte). The 1.12 client's handler reads the same, and two floats more a target when the byte isn't 0.";
+}
+
+test SMSG_SPELLLOGMISS {
+    id = 133;
+    caster = 4;
+    layout = NORMAL;
+    targets = [
+        {
+            target = 0xF130000026000123;
+            miss_info = RESIST;
+        },
+    ];
+} [
+    0x00, 0x1C, /* size */
+    0x4B, 0x02, /* opcode */
+    0x85, 0x00, 0x00, 0x00, /* id */
+    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* caster */
+    0x00, /* layout */
+    0x01, 0x00, 0x00, 0x00, /* amount_of_targets */
+    /* targets: SpellLogMiss[amount_of_targets] start */
+    /* targets: SpellLogMiss[amount_of_targets] 0 start */
+        0x23, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x02, /* miss_info */
+    /* targets: SpellLogMiss[amount_of_targets] 0 end */
+    /* targets: SpellLogMiss[amount_of_targets] end */
+] {
+    versions = "1.12";
+}
+
+test SMSG_SPELLLOGMISS {
+    id = 1449;
+    caster = 4;
+    layout = NORMAL;
+    targets = [
+        {
+            target = 0xF130000026000123;
+            miss_info = RESIST;
+        },
+        {
+            target = 0xF130000026000124;
+            miss_info = EVADE;
+        },
+        {
+            target = 0xF13000002E0004D2;
+            miss_info = IMMUNE;
+        },
+    ];
+} [
+    0x00, 0x2E, /* size */
+    0x4B, 0x02, /* opcode */
+    0xA9, 0x05, 0x00, 0x00, /* id */
+    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* caster */
+    0x00, /* layout */
+    0x03, 0x00, 0x00, 0x00, /* amount_of_targets */
+    /* targets: SpellLogMiss[amount_of_targets] start */
+    /* targets: SpellLogMiss[amount_of_targets] 0 start */
+        0x23, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x02, /* miss_info */
+    /* targets: SpellLogMiss[amount_of_targets] 0 end */
+    /* targets: SpellLogMiss[amount_of_targets] 1 start */
+        0x24, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x06, /* miss_info */
+    /* targets: SpellLogMiss[amount_of_targets] 1 end */
+    /* targets: SpellLogMiss[amount_of_targets] 2 start */
+        0xD2, 0x04, 0x00, 0x2E, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x07, /* miss_info */
+    /* targets: SpellLogMiss[amount_of_targets] 2 end */
+    /* targets: SpellLogMiss[amount_of_targets] end */
+] {
+    versions = "1.12";
+}
+
+test SMSG_SPELLLOGMISS {
+    id = 1449;
+    caster = 4;
+    layout = DEBUG;
+    debug_targets = [
+        {
+            target = 0xF130000026000123;
+            miss_info = RESIST;
+            hit_roll = 87.5;
+            hit_roll_needed = 83.0;
+        },
+        {
+            target = 0xF130000026000124;
+            miss_info = MISS;
+            hit_roll = 12.25;
+            hit_roll_needed = 5.5;
+        },
+    ];
+} [
+    0x00, 0x35, /* size */
+    0x4B, 0x02, /* opcode */
+    0xA9, 0x05, 0x00, 0x00, /* id */
+    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* caster */
+    0x01, /* layout */
+    0x02, 0x00, 0x00, 0x00, /* amount_of_debug_targets */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] start */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] 0 start */
+        0x23, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x02, /* miss_info */
+        0x00, 0x00, 0xAF, 0x42, /* hit_roll */
+        0x00, 0x00, 0xA6, 0x42, /* hit_roll_needed */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] 0 end */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] 1 start */
+        0x24, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x01, /* miss_info */
+        0x00, 0x00, 0x44, 0x41, /* hit_roll */
+        0x00, 0x00, 0xB0, 0x40, /* hit_roll_needed */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] 1 end */
+    /* debug_targets: SpellLogMissDebug[amount_of_debug_targets] end */
+] {
+    versions = "1.12";
+}
+
+struct SpellLogMiss {
+    Guid target;
+    SpellMissInfo miss_info;
+} {
+    versions = "2 3";
 }
 
 smsg SMSG_SPELLLOGMISS = 0x024B {
@@ -14,5 +172,5 @@ smsg SMSG_SPELLLOGMISS = 0x024B {
     u32 amount_of_targets;
     SpellLogMiss[amount_of_targets] targets;
 } {
-    versions = "1 2 3";
+    versions = "2 3";
 }

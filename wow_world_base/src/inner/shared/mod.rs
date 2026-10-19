@@ -223,8 +223,8 @@ pub mod size_class_vanilla_tbc_wrath;
 pub mod skill_category_vanilla_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "tbc", feature = "wrath"))]
 pub mod spam_type_tbc_wrath;
-#[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
-pub mod spell_miss_info_vanilla_tbc_wrath;
+#[cfg(any(feature = "shared", feature = "tbc", feature = "wrath"))]
+pub mod spell_miss_info_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod spell_school_vanilla_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "tbc", feature = "wrath"))]

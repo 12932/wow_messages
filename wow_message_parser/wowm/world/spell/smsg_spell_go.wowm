@@ -21,6 +21,90 @@ smsg SMSG_SPELL_GO = 0x0132 {
     versions = "1.12";
 }
 
+test SMSG_SPELL_GO {
+    cast_item = 4;
+    caster = 4;
+    spell = 75;
+    flags = AMMO | UNKNOWN9;
+    hits = [ ];
+    misses = [
+        {
+            target = 0xF130000026000123;
+            miss_info = MISS;
+        },
+    ];
+    targets = {
+        target_flags = UNIT;
+        unit_target = 0xF130000026000123;
+    };
+    ammo_display_id = 5996;
+    ammo_inventory_type = 24;
+} [
+    0x00, 0x27, /* size */
+    0x32, 0x01, /* opcode */
+    0x01, 0x04, /* cast_item */
+    0x01, 0x04, /* caster */
+    0x4B, 0x00, 0x00, 0x00, /* spell */
+    0x20, 0x01, /* flags */
+    0x00, /* amount_of_hits */
+    0x01, /* amount_of_misses */
+    /* misses: SpellMiss[amount_of_misses] start */
+    /* misses: SpellMiss[amount_of_misses] 0 start */
+        0x23, 0x01, 0x00, 0x26, 0x00, 0x00, 0x30, 0xF1, /* target */
+        0x01, /* miss_info */
+    /* misses: SpellMiss[amount_of_misses] 0 end */
+    /* misses: SpellMiss[amount_of_misses] end */
+    /* targets: SpellCastTargets start */
+        0x02, 0x00, /* target_flags */
+        0xCB, 0x23, 0x01, 0x26, 0x30, 0xF1, /* unit_target */
+    /* targets: SpellCastTargets end */
+    0x6C, 0x17, 0x00, 0x00, /* ammo_display_id */
+    0x18, 0x00, 0x00, 0x00, /* ammo_inventory_type */
+] {
+    versions = "1.12";
+}
+
+test SMSG_SPELL_GO {
+    cast_item = 0xF13000024D000456;
+    caster = 0xF13000024D000456;
+    spell = 116;
+    flags = UNKNOWN9;
+    hits = [ ];
+    misses = [
+        {
+            target = 4;
+            miss_info = REFLECT;
+            reflect_result = NONE;
+        },
+    ];
+    targets = {
+        target_flags = UNIT;
+        unit_target = 4;
+    };
+} [
+    0x00, 0x26, /* size */
+    0x32, 0x01, /* opcode */
+    0xDB, 0x56, 0x04, 0x4D, 0x02, 0x30, 0xF1, /* cast_item */
+    0xDB, 0x56, 0x04, 0x4D, 0x02, 0x30, 0xF1, /* caster */
+    0x74, 0x00, 0x00, 0x00, /* spell */
+    0x00, 0x01, /* flags */
+    0x00, /* amount_of_hits */
+    0x01, /* amount_of_misses */
+    /* misses: SpellMiss[amount_of_misses] start */
+    /* misses: SpellMiss[amount_of_misses] 0 start */
+        0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* target */
+        0x0B, /* miss_info */
+        0x00, /* reflect_result */
+    /* misses: SpellMiss[amount_of_misses] 0 end */
+    /* misses: SpellMiss[amount_of_misses] end */
+    /* targets: SpellCastTargets start */
+        0x02, 0x00, /* target_flags */
+        0x01, 0x04, /* unit_target */
+    /* targets: SpellCastTargets end */
+] {
+    versions = "1.12";
+}
+
 smsg SMSG_SPELL_GO = 0x0132 {
     PackedGuid cast_item {
         comment = "cmangos/vmangos/mangoszero: if cast item is used, set this to guid of cast item, otherwise set it to same as caster.";

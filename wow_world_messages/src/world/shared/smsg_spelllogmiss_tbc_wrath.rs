@@ -1,11 +1,11 @@
 use std::io::{Read, Write};
 
 use crate::Guid;
-use crate::shared::spell_log_miss_vanilla_tbc_wrath::SpellLogMiss;
-use wow_world_base::shared::spell_miss_info_vanilla_tbc_wrath::SpellMissInfo;
+use crate::shared::spell_log_miss_tbc_wrath::SpellLogMiss;
+use wow_world_base::shared::spell_miss_info_tbc_wrath::SpellMissInfo;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm:8`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm#L8):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm:166`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm#L166):
 /// ```text
 /// smsg SMSG_SPELLLOGMISS = 0x024B {
 ///     u32 id;
@@ -120,7 +120,7 @@ impl crate::Message for SMSG_SPELLLOGMISS {
 
 
         writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1 2 3".to_string())).unwrap();
+        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("2 3".to_string())).unwrap();
         writeln!(s, "}}\n").unwrap();
 
         Some(s)
@@ -156,9 +156,6 @@ impl crate::Message for SMSG_SPELLLOGMISS {
     }
 
 }
-
-#[cfg(feature = "vanilla")]
-impl crate::vanilla::ServerMessage for SMSG_SPELLLOGMISS {}
 
 #[cfg(feature = "tbc")]
 impl crate::tbc::ServerMessage for SMSG_SPELLLOGMISS {}

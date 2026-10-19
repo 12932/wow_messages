@@ -226,6 +226,12 @@
                 NULL, HFILL
             }
         },
+        { &hf_woww_amount_of_debug_targets,
+            { "Amount Of Debug Targets", "woww.amount.of.debug.targets",
+                FT_UINT32, BASE_HEX_DEC, NULL, 0,
+                NULL, HFILL
+            }
+        },
         { &hf_woww_amount_of_effects,
             { "Amount Of Effects", "woww.amount.of.effects",
                 FT_UINT32, BASE_HEX_DEC, NULL, 0,
@@ -1939,6 +1945,18 @@
         { &hf_woww_hit_info,
             { "Hit Info", "woww.hit.info",
                 FT_UINT32, BASE_HEX_DEC, VALS(e_hit_info_strings), 0,
+                NULL, HFILL
+            }
+        },
+        { &hf_woww_hit_roll,
+            { "Hit Roll", "woww.hit.roll",
+                FT_FLOAT, BASE_NONE, NULL, 0,
+                NULL, HFILL
+            }
+        },
+        { &hf_woww_hit_roll_needed,
+            { "Hit Roll Needed", "woww.hit.roll.needed",
+                FT_FLOAT, BASE_NONE, NULL, 0,
                 NULL, HFILL
             }
         },
@@ -3988,9 +4006,15 @@
                 NULL, HFILL
             }
         },
+        { &hf_woww_spell_log_miss_layout,
+            { "Spell Log Miss Layout", "woww.spell.log.miss.layout",
+                FT_UINT8, BASE_HEX_DEC, VALS(e_spell_log_miss_layout_strings), 0,
+                NULL, HFILL
+            }
+        },
         { &hf_woww_spell_miss_info,
             { "Spell Miss Info", "woww.spell.miss.info",
-                FT_UINT32, BASE_HEX_DEC, VALS(e_spell_miss_info_strings), 0,
+                FT_UINT8, BASE_HEX_DEC, VALS(e_spell_miss_info_strings), 0,
                 NULL, HFILL
             }
         },

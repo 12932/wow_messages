@@ -222,7 +222,7 @@ pub(crate) mod spell_cast_result;
 pub use spell_cast_result::*;
 pub(crate) mod spell_effect;
 pub use spell_effect::*;
-pub use crate::shared::spell_miss_info_vanilla_tbc_wrath::*;
+pub use crate::shared::spell_miss_info_tbc_wrath::*;
 pub use crate::shared::spell_school_vanilla_tbc_wrath::*;
 pub use crate::shared::spell_steal_action_tbc_wrath::*;
 pub use crate::shared::spell_trigger_type_tbc_wrath::*;

@@ -72,8 +72,8 @@ pub mod raid_target_update_vanilla_tbc_wrath;
 pub mod received_mail_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod spell_cooldown_status_vanilla_tbc_wrath;
-#[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
-pub mod spell_log_miss_vanilla_tbc_wrath;
+#[cfg(any(feature = "tbc", feature = "wrath"))]
+pub mod spell_log_miss_tbc_wrath;
 #[cfg(any(feature = "tbc", feature = "wrath"))]
 pub mod spell_steal_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
@@ -1024,8 +1024,8 @@ pub mod smsg_spelldispellog_tbc_wrath;
 pub mod smsg_spellenergizelog_vanilla_tbc;
 #[cfg(any(feature = "tbc", feature = "wrath"))]
 pub mod smsg_spellinstakilllog_tbc_wrath;
-#[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
-pub mod smsg_spelllogmiss_vanilla_tbc_wrath;
+#[cfg(any(feature = "tbc", feature = "wrath"))]
+pub mod smsg_spelllogmiss_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod smsg_spellordamage_immune_vanilla_tbc_wrath;
 #[cfg(any(feature = "tbc", feature = "wrath"))]

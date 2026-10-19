@@ -11,7 +11,7 @@ enum TimerType : u32 {
     versions = "1 2 3";
 }
 
-enum SpellMissInfo : u32 {
+enum SpellMissInfo : u8 {
     NONE = 0;
     MISS = 1;
     RESIST = 2;
@@ -25,12 +25,20 @@ enum SpellMissInfo : u32 {
     ABSORB = 10;
     REFLECT = 11;
 } {
-    versions = "1 2 3";
+    versions = "1.12";
+    comment = "1.12 sends the reason as a u8 (mangos-classic's `Unit::SendSpellMiss` and `Spell::WriteSpellGoTargets`, and the client's handlers of SMSG_SPELLLOGMISS and SMSG_SPELL_GO).";
 }
 
 struct SpellMiss {
     Guid target;
     SpellMissInfo miss_info;
+    if (miss_info == REFLECT) {
+        SpellMissInfo reflect_result {
+            comment = "How the reflected spell went for its caster: `NONE` if it hit.";
+        }
+    }
+} {
+    comment = "mangos-classic (`Spell::WriteSpellGoTargets`) writes a missed target as its guid, the reason and, for a reflect, the reflected spell's own result, each a byte. The 1.12 client reads it the same way.";
 }
 
 enum SpellSchool : u8 {

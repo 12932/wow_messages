@@ -5,6 +5,7 @@
     guint32 amount_of_choice_item_rewards = 0;
     guint32 amount_of_cooldowns = 0;
     guint32 amount_of_damages = 0;
+    guint32 amount_of_debug_targets = 0;
     guint32 amount_of_effects = 0;
     guint32 amount_of_emotes = 0;
     guint32 amount_of_entries = 0;
@@ -50,6 +51,7 @@
     guint32 flags = 0;
     guint32 info_block = 0;
     guint32 key_version = 0;
+    guint32 layout = 0;
     guint32 listed_players = 0;
     guint32 loot_method = 0;
     guint32 map = 0;
@@ -62,6 +64,7 @@
     guint32 opcode = 0;
     guint32 question_id = 0;
     guint32 reason = 0;
+    guint32 reflect_result = 0;
     guint32 result = 0;
     guint32 result2 = 0;
     guint32 spell_count = 0;

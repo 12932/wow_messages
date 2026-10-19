@@ -34358,8 +34358,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
-          "start_position": 51,
-          "end_position": 70
+          "start_position": 59,
+          "end_position": 78
         }
       },
       {
@@ -35645,8 +35645,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/spell_common_3_3_5.wowm",
-          "start_position": 59,
-          "end_position": 103
+          "start_position": 76,
+          "end_position": 120
         }
       },
       {
@@ -172590,6 +172590,197 @@
         }
       },
       {
+        "name": "SpellLogMissLayout",
+        "definer_type": "Enum",
+        "enumerators": [
+          {
+            "name": "NORMAL",
+            "value": {
+              "value": "0",
+              "original_string": "0"
+            },
+            "tags": {}
+          },
+          {
+            "name": "DEBUG",
+            "value": {
+              "value": "1",
+              "original_string": "1"
+            },
+            "tags": {
+              "comment": "Each target has two floats after its reason. The 1.12 client reads them for any value but 0."
+            }
+          }
+        ],
+        "integer_type": "U8",
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "objects_used_in": [
+          {
+            "object_name": "SMSG_SPELLLOGMISS",
+            "definer_usage": "InIfStatement"
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+          "start_position": 1,
+          "end_position": 8
+        }
+      },
+      {
+        "name": "SpellMissInfo",
+        "definer_type": "Enum",
+        "enumerators": [
+          {
+            "name": "NONE",
+            "value": {
+              "value": "0",
+              "original_string": "0"
+            },
+            "tags": {}
+          },
+          {
+            "name": "MISS",
+            "value": {
+              "value": "1",
+              "original_string": "1"
+            },
+            "tags": {}
+          },
+          {
+            "name": "RESIST",
+            "value": {
+              "value": "2",
+              "original_string": "2"
+            },
+            "tags": {}
+          },
+          {
+            "name": "DODGE",
+            "value": {
+              "value": "3",
+              "original_string": "3"
+            },
+            "tags": {}
+          },
+          {
+            "name": "PARRY",
+            "value": {
+              "value": "4",
+              "original_string": "4"
+            },
+            "tags": {}
+          },
+          {
+            "name": "BLOCK",
+            "value": {
+              "value": "5",
+              "original_string": "5"
+            },
+            "tags": {}
+          },
+          {
+            "name": "EVADE",
+            "value": {
+              "value": "6",
+              "original_string": "6"
+            },
+            "tags": {}
+          },
+          {
+            "name": "IMMUNE",
+            "value": {
+              "value": "7",
+              "original_string": "7"
+            },
+            "tags": {}
+          },
+          {
+            "name": "IMMUNE2",
+            "value": {
+              "value": "8",
+              "original_string": "8"
+            },
+            "tags": {}
+          },
+          {
+            "name": "DEFLECT",
+            "value": {
+              "value": "9",
+              "original_string": "9"
+            },
+            "tags": {}
+          },
+          {
+            "name": "ABSORB",
+            "value": {
+              "value": "10",
+              "original_string": "10"
+            },
+            "tags": {}
+          },
+          {
+            "name": "REFLECT",
+            "value": {
+              "value": "11",
+              "original_string": "11"
+            },
+            "tags": {}
+          }
+        ],
+        "integer_type": "U8",
+        "tags": {
+          "comment": "1.12 sends the reason as a u8 (mangos-classic's `Unit::SendSpellMiss` and `Spell::WriteSpellGoTargets`, and the client's handlers of SMSG_SPELLLOGMISS and SMSG_SPELL_GO).",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "objects_used_in": [
+          {
+            "object_name": "SpellLogMiss",
+            "definer_usage": "RegularUse"
+          },
+          {
+            "object_name": "SpellLogMissDebug",
+            "definer_usage": "RegularUse"
+          },
+          {
+            "object_name": "SpellMiss",
+            "definer_usage": "InIfStatement"
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
+          "start_position": 14,
+          "end_position": 30
+        }
+      },
+      {
         "name": "SpellMissInfo",
         "definer_type": "Enum",
         "enumerators": [
@@ -172698,18 +172889,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
-                  "major": 1,
-                  "minor": 12,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -172732,17 +172911,13 @@
           },
           {
             "object_name": "SpellMiss",
-            "definer_usage": "RegularUse"
-          },
-          {
-            "object_name": "SpellMiss",
             "definer_usage": "InIfStatement"
           }
         ],
         "file_info": {
-          "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
-          "start_position": 14,
-          "end_position": 29
+          "file_name": "wow_message_parser/wowm/world/spell/spell_common_3_3_5.wowm",
+          "start_position": 49,
+          "end_position": 64
         }
       },
       {
@@ -172863,8 +173038,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
-          "start_position": 36,
-          "end_position": 49
+          "start_position": 44,
+          "end_position": 57
         }
       },
       {
@@ -245903,8 +246078,8 @@
         },
         "sizes": {
           "constant_sized": true,
-          "minimum_size": 12,
-          "maximum_size": 12
+          "minimum_size": 9,
+          "maximum_size": 9
         },
         "members": [
           {
@@ -245929,7 +246104,7 @@
                 "data_type_tag": "Enum",
                 "content": {
                   "type_name": "SpellMissInfo",
-                  "integer_type": "U32",
+                  "integer_type": "U8",
                   "upcast": false
                 }
               },
@@ -245949,19 +246124,7 @@
               "versions": [
                 {
                   "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
-                  "major": 2,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
-                  "major": 3,
-                  "minor": null,
+                  "minor": 12,
                   "patch": null,
                   "build": null
                 }
@@ -245972,15 +246135,15 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
-          "start_position": 1,
-          "end_position": 6
+          "start_position": 10,
+          "end_position": 15
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
         "manual_size_subtraction": null
       },
       {
-        "name": "SpellMiss",
+        "name": "SpellLogMiss",
         "object_type": {
           "container_type_tag": "Struct"
         },
@@ -246031,6 +246194,236 @@
               "world_version_tag": "specific",
               "versions": [
                 {
+                  "major": 2,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                },
+                {
+                  "major": 3,
+                  "minor": null,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+          "start_position": 159,
+          "end_position": 164
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "SpellLogMissDebug",
+        "object_type": {
+          "container_type_tag": "Struct"
+        },
+        "sizes": {
+          "constant_sized": true,
+          "minimum_size": 17,
+          "maximum_size": 17
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "target",
+              "data_type": {
+                "data_type_tag": "Guid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "miss_info",
+              "data_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "SpellMissInfo",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "hit_roll",
+              "data_type": {
+                "data_type_tag": "FloatingPoint"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {
+                "comment": "The 1.12 client hands this and `hit_roll_needed` only to a log call that does nothing in its release build. Named as TC master's `SpellLogMissDebug` (a later client's packet) names them."
+              }
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "hit_roll_needed",
+              "data_type": {
+                "data_type_tag": "FloatingPoint"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          }
+        ],
+        "tags": {
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+          "start_position": 17,
+          "end_position": 26
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "SpellMiss",
+        "object_type": {
+          "container_type_tag": "Struct"
+        },
+        "sizes": {
+          "constant_sized": false,
+          "minimum_size": 9,
+          "maximum_size": 10
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "target",
+              "data_type": {
+                "data_type_tag": "Guid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "miss_info",
+              "data_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "SpellMissInfo",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": true,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "IfStatement",
+            "struct_member_content": {
+              "conditional": {
+                "variable_name": "miss_info",
+                "equations": {
+                  "equation_tag": "Equals",
+                  "values": {
+                    "value": [
+                      "REFLECT"
+                    ]
+                  }
+                }
+              },
+              "members": [
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "reflect_result",
+                    "data_type": {
+                      "data_type_tag": "Enum",
+                      "content": {
+                        "type_name": "SpellMissInfo",
+                        "integer_type": "U8",
+                        "upcast": false
+                      }
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {
+                      "comment": "How the reflected spell went for its caster: `NONE` if it hit."
+                    }
+                  }
+                }
+              ],
+              "else_if_statements": [],
+              "else_members": [],
+              "original_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "SpellMissInfo",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "part_of_separate_if_statement": false,
+              "is_else_if_flag": false
+            }
+          }
+        ],
+        "tags": {
+          "comment": "mangos-classic (`Spell::WriteSpellGoTargets`) writes a missed target as its guid, the reason and, for a reflect, the reflected spell's own result, each a byte. The 1.12 client reads it the same way.",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
                   "major": 1,
                   "minor": 12,
                   "patch": null,
@@ -246043,8 +246436,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
-          "start_position": 31,
-          "end_position": 36
+          "start_position": 32,
+          "end_position": 42
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -246159,8 +246552,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/spell_common_3_3_5.wowm",
-          "start_position": 49,
-          "end_position": 57
+          "start_position": 66,
+          "end_position": 74
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -443793,7 +444186,7 @@
         "sizes": {
           "constant_sized": false,
           "minimum_size": 12,
-          "maximum_size": 5472
+          "maximum_size": 4960
         },
         "members": [
           {
@@ -443930,9 +444323,9 @@
                           "container_type_tag": "Struct"
                         },
                         "sizes": {
-                          "constant_sized": true,
-                          "minimum_size": 12,
-                          "maximum_size": 12
+                          "constant_sized": false,
+                          "minimum_size": 9,
+                          "maximum_size": 10
                         },
                         "members": [
                           {
@@ -443957,19 +444350,71 @@
                                 "data_type_tag": "Enum",
                                 "content": {
                                   "type_name": "SpellMissInfo",
-                                  "integer_type": "U32",
+                                  "integer_type": "U8",
                                   "upcast": false
                                 }
                               },
                               "constant_value": null,
                               "used_as_size_in": null,
                               "size_of_fields_before_size": null,
-                              "used_in_if": false,
+                              "used_in_if": true,
                               "tags": {}
+                            }
+                          },
+                          {
+                            "struct_member_tag": "IfStatement",
+                            "struct_member_content": {
+                              "conditional": {
+                                "variable_name": "miss_info",
+                                "equations": {
+                                  "equation_tag": "Equals",
+                                  "values": {
+                                    "value": [
+                                      "REFLECT"
+                                    ]
+                                  }
+                                }
+                              },
+                              "members": [
+                                {
+                                  "struct_member_tag": "Definition",
+                                  "struct_member_content": {
+                                    "name": "reflect_result",
+                                    "data_type": {
+                                      "data_type_tag": "Enum",
+                                      "content": {
+                                        "type_name": "SpellMissInfo",
+                                        "integer_type": "U8",
+                                        "upcast": false
+                                      }
+                                    },
+                                    "constant_value": null,
+                                    "used_as_size_in": null,
+                                    "size_of_fields_before_size": null,
+                                    "used_in_if": false,
+                                    "tags": {
+                                      "comment": "How the reflected spell went for its caster: `NONE` if it hit."
+                                    }
+                                  }
+                                }
+                              ],
+                              "else_if_statements": [],
+                              "else_members": [],
+                              "original_type": {
+                                "data_type_tag": "Enum",
+                                "content": {
+                                  "type_name": "SpellMissInfo",
+                                  "integer_type": "U8",
+                                  "upcast": false
+                                }
+                              },
+                              "part_of_separate_if_statement": false,
+                              "is_else_if_flag": false
                             }
                           }
                         ],
                         "tags": {
+                          "comment": "mangos-classic (`Spell::WriteSpellGoTargets`) writes a missed target as its guid, the reason and, for a reflect, the reflected spell's own result, each a byte. The 1.12 client reads it the same way.",
                           "version": {
                             "version_type_tag": "world",
                             "version_type": {
@@ -443988,8 +444433,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/spell/spell_common.wowm",
-                          "start_position": 31,
-                          "end_position": 36
+                          "start_position": 32,
+                          "end_position": 42
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -444783,7 +445228,439 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "SMSG_SPELL_GO",
+            "members": [
+              {
+                "variable_name": "cast_item",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "caster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "spell",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "75",
+                    "original_string": "75"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "flags",
+                "value": {
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "AMMO",
+                    "UNKNOWN9"
+                  ]
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "hits",
+                "value": {
+                  "test_value_tag": "Array",
+                  "content": {
+                    "values": [],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_hits"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "misses",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "SpellMiss",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278563",
+                              "original_string": "0xF130000026000123"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "1",
+                              "original_string": "MISS"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_misses"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "targets",
+                "value": {
+                  "test_value_tag": "SubObject",
+                  "content": {
+                    "type_name": "SpellCastTargets",
+                    "members": [
+                      {
+                        "variable_name": "target_flags",
+                        "value": {
+                          "test_value_tag": "Flag",
+                          "content": [
+                            "UNIT"
+                          ]
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "unit_target",
+                        "value": {
+                          "test_value_tag": "Guid",
+                          "content": {
+                            "value": "17379390962660278563",
+                            "original_string": "0xF130000026000123"
+                          }
+                        },
+                        "tags": {}
+                      }
+                    ]
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "ammo_display_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "5996",
+                    "original_string": "5996"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "ammo_inventory_type",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "24",
+                    "original_string": "24"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              39,
+              50,
+              1,
+              1,
+              4,
+              1,
+              4,
+              75,
+              0,
+              0,
+              0,
+              32,
+              1,
+              0,
+              1,
+              35,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              1,
+              2,
+              0,
+              203,
+              35,
+              1,
+              38,
+              48,
+              241,
+              108,
+              23,
+              0,
+              0,
+              24,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/spell/smsg_spell_go.wowm",
+              "start_position": 24,
+              "end_position": 65
+            }
+          },
+          {
+            "subject": "SMSG_SPELL_GO",
+            "members": [
+              {
+                "variable_name": "cast_item",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390971904525398",
+                    "original_string": "0xF13000024D000456"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "caster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "17379390971904525398",
+                    "original_string": "0xF13000024D000456"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "spell",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "116",
+                    "original_string": "116"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "flags",
+                "value": {
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "UNKNOWN9"
+                  ]
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "hits",
+                "value": {
+                  "test_value_tag": "Array",
+                  "content": {
+                    "values": [],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_hits"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "misses",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "SpellMiss",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "4",
+                              "original_string": "4"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "11",
+                              "original_string": "REFLECT"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "reflect_result",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "0",
+                              "original_string": "NONE"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_misses"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "targets",
+                "value": {
+                  "test_value_tag": "SubObject",
+                  "content": {
+                    "type_name": "SpellCastTargets",
+                    "members": [
+                      {
+                        "variable_name": "target_flags",
+                        "value": {
+                          "test_value_tag": "Flag",
+                          "content": [
+                            "UNIT"
+                          ]
+                        },
+                        "tags": {}
+                      },
+                      {
+                        "variable_name": "unit_target",
+                        "value": {
+                          "test_value_tag": "Guid",
+                          "content": {
+                            "value": "4",
+                            "original_string": "4"
+                          }
+                        },
+                        "tags": {}
+                      }
+                    ]
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              38,
+              50,
+              1,
+              219,
+              86,
+              4,
+              77,
+              2,
+              48,
+              241,
+              219,
+              86,
+              4,
+              77,
+              2,
+              48,
+              241,
+              116,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              11,
+              0,
+              2,
+              0,
+              1,
+              4
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/spell/smsg_spell_go.wowm",
+              "start_position": 67,
+              "end_position": 106
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/smsg_spell_go.wowm",
           "start_position": 1,
@@ -445057,8 +445934,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/spell/spell_common_3_3_5.wowm",
-                          "start_position": 49,
-                          "end_position": 57
+                          "start_position": 66,
+                          "end_position": 74
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -445938,8 +446815,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/smsg_spell_go.wowm",
-          "start_position": 24,
-          "end_position": 47
+          "start_position": 108,
+          "end_position": 131
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -447117,8 +447994,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/smsg_spell_go.wowm",
-          "start_position": 49,
-          "end_position": 86
+          "start_position": 133,
+          "end_position": 170
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -520152,6 +521029,961 @@
         },
         "sizes": {
           "constant_sized": false,
+          "minimum_size": 13,
+          "maximum_size": 17
+        },
+        "members": [
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "id",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "caster",
+              "data_type": {
+                "data_type_tag": "Guid"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "layout",
+              "data_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "SpellLogMissLayout",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": true,
+              "tags": {
+                "comment": "cmangos/mangoszero: can be 0 or 1"
+              }
+            }
+          },
+          {
+            "struct_member_tag": "IfStatement",
+            "struct_member_content": {
+              "conditional": {
+                "variable_name": "layout",
+                "equations": {
+                  "equation_tag": "Equals",
+                  "values": {
+                    "value": [
+                      "NORMAL"
+                    ]
+                  }
+                }
+              },
+              "members": [
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "amount_of_targets",
+                    "data_type": {
+                      "data_type_tag": "Integer",
+                      "content": "U32"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": "targets",
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "targets",
+                    "data_type": {
+                      "data_type_tag": "Array",
+                      "content": {
+                        "inner_type": {
+                          "array_type_tag": "Struct",
+                          "content": {
+                            "struct_data": {
+                              "name": "SpellLogMiss",
+                              "object_type": {
+                                "container_type_tag": "Struct"
+                              },
+                              "sizes": {
+                                "constant_sized": true,
+                                "minimum_size": 9,
+                                "maximum_size": 9
+                              },
+                              "members": [
+                                {
+                                  "struct_member_tag": "Definition",
+                                  "struct_member_content": {
+                                    "name": "target",
+                                    "data_type": {
+                                      "data_type_tag": "Guid"
+                                    },
+                                    "constant_value": null,
+                                    "used_as_size_in": null,
+                                    "size_of_fields_before_size": null,
+                                    "used_in_if": false,
+                                    "tags": {}
+                                  }
+                                },
+                                {
+                                  "struct_member_tag": "Definition",
+                                  "struct_member_content": {
+                                    "name": "miss_info",
+                                    "data_type": {
+                                      "data_type_tag": "Enum",
+                                      "content": {
+                                        "type_name": "SpellMissInfo",
+                                        "integer_type": "U8",
+                                        "upcast": false
+                                      }
+                                    },
+                                    "constant_value": null,
+                                    "used_as_size_in": null,
+                                    "size_of_fields_before_size": null,
+                                    "used_in_if": false,
+                                    "tags": {}
+                                  }
+                                }
+                              ],
+                              "tags": {
+                                "version": {
+                                  "version_type_tag": "world",
+                                  "version_type": {
+                                    "world_version_tag": "specific",
+                                    "versions": [
+                                      {
+                                        "major": 1,
+                                        "minor": 12,
+                                        "patch": null,
+                                        "build": null
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              "tests": [],
+                              "file_info": {
+                                "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+                                "start_position": 10,
+                                "end_position": 15
+                              },
+                              "only_has_io_error": false,
+                              "has_manual_size_field": false,
+                              "manual_size_subtraction": null
+                            }
+                          }
+                        },
+                        "size": {
+                          "array_size_tag": "Variable",
+                          "size": "amount_of_targets"
+                        },
+                        "compressed": false
+                      }
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                }
+              ],
+              "else_if_statements": [
+                {
+                  "conditional": {
+                    "variable_name": "layout",
+                    "equations": {
+                      "equation_tag": "Equals",
+                      "values": {
+                        "value": [
+                          "DEBUG"
+                        ]
+                      }
+                    }
+                  },
+                  "members": [
+                    {
+                      "struct_member_tag": "Definition",
+                      "struct_member_content": {
+                        "name": "amount_of_debug_targets",
+                        "data_type": {
+                          "data_type_tag": "Integer",
+                          "content": "U32"
+                        },
+                        "constant_value": null,
+                        "used_as_size_in": "debug_targets",
+                        "size_of_fields_before_size": null,
+                        "used_in_if": false,
+                        "tags": {}
+                      }
+                    },
+                    {
+                      "struct_member_tag": "Definition",
+                      "struct_member_content": {
+                        "name": "debug_targets",
+                        "data_type": {
+                          "data_type_tag": "Array",
+                          "content": {
+                            "inner_type": {
+                              "array_type_tag": "Struct",
+                              "content": {
+                                "struct_data": {
+                                  "name": "SpellLogMissDebug",
+                                  "object_type": {
+                                    "container_type_tag": "Struct"
+                                  },
+                                  "sizes": {
+                                    "constant_sized": true,
+                                    "minimum_size": 17,
+                                    "maximum_size": 17
+                                  },
+                                  "members": [
+                                    {
+                                      "struct_member_tag": "Definition",
+                                      "struct_member_content": {
+                                        "name": "target",
+                                        "data_type": {
+                                          "data_type_tag": "Guid"
+                                        },
+                                        "constant_value": null,
+                                        "used_as_size_in": null,
+                                        "size_of_fields_before_size": null,
+                                        "used_in_if": false,
+                                        "tags": {}
+                                      }
+                                    },
+                                    {
+                                      "struct_member_tag": "Definition",
+                                      "struct_member_content": {
+                                        "name": "miss_info",
+                                        "data_type": {
+                                          "data_type_tag": "Enum",
+                                          "content": {
+                                            "type_name": "SpellMissInfo",
+                                            "integer_type": "U8",
+                                            "upcast": false
+                                          }
+                                        },
+                                        "constant_value": null,
+                                        "used_as_size_in": null,
+                                        "size_of_fields_before_size": null,
+                                        "used_in_if": false,
+                                        "tags": {}
+                                      }
+                                    },
+                                    {
+                                      "struct_member_tag": "Definition",
+                                      "struct_member_content": {
+                                        "name": "hit_roll",
+                                        "data_type": {
+                                          "data_type_tag": "FloatingPoint"
+                                        },
+                                        "constant_value": null,
+                                        "used_as_size_in": null,
+                                        "size_of_fields_before_size": null,
+                                        "used_in_if": false,
+                                        "tags": {
+                                          "comment": "The 1.12 client hands this and `hit_roll_needed` only to a log call that does nothing in its release build. Named as TC master's `SpellLogMissDebug` (a later client's packet) names them."
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "struct_member_tag": "Definition",
+                                      "struct_member_content": {
+                                        "name": "hit_roll_needed",
+                                        "data_type": {
+                                          "data_type_tag": "FloatingPoint"
+                                        },
+                                        "constant_value": null,
+                                        "used_as_size_in": null,
+                                        "size_of_fields_before_size": null,
+                                        "used_in_if": false,
+                                        "tags": {}
+                                      }
+                                    }
+                                  ],
+                                  "tags": {
+                                    "version": {
+                                      "version_type_tag": "world",
+                                      "version_type": {
+                                        "world_version_tag": "specific",
+                                        "versions": [
+                                          {
+                                            "major": 1,
+                                            "minor": 12,
+                                            "patch": null,
+                                            "build": null
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "tests": [],
+                                  "file_info": {
+                                    "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+                                    "start_position": 17,
+                                    "end_position": 26
+                                  },
+                                  "only_has_io_error": false,
+                                  "has_manual_size_field": false,
+                                  "manual_size_subtraction": null
+                                }
+                              }
+                            },
+                            "size": {
+                              "array_size_tag": "Variable",
+                              "size": "amount_of_debug_targets"
+                            },
+                            "compressed": false
+                          }
+                        },
+                        "constant_value": null,
+                        "used_as_size_in": null,
+                        "size_of_fields_before_size": null,
+                        "used_in_if": false,
+                        "tags": {}
+                      }
+                    }
+                  ],
+                  "else_if_statements": [],
+                  "else_members": [],
+                  "original_type": {
+                    "data_type_tag": "Enum",
+                    "content": {
+                      "type_name": "SpellLogMissLayout",
+                      "integer_type": "U8",
+                      "upcast": false
+                    }
+                  },
+                  "part_of_separate_if_statement": false,
+                  "is_else_if_flag": false
+                }
+              ],
+              "else_members": [],
+              "original_type": {
+                "data_type_tag": "Enum",
+                "content": {
+                  "type_name": "SpellLogMissLayout",
+                  "integer_type": "U8",
+                  "upcast": false
+                }
+              },
+              "part_of_separate_if_statement": false,
+              "is_else_if_flag": false
+            }
+          }
+        ],
+        "tags": {
+          "comment": "mangos-classic's `Unit::SendSpellMiss` writes the spell, the caster, a byte of 0, the count and each target's guid and reason (a byte). The 1.12 client's handler reads the same, and two floats more a target when the byte isn't 0.",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "tests": [
+          {
+            "subject": "SMSG_SPELLLOGMISS",
+            "members": [
+              {
+                "variable_name": "id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "133",
+                    "original_string": "133"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "caster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "layout",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "NORMAL"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "targets",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "SpellLogMiss",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278563",
+                              "original_string": "0xF130000026000123"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "2",
+                              "original_string": "RESIST"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_targets"
+                    }
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              28,
+              75,
+              2,
+              133,
+              0,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              35,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              2
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+              "start_position": 46,
+              "end_position": 71
+            }
+          },
+          {
+            "subject": "SMSG_SPELLLOGMISS",
+            "members": [
+              {
+                "variable_name": "id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1449",
+                    "original_string": "1449"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "caster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "layout",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "0",
+                    "original_string": "NORMAL"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "targets",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "SpellLogMiss",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278563",
+                              "original_string": "0xF130000026000123"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "2",
+                              "original_string": "RESIST"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278564",
+                              "original_string": "0xF130000026000124"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "6",
+                              "original_string": "EVADE"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962794497234",
+                              "original_string": "0xF13000002E0004D2"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "7",
+                              "original_string": "IMMUNE"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_targets"
+                    }
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              46,
+              75,
+              2,
+              169,
+              5,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0,
+              35,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              2,
+              36,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              6,
+              210,
+              4,
+              0,
+              46,
+              0,
+              0,
+              48,
+              241,
+              7
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+              "start_position": 73,
+              "end_position": 114
+            }
+          },
+          {
+            "subject": "SMSG_SPELLLOGMISS",
+            "members": [
+              {
+                "variable_name": "id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1449",
+                    "original_string": "1449"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "caster",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "4",
+                    "original_string": "4"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "layout",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "1",
+                    "original_string": "DEBUG"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_targets",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "SpellLogMissDebug",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278563",
+                              "original_string": "0xF130000026000123"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "2",
+                              "original_string": "RESIST"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "hit_roll",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 87.5,
+                              "original_string": "87.5"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "hit_roll_needed",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 83.0,
+                              "original_string": "83.0"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ],
+                      [
+                        {
+                          "variable_name": "target",
+                          "value": {
+                            "test_value_tag": "Guid",
+                            "content": {
+                              "value": "17379390962660278564",
+                              "original_string": "0xF130000026000124"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "miss_info",
+                          "value": {
+                            "test_value_tag": "Enum",
+                            "content": {
+                              "value": "1",
+                              "original_string": "MISS"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "hit_roll",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 12.25,
+                              "original_string": "12.25"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "hit_roll_needed",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 5.5,
+                              "original_string": "5.5"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_debug_targets"
+                    }
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              53,
+              75,
+              2,
+              169,
+              5,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2,
+              0,
+              0,
+              0,
+              35,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              2,
+              0,
+              0,
+              175,
+              66,
+              0,
+              0,
+              166,
+              66,
+              36,
+              1,
+              0,
+              38,
+              0,
+              0,
+              48,
+              241,
+              1,
+              0,
+              0,
+              68,
+              65,
+              0,
+              0,
+              176,
+              64
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+              "start_position": 116,
+              "end_position": 157
+            }
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
+          "start_position": 28,
+          "end_position": 44
+        },
+        "only_has_io_error": false,
+        "has_manual_size_field": false,
+        "manual_size_subtraction": null
+      },
+      {
+        "name": "SMSG_SPELLLOGMISS",
+        "object_type": {
+          "container_type_tag": "SMsg",
+          "opcode": 587
+        },
+        "sizes": {
+          "constant_sized": false,
           "minimum_size": 17,
           "maximum_size": 17
         },
@@ -520279,12 +522111,6 @@
                               "world_version_tag": "specific",
                               "versions": [
                                 {
-                                  "major": 1,
-                                  "minor": null,
-                                  "patch": null,
-                                  "build": null
-                                },
-                                {
                                   "major": 2,
                                   "minor": null,
                                   "patch": null,
@@ -520303,8 +522129,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
-                          "start_position": 1,
-                          "end_position": 6
+                          "start_position": 159,
+                          "end_position": 164
                         },
                         "only_has_io_error": false,
                         "has_manual_size_field": false,
@@ -520334,12 +522160,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": null,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -520358,8 +522178,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/spell/smsg_spelllogmiss.wowm",
-          "start_position": 8,
-          "end_position": 18
+          "start_position": 166,
+          "end_position": 176
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

@@ -8863,6 +8863,16 @@ static const value_string e_item_class_strings[] =  {
 };
 
 typedef enum {
+    SPELL_LOG_MISS_LAYOUT_NORMAL = 0x0,
+    SPELL_LOG_MISS_LAYOUT_DEBUG = 0x1,
+} e_spell_log_miss_layout;
+static const value_string e_spell_log_miss_layout_strings[] =  {
+    { SPELL_LOG_MISS_LAYOUT_NORMAL, "Normal" },
+    { SPELL_LOG_MISS_LAYOUT_DEBUG, "Debug" },
+    { 0, NULL }
+};
+
+typedef enum {
     STABLE_RESULT_ERR_MONEY = 0x1,
     STABLE_RESULT_ERR_STABLE = 0x6,
     STABLE_RESULT_SUCCESS_STABLE = 0x8,

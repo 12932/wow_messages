@@ -1815,6 +1815,8 @@
 - [SpellCastTargets](docs/spellcasttargets.md)
     - [SpellCastTargetFlags](docs/spellcasttargetflags.md)
 - [SpellCooldownStatus](docs/spellcooldownstatus.md)
+- [SpellLogMissDebug](docs/spelllogmissdebug.md)
+    - [SpellMissInfo](docs/spellmissinfo.md)
 - [SpellLogMiss](docs/spelllogmiss.md)
     - [SpellMissInfo](docs/spellmissinfo.md)
 - [SpellLog](docs/spelllog.md)
