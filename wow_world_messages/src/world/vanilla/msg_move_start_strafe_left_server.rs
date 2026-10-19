@@ -19,7 +19,7 @@ pub struct MSG_MOVE_START_STRAFE_LEFT_Server {
 impl crate::private::Sealed for MSG_MOVE_START_STRAFE_LEFT_Server {}
 impl MSG_MOVE_START_STRAFE_LEFT_Server {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(29..=90).contains(&body_size) {
+        if !(29..=85).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -111,7 +111,7 @@ mod test {
                     z: 83.74637_f32,
                 },
                 orientation: 0.38010955_f32,
-                fall_time: 0.000000000000000000000000000000000000000001254_f32,
+                fall_time: 0x37F,
             },
         }
 

@@ -1,12 +1,11 @@
 #tag_all versions "1.12";
 
 struct TransportInfo {
-    PackedGuid guid;
+    Guid guid;
     Vector3d position;
     f32 orientation;
-    u32 timestamp;
 } {
-    versions = "2";
+    comment = "The 1.12.1 client's own reader (0x47EBA0) reads a transport's whole GUID and the place and facing on it, with no timestamp, as mangos-classic's MovementInfo::Read and Write have it.";
 }
 
 flag MovementFlags : u32 {
@@ -20,7 +19,6 @@ flag MovementFlags : u32 {
     PITCH_UP           = 0x00000040;
     PITCH_DOWN         = 0x00000080;
     WALK_MODE          = 0x00000100;
-    ON_TRANSPORT       = 0x00000200;
     LEVITATING         = 0x00000400;
     FIXED_Z            = 0x00000800;
     ROOT               = 0x00001000;
@@ -30,7 +28,7 @@ flag MovementFlags : u32 {
     SPLINE_ENABLED     = 0x00400000;
     CAN_FLY            = 0x00800000;
     FLYING             = 0x01000000;
-    ONTRANSPORT        = 0x02000000;
+    ON_TRANSPORT       = 0x02000000;
     SPLINE_ELEVATION   = 0x04000000;
     WATERWALKING       = 0x10000000;
     SAFE_FALL          = 0x20000000;
@@ -48,7 +46,9 @@ struct MovementInfo {
     if (flags & SWIMMING) {
         f32 pitch;
     }
-    f32 fall_time;
+    u32 fall_time {
+        comment = "In milliseconds.";
+    }
     if (flags & JUMPING) {
         f32 z_speed;
         f32 cos_angle;

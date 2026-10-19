@@ -27,7 +27,7 @@ test MSG_MOVE_STOP_TURN_Client {
             z = 82.64232;
         };
         orientation = 4.877327;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
   0x00, 0x20, /* size */
@@ -61,7 +61,7 @@ test MSG_MOVE_STOP_TURN_Server {
             z = 82.64232;
         };
         orientation = 4.877327;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
   0x00, 0x20, /* size */

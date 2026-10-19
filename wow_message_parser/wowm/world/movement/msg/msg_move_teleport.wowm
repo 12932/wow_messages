@@ -17,7 +17,7 @@ test MSG_MOVE_TELEPORT_Server {
             z = 82.978714;
         };
         orientation = 2.5674446;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
     0x00, 0x20, /* size */

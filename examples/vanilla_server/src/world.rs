@@ -189,7 +189,7 @@ async fn handle(mut stream: TcpStream, users: Arc<Mutex<HashMap<String, SrpServe
         .set_living(MovementBlock_UpdateFlag_Living::Living {
             backwards_running_speed: 4.5,
             backwards_swimming_speed: 0.0,
-            fall_time: 0.0,
+            fall_time: 0,
             flags: MovementBlock_MovementFlags::empty(),
             living_orientation: 0.0,
             living_position: Vector3d {

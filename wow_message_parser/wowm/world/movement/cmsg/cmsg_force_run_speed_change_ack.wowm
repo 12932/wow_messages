@@ -20,7 +20,7 @@ test CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
             z = 82.90929;
         };
         orientation = 3.99377;
-        fall_time = 0.000000000000000000000000000000000000000001156;
+        fall_time = 825;
     };
     new_speed = 7;
 } [
@@ -38,6 +38,53 @@ test CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
     0x00, 0x00, 0xe0, 0x40 /* new_speed */
 ] {
     description = "Client responds to having movement speed set to 7 in Northshire Abbey.";
+    versions = "1.12";
+}
+
+test CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
+    guid = 6;
+    counter = 3;
+    info = {
+        flags = ON_TRANSPORT | FORWARD;
+        timestamp = 41221437;
+        position = {
+            x = -14278.5;
+            y = 553.25;
+            z = 9.125;
+        };
+        orientation = 2.5;
+        transport = {
+            guid = 0x1FC0000000005148;
+            position = {
+                x = 3.5;
+                y = -1.25;
+                z = 6.5;
+            };
+            orientation = 0.25;
+        };
+        fall_time = 0;
+    };
+    new_speed = 7;
+} [
+    0x00, 0x48, /* size */
+    0xe3, 0x00, 0x00, 0x00, /* opcode */
+    0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, /* guid */
+    0x03, 0x00, 0x00, 0x00, /* counter */
+    0x01, 0x00, 0x00, 0x02, /* info.flags */
+    0x3d, 0xfd, 0x74, 0x02, /* info.timestamp */
+    0x00, 0x1a, 0x5f, 0xc6, /* info.position.x */
+    0x00, 0x50, 0x0a, 0x44, /* info.position.y */
+    0x00, 0x00, 0x12, 0x41, /* info.position.z */
+    0x00, 0x00, 0x20, 0x40, /* info.orientation */
+    0x48, 0x51, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x1f, /* info.transport.guid */
+    0x00, 0x00, 0x60, 0x40, /* info.transport.position.x */
+    0x00, 0x00, 0xa0, 0xbf, /* info.transport.position.y */
+    0x00, 0x00, 0xd0, 0x40, /* info.transport.position.z */
+    0x00, 0x00, 0x80, 0x3e, /* info.transport.orientation */
+    0x00, 0x00, 0x00, 0x00, /* info.fall_time */
+    0x00, 0x00, 0xe0, 0x40, /* new_speed */
+] {
+    description = "A passenger aboard The Maiden's Fancy acknowledging a run speed of 7: the new speed follows the deck's place.";
     versions = "1.12";
 }
 

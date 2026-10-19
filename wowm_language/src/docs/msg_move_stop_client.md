@@ -40,7 +40,24 @@ CMSG have a header of 6 bytes.
 48, 32, 223, 194, // Vector3d.y: f32
 61, 23, 166, 66, // Vector3d.z: f32
 3, 81, 36, 64, // MovementInfo.orientation: f32
-133, 3, 0, 0, // MovementInfo.fall_time: f32
+133, 3, 0, 0, // MovementInfo.fall_time: u32
+```
+#### Example 2
+
+##### Description
+
+Standing still on the pier: no flags, nothing after the fall time.
+
+```c
+0, 32, // size
+183, 0, 0, 0, // opcode (183)
+0, 0, 0, 0, // MovementInfo.flags: MovementFlags  NONE (0)
+4, 251, 120, 2, // MovementInfo.timestamp: u32
+0, 101, 95, 198, // Vector3d.x: f32
+0, 48, 2, 68, // Vector3d.y: f32
+0, 0, 12, 65, // Vector3d.z: f32
+0, 0, 64, 64, // MovementInfo.orientation: f32
+0, 0, 0, 0, // MovementInfo.fall_time: u32
 ```
 ## Client Version 2.4.3
 

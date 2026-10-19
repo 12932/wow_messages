@@ -1,4 +1,4 @@
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/common_movement.wowm:12`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/common_movement.wowm#L12):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/common_movement.wowm:11`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/common_movement.wowm#L11):
 /// ```text
 /// flag MovementFlags : u32 {
 ///     NONE = 0x00000000;
@@ -11,7 +11,6 @@
 ///     PITCH_UP = 0x00000040;
 ///     PITCH_DOWN = 0x00000080;
 ///     WALK_MODE = 0x00000100;
-///     ON_TRANSPORT = 0x00000200;
 ///     LEVITATING = 0x00000400;
 ///     FIXED_Z = 0x00000800;
 ///     ROOT = 0x00001000;
@@ -21,7 +20,7 @@
 ///     SPLINE_ENABLED = 0x00400000;
 ///     CAN_FLY = 0x00800000;
 ///     FLYING = 0x01000000;
-///     ONTRANSPORT = 0x02000000;
+///     ON_TRANSPORT = 0x02000000;
 ///     SPLINE_ELEVATION = 0x04000000;
 ///     WATERWALKING = 0x10000000;
 ///     SAFE_FALL = 0x20000000;
@@ -120,14 +119,6 @@ impl MovementFlags {
             write!(s, "WALK_MODE").unwrap();
             first = false;
         }
-        if self.is_on_transport() {
-            use std::fmt::Write;
-            if !first {
-                write!(s, " | ").unwrap();
-            }
-            write!(s, "ON_TRANSPORT").unwrap();
-            first = false;
-        }
         if self.is_levitating() {
             use std::fmt::Write;
             if !first {
@@ -200,12 +191,12 @@ impl MovementFlags {
             write!(s, "FLYING").unwrap();
             first = false;
         }
-        if self.is_ontransport() {
+        if self.is_on_transport() {
             use std::fmt::Write;
             if !first {
                 write!(s, " | ").unwrap();
             }
-            write!(s, "ONTRANSPORT").unwrap();
+            write!(s, "ON_TRANSPORT").unwrap();
             first = false;
         }
         if self.is_spline_elevation() {
@@ -260,7 +251,6 @@ impl MovementFlags {
     pub const PITCH_UP: u32 = 0x40;
     pub const PITCH_DOWN: u32 = 0x80;
     pub const WALK_MODE: u32 = 0x100;
-    pub const ON_TRANSPORT: u32 = 0x200;
     pub const LEVITATING: u32 = 0x400;
     pub const FIXED_Z: u32 = 0x800;
     pub const ROOT: u32 = 0x1000;
@@ -270,7 +260,7 @@ impl MovementFlags {
     pub const SPLINE_ENABLED: u32 = 0x400000;
     pub const CAN_FLY: u32 = 0x800000;
     pub const FLYING: u32 = 0x1000000;
-    pub const ONTRANSPORT: u32 = 0x2000000;
+    pub const ON_TRANSPORT: u32 = 0x2000000;
     pub const SPLINE_ELEVATION: u32 = 0x4000000;
     pub const WATERWALKING: u32 = 0x10000000;
     pub const SAFE_FALL: u32 = 0x20000000;
@@ -296,7 +286,6 @@ impl MovementFlags {
                 | Self::PITCH_UP
                 | Self::PITCH_DOWN
                 | Self::WALK_MODE
-                | Self::ON_TRANSPORT
                 | Self::LEVITATING
                 | Self::FIXED_Z
                 | Self::ROOT
@@ -306,7 +295,7 @@ impl MovementFlags {
                 | Self::SPLINE_ENABLED
                 | Self::CAN_FLY
                 | Self::FLYING
-                | Self::ONTRANSPORT
+                | Self::ON_TRANSPORT
                 | Self::SPLINE_ELEVATION
                 | Self::WATERWALKING
                 | Self::SAFE_FALL
@@ -476,24 +465,6 @@ impl MovementFlags {
         *self
     }
 
-    pub const fn is_on_transport(&self) -> bool {
-        (self.inner & Self::ON_TRANSPORT) != 0
-    }
-
-    pub const fn new_on_transport() -> Self {
-        Self { inner: Self::ON_TRANSPORT }
-    }
-
-    pub fn set_on_transport(&mut self) -> Self {
-        self.inner |= Self::ON_TRANSPORT;
-        *self
-    }
-
-    pub fn clear_on_transport(&mut self) -> Self {
-        self.inner &= Self::ON_TRANSPORT.reverse_bits();
-        *self
-    }
-
     pub const fn is_levitating(&self) -> bool {
         (self.inner & Self::LEVITATING) != 0
     }
@@ -656,21 +627,21 @@ impl MovementFlags {
         *self
     }
 
-    pub const fn is_ontransport(&self) -> bool {
-        (self.inner & Self::ONTRANSPORT) != 0
+    pub const fn is_on_transport(&self) -> bool {
+        (self.inner & Self::ON_TRANSPORT) != 0
     }
 
-    pub const fn new_ontransport() -> Self {
-        Self { inner: Self::ONTRANSPORT }
+    pub const fn new_on_transport() -> Self {
+        Self { inner: Self::ON_TRANSPORT }
     }
 
-    pub fn set_ontransport(&mut self) -> Self {
-        self.inner |= Self::ONTRANSPORT;
+    pub fn set_on_transport(&mut self) -> Self {
+        self.inner |= Self::ON_TRANSPORT;
         *self
     }
 
-    pub fn clear_ontransport(&mut self) -> Self {
-        self.inner &= Self::ONTRANSPORT.reverse_bits();
+    pub fn clear_on_transport(&mut self) -> Self {
+        self.inner &= Self::ON_TRANSPORT.reverse_bits();
         *self
     }
 

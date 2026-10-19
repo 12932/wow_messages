@@ -19,7 +19,7 @@ pub struct MSG_MOVE_FALL_LAND_Server {
 impl crate::private::Sealed for MSG_MOVE_FALL_LAND_Server {}
 impl MSG_MOVE_FALL_LAND_Server {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(29..=90).contains(&body_size) {
+        if !(29..=85).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -109,7 +109,7 @@ mod test {
                     z: 82.98231_f32,
                 },
                 orientation: 0.0855852_f32,
-                fall_time: 0.000000000000000000000000000000000000000001263_f32,
+                fall_time: 0x385,
             },
         }
 

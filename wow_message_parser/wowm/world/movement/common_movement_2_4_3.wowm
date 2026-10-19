@@ -1,5 +1,12 @@
 #tag_all versions "2.4.3";
 
+struct TransportInfo {
+    PackedGuid guid;
+    Vector3d position;
+    f32 orientation;
+    u32 timestamp;
+}
+
 flag MovementFlags : u32 {
     NONE               = 0x00000000;
     FORWARD            = 0x00000001;

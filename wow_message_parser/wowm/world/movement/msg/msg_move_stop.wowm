@@ -27,7 +27,7 @@ test MSG_MOVE_STOP_Client {
             z = 83.04539;
         };
         orientation = 2.5674446;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -40,6 +40,33 @@ test MSG_MOVE_STOP_Client {
   0x03, 0x51, 0x24, 0x40, /* orientation */
   0x85, 0x03, 0x00, 0x00, /* fall_time */
 ] {
+    versions = "1.12";
+}
+
+test MSG_MOVE_STOP_Client {
+    info = {
+        flags = 0;
+        timestamp = 41483012;
+        position = {
+            x = -14297.25;
+            y = 520.75;
+            z = 8.75;
+        };
+        orientation = 3.0;
+        fall_time = 0;
+    };
+} [
+    0x00, 0x20, /* size */
+    0xb7, 0x00, 0x00, 0x00, /* opcode */
+    0x00, 0x00, 0x00, 0x00, /* flags */
+    0x04, 0xfb, 0x78, 0x02, /* timestamp */
+    0x00, 0x65, 0x5f, 0xc6, /* position.x */
+    0x00, 0x30, 0x02, 0x44, /* position.y */
+    0x00, 0x00, 0x0c, 0x41, /* position.z */
+    0x00, 0x00, 0x40, 0x40, /* orientation */
+    0x00, 0x00, 0x00, 0x00, /* fall_time */
+] {
+    description = "Standing still on the pier: no flags, nothing after the fall time.";
     versions = "1.12";
 }
 
@@ -61,7 +88,7 @@ test MSG_MOVE_STOP_Server {
             z = 83.04539;
         };
         orientation = 2.5674446;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */

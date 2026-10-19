@@ -16,7 +16,7 @@ pub struct MSG_MOVE_HEARTBEAT_Client {
 impl crate::private::Sealed for MSG_MOVE_HEARTBEAT_Client {}
 impl MSG_MOVE_HEARTBEAT_Client {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(28..=81).contains(&body_size) {
+        if !(28..=76).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -97,7 +97,7 @@ mod test {
                     z: 82.978714_f32,
                 },
                 orientation: 2.5674446_f32,
-                fall_time: 0.000000000000000000000000000000000000000001263_f32,
+                fall_time: 0x385,
             },
         }
 
@@ -161,6 +161,195 @@ mod test {
         expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 58] = [ 0x00, 0x38, 0xEE, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
+         0x02, 0x3D, 0xFD, 0x74, 0x02, 0x00, 0x1A, 0x5F, 0xC6, 0x00, 0x50, 0x0A,
+         0x44, 0x00, 0x00, 0x12, 0x41, 0x00, 0x00, 0x20, 0x40, 0x48, 0x51, 0x00,
+         0x00, 0x00, 0x00, 0xC0, 0x1F, 0x00, 0x00, 0x60, 0x40, 0x00, 0x00, 0xA0,
+         0xBF, 0x00, 0x00, 0xD0, 0x40, 0x00, 0x00, 0x80, 0x3E, 0x00, 0x00, 0x00,
+         0x00, ];
+
+    pub(crate) fn expected1() -> MSG_MOVE_HEARTBEAT_Client {
+        MSG_MOVE_HEARTBEAT_Client {
+            info: MovementInfo {
+                flags: MovementInfo_MovementFlags::empty()
+                    .set_on_transport(MovementInfo_MovementFlags_OnTransport {
+                        transport: TransportInfo {
+                            guid: Guid::new(0x1FC0000000005148),
+                            position: Vector3d {
+                                x: 3.5_f32,
+                                y: -1.25_f32,
+                                z: 6.5_f32,
+                            },
+                            orientation: 0.25_f32,
+                        },
+                    })
+                    .set_forward()
+                    ,
+                timestamp: 0x274FD3D,
+                position: Vector3d {
+                    x: -14278.5_f32,
+                    y: 553.25_f32,
+                    z: 9.125_f32,
+                },
+                orientation: 2.5_f32,
+                fall_time: 0x0,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 33.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn msg_move_heartbeat_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 33.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_msg_move_heartbeat_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 33.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_msg_move_heartbeat_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    const RAW2: [u8; 50] = [ 0x00, 0x30, 0xEE, 0x00, 0x00, 0x00, 0x01, 0x60, 0x00,
+         0x00, 0x46, 0xC2, 0x77, 0x02, 0x00, 0x3C, 0x5F, 0xC6, 0x00, 0xA0, 0x07,
+         0x44, 0x00, 0x00, 0x60, 0x40, 0x00, 0x00, 0xC0, 0x3F, 0xE4, 0x02, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3D, 0x00, 0x80, 0x7F,
+         0x3F, 0x00, 0x00, 0xE0, 0x40, ];
+
+    pub(crate) fn expected2() -> MSG_MOVE_HEARTBEAT_Client {
+        MSG_MOVE_HEARTBEAT_Client {
+            info: MovementInfo {
+                flags: MovementInfo_MovementFlags::empty()
+                    .set_fallingfar()
+                    .set_jumping(MovementInfo_MovementFlags_Jumping {
+                        cos_angle: 0.0625_f32,
+                        sin_angle: 0.998046875_f32,
+                        xy_speed: 7_f32,
+                        z_speed: 0_f32,
+                    })
+                    .set_forward()
+                    ,
+                timestamp: 0x277C246,
+                position: Vector3d {
+                    x: -14287_f32,
+                    y: 542.5_f32,
+                    z: 3.5_f32,
+                },
+                orientation: 1.5_f32,
+                fall_time: 0x2E4,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 74.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn msg_move_heartbeat_client2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW2)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 74.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_msg_move_heartbeat_client2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_heartbeat.wowm` line 74.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_msg_move_heartbeat_client2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_HEARTBEAT(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_HEARTBEAT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
     }
 
 }

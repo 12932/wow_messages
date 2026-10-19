@@ -4,6 +4,35 @@ cmsg MSG_MOVE_START_SWIM_Client = 0x00CA {
     versions = "1.12";
 }
 
+test MSG_MOVE_START_SWIM_Client {
+    info = {
+        flags = SWIMMING | FORWARD;
+        timestamp = 41359216;
+        position = {
+            x = -14334.75;
+            y = 403.5;
+            z = -3.875;
+        };
+        orientation = 4.75;
+        pitch = -0.375;
+        fall_time = 0;
+    };
+} [
+    0x00, 0x24, /* size */
+    0xca, 0x00, 0x00, 0x00, /* opcode */
+    0x01, 0x00, 0x20, 0x00, /* flags */
+    0x70, 0x17, 0x77, 0x02, /* timestamp */
+    0x00, 0xfb, 0x5f, 0xc6, /* position.x */
+    0x00, 0xc0, 0xc9, 0x43, /* position.y */
+    0x00, 0x00, 0x78, 0xc0, /* position.z */
+    0x00, 0x00, 0x98, 0x40, /* orientation */
+    0x00, 0x00, 0xc0, 0xbe, /* pitch */
+    0x00, 0x00, 0x00, 0x00, /* fall_time */
+] {
+    description = "Swimming into the bay, the pitch after the facing.";
+    versions = "1.12";
+}
+
 cmsg MSG_MOVE_START_SWIM_Client = 0x00CA {
     MovementInfo info;
 } {

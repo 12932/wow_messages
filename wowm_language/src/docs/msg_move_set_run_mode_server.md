@@ -43,7 +43,7 @@ SMSG have a header of 4 bytes.
 248, 132, 1, 195, // Vector3d.y: f32
 173, 49, 167, 66, // Vector3d.z: f32
 46, 14, 195, 64, // MovementInfo.orientation: f32
-0, 0, 0, 0, // MovementInfo.fall_time: f32
+0, 0, 0, 0, // MovementInfo.fall_time: u32
 ```
 ## Client Version 2.4.3
 

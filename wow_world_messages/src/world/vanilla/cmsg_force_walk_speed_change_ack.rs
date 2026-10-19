@@ -25,7 +25,7 @@ pub struct CMSG_FORCE_WALK_SPEED_CHANGE_ACK {
 impl crate::private::Sealed for CMSG_FORCE_WALK_SPEED_CHANGE_ACK {}
 impl CMSG_FORCE_WALK_SPEED_CHANGE_ACK {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(44..=97).contains(&body_size) {
+        if !(44..=92).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -98,7 +98,6 @@ impl crate::Message for CMSG_FORCE_WALK_SPEED_CHANGE_ACK {
 
             writeln!(s, "            }};").unwrap();
             writeln!(s, "            orientation = {};", if if_statement.transport.orientation.to_string().contains('.') { if_statement.transport.orientation.to_string() } else { format!("{}.0", if_statement.transport.orientation) }).unwrap();
-            writeln!(s, "            timestamp = {};", if_statement.transport.timestamp).unwrap();
 
             writeln!(s, "        }};").unwrap();
         }
@@ -107,7 +106,7 @@ impl crate::Message for CMSG_FORCE_WALK_SPEED_CHANGE_ACK {
             writeln!(s, "        pitch = {};", if if_statement.pitch.to_string().contains('.') { if_statement.pitch.to_string() } else { format!("{}.0", if_statement.pitch) }).unwrap();
         }
 
-        writeln!(s, "        fall_time = {};", if self.info.fall_time.to_string().contains('.') { self.info.fall_time.to_string() } else { format!("{}.0", self.info.fall_time) }).unwrap();
+        writeln!(s, "        fall_time = {};", self.info.fall_time).unwrap();
         if let Some(if_statement) = &self.info.flags.get_jumping() {
             writeln!(s, "        z_speed = {};", if if_statement.z_speed.to_string().contains('.') { if_statement.z_speed.to_string() } else { format!("{}.0", if_statement.z_speed) }).unwrap();
             writeln!(s, "        cos_angle = {};", if if_statement.cos_angle.to_string().contains('.') { if_statement.cos_angle.to_string() } else { format!("{}.0", if_statement.cos_angle) }).unwrap();
@@ -146,14 +145,13 @@ impl crate::Message for CMSG_FORCE_WALK_SPEED_CHANGE_ACK {
         crate::util::write_bytes(&mut s, &mut bytes, 4, "orientation", "        ");
         if let Some(if_statement) = &self.info.flags.get_on_transport() {
             writeln!(s, "    /* transport: TransportInfo start */").unwrap();
-            crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&if_statement.transport.guid), "guid", "            ");
+            crate::util::write_bytes(&mut s, &mut bytes, 8, "guid", "            ");
             writeln!(s, "    /* position: Vector3d start */").unwrap();
             crate::util::write_bytes(&mut s, &mut bytes, 4, "x", "                ");
             crate::util::write_bytes(&mut s, &mut bytes, 4, "y", "                ");
             crate::util::write_bytes(&mut s, &mut bytes, 4, "z", "                ");
             writeln!(s, "    /* position: Vector3d end */").unwrap();
             crate::util::write_bytes(&mut s, &mut bytes, 4, "orientation", "            ");
-            crate::util::write_bytes(&mut s, &mut bytes, 4, "timestamp", "            ");
             writeln!(s, "    /* transport: TransportInfo end */").unwrap();
         }
 

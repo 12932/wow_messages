@@ -14,7 +14,7 @@ test MSG_MOVE_SET_FACING_Client {
             z = 82.574;
         };
         orientation = 2.5517366;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -61,7 +61,7 @@ test MSG_MOVE_SET_FACING_Server {
             z = 82.574;
         };
         orientation = 2.5517366;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */

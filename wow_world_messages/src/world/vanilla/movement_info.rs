@@ -5,8 +5,8 @@ use crate::vanilla::{
     MovementFlags, TransportInfo, Vector3d,
 };
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/common_movement.wowm:40`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/common_movement.wowm#L40):
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Default)]
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/common_movement.wowm:38`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/common_movement.wowm#L38):
 /// ```text
 /// struct MovementInfo {
 ///     MovementFlags flags;
@@ -19,7 +19,7 @@ use crate::vanilla::{
 ///     if (flags & SWIMMING) {
 ///         f32 pitch;
 ///     }
-///     f32 fall_time;
+///     u32 fall_time;
 ///     if (flags & JUMPING) {
 ///         f32 z_speed;
 ///         f32 cos_angle;
@@ -36,7 +36,8 @@ pub struct MovementInfo {
     pub timestamp: u32,
     pub position: Vector3d,
     pub orientation: f32,
-    pub fall_time: f32,
+    /// In milliseconds.
+    pub fall_time: u32,
 }
 
 impl MovementInfo {
@@ -65,7 +66,7 @@ crate::util::vanilla_tbc_wrath_vector3d_write_into_vec(&self.position, &mut w)?;
 
         }
 
-        // fall_time: f32
+        // fall_time: u32
         w.write_all(&self.fall_time.to_le_bytes())?;
 
         if let Some(if_statement) = &self.flags.jumping {
@@ -131,8 +132,8 @@ impl MovementInfo {
             None
         };
 
-        // fall_time: f32
-        let fall_time = crate::util::read_f32_le(&mut r)?;
+        // fall_time: u32
+        let fall_time = crate::util::read_u32_le(&mut r)?;
 
         let flags_jumping = if flags.is_jumping() {
             // z_speed: f32
@@ -172,9 +173,9 @@ impl MovementInfo {
 
         let flags = MovementInfo_MovementFlags {
             inner: flags.as_int(),
-            on_transport: flags_on_transport,
             jumping: flags_jumping,
             swimming: flags_swimming,
+            on_transport: flags_on_transport,
             spline_elevation: flags_spline_elevation,
         };
 
@@ -195,26 +196,26 @@ impl MovementInfo {
         + 4 // timestamp: u32
         + 12 // position: Vector3d
         + 4 // orientation: f32
-        + 4 // fall_time: f32
+        + 4 // fall_time: u32
     }
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Default)]
 pub struct MovementInfo_MovementFlags {
     inner: u32,
-    on_transport: Option<MovementInfo_MovementFlags_OnTransport>,
     jumping: Option<MovementInfo_MovementFlags_Jumping>,
     swimming: Option<MovementInfo_MovementFlags_Swimming>,
+    on_transport: Option<MovementInfo_MovementFlags_OnTransport>,
     spline_elevation: Option<MovementInfo_MovementFlags_SplineElevation>,
 }
 
 impl MovementInfo_MovementFlags {
-    pub const fn new(inner: u32, on_transport: Option<MovementInfo_MovementFlags_OnTransport>,jumping: Option<MovementInfo_MovementFlags_Jumping>,swimming: Option<MovementInfo_MovementFlags_Swimming>,spline_elevation: Option<MovementInfo_MovementFlags_SplineElevation>,) -> Self {
+    pub const fn new(inner: u32, jumping: Option<MovementInfo_MovementFlags_Jumping>,swimming: Option<MovementInfo_MovementFlags_Swimming>,on_transport: Option<MovementInfo_MovementFlags_OnTransport>,spline_elevation: Option<MovementInfo_MovementFlags_SplineElevation>,) -> Self {
         Self {
             inner,
-            on_transport, 
             jumping, 
             swimming, 
+            on_transport, 
             spline_elevation, 
         }
     }
@@ -222,27 +223,27 @@ impl MovementInfo_MovementFlags {
     pub const fn empty() -> Self {
         Self {
             inner: 0,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
 
     pub const fn is_empty(&self) -> bool {
         self.inner == 0
-        && self.on_transport.is_none()
         && self.jumping.is_none()
         && self.swimming.is_none()
+        && self.on_transport.is_none()
         && self.spline_elevation.is_none()
     }
 
     pub const fn new_forward() -> Self {
         Self {
             inner: MovementFlags::FORWARD,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -266,9 +267,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_backward() -> Self {
         Self {
             inner: MovementFlags::BACKWARD,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -292,9 +293,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_strafe_left() -> Self {
         Self {
             inner: MovementFlags::STRAFE_LEFT,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -318,9 +319,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_strafe_right() -> Self {
         Self {
             inner: MovementFlags::STRAFE_RIGHT,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -344,9 +345,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_turn_left() -> Self {
         Self {
             inner: MovementFlags::TURN_LEFT,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -370,9 +371,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_turn_right() -> Self {
         Self {
             inner: MovementFlags::TURN_RIGHT,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -396,9 +397,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_pitch_up() -> Self {
         Self {
             inner: MovementFlags::PITCH_UP,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -422,9 +423,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_pitch_down() -> Self {
         Self {
             inner: MovementFlags::PITCH_DOWN,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -448,9 +449,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_walk_mode() -> Self {
         Self {
             inner: MovementFlags::WALK_MODE,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -471,40 +472,12 @@ impl MovementInfo_MovementFlags {
         self
     }
 
-    pub const fn new_on_transport(on_transport: MovementInfo_MovementFlags_OnTransport) -> Self {
-        Self {
-            inner: MovementFlags::ON_TRANSPORT,
-            on_transport: Some(on_transport),
-            jumping: None,
-            swimming: None,
-            spline_elevation: None,
-        }
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn set_on_transport(mut self, on_transport: MovementInfo_MovementFlags_OnTransport) -> Self {
-        self.inner |= MovementFlags::ON_TRANSPORT;
-        self.on_transport = Some(on_transport);
-        self
-    }
-
-    pub const fn get_on_transport(&self) -> Option<&MovementInfo_MovementFlags_OnTransport> {
-        self.on_transport.as_ref()
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn clear_on_transport(mut self) -> Self {
-        self.inner &= MovementFlags::ON_TRANSPORT.reverse_bits();
-        self.on_transport = None;
-        self
-    }
-
     pub const fn new_levitating() -> Self {
         Self {
             inner: MovementFlags::LEVITATING,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -528,9 +501,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_fixed_z() -> Self {
         Self {
             inner: MovementFlags::FIXED_Z,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -554,9 +527,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_root() -> Self {
         Self {
             inner: MovementFlags::ROOT,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -580,9 +553,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_jumping(jumping: MovementInfo_MovementFlags_Jumping) -> Self {
         Self {
             inner: MovementFlags::JUMPING,
-            on_transport: None,
             jumping: Some(jumping),
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -608,9 +581,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_fallingfar() -> Self {
         Self {
             inner: MovementFlags::FALLINGFAR,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -634,9 +607,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_swimming(swimming: MovementInfo_MovementFlags_Swimming) -> Self {
         Self {
             inner: MovementFlags::SWIMMING,
-            on_transport: None,
             jumping: None,
             swimming: Some(swimming),
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -662,9 +635,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_spline_enabled() -> Self {
         Self {
             inner: MovementFlags::SPLINE_ENABLED,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -688,9 +661,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_can_fly() -> Self {
         Self {
             inner: MovementFlags::CAN_FLY,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -714,9 +687,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_flying() -> Self {
         Self {
             inner: MovementFlags::FLYING,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -737,38 +710,40 @@ impl MovementInfo_MovementFlags {
         self
     }
 
-    pub const fn new_ontransport() -> Self {
+    pub const fn new_on_transport(on_transport: MovementInfo_MovementFlags_OnTransport) -> Self {
         Self {
-            inner: MovementFlags::ONTRANSPORT,
-            on_transport: None,
+            inner: MovementFlags::ON_TRANSPORT,
             jumping: None,
             swimming: None,
+            on_transport: Some(on_transport),
             spline_elevation: None,
         }
     }
 
     #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn set_ontransport(mut self) -> Self {
-        self.inner |= MovementFlags::ONTRANSPORT;
+    pub fn set_on_transport(mut self, on_transport: MovementInfo_MovementFlags_OnTransport) -> Self {
+        self.inner |= MovementFlags::ON_TRANSPORT;
+        self.on_transport = Some(on_transport);
         self
     }
 
-    pub const fn get_ontransport(&self) -> bool {
-        (self.inner & MovementFlags::ONTRANSPORT) != 0
+    pub const fn get_on_transport(&self) -> Option<&MovementInfo_MovementFlags_OnTransport> {
+        self.on_transport.as_ref()
     }
 
     #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn clear_ontransport(mut self) -> Self {
-        self.inner &= MovementFlags::ONTRANSPORT.reverse_bits();
+    pub fn clear_on_transport(mut self) -> Self {
+        self.inner &= MovementFlags::ON_TRANSPORT.reverse_bits();
+        self.on_transport = None;
         self
     }
 
     pub const fn new_spline_elevation(spline_elevation: MovementInfo_MovementFlags_SplineElevation) -> Self {
         Self {
             inner: MovementFlags::SPLINE_ELEVATION,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: Some(spline_elevation),
         }
     }
@@ -794,9 +769,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_waterwalking() -> Self {
         Self {
             inner: MovementFlags::WATERWALKING,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -820,9 +795,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_safe_fall() -> Self {
         Self {
             inner: MovementFlags::SAFE_FALL,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -846,9 +821,9 @@ impl MovementInfo_MovementFlags {
     pub const fn new_hover() -> Self {
         Self {
             inner: MovementFlags::HOVER,
-            on_transport: None,
             jumping: None,
             swimming: None,
+            on_transport: None,
             spline_elevation: None,
         }
     }
@@ -878,13 +853,6 @@ impl MovementInfo_MovementFlags {
     pub(crate) const fn size(&self) -> usize {
         4 // inner
         + {
-            if let Some(s) = &self.on_transport {
-                s.size()
-            } else {
-                0
-            }
-        }
-        + {
             if let Some(s) = &self.jumping {
                 s.size()
             } else {
@@ -899,23 +867,19 @@ impl MovementInfo_MovementFlags {
             }
         }
         + {
+            if let Some(s) = &self.on_transport {
+                s.size()
+            } else {
+                0
+            }
+        }
+        + {
             if let Some(s) = &self.spline_elevation {
                 s.size()
             } else {
                 0
             }
         }
-    }
-}
-
-#[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
-pub struct MovementInfo_MovementFlags_OnTransport {
-    pub transport: TransportInfo,
-}
-
-impl MovementInfo_MovementFlags_OnTransport {
-    pub(crate) const fn size(&self) -> usize {
-        self.transport.size() // transport: TransportInfo
     }
 }
 
@@ -944,6 +908,17 @@ pub struct MovementInfo_MovementFlags_Swimming {
 impl MovementInfo_MovementFlags_Swimming {
     pub(crate) const fn size(&self) -> usize {
         4 // pitch: f32
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Default)]
+pub struct MovementInfo_MovementFlags_OnTransport {
+    pub transport: TransportInfo,
+}
+
+impl MovementInfo_MovementFlags_OnTransport {
+    pub(crate) const fn size(&self) -> usize {
+        24 // transport: TransportInfo
     }
 }
 

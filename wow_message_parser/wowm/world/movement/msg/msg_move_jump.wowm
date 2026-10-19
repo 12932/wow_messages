@@ -14,7 +14,7 @@ test MSG_MOVE_JUMP_Client {
             z = 83.646126;
         };
         orientation = 0.38010955;
-        fall_time = 0.0;
+        fall_time = 0;
         z_speed = -7.9555473;
         cos_angle = 0.928624;
         sin_angle = 0.3710222;
@@ -69,7 +69,7 @@ test MSG_MOVE_JUMP_Server {
             z = 83.646126;
         };
         orientation = 0.38010955;
-        fall_time = 0.0;
+        fall_time = 0;
         z_speed = -7.9555473;
         cos_angle = 0.928624;
         sin_angle = 0.3710222;

@@ -27,7 +27,7 @@ test MSG_MOVE_SET_WALK_MODE_Client {
             z = 83.58037;
         };
         orientation = 6.095481;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
   0x00, 0x20, /* size */
@@ -68,7 +68,7 @@ test MSG_MOVE_SET_WALK_MODE_Server {
             z = 83.58037;
         };
         orientation = 6.095481;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
   0x00, 0x20, /* size */

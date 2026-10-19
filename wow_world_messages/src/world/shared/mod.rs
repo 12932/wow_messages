@@ -80,8 +80,6 @@ pub mod spell_steal_tbc_wrath;
 pub mod stabled_pet_vanilla_tbc_wrath;
 #[cfg(any(feature = "tbc", feature = "wrath"))]
 pub mod trade_slot_tbc_wrath;
-#[cfg(any(feature = "vanilla", feature = "tbc"))]
-pub mod transport_info_vanilla_tbc;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod world_state_vanilla_tbc_wrath;
 #[cfg(any(feature = "vanilla", feature = "tbc", feature = "wrath"))]

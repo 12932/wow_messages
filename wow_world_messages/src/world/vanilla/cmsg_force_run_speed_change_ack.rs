@@ -24,7 +24,7 @@ pub struct CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
 impl crate::private::Sealed for CMSG_FORCE_RUN_SPEED_CHANGE_ACK {}
 impl CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(44..=97).contains(&body_size) {
+        if !(44..=92).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -134,7 +134,7 @@ mod test {
                     z: 82.90929_f32,
                 },
                 orientation: 3.99377_f32,
-                fall_time: 0.000000000000000000000000000000000000000001156_f32,
+                fall_time: 0x339,
             },
             new_speed: 7_f32,
         }
@@ -199,6 +199,107 @@ mod test {
         expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 74] = [ 0x00, 0x48, 0xE3, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
+         0x02, 0x3D, 0xFD, 0x74, 0x02, 0x00, 0x1A, 0x5F, 0xC6, 0x00, 0x50, 0x0A,
+         0x44, 0x00, 0x00, 0x12, 0x41, 0x00, 0x00, 0x20, 0x40, 0x48, 0x51, 0x00,
+         0x00, 0x00, 0x00, 0xC0, 0x1F, 0x00, 0x00, 0x60, 0x40, 0x00, 0x00, 0xA0,
+         0xBF, 0x00, 0x00, 0xD0, 0x40, 0x00, 0x00, 0x80, 0x3E, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0xE0, 0x40, ];
+
+    pub(crate) fn expected1() -> CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
+        CMSG_FORCE_RUN_SPEED_CHANGE_ACK {
+            guid: Guid::new(0x6),
+            counter: 0x3,
+            info: MovementInfo {
+                flags: MovementInfo_MovementFlags::empty()
+                    .set_on_transport(MovementInfo_MovementFlags_OnTransport {
+                        transport: TransportInfo {
+                            guid: Guid::new(0x1FC0000000005148),
+                            position: Vector3d {
+                                x: 3.5_f32,
+                                y: -1.25_f32,
+                                z: 6.5_f32,
+                            },
+                            orientation: 0.25_f32,
+                        },
+                    })
+                    .set_forward()
+                    ,
+                timestamp: 0x274FD3D,
+                position: Vector3d {
+                    x: -14278.5_f32,
+                    y: 553.25_f32,
+                    z: 9.125_f32,
+                },
+                orientation: 2.5_f32,
+                fall_time: 0x0,
+            },
+            new_speed: 7_f32,
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/cmsg/cmsg_force_run_speed_change_ack.wowm` line 44.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn cmsg_force_run_speed_change_ack1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_FORCE_RUN_SPEED_CHANGE_ACK(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_FORCE_RUN_SPEED_CHANGE_ACK, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/cmsg/cmsg_force_run_speed_change_ack.wowm` line 44.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_cmsg_force_run_speed_change_ack1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_FORCE_RUN_SPEED_CHANGE_ACK(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_FORCE_RUN_SPEED_CHANGE_ACK, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/cmsg/cmsg_force_run_speed_change_ack.wowm` line 44.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_cmsg_force_run_speed_change_ack1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_FORCE_RUN_SPEED_CHANGE_ACK(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_FORCE_RUN_SPEED_CHANGE_ACK, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
     }
 
 }

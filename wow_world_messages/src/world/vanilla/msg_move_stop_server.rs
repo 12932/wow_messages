@@ -4,7 +4,7 @@ use crate::Guid;
 use crate::vanilla::MovementInfo;
 
 #[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm:46`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm#L46):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm:73`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm#L73):
 /// ```text
 /// smsg MSG_MOVE_STOP_Server = 0x00B7 {
 ///     PackedGuid guid;
@@ -19,7 +19,7 @@ pub struct MSG_MOVE_STOP_Server {
 impl crate::private::Sealed for MSG_MOVE_STOP_Server {}
 impl MSG_MOVE_STOP_Server {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(29..=90).contains(&body_size) {
+        if !(29..=85).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -109,13 +109,13 @@ mod test {
                     z: 83.04539_f32,
                 },
                 orientation: 2.5674446_f32,
-                fall_time: 0.000000000000000000000000000000000000000001263_f32,
+                fall_time: 0x385,
             },
         }
 
     }
 
-    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 80.
     #[cfg(feature = "sync")]
     #[cfg_attr(feature = "sync", test)]
     fn msg_move_stop_server0() {
@@ -135,7 +135,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 80.
     #[cfg(feature = "tokio")]
     #[cfg_attr(feature = "tokio", tokio::test)]
     async fn tokio_msg_move_stop_server0() {
@@ -155,7 +155,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 53.
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 80.
     #[cfg(feature = "async-std")]
     #[cfg_attr(feature = "async-std", async_std::test)]
     async fn astd_msg_move_stop_server0() {

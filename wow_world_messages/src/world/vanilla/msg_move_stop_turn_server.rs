@@ -19,7 +19,7 @@ pub struct MSG_MOVE_STOP_TURN_Server {
 impl crate::private::Sealed for MSG_MOVE_STOP_TURN_Server {}
 impl MSG_MOVE_STOP_TURN_Server {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(29..=90).contains(&body_size) {
+        if !(29..=85).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -109,7 +109,7 @@ mod test {
                     z: 82.64232_f32,
                 },
                 orientation: 4.877327_f32,
-                fall_time: 0_f32,
+                fall_time: 0x0,
             },
         }
 

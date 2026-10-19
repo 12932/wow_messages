@@ -97,14 +97,16 @@ struct MovementBlock {
         Vector3d living_position;
         f32 living_orientation;
         if (flags & ON_TRANSPORT) {
-            PackedGuid transport_guid;
+            Guid transport_guid;
             Vector3d transport_position;
             f32 transport_orientation;
         }
         if (flags & SWIMMING) {
             f32 pitch;
         }
-        f32 fall_time;
+        u32 fall_time {
+            comment = "In milliseconds.";
+        }
         if (flags & JUMPING) {
             f32 z_speed;
             f32 cos_angle;
@@ -341,3 +343,67 @@ test SMSG_UPDATE_OBJECT {
     50, 0, 0, 0, /* UNIT_FIELD_NATIVEDISPLAYID (50, Human Female) */
 
 ]
+
+test SMSG_UPDATE_OBJECT {
+    has_transport = 0;
+    objects = [
+        {
+            update_type = MOVEMENT;
+            guid2 = 5;
+            movement1 = {
+                update_flag = LIVING;
+                flags = ON_TRANSPORT | FORWARD;
+                timestamp = 41221437;
+                living_position = {
+                    x = -14278.5;
+                    y = 553.25;
+                    z = 9.125;
+                };
+                living_orientation = 2.5;
+                transport_guid = 0x1FC0000000005148;
+                transport_position = {
+                    x = 3.5;
+                    y = -1.25;
+                    z = 6.5;
+                };
+                transport_orientation = 0.25;
+                fall_time = 0;
+                walking_speed = 2.5;
+                running_speed = 7.0;
+                backwards_running_speed = 4.5;
+                swimming_speed = 4.7222223;
+                backwards_swimming_speed = 2.5;
+                turn_rate = 3.1415927;
+            };
+        }
+    ];
+} [
+    0x00, 0x57, /* size */
+    0xa9, 0x00, /* opcode */
+    0x01, 0x00, 0x00, 0x00, /* amount_of_objects */
+    0x00, /* has_transport */
+    0x01, /* update_type */
+    0x01, 0x05, /* guid2 */
+    0x20, /* update_flag */
+    0x01, 0x00, 0x00, 0x02, /* flags */
+    0x3d, 0xfd, 0x74, 0x02, /* timestamp */
+    0x00, 0x1a, 0x5f, 0xc6, /* living_position.x */
+    0x00, 0x50, 0x0a, 0x44, /* living_position.y */
+    0x00, 0x00, 0x12, 0x41, /* living_position.z */
+    0x00, 0x00, 0x20, 0x40, /* living_orientation */
+    0x48, 0x51, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x1f, /* transport_guid */
+    0x00, 0x00, 0x60, 0x40, /* transport_position.x */
+    0x00, 0x00, 0xa0, 0xbf, /* transport_position.y */
+    0x00, 0x00, 0xd0, 0x40, /* transport_position.z */
+    0x00, 0x00, 0x80, 0x3e, /* transport_orientation */
+    0x00, 0x00, 0x00, 0x00, /* fall_time */
+    0x00, 0x00, 0x20, 0x40, /* walking_speed */
+    0x00, 0x00, 0xe0, 0x40, /* running_speed */
+    0x00, 0x00, 0x90, 0x40, /* backwards_running_speed */
+    0x72, 0x1c, 0x97, 0x40, /* swimming_speed */
+    0x00, 0x00, 0x20, 0x40, /* backwards_swimming_speed */
+    0xdb, 0x0f, 0x49, 0x40, /* turn_rate */
+] {
+    description = "A passenger walking on the deck of The Maiden's Fancy, its movement as a movement update: the boat's whole GUID and the place and facing on deck, as in a create.";
+    versions = "1.12";
+}

@@ -14,14 +14,14 @@ struct MovementBlock {
         Vector3d living_position;
         f32 living_orientation;
         if (flags & ON_TRANSPORT) {
-            PackedGuid transport_guid;
+            Guid transport_guid;
             Vector3d transport_position;
             f32 transport_orientation;
         }
         if (flags & SWIMMING) {
             f32 pitch;
         }
-        f32 fall_time;
+        u32 fall_time;
         if (flags & JUMPING) {
             f32 z_speed;
             f32 cos_angle;
@@ -93,66 +93,66 @@ If flags contains `ON_TRANSPORT`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| 0x19 | - / - | [PackedGuid](../types/packed-guid.md) | transport_guid |  |  |
-| - | 12 / - | [Vector3d](vector3d.md) | transport_position |  |  |
-| - | 4 / Little | f32 | transport_orientation |  |  |
+| 0x19 | 8 / Little | [Guid](../types/packed-guid.md) | transport_guid |  |  |
+| 0x21 | 12 / - | [Vector3d](vector3d.md) | transport_position |  |  |
+| 0x2D | 4 / Little | f32 | transport_orientation |  |  |
 
 If flags contains `SWIMMING`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 4 / Little | f32 | pitch |  |  |
-| - | 4 / Little | f32 | fall_time |  |  |
+| 0x31 | 4 / Little | f32 | pitch |  |  |
+| 0x35 | 4 / Little | u32 | fall_time |  | In milliseconds. |
 
 If flags contains `JUMPING`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 4 / Little | f32 | z_speed |  |  |
-| - | 4 / Little | f32 | cos_angle |  |  |
-| - | 4 / Little | f32 | sin_angle |  |  |
-| - | 4 / Little | f32 | xy_speed |  |  |
+| 0x39 | 4 / Little | f32 | z_speed |  |  |
+| 0x3D | 4 / Little | f32 | cos_angle |  |  |
+| 0x41 | 4 / Little | f32 | sin_angle |  |  |
+| 0x45 | 4 / Little | f32 | xy_speed |  |  |
 
 If flags contains `SPLINE_ELEVATION`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 4 / Little | f32 | spline_elevation |  |  |
-| - | 4 / Little | f32 | walking_speed |  |  |
-| - | 4 / Little | f32 | running_speed |  |  |
-| - | 4 / Little | f32 | backwards_running_speed |  |  |
-| - | 4 / Little | f32 | swimming_speed |  |  |
-| - | 4 / Little | f32 | backwards_swimming_speed |  |  |
-| - | 4 / Little | f32 | turn_rate |  |  |
+| 0x49 | 4 / Little | f32 | spline_elevation |  |  |
+| 0x4D | 4 / Little | f32 | walking_speed |  |  |
+| 0x51 | 4 / Little | f32 | running_speed |  |  |
+| 0x55 | 4 / Little | f32 | backwards_running_speed |  |  |
+| 0x59 | 4 / Little | f32 | swimming_speed |  |  |
+| 0x5D | 4 / Little | f32 | backwards_swimming_speed |  |  |
+| 0x61 | 4 / Little | f32 | turn_rate |  |  |
 
 If flags contains `SPLINE_ENABLED`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 4 / - | [SplineFlag](splineflag.md) | spline_flags |  |  |
+| 0x65 | 4 / - | [SplineFlag](splineflag.md) | spline_flags |  |  |
 
 If spline_flags contains `FINAL_ANGLE`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 4 / Little | f32 | angle |  |  |
+| 0x69 | 4 / Little | f32 | angle |  |  |
 
 Else If spline_flags contains `FINAL_TARGET`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 8 / Little | u64 | target |  |  |
+| 0x6D | 8 / Little | u64 | target |  |  |
 
 Else If spline_flags contains `FINAL_POINT`:
 
 | Offset | Size / Endianness | Type | Name | Description | Comment |
 | ------ | ----------------- | ---- | ---- | ----------- | ------- |
-| - | 12 / - | [Vector3d](vector3d.md) | spline_final_point |  |  |
-| - | 4 / Little | u32 | time_passed |  |  |
-| - | 4 / Little | u32 | duration |  |  |
-| - | 4 / Little | u32 | id |  |  |
-| - | 4 / Little | u32 | amount_of_nodes |  |  |
-| - | ? / - | [Vector3d](vector3d.md)[amount_of_nodes] | nodes |  |  |
+| 0x75 | 12 / - | [Vector3d](vector3d.md) | spline_final_point |  |  |
+| 0x81 | 4 / Little | u32 | time_passed |  |  |
+| 0x85 | 4 / Little | u32 | duration |  |  |
+| 0x89 | 4 / Little | u32 | id |  |  |
+| 0x8D | 4 / Little | u32 | amount_of_nodes |  |  |
+| 0x91 | ? / - | [Vector3d](vector3d.md)[amount_of_nodes] | nodes |  |  |
 | - | 12 / - | [Vector3d](vector3d.md) | final_node |  |  |
 
 Else If update_flag contains `HAS_POSITION`:

@@ -14,7 +14,7 @@ test MSG_MOVE_HEARTBEAT_Client {
             z = 82.978714;
         };
         orientation = 2.5674446;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -27,6 +27,82 @@ test MSG_MOVE_HEARTBEAT_Client {
   0x03, 0x51, 0x24, 0x40, /* orientation */
   0x85, 0x03, 0x00, 0x00, /* fall_time */
 ] {
+    versions = "1.12";
+}
+
+test MSG_MOVE_HEARTBEAT_Client {
+    info = {
+        flags = ON_TRANSPORT | FORWARD;
+        timestamp = 41221437;
+        position = {
+            x = -14278.5;
+            y = 553.25;
+            z = 9.125;
+        };
+        orientation = 2.5;
+        transport = {
+            guid = 0x1FC0000000005148;
+            position = {
+                x = 3.5;
+                y = -1.25;
+                z = 6.5;
+            };
+            orientation = 0.25;
+        };
+        fall_time = 0;
+    };
+} [
+    0x00, 0x38, /* size */
+    0xee, 0x00, 0x00, 0x00, /* opcode */
+    0x01, 0x00, 0x00, 0x02, /* flags */
+    0x3d, 0xfd, 0x74, 0x02, /* timestamp */
+    0x00, 0x1a, 0x5f, 0xc6, /* position.x */
+    0x00, 0x50, 0x0a, 0x44, /* position.y */
+    0x00, 0x00, 0x12, 0x41, /* position.z */
+    0x00, 0x00, 0x20, 0x40, /* orientation */
+    0x48, 0x51, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x1f, /* transport.guid */
+    0x00, 0x00, 0x60, 0x40, /* transport.position.x */
+    0x00, 0x00, 0xa0, 0xbf, /* transport.position.y */
+    0x00, 0x00, 0xd0, 0x40, /* transport.position.z */
+    0x00, 0x00, 0x80, 0x3e, /* transport.orientation */
+    0x00, 0x00, 0x00, 0x00, /* fall_time */
+] {
+    description = "A passenger walking on the deck of The Maiden's Fancy, the Booty Bay boat, as the 1.12.1 client sends it: the boat's whole GUID and the place and facing on deck, no timestamp.";
+    versions = "1.12";
+}
+
+test MSG_MOVE_HEARTBEAT_Client {
+    info = {
+        flags = FALLINGFAR | JUMPING | FORWARD;
+        timestamp = 41402950;
+        position = {
+            x = -14287.0;
+            y = 542.5;
+            z = 3.5;
+        };
+        orientation = 1.5;
+        fall_time = 740;
+        z_speed = 0.0;
+        cos_angle = 0.0625;
+        sin_angle = 0.998046875;
+        xy_speed = 7.0;
+    };
+} [
+    0x00, 0x30, /* size */
+    0xee, 0x00, 0x00, 0x00, /* opcode */
+    0x01, 0x60, 0x00, 0x00, /* flags */
+    0x46, 0xc2, 0x77, 0x02, /* timestamp */
+    0x00, 0x3c, 0x5f, 0xc6, /* position.x */
+    0x00, 0xa0, 0x07, 0x44, /* position.y */
+    0x00, 0x00, 0x60, 0x40, /* position.z */
+    0x00, 0x00, 0xc0, 0x3f, /* orientation */
+    0xe4, 0x02, 0x00, 0x00, /* fall_time */
+    0x00, 0x00, 0x00, 0x00, /* z_speed */
+    0x00, 0x00, 0x80, 0x3d, /* cos_angle */
+    0x00, 0x80, 0x7f, 0x3f, /* sin_angle */
+    0x00, 0x00, 0xe0, 0x40, /* xy_speed */
+] {
+    description = "Falling off the pier after walking off it, the time fallen then the jump's speed and direction.";
     versions = "1.12";
 }
 
@@ -61,7 +137,7 @@ test MSG_MOVE_HEARTBEAT_Server {
             z = 82.978714;
         };
         orientation = 2.5674446;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -75,6 +151,49 @@ test MSG_MOVE_HEARTBEAT_Server {
   0x03, 0x51, 0x24, 0x40, /* orientation */
   0x85, 0x03, 0x00, 0x00, /* fall_time */
 ] {
+    versions = "1.12";
+}
+
+test MSG_MOVE_HEARTBEAT_Server {
+    guid = 5;
+    info = {
+        flags = ON_TRANSPORT | FORWARD;
+        timestamp = 41221437;
+        position = {
+            x = -14278.5;
+            y = 553.25;
+            z = 9.125;
+        };
+        orientation = 2.5;
+        transport = {
+            guid = 0x1FC0000000005148;
+            position = {
+                x = 3.5;
+                y = -1.25;
+                z = 6.5;
+            };
+            orientation = 0.25;
+        };
+        fall_time = 0;
+    };
+} [
+    0x00, 0x38, /* size */
+    0xee, 0x00, /* opcode */
+    0x01, 0x05, /* guid */
+    0x01, 0x00, 0x00, 0x02, /* info.flags */
+    0x3d, 0xfd, 0x74, 0x02, /* info.timestamp */
+    0x00, 0x1a, 0x5f, 0xc6, /* info.position.x */
+    0x00, 0x50, 0x0a, 0x44, /* info.position.y */
+    0x00, 0x00, 0x12, 0x41, /* info.position.z */
+    0x00, 0x00, 0x20, 0x40, /* info.orientation */
+    0x48, 0x51, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x1f, /* info.transport.guid */
+    0x00, 0x00, 0x60, 0x40, /* info.transport.position.x */
+    0x00, 0x00, 0xa0, 0xbf, /* info.transport.position.y */
+    0x00, 0x00, 0xd0, 0x40, /* info.transport.position.z */
+    0x00, 0x00, 0x80, 0x3e, /* info.transport.orientation */
+    0x00, 0x00, 0x00, 0x00, /* info.fall_time */
+] {
+    description = "A passenger's heartbeat on The Maiden's Fancy, relayed to those who see them as the client sent it.";
     versions = "1.12";
 }
 

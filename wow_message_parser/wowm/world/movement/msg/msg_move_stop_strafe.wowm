@@ -27,7 +27,7 @@ test MSG_MOVE_STOP_STRAFE_Client {
             z = 83.748924;
         };
         orientation = 0.38010955;
-        fall_time = 0.000000000000000000000000000000000000000001254;
+        fall_time = 895;
     };
 } [
   0x00, 0x20, /* size */
@@ -68,7 +68,7 @@ test MSG_MOVE_STOP_STRAFE_Server {
             z = 83.748924;
         };
         orientation = 0.38010955;
-        fall_time = 0.000000000000000000000000000000000000000001254;
+        fall_time = 895;
     };
 } [
   0x00, 0x20, /* size */

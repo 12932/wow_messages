@@ -27,7 +27,7 @@ test MSG_MOVE_START_FORWARD_Client {
             z = 82.829254;
         };
         orientation = 0.4861387;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -68,7 +68,7 @@ test MSG_MOVE_START_FORWARD_Server {
             z = 82.829254;
         };
         orientation = 0.4861387;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */

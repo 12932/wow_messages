@@ -16,7 +16,7 @@ pub struct MSG_MOVE_SET_FACING_Client {
 impl crate::private::Sealed for MSG_MOVE_SET_FACING_Client {}
 impl MSG_MOVE_SET_FACING_Client {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(28..=81).contains(&body_size) {
+        if !(28..=76).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -97,7 +97,7 @@ mod test {
                     z: 82.574_f32,
                 },
                 orientation: 2.5517366_f32,
-                fall_time: 0.000000000000000000000000000000000000000001263_f32,
+                fall_time: 0x385,
             },
         }
 

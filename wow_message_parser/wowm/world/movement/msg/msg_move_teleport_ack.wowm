@@ -45,7 +45,7 @@ test MSG_MOVE_TELEPORT_ACK_Server {
             z = 0.0;
     };
         orientation = 0.0;
-        fall_time = 0.0;
+        fall_time = 0;
     };
 } [
     0x00, 0x24, /* size */

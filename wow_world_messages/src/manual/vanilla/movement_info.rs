@@ -54,10 +54,10 @@ impl MovementInfo {
             fall_time: self.fall_time,
             flags: MovementBlock_MovementFlags::new(
                 self.flags.as_int(),
-                on_transport,
                 jumping,
                 swimming,
                 spline_enabled,
+                on_transport,
                 spline_elevation,
             ),
 

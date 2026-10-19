@@ -3,7 +3,7 @@ use std::io::{Read, Write};
 use crate::vanilla::Object;
 
 #[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm:189`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm#L189):
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm:191`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm#L191):
 /// ```text
 /// smsg SMSG_UPDATE_OBJECT = 0x00A9 {
 ///     u32 amount_of_objects;
@@ -135,7 +135,7 @@ mod test {
                                 .set_living(MovementBlock_UpdateFlag_Living::Living {
                                     backwards_running_speed: 4.5_f32,
                                     backwards_swimming_speed: 0_f32,
-                                    fall_time: 0_f32,
+                                    fall_time: 0x0,
                                     flags: MovementBlock_MovementFlags::empty()
                                         ,
                                     living_orientation: 0_f32,
@@ -164,7 +164,7 @@ mod test {
 
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 195.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 197.
     #[cfg(feature = "sync")]
     #[cfg_attr(feature = "sync", test)]
     fn smsg_update_object0() {
@@ -184,7 +184,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 195.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 197.
     #[cfg(feature = "tokio")]
     #[cfg_attr(feature = "tokio", tokio::test)]
     async fn tokio_smsg_update_object0() {
@@ -204,7 +204,7 @@ mod test {
         assert_eq!(dest, RAW0);
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 195.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 197.
     #[cfg(feature = "async-std")]
     #[cfg_attr(feature = "async-std", async_std::test)]
     async fn astd_smsg_update_object0() {
@@ -261,7 +261,7 @@ mod test {
                                 .set_living(MovementBlock_UpdateFlag_Living::Living {
                                     backwards_running_speed: 4.5_f32,
                                     backwards_swimming_speed: 0_f32,
-                                    fall_time: 0_f32,
+                                    fall_time: 0x0,
                                     flags: MovementBlock_MovementFlags::empty()
                                         ,
                                     living_orientation: 0_f32,
@@ -290,7 +290,7 @@ mod test {
 
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 262.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 264.
     #[cfg(feature = "sync")]
     #[cfg_attr(feature = "sync", test)]
     fn smsg_update_object1() {
@@ -310,7 +310,7 @@ mod test {
         assert_eq!(dest, RAW1);
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 262.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 264.
     #[cfg(feature = "tokio")]
     #[cfg_attr(feature = "tokio", tokio::test)]
     async fn tokio_smsg_update_object1() {
@@ -330,7 +330,7 @@ mod test {
         assert_eq!(dest, RAW1);
     }
 
-    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 262.
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 264.
     #[cfg(feature = "async-std")]
     #[cfg_attr(feature = "async-std", async_std::test)]
     async fn astd_smsg_update_object1() {
@@ -348,6 +348,121 @@ mod test {
         expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW1);
+    }
+
+    const RAW2: [u8; 89] = [ 0x00, 0x57, 0xA9, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+         0x01, 0x01, 0x05, 0x20, 0x01, 0x00, 0x00, 0x02, 0x3D, 0xFD, 0x74, 0x02,
+         0x00, 0x1A, 0x5F, 0xC6, 0x00, 0x50, 0x0A, 0x44, 0x00, 0x00, 0x12, 0x41,
+         0x00, 0x00, 0x20, 0x40, 0x48, 0x51, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x1F,
+         0x00, 0x00, 0x60, 0x40, 0x00, 0x00, 0xA0, 0xBF, 0x00, 0x00, 0xD0, 0x40,
+         0x00, 0x00, 0x80, 0x3E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x40,
+         0x00, 0x00, 0xE0, 0x40, 0x00, 0x00, 0x90, 0x40, 0x72, 0x1C, 0x97, 0x40,
+         0x00, 0x00, 0x20, 0x40, 0xDB, 0x0F, 0x49, 0x40, ];
+
+    pub(crate) fn expected2() -> SMSG_UPDATE_OBJECT {
+        SMSG_UPDATE_OBJECT {
+            has_transport: 0x0,
+            objects: vec![
+                Object {
+                    update_type: Object_UpdateType::Movement {
+                        guid2: Guid::new(0x5),
+                        movement1: MovementBlock {
+                            update_flag: MovementBlock_UpdateFlag::empty()
+                                .set_living(MovementBlock_UpdateFlag_Living::Living {
+                                    backwards_running_speed: 4.5_f32,
+                                    backwards_swimming_speed: 2.5_f32,
+                                    fall_time: 0x0,
+                                    flags: MovementBlock_MovementFlags::empty()
+                                        .set_on_transport(MovementBlock_MovementFlags_OnTransport {
+                                            transport_guid: Guid::new(0x1FC0000000005148),
+                                            transport_orientation: 0.25_f32,
+                                            transport_position: Vector3d {
+                                                x: 3.5_f32,
+                                                y: -1.25_f32,
+                                                z: 6.5_f32,
+                                            },
+                                        })
+                                        .set_forward()
+                                        ,
+                                    living_orientation: 2.5_f32,
+                                    living_position: Vector3d {
+                                        x: -14278.5_f32,
+                                        y: 553.25_f32,
+                                        z: 9.125_f32,
+                                    },
+                                    running_speed: 7_f32,
+                                    swimming_speed: 4.7222223_f32,
+                                    timestamp: 0x274FD3D,
+                                    turn_rate: 3.1415927_f32,
+                                    walking_speed: 2.5_f32,
+                                })
+                                ,
+                        },
+                    },
+                },
+            ],
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 347.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_update_object2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW2)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_UPDATE_OBJECT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_UPDATE_OBJECT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 347.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_update_object2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_UPDATE_OBJECT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_UPDATE_OBJECT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/gameobject/smsg_update_object.wowm` line 347.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_update_object2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_UPDATE_OBJECT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_UPDATE_OBJECT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
     }
 
 }

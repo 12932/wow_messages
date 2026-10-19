@@ -14,7 +14,7 @@ test MSG_MOVE_FALL_LAND_Client {
             z = 82.98231;
         };
         orientation = 0.0855852;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */
@@ -61,7 +61,7 @@ test MSG_MOVE_FALL_LAND_Server {
             z = 82.98231;
         };
         orientation = 0.0855852;
-        fall_time = 0.000000000000000000000000000000000000000001263;
+        fall_time = 901;
     };
 } [
   0x00, 0x20, /* size */

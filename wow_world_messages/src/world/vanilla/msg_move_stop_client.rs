@@ -16,7 +16,7 @@ pub struct MSG_MOVE_STOP_Client {
 impl crate::private::Sealed for MSG_MOVE_STOP_Client {}
 impl MSG_MOVE_STOP_Client {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(28..=81).contains(&body_size) {
+        if !(28..=76).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -96,7 +96,7 @@ mod test {
                     z: 83.04539_f32,
                 },
                 orientation: 2.5674446_f32,
-                fall_time: 0.000000000000000000000000000000000000000001263_f32,
+                fall_time: 0x385,
             },
         }
 
@@ -160,6 +160,89 @@ mod test {
         expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 34] = [ 0x00, 0x20, 0xB7, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x04, 0xFB, 0x78, 0x02, 0x00, 0x65, 0x5F, 0xC6, 0x00, 0x30, 0x02,
+         0x44, 0x00, 0x00, 0x0C, 0x41, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x00,
+         0x00, ];
+
+    pub(crate) fn expected1() -> MSG_MOVE_STOP_Client {
+        MSG_MOVE_STOP_Client {
+            info: MovementInfo {
+                flags: MovementInfo_MovementFlags::empty()
+                    ,
+                timestamp: 0x278FB04,
+                position: Vector3d {
+                    x: -14297.25_f32,
+                    y: 520.75_f32,
+                    z: 8.75_f32,
+                },
+                orientation: 3_f32,
+                fall_time: 0x0,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 46.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn msg_move_stop_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_STOP(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_STOP, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 46.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_msg_move_stop_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_STOP(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_STOP, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/movement/msg/msg_move_stop.wowm` line 46.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_msg_move_stop_client1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::MSG_MOVE_STOP(t) => t,
+            opcode => panic!("incorrect opcode. Expected MSG_MOVE_STOP, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
     }
 
 }

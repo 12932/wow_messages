@@ -1602,7 +1602,7 @@
         },
         { &hf_woww_fall_time,
             { "Fall Time", "woww.fall.time",
-                FT_FLOAT, BASE_NONE, NULL, 0,
+                FT_UINT32, BASE_HEX_DEC, NULL, 0,
                 NULL, HFILL
             }
         },
