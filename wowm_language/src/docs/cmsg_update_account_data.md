@@ -40,7 +40,6 @@ CMSG have a header of 6 bytes.
 11, 2, 0, 0, // opcode (523)
 6, 0, 0, 0, // data_type: AccountDataType PER_CHARACTER_LAYOUT_CACHE (6)
 0, 0, 0, 0, // compressed_data_decompressed_size: u32
-// compressed_data: u8[-]
 ```
 #### Example 2
 
