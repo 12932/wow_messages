@@ -129,7 +129,7 @@ impl RealmFlag {
     }
 
     pub fn clear_invalid(&mut self) -> Self {
-        self.inner &= Self::INVALID.reverse_bits();
+        self.inner &= !Self::INVALID;
         *self
     }
 
@@ -147,7 +147,7 @@ impl RealmFlag {
     }
 
     pub fn clear_offline(&mut self) -> Self {
-        self.inner &= Self::OFFLINE.reverse_bits();
+        self.inner &= !Self::OFFLINE;
         *self
     }
 
@@ -165,7 +165,7 @@ impl RealmFlag {
     }
 
     pub fn clear_specify_build(&mut self) -> Self {
-        self.inner &= Self::SPECIFY_BUILD.reverse_bits();
+        self.inner &= !Self::SPECIFY_BUILD;
         *self
     }
 
@@ -183,7 +183,7 @@ impl RealmFlag {
     }
 
     pub fn clear_force_blue_recommended(&mut self) -> Self {
-        self.inner &= Self::FORCE_BLUE_RECOMMENDED.reverse_bits();
+        self.inner &= !Self::FORCE_BLUE_RECOMMENDED;
         *self
     }
 
@@ -201,7 +201,7 @@ impl RealmFlag {
     }
 
     pub fn clear_force_green_recommended(&mut self) -> Self {
-        self.inner &= Self::FORCE_GREEN_RECOMMENDED.reverse_bits();
+        self.inner &= !Self::FORCE_GREEN_RECOMMENDED;
         *self
     }
 
@@ -219,7 +219,7 @@ impl RealmFlag {
     }
 
     pub fn clear_force_red_full(&mut self) -> Self {
-        self.inner &= Self::FORCE_RED_FULL.reverse_bits();
+        self.inner &= !Self::FORCE_RED_FULL;
         *self
     }
 

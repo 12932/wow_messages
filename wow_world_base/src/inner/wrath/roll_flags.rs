@@ -97,7 +97,7 @@ impl RollFlags {
     }
 
     pub fn clear_pass(&mut self) -> Self {
-        self.inner &= Self::PASS.reverse_bits();
+        self.inner &= !Self::PASS;
         *self
     }
 
@@ -115,7 +115,7 @@ impl RollFlags {
     }
 
     pub fn clear_need(&mut self) -> Self {
-        self.inner &= Self::NEED.reverse_bits();
+        self.inner &= !Self::NEED;
         *self
     }
 
@@ -133,7 +133,7 @@ impl RollFlags {
     }
 
     pub fn clear_greed(&mut self) -> Self {
-        self.inner &= Self::GREED.reverse_bits();
+        self.inner &= !Self::GREED;
         *self
     }
 
@@ -151,7 +151,7 @@ impl RollFlags {
     }
 
     pub fn clear_disenchant(&mut self) -> Self {
-        self.inner &= Self::DISENCHANT.reverse_bits();
+        self.inner &= !Self::DISENCHANT;
         *self
     }
 

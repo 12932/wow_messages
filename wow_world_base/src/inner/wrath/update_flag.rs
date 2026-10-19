@@ -174,7 +174,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_self(&mut self) -> Self {
-        self.inner &= Self::SELF.reverse_bits();
+        self.inner &= !Self::SELF;
         *self
     }
 
@@ -192,7 +192,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_transport(&mut self) -> Self {
-        self.inner &= Self::TRANSPORT.reverse_bits();
+        self.inner &= !Self::TRANSPORT;
         *self
     }
 
@@ -210,7 +210,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_has_attacking_target(&mut self) -> Self {
-        self.inner &= Self::HAS_ATTACKING_TARGET.reverse_bits();
+        self.inner &= !Self::HAS_ATTACKING_TARGET;
         *self
     }
 
@@ -228,7 +228,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_low_guid(&mut self) -> Self {
-        self.inner &= Self::LOW_GUID.reverse_bits();
+        self.inner &= !Self::LOW_GUID;
         *self
     }
 
@@ -246,7 +246,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_high_guid(&mut self) -> Self {
-        self.inner &= Self::HIGH_GUID.reverse_bits();
+        self.inner &= !Self::HIGH_GUID;
         *self
     }
 
@@ -264,7 +264,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_living(&mut self) -> Self {
-        self.inner &= Self::LIVING.reverse_bits();
+        self.inner &= !Self::LIVING;
         *self
     }
 
@@ -282,7 +282,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_has_position(&mut self) -> Self {
-        self.inner &= Self::HAS_POSITION.reverse_bits();
+        self.inner &= !Self::HAS_POSITION;
         *self
     }
 
@@ -300,7 +300,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_vehicle(&mut self) -> Self {
-        self.inner &= Self::VEHICLE.reverse_bits();
+        self.inner &= !Self::VEHICLE;
         *self
     }
 
@@ -318,7 +318,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_position(&mut self) -> Self {
-        self.inner &= Self::POSITION.reverse_bits();
+        self.inner &= !Self::POSITION;
         *self
     }
 
@@ -336,7 +336,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_rotation(&mut self) -> Self {
-        self.inner &= Self::ROTATION.reverse_bits();
+        self.inner &= !Self::ROTATION;
         *self
     }
 

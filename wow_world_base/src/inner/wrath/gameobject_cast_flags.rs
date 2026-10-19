@@ -263,7 +263,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_lock_player_cast_anim(&mut self) -> Self {
-        self.inner &= Self::LOCK_PLAYER_CAST_ANIM.reverse_bits();
+        self.inner &= !Self::LOCK_PLAYER_CAST_ANIM;
         *self
     }
 
@@ -281,7 +281,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unknown2(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN2.reverse_bits();
+        self.inner &= !Self::UNKNOWN2;
         *self
     }
 
@@ -299,7 +299,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unknown4(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN4.reverse_bits();
+        self.inner &= !Self::UNKNOWN4;
         *self
     }
 
@@ -317,7 +317,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unknown8(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN8.reverse_bits();
+        self.inner &= !Self::UNKNOWN8;
         *self
     }
 
@@ -335,7 +335,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unknown16(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN16.reverse_bits();
+        self.inner &= !Self::UNKNOWN16;
         *self
     }
 
@@ -354,7 +354,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_ammo(&mut self) -> Self {
-        self.inner &= Self::AMMO.reverse_bits();
+        self.inner &= !Self::AMMO;
         *self
     }
 
@@ -372,7 +372,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_dest_location(&mut self) -> Self {
-        self.inner &= Self::DEST_LOCATION.reverse_bits();
+        self.inner &= !Self::DEST_LOCATION;
         *self
     }
 
@@ -390,7 +390,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_item_caster(&mut self) -> Self {
-        self.inner &= Self::ITEM_CASTER.reverse_bits();
+        self.inner &= !Self::ITEM_CASTER;
         *self
     }
 
@@ -408,7 +408,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk200(&mut self) -> Self {
-        self.inner &= Self::UNK200.reverse_bits();
+        self.inner &= !Self::UNK200;
         *self
     }
 
@@ -427,7 +427,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_extra_message(&mut self) -> Self {
-        self.inner &= Self::EXTRA_MESSAGE.reverse_bits();
+        self.inner &= !Self::EXTRA_MESSAGE;
         *self
     }
 
@@ -446,7 +446,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_power_update(&mut self) -> Self {
-        self.inner &= Self::POWER_UPDATE.reverse_bits();
+        self.inner &= !Self::POWER_UPDATE;
         *self
     }
 
@@ -464,7 +464,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk2000(&mut self) -> Self {
-        self.inner &= Self::UNK2000.reverse_bits();
+        self.inner &= !Self::UNK2000;
         *self
     }
 
@@ -483,7 +483,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk1000(&mut self) -> Self {
-        self.inner &= Self::UNK1000.reverse_bits();
+        self.inner &= !Self::UNK1000;
         *self
     }
 
@@ -502,7 +502,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk8000(&mut self) -> Self {
-        self.inner &= Self::UNK8000.reverse_bits();
+        self.inner &= !Self::UNK8000;
         *self
     }
 
@@ -521,7 +521,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_adjust_missile(&mut self) -> Self {
-        self.inner &= Self::ADJUST_MISSILE.reverse_bits();
+        self.inner &= !Self::ADJUST_MISSILE;
         *self
     }
 
@@ -540,7 +540,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk40000(&mut self) -> Self {
-        self.inner &= Self::UNK40000.reverse_bits();
+        self.inner &= !Self::UNK40000;
         *self
     }
 
@@ -559,7 +559,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_visual_chain(&mut self) -> Self {
-        self.inner &= Self::VISUAL_CHAIN.reverse_bits();
+        self.inner &= !Self::VISUAL_CHAIN;
         *self
     }
 
@@ -578,7 +578,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_rune_update(&mut self) -> Self {
-        self.inner &= Self::RUNE_UPDATE.reverse_bits();
+        self.inner &= !Self::RUNE_UPDATE;
         *self
     }
 
@@ -597,7 +597,7 @@ impl GameobjectCastFlags {
     }
 
     pub fn clear_unk400000(&mut self) -> Self {
-        self.inner &= Self::UNK400000.reverse_bits();
+        self.inner &= !Self::UNK400000;
         *self
     }
 

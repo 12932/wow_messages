@@ -274,7 +274,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_status(&mut self) -> Self {
-        self.inner &= Self::STATUS.reverse_bits();
+        self.inner &= !Self::STATUS;
         *self
     }
 
@@ -293,7 +293,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_cur_hp(&mut self) -> Self {
-        self.inner &= Self::CUR_HP.reverse_bits();
+        self.inner &= !Self::CUR_HP;
         *self
     }
 
@@ -312,7 +312,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_max_hp(&mut self) -> Self {
-        self.inner &= Self::MAX_HP.reverse_bits();
+        self.inner &= !Self::MAX_HP;
         *self
     }
 
@@ -331,7 +331,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_power_type(&mut self) -> Self {
-        self.inner &= Self::POWER_TYPE.reverse_bits();
+        self.inner &= !Self::POWER_TYPE;
         *self
     }
 
@@ -350,7 +350,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_cur_power(&mut self) -> Self {
-        self.inner &= Self::CUR_POWER.reverse_bits();
+        self.inner &= !Self::CUR_POWER;
         *self
     }
 
@@ -369,7 +369,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_max_power(&mut self) -> Self {
-        self.inner &= Self::MAX_POWER.reverse_bits();
+        self.inner &= !Self::MAX_POWER;
         *self
     }
 
@@ -388,7 +388,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_level(&mut self) -> Self {
-        self.inner &= Self::LEVEL.reverse_bits();
+        self.inner &= !Self::LEVEL;
         *self
     }
 
@@ -407,7 +407,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_zone(&mut self) -> Self {
-        self.inner &= Self::ZONE.reverse_bits();
+        self.inner &= !Self::ZONE;
         *self
     }
 
@@ -426,7 +426,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_position(&mut self) -> Self {
-        self.inner &= Self::POSITION.reverse_bits();
+        self.inner &= !Self::POSITION;
         *self
     }
 
@@ -445,7 +445,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_auras(&mut self) -> Self {
-        self.inner &= Self::AURAS.reverse_bits();
+        self.inner &= !Self::AURAS;
         *self
     }
 
@@ -464,7 +464,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_guid(&mut self) -> Self {
-        self.inner &= Self::PET_GUID.reverse_bits();
+        self.inner &= !Self::PET_GUID;
         *self
     }
 
@@ -483,7 +483,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_name(&mut self) -> Self {
-        self.inner &= Self::PET_NAME.reverse_bits();
+        self.inner &= !Self::PET_NAME;
         *self
     }
 
@@ -502,7 +502,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_model_id(&mut self) -> Self {
-        self.inner &= Self::PET_MODEL_ID.reverse_bits();
+        self.inner &= !Self::PET_MODEL_ID;
         *self
     }
 
@@ -521,7 +521,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_cur_hp(&mut self) -> Self {
-        self.inner &= Self::PET_CUR_HP.reverse_bits();
+        self.inner &= !Self::PET_CUR_HP;
         *self
     }
 
@@ -540,7 +540,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_max_hp(&mut self) -> Self {
-        self.inner &= Self::PET_MAX_HP.reverse_bits();
+        self.inner &= !Self::PET_MAX_HP;
         *self
     }
 
@@ -559,7 +559,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_power_type(&mut self) -> Self {
-        self.inner &= Self::PET_POWER_TYPE.reverse_bits();
+        self.inner &= !Self::PET_POWER_TYPE;
         *self
     }
 
@@ -578,7 +578,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_cur_power(&mut self) -> Self {
-        self.inner &= Self::PET_CUR_POWER.reverse_bits();
+        self.inner &= !Self::PET_CUR_POWER;
         *self
     }
 
@@ -597,7 +597,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_max_power(&mut self) -> Self {
-        self.inner &= Self::PET_MAX_POWER.reverse_bits();
+        self.inner &= !Self::PET_MAX_POWER;
         *self
     }
 
@@ -616,7 +616,7 @@ impl GroupUpdateFlags {
     }
 
     pub fn clear_pet_auras(&mut self) -> Self {
-        self.inner &= Self::PET_AURAS.reverse_bits();
+        self.inner &= !Self::PET_AURAS;
         *self
     }
 

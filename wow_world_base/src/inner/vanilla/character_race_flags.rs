@@ -112,7 +112,7 @@ impl CharacterRaceFlags {
     }
 
     pub fn clear_not_playable(&mut self) -> Self {
-        self.inner &= Self::NOT_PLAYABLE.reverse_bits();
+        self.inner &= !Self::NOT_PLAYABLE;
         *self
     }
 
@@ -130,7 +130,7 @@ impl CharacterRaceFlags {
     }
 
     pub fn clear_bare_feet(&mut self) -> Self {
-        self.inner &= Self::BARE_FEET.reverse_bits();
+        self.inner &= !Self::BARE_FEET;
         *self
     }
 
@@ -148,7 +148,7 @@ impl CharacterRaceFlags {
     }
 
     pub fn clear_can_current_form_mount(&mut self) -> Self {
-        self.inner &= Self::CAN_CURRENT_FORM_MOUNT.reverse_bits();
+        self.inner &= !Self::CAN_CURRENT_FORM_MOUNT;
         *self
     }
 
@@ -166,7 +166,7 @@ impl CharacterRaceFlags {
     }
 
     pub fn clear_unknown2(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN2.reverse_bits();
+        self.inner &= !Self::UNKNOWN2;
         *self
     }
 

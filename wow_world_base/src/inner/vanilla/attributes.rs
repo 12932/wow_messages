@@ -418,7 +418,7 @@ impl Attributes {
     }
 
     pub fn clear_proc_failure_burns_charge(&mut self) -> Self {
-        self.inner &= Self::PROC_FAILURE_BURNS_CHARGE.reverse_bits();
+        self.inner &= !Self::PROC_FAILURE_BURNS_CHARGE;
         *self
     }
 
@@ -436,7 +436,7 @@ impl Attributes {
     }
 
     pub fn clear_uses_ranged_slot(&mut self) -> Self {
-        self.inner &= Self::USES_RANGED_SLOT.reverse_bits();
+        self.inner &= !Self::USES_RANGED_SLOT;
         *self
     }
 
@@ -454,7 +454,7 @@ impl Attributes {
     }
 
     pub fn clear_on_next_swing_no_damage(&mut self) -> Self {
-        self.inner &= Self::ON_NEXT_SWING_NO_DAMAGE.reverse_bits();
+        self.inner &= !Self::ON_NEXT_SWING_NO_DAMAGE;
         *self
     }
 
@@ -472,7 +472,7 @@ impl Attributes {
     }
 
     pub fn clear_need_exotic_ammo(&mut self) -> Self {
-        self.inner &= Self::NEED_EXOTIC_AMMO.reverse_bits();
+        self.inner &= !Self::NEED_EXOTIC_AMMO;
         *self
     }
 
@@ -490,7 +490,7 @@ impl Attributes {
     }
 
     pub fn clear_is_ability(&mut self) -> Self {
-        self.inner &= Self::IS_ABILITY.reverse_bits();
+        self.inner &= !Self::IS_ABILITY;
         *self
     }
 
@@ -508,7 +508,7 @@ impl Attributes {
     }
 
     pub fn clear_is_tradeskill(&mut self) -> Self {
-        self.inner &= Self::IS_TRADESKILL.reverse_bits();
+        self.inner &= !Self::IS_TRADESKILL;
         *self
     }
 
@@ -526,7 +526,7 @@ impl Attributes {
     }
 
     pub fn clear_passive(&mut self) -> Self {
-        self.inner &= Self::PASSIVE.reverse_bits();
+        self.inner &= !Self::PASSIVE;
         *self
     }
 
@@ -544,7 +544,7 @@ impl Attributes {
     }
 
     pub fn clear_do_not_display(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_DISPLAY.reverse_bits();
+        self.inner &= !Self::DO_NOT_DISPLAY;
         *self
     }
 
@@ -562,7 +562,7 @@ impl Attributes {
     }
 
     pub fn clear_do_not_log(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_LOG.reverse_bits();
+        self.inner &= !Self::DO_NOT_LOG;
         *self
     }
 
@@ -580,7 +580,7 @@ impl Attributes {
     }
 
     pub fn clear_held_item_only(&mut self) -> Self {
-        self.inner &= Self::HELD_ITEM_ONLY.reverse_bits();
+        self.inner &= !Self::HELD_ITEM_ONLY;
         *self
     }
 
@@ -598,7 +598,7 @@ impl Attributes {
     }
 
     pub fn clear_on_next_swing(&mut self) -> Self {
-        self.inner &= Self::ON_NEXT_SWING.reverse_bits();
+        self.inner &= !Self::ON_NEXT_SWING;
         *self
     }
 
@@ -616,7 +616,7 @@ impl Attributes {
     }
 
     pub fn clear_wearer_casts_proc_trigger(&mut self) -> Self {
-        self.inner &= Self::WEARER_CASTS_PROC_TRIGGER.reverse_bits();
+        self.inner &= !Self::WEARER_CASTS_PROC_TRIGGER;
         *self
     }
 
@@ -634,7 +634,7 @@ impl Attributes {
     }
 
     pub fn clear_daytime_only(&mut self) -> Self {
-        self.inner &= Self::DAYTIME_ONLY.reverse_bits();
+        self.inner &= !Self::DAYTIME_ONLY;
         *self
     }
 
@@ -652,7 +652,7 @@ impl Attributes {
     }
 
     pub fn clear_night_only(&mut self) -> Self {
-        self.inner &= Self::NIGHT_ONLY.reverse_bits();
+        self.inner &= !Self::NIGHT_ONLY;
         *self
     }
 
@@ -670,7 +670,7 @@ impl Attributes {
     }
 
     pub fn clear_only_indoors(&mut self) -> Self {
-        self.inner &= Self::ONLY_INDOORS.reverse_bits();
+        self.inner &= !Self::ONLY_INDOORS;
         *self
     }
 
@@ -688,7 +688,7 @@ impl Attributes {
     }
 
     pub fn clear_only_outdoors(&mut self) -> Self {
-        self.inner &= Self::ONLY_OUTDOORS.reverse_bits();
+        self.inner &= !Self::ONLY_OUTDOORS;
         *self
     }
 
@@ -706,7 +706,7 @@ impl Attributes {
     }
 
     pub fn clear_not_shapeshift(&mut self) -> Self {
-        self.inner &= Self::NOT_SHAPESHIFT.reverse_bits();
+        self.inner &= !Self::NOT_SHAPESHIFT;
         *self
     }
 
@@ -724,7 +724,7 @@ impl Attributes {
     }
 
     pub fn clear_only_stealthed(&mut self) -> Self {
-        self.inner &= Self::ONLY_STEALTHED.reverse_bits();
+        self.inner &= !Self::ONLY_STEALTHED;
         *self
     }
 
@@ -742,7 +742,7 @@ impl Attributes {
     }
 
     pub fn clear_do_not_sheath(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_SHEATH.reverse_bits();
+        self.inner &= !Self::DO_NOT_SHEATH;
         *self
     }
 
@@ -760,7 +760,7 @@ impl Attributes {
     }
 
     pub fn clear_scales_with_creature_level(&mut self) -> Self {
-        self.inner &= Self::SCALES_WITH_CREATURE_LEVEL.reverse_bits();
+        self.inner &= !Self::SCALES_WITH_CREATURE_LEVEL;
         *self
     }
 
@@ -778,7 +778,7 @@ impl Attributes {
     }
 
     pub fn clear_cancels_auto_attack_combat(&mut self) -> Self {
-        self.inner &= Self::CANCELS_AUTO_ATTACK_COMBAT.reverse_bits();
+        self.inner &= !Self::CANCELS_AUTO_ATTACK_COMBAT;
         *self
     }
 
@@ -796,7 +796,7 @@ impl Attributes {
     }
 
     pub fn clear_no_active_defense(&mut self) -> Self {
-        self.inner &= Self::NO_ACTIVE_DEFENSE.reverse_bits();
+        self.inner &= !Self::NO_ACTIVE_DEFENSE;
         *self
     }
 
@@ -814,7 +814,7 @@ impl Attributes {
     }
 
     pub fn clear_track_target_in_cast_player_only(&mut self) -> Self {
-        self.inner &= Self::TRACK_TARGET_IN_CAST_PLAYER_ONLY.reverse_bits();
+        self.inner &= !Self::TRACK_TARGET_IN_CAST_PLAYER_ONLY;
         *self
     }
 
@@ -832,7 +832,7 @@ impl Attributes {
     }
 
     pub fn clear_allow_cast_while_dead(&mut self) -> Self {
-        self.inner &= Self::ALLOW_CAST_WHILE_DEAD.reverse_bits();
+        self.inner &= !Self::ALLOW_CAST_WHILE_DEAD;
         *self
     }
 
@@ -850,7 +850,7 @@ impl Attributes {
     }
 
     pub fn clear_allow_while_mounted(&mut self) -> Self {
-        self.inner &= Self::ALLOW_WHILE_MOUNTED.reverse_bits();
+        self.inner &= !Self::ALLOW_WHILE_MOUNTED;
         *self
     }
 
@@ -868,7 +868,7 @@ impl Attributes {
     }
 
     pub fn clear_cooldown_on_event(&mut self) -> Self {
-        self.inner &= Self::COOLDOWN_ON_EVENT.reverse_bits();
+        self.inner &= !Self::COOLDOWN_ON_EVENT;
         *self
     }
 
@@ -886,7 +886,7 @@ impl Attributes {
     }
 
     pub fn clear_aura_is_debuff(&mut self) -> Self {
-        self.inner &= Self::AURA_IS_DEBUFF.reverse_bits();
+        self.inner &= !Self::AURA_IS_DEBUFF;
         *self
     }
 
@@ -904,7 +904,7 @@ impl Attributes {
     }
 
     pub fn clear_allow_while_sitting(&mut self) -> Self {
-        self.inner &= Self::ALLOW_WHILE_SITTING.reverse_bits();
+        self.inner &= !Self::ALLOW_WHILE_SITTING;
         *self
     }
 
@@ -922,7 +922,7 @@ impl Attributes {
     }
 
     pub fn clear_not_in_combat_only_peaceful(&mut self) -> Self {
-        self.inner &= Self::NOT_IN_COMBAT_ONLY_PEACEFUL.reverse_bits();
+        self.inner &= !Self::NOT_IN_COMBAT_ONLY_PEACEFUL;
         *self
     }
 
@@ -940,7 +940,7 @@ impl Attributes {
     }
 
     pub fn clear_no_immunities(&mut self) -> Self {
-        self.inner &= Self::NO_IMMUNITIES.reverse_bits();
+        self.inner &= !Self::NO_IMMUNITIES;
         *self
     }
 
@@ -958,7 +958,7 @@ impl Attributes {
     }
 
     pub fn clear_heartbeat_resist(&mut self) -> Self {
-        self.inner &= Self::HEARTBEAT_RESIST.reverse_bits();
+        self.inner &= !Self::HEARTBEAT_RESIST;
         *self
     }
 
@@ -976,7 +976,7 @@ impl Attributes {
     }
 
     pub fn clear_no_aura_cancel(&mut self) -> Self {
-        self.inner &= Self::NO_AURA_CANCEL.reverse_bits();
+        self.inner &= !Self::NO_AURA_CANCEL;
         *self
     }
 

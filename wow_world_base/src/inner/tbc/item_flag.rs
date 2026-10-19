@@ -296,7 +296,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_pickup(&mut self) -> Self {
-        self.inner &= Self::NO_PICKUP.reverse_bits();
+        self.inner &= !Self::NO_PICKUP;
         *self
     }
 
@@ -315,7 +315,7 @@ impl ItemFlag {
     }
 
     pub fn clear_conjured(&mut self) -> Self {
-        self.inner &= Self::CONJURED.reverse_bits();
+        self.inner &= !Self::CONJURED;
         *self
     }
 
@@ -334,7 +334,7 @@ impl ItemFlag {
     }
 
     pub fn clear_lootable(&mut self) -> Self {
-        self.inner &= Self::LOOTABLE.reverse_bits();
+        self.inner &= !Self::LOOTABLE;
         *self
     }
 
@@ -353,7 +353,7 @@ impl ItemFlag {
     }
 
     pub fn clear_deprecated(&mut self) -> Self {
-        self.inner &= Self::DEPRECATED.reverse_bits();
+        self.inner &= !Self::DEPRECATED;
         *self
     }
 
@@ -372,7 +372,7 @@ impl ItemFlag {
     }
 
     pub fn clear_indestructible(&mut self) -> Self {
-        self.inner &= Self::INDESTRUCTIBLE.reverse_bits();
+        self.inner &= !Self::INDESTRUCTIBLE;
         *self
     }
 
@@ -391,7 +391,7 @@ impl ItemFlag {
     }
 
     pub fn clear_player_cast(&mut self) -> Self {
-        self.inner &= Self::PLAYER_CAST.reverse_bits();
+        self.inner &= !Self::PLAYER_CAST;
         *self
     }
 
@@ -410,7 +410,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_equip_cooldown(&mut self) -> Self {
-        self.inner &= Self::NO_EQUIP_COOLDOWN.reverse_bits();
+        self.inner &= !Self::NO_EQUIP_COOLDOWN;
         *self
     }
 
@@ -429,7 +429,7 @@ impl ItemFlag {
     }
 
     pub fn clear_int_bonus_instead(&mut self) -> Self {
-        self.inner &= Self::INT_BONUS_INSTEAD.reverse_bits();
+        self.inner &= !Self::INT_BONUS_INSTEAD;
         *self
     }
 
@@ -448,7 +448,7 @@ impl ItemFlag {
     }
 
     pub fn clear_wrapper(&mut self) -> Self {
-        self.inner &= Self::WRAPPER.reverse_bits();
+        self.inner &= !Self::WRAPPER;
         *self
     }
 
@@ -467,7 +467,7 @@ impl ItemFlag {
     }
 
     pub fn clear_ignore_bag_space(&mut self) -> Self {
-        self.inner &= Self::IGNORE_BAG_SPACE.reverse_bits();
+        self.inner &= !Self::IGNORE_BAG_SPACE;
         *self
     }
 
@@ -486,7 +486,7 @@ impl ItemFlag {
     }
 
     pub fn clear_party_loot(&mut self) -> Self {
-        self.inner &= Self::PARTY_LOOT.reverse_bits();
+        self.inner &= !Self::PARTY_LOOT;
         *self
     }
 
@@ -505,7 +505,7 @@ impl ItemFlag {
     }
 
     pub fn clear_charter(&mut self) -> Self {
-        self.inner &= Self::CHARTER.reverse_bits();
+        self.inner &= !Self::CHARTER;
         *self
     }
 
@@ -524,7 +524,7 @@ impl ItemFlag {
     }
 
     pub fn clear_letter(&mut self) -> Self {
-        self.inner &= Self::LETTER.reverse_bits();
+        self.inner &= !Self::LETTER;
         *self
     }
 
@@ -542,7 +542,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_disenchant(&mut self) -> Self {
-        self.inner &= Self::NO_DISENCHANT.reverse_bits();
+        self.inner &= !Self::NO_DISENCHANT;
         *self
     }
 
@@ -560,7 +560,7 @@ impl ItemFlag {
     }
 
     pub fn clear_real_duration(&mut self) -> Self {
-        self.inner &= Self::REAL_DURATION.reverse_bits();
+        self.inner &= !Self::REAL_DURATION;
         *self
     }
 
@@ -578,7 +578,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_creator(&mut self) -> Self {
-        self.inner &= Self::NO_CREATOR.reverse_bits();
+        self.inner &= !Self::NO_CREATOR;
         *self
     }
 
@@ -597,7 +597,7 @@ impl ItemFlag {
     }
 
     pub fn clear_prospectable(&mut self) -> Self {
-        self.inner &= Self::PROSPECTABLE.reverse_bits();
+        self.inner &= !Self::PROSPECTABLE;
         *self
     }
 
@@ -616,7 +616,7 @@ impl ItemFlag {
     }
 
     pub fn clear_unique_equipped(&mut self) -> Self {
-        self.inner &= Self::UNIQUE_EQUIPPED.reverse_bits();
+        self.inner &= !Self::UNIQUE_EQUIPPED;
         *self
     }
 
@@ -634,7 +634,7 @@ impl ItemFlag {
     }
 
     pub fn clear_ignore_for_auras(&mut self) -> Self {
-        self.inner &= Self::IGNORE_FOR_AURAS.reverse_bits();
+        self.inner &= !Self::IGNORE_FOR_AURAS;
         *self
     }
 
@@ -653,7 +653,7 @@ impl ItemFlag {
     }
 
     pub fn clear_ignore_default_arena_restrictions(&mut self) -> Self {
-        self.inner &= Self::IGNORE_DEFAULT_ARENA_RESTRICTIONS.reverse_bits();
+        self.inner &= !Self::IGNORE_DEFAULT_ARENA_RESTRICTIONS;
         *self
     }
 
@@ -672,7 +672,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_durability_loss(&mut self) -> Self {
-        self.inner &= Self::NO_DURABILITY_LOSS.reverse_bits();
+        self.inner &= !Self::NO_DURABILITY_LOSS;
         *self
     }
 
@@ -690,7 +690,7 @@ impl ItemFlag {
     }
 
     pub fn clear_special_use(&mut self) -> Self {
-        self.inner &= Self::SPECIAL_USE.reverse_bits();
+        self.inner &= !Self::SPECIAL_USE;
         *self
     }
 

@@ -248,7 +248,7 @@ fn print_fields(s: &mut Writer, e: &Definer, o: &Objects) {
             });
 
             s.funcn_pub(format!("clear_{function_name}(&mut self)"), "Self", |s| {
-                s.wln(format!("self.inner &= Self::{name}.reverse_bits();",));
+                s.wln(format!("self.inner &= !Self::{name};"));
                 s.wln("*self");
             });
         }

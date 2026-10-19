@@ -153,7 +153,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_online(&mut self) -> Self {
-        self.inner &= Self::ONLINE.reverse_bits();
+        self.inner &= !Self::ONLINE;
         *self
     }
 
@@ -172,7 +172,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_pvp(&mut self) -> Self {
-        self.inner &= Self::PVP.reverse_bits();
+        self.inner &= !Self::PVP;
         *self
     }
 
@@ -191,7 +191,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_dead(&mut self) -> Self {
-        self.inner &= Self::DEAD.reverse_bits();
+        self.inner &= !Self::DEAD;
         *self
     }
 
@@ -210,7 +210,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_ghost(&mut self) -> Self {
-        self.inner &= Self::GHOST.reverse_bits();
+        self.inner &= !Self::GHOST;
         *self
     }
 
@@ -229,7 +229,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_pvp_ffa(&mut self) -> Self {
-        self.inner &= Self::PVP_FFA.reverse_bits();
+        self.inner &= !Self::PVP_FFA;
         *self
     }
 
@@ -248,7 +248,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_zone_out(&mut self) -> Self {
-        self.inner &= Self::ZONE_OUT.reverse_bits();
+        self.inner &= !Self::ZONE_OUT;
         *self
     }
 
@@ -267,7 +267,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_afk(&mut self) -> Self {
-        self.inner &= Self::AFK.reverse_bits();
+        self.inner &= !Self::AFK;
         *self
     }
 
@@ -286,7 +286,7 @@ impl GroupMemberOnlineStatus {
     }
 
     pub fn clear_dnd(&mut self) -> Self {
-        self.inner &= Self::DND.reverse_bits();
+        self.inner &= !Self::DND;
         *self
     }
 

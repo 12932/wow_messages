@@ -229,7 +229,7 @@ impl BagFamily {
     }
 
     pub fn clear_arrows(&mut self) -> Self {
-        self.inner &= Self::ARROWS.reverse_bits();
+        self.inner &= !Self::ARROWS;
         *self
     }
 
@@ -247,7 +247,7 @@ impl BagFamily {
     }
 
     pub fn clear_bullets(&mut self) -> Self {
-        self.inner &= Self::BULLETS.reverse_bits();
+        self.inner &= !Self::BULLETS;
         *self
     }
 
@@ -265,7 +265,7 @@ impl BagFamily {
     }
 
     pub fn clear_soul_shards(&mut self) -> Self {
-        self.inner &= Self::SOUL_SHARDS.reverse_bits();
+        self.inner &= !Self::SOUL_SHARDS;
         *self
     }
 
@@ -283,7 +283,7 @@ impl BagFamily {
     }
 
     pub fn clear_leatherworking_supplies(&mut self) -> Self {
-        self.inner &= Self::LEATHERWORKING_SUPPLIES.reverse_bits();
+        self.inner &= !Self::LEATHERWORKING_SUPPLIES;
         *self
     }
 
@@ -301,7 +301,7 @@ impl BagFamily {
     }
 
     pub fn clear_inscription_supplies(&mut self) -> Self {
-        self.inner &= Self::INSCRIPTION_SUPPLIES.reverse_bits();
+        self.inner &= !Self::INSCRIPTION_SUPPLIES;
         *self
     }
 
@@ -319,7 +319,7 @@ impl BagFamily {
     }
 
     pub fn clear_herbs(&mut self) -> Self {
-        self.inner &= Self::HERBS.reverse_bits();
+        self.inner &= !Self::HERBS;
         *self
     }
 
@@ -337,7 +337,7 @@ impl BagFamily {
     }
 
     pub fn clear_enchanting_supplies(&mut self) -> Self {
-        self.inner &= Self::ENCHANTING_SUPPLIES.reverse_bits();
+        self.inner &= !Self::ENCHANTING_SUPPLIES;
         *self
     }
 
@@ -355,7 +355,7 @@ impl BagFamily {
     }
 
     pub fn clear_engineering_supplies(&mut self) -> Self {
-        self.inner &= Self::ENGINEERING_SUPPLIES.reverse_bits();
+        self.inner &= !Self::ENGINEERING_SUPPLIES;
         *self
     }
 
@@ -373,7 +373,7 @@ impl BagFamily {
     }
 
     pub fn clear_keys(&mut self) -> Self {
-        self.inner &= Self::KEYS.reverse_bits();
+        self.inner &= !Self::KEYS;
         *self
     }
 
@@ -391,7 +391,7 @@ impl BagFamily {
     }
 
     pub fn clear_gems(&mut self) -> Self {
-        self.inner &= Self::GEMS.reverse_bits();
+        self.inner &= !Self::GEMS;
         *self
     }
 
@@ -409,7 +409,7 @@ impl BagFamily {
     }
 
     pub fn clear_mining_supplies(&mut self) -> Self {
-        self.inner &= Self::MINING_SUPPLIES.reverse_bits();
+        self.inner &= !Self::MINING_SUPPLIES;
         *self
     }
 
@@ -427,7 +427,7 @@ impl BagFamily {
     }
 
     pub fn clear_soulbound_equipment(&mut self) -> Self {
-        self.inner &= Self::SOULBOUND_EQUIPMENT.reverse_bits();
+        self.inner &= !Self::SOULBOUND_EQUIPMENT;
         *self
     }
 
@@ -445,7 +445,7 @@ impl BagFamily {
     }
 
     pub fn clear_vanity_pets(&mut self) -> Self {
-        self.inner &= Self::VANITY_PETS.reverse_bits();
+        self.inner &= !Self::VANITY_PETS;
         *self
     }
 
@@ -463,7 +463,7 @@ impl BagFamily {
     }
 
     pub fn clear_currency_tokens(&mut self) -> Self {
-        self.inner &= Self::CURRENCY_TOKENS.reverse_bits();
+        self.inner &= !Self::CURRENCY_TOKENS;
         *self
     }
 
@@ -481,7 +481,7 @@ impl BagFamily {
     }
 
     pub fn clear_quest_items(&mut self) -> Self {
-        self.inner &= Self::QUEST_ITEMS.reverse_bits();
+        self.inner &= !Self::QUEST_ITEMS;
         *self
     }
 

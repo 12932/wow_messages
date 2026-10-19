@@ -156,7 +156,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_initial(&mut self) -> Self {
-        self.inner &= Self::INITIAL.reverse_bits();
+        self.inner &= !Self::INITIAL;
         *self
     }
 
@@ -174,7 +174,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_zone_dependency(&mut self) -> Self {
-        self.inner &= Self::ZONE_DEPENDENCY.reverse_bits();
+        self.inner &= !Self::ZONE_DEPENDENCY;
         *self
     }
 
@@ -192,7 +192,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_global(&mut self) -> Self {
-        self.inner &= Self::GLOBAL.reverse_bits();
+        self.inner &= !Self::GLOBAL;
         *self
     }
 
@@ -210,7 +210,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_trade(&mut self) -> Self {
-        self.inner &= Self::TRADE.reverse_bits();
+        self.inner &= !Self::TRADE;
         *self
     }
 
@@ -228,7 +228,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_city_only(&mut self) -> Self {
-        self.inner &= Self::CITY_ONLY.reverse_bits();
+        self.inner &= !Self::CITY_ONLY;
         *self
     }
 
@@ -246,7 +246,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_city_only_2(&mut self) -> Self {
-        self.inner &= Self::CITY_ONLY_2.reverse_bits();
+        self.inner &= !Self::CITY_ONLY_2;
         *self
     }
 
@@ -264,7 +264,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_defence(&mut self) -> Self {
-        self.inner &= Self::DEFENCE.reverse_bits();
+        self.inner &= !Self::DEFENCE;
         *self
     }
 
@@ -282,7 +282,7 @@ impl DefaultChannelFlags {
     }
 
     pub fn clear_unselected(&mut self) -> Self {
-        self.inner &= Self::UNSELECTED.reverse_bits();
+        self.inner &= !Self::UNSELECTED;
         *self
     }
 

@@ -163,7 +163,7 @@ impl AllowedRace {
     }
 
     pub fn clear_human(&mut self) -> Self {
-        self.inner &= Self::HUMAN.reverse_bits();
+        self.inner &= !Self::HUMAN;
         *self
     }
 
@@ -181,7 +181,7 @@ impl AllowedRace {
     }
 
     pub fn clear_orc(&mut self) -> Self {
-        self.inner &= Self::ORC.reverse_bits();
+        self.inner &= !Self::ORC;
         *self
     }
 
@@ -199,7 +199,7 @@ impl AllowedRace {
     }
 
     pub fn clear_dwarf(&mut self) -> Self {
-        self.inner &= Self::DWARF.reverse_bits();
+        self.inner &= !Self::DWARF;
         *self
     }
 
@@ -217,7 +217,7 @@ impl AllowedRace {
     }
 
     pub fn clear_night_elf(&mut self) -> Self {
-        self.inner &= Self::NIGHT_ELF.reverse_bits();
+        self.inner &= !Self::NIGHT_ELF;
         *self
     }
 
@@ -235,7 +235,7 @@ impl AllowedRace {
     }
 
     pub fn clear_undead(&mut self) -> Self {
-        self.inner &= Self::UNDEAD.reverse_bits();
+        self.inner &= !Self::UNDEAD;
         *self
     }
 
@@ -253,7 +253,7 @@ impl AllowedRace {
     }
 
     pub fn clear_tauren(&mut self) -> Self {
-        self.inner &= Self::TAUREN.reverse_bits();
+        self.inner &= !Self::TAUREN;
         *self
     }
 
@@ -271,7 +271,7 @@ impl AllowedRace {
     }
 
     pub fn clear_gnome(&mut self) -> Self {
-        self.inner &= Self::GNOME.reverse_bits();
+        self.inner &= !Self::GNOME;
         *self
     }
 
@@ -289,7 +289,7 @@ impl AllowedRace {
     }
 
     pub fn clear_troll(&mut self) -> Self {
-        self.inner &= Self::TROLL.reverse_bits();
+        self.inner &= !Self::TROLL;
         *self
     }
 
@@ -307,7 +307,7 @@ impl AllowedRace {
     }
 
     pub fn clear_goblin(&mut self) -> Self {
-        self.inner &= Self::GOBLIN.reverse_bits();
+        self.inner &= !Self::GOBLIN;
         *self
     }
 

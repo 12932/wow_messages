@@ -79,7 +79,7 @@ impl PvpFlags {
     }
 
     pub fn clear_pvp_flagged(&mut self) -> Self {
-        self.inner &= Self::PVP_FLAGGED.reverse_bits();
+        self.inner &= !Self::PVP_FLAGGED;
         *self
     }
 
@@ -97,7 +97,7 @@ impl PvpFlags {
     }
 
     pub fn clear_attack_pvping_players(&mut self) -> Self {
-        self.inner &= Self::ATTACK_PVPING_PLAYERS.reverse_bits();
+        self.inner &= !Self::ATTACK_PVPING_PLAYERS;
         *self
     }
 

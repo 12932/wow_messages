@@ -204,7 +204,7 @@ impl FlagIfElseIf_SimpleFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_one(mut self) -> Self {
-        self.inner &= SimpleFlag::ONE.reverse_bits();
+        self.inner &= !SimpleFlag::ONE;
         self.one = None;
         self
     }
@@ -228,7 +228,7 @@ impl FlagIfElseIf_SimpleFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_two(mut self) -> Self {
-        self.inner &= SimpleFlag::TWO.reverse_bits();
+        self.inner &= !SimpleFlag::TWO;
         self
     }
 
@@ -371,7 +371,7 @@ impl FlagIfElseIf_UpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_one_if(mut self) -> Self {
-        self.inner &= UpdateFlag::ONE_IF.reverse_bits();
+        self.inner &= !(UpdateFlag::ONE_IF | UpdateFlag::TWO_ELSEIF | UpdateFlag::FOUR_ELSEIF);
         self.one_if = None;
         self
     }
@@ -397,7 +397,7 @@ impl FlagIfElseIf_UpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_eight_if(mut self) -> Self {
-        self.inner &= UpdateFlag::EIGHT_IF.reverse_bits();
+        self.inner &= !UpdateFlag::EIGHT_IF;
         self.eight_if = None;
         self
     }

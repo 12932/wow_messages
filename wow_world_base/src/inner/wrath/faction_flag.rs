@@ -142,7 +142,7 @@ impl FactionFlag {
     }
 
     pub fn clear_visible(&mut self) -> Self {
-        self.inner &= Self::VISIBLE.reverse_bits();
+        self.inner &= !Self::VISIBLE;
         *self
     }
 
@@ -161,7 +161,7 @@ impl FactionFlag {
     }
 
     pub fn clear_at_war(&mut self) -> Self {
-        self.inner &= Self::AT_WAR.reverse_bits();
+        self.inner &= !Self::AT_WAR;
         *self
     }
 
@@ -180,7 +180,7 @@ impl FactionFlag {
     }
 
     pub fn clear_hidden(&mut self) -> Self {
-        self.inner &= Self::HIDDEN.reverse_bits();
+        self.inner &= !Self::HIDDEN;
         *self
     }
 
@@ -199,7 +199,7 @@ impl FactionFlag {
     }
 
     pub fn clear_invisible_forced(&mut self) -> Self {
-        self.inner &= Self::INVISIBLE_FORCED.reverse_bits();
+        self.inner &= !Self::INVISIBLE_FORCED;
         *self
     }
 
@@ -218,7 +218,7 @@ impl FactionFlag {
     }
 
     pub fn clear_peace_forced(&mut self) -> Self {
-        self.inner &= Self::PEACE_FORCED.reverse_bits();
+        self.inner &= !Self::PEACE_FORCED;
         *self
     }
 
@@ -237,7 +237,7 @@ impl FactionFlag {
     }
 
     pub fn clear_inactive(&mut self) -> Self {
-        self.inner &= Self::INACTIVE.reverse_bits();
+        self.inner &= !Self::INACTIVE;
         *self
     }
 
@@ -257,7 +257,7 @@ impl FactionFlag {
     }
 
     pub fn clear_rival(&mut self) -> Self {
-        self.inner &= Self::RIVAL.reverse_bits();
+        self.inner &= !Self::RIVAL;
         *self
     }
 
@@ -276,7 +276,7 @@ impl FactionFlag {
     }
 
     pub fn clear_special(&mut self) -> Self {
-        self.inner &= Self::SPECIAL.reverse_bits();
+        self.inner &= !Self::SPECIAL;
         *self
     }
 

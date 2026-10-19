@@ -130,7 +130,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_owner(&mut self) -> Self {
-        self.inner &= Self::OWNER.reverse_bits();
+        self.inner &= !Self::OWNER;
         *self
     }
 
@@ -148,7 +148,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_moderator(&mut self) -> Self {
-        self.inner &= Self::MODERATOR.reverse_bits();
+        self.inner &= !Self::MODERATOR;
         *self
     }
 
@@ -166,7 +166,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_voiced(&mut self) -> Self {
-        self.inner &= Self::VOICED.reverse_bits();
+        self.inner &= !Self::VOICED;
         *self
     }
 
@@ -184,7 +184,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_muted(&mut self) -> Self {
-        self.inner &= Self::MUTED.reverse_bits();
+        self.inner &= !Self::MUTED;
         *self
     }
 
@@ -202,7 +202,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_custom(&mut self) -> Self {
-        self.inner &= Self::CUSTOM.reverse_bits();
+        self.inner &= !Self::CUSTOM;
         *self
     }
 
@@ -220,7 +220,7 @@ impl ChannelMemberFlags {
     }
 
     pub fn clear_microphone_mute(&mut self) -> Self {
-        self.inner &= Self::MICROPHONE_MUTE.reverse_bits();
+        self.inner &= !Self::MICROPHONE_MUTE;
         *self
     }
 

@@ -108,7 +108,7 @@ impl RelationType {
     }
 
     pub fn clear_friend(&mut self) -> Self {
-        self.inner &= Self::FRIEND.reverse_bits();
+        self.inner &= !Self::FRIEND;
         *self
     }
 
@@ -126,7 +126,7 @@ impl RelationType {
     }
 
     pub fn clear_ignored(&mut self) -> Self {
-        self.inner &= Self::IGNORED.reverse_bits();
+        self.inner &= !Self::IGNORED;
         *self
     }
 
@@ -144,7 +144,7 @@ impl RelationType {
     }
 
     pub fn clear_muted(&mut self) -> Self {
-        self.inner &= Self::MUTED.reverse_bits();
+        self.inner &= !Self::MUTED;
         *self
     }
 
@@ -162,7 +162,7 @@ impl RelationType {
     }
 
     pub fn clear_recruitafriend(&mut self) -> Self {
-        self.inner &= Self::RECRUITAFRIEND.reverse_bits();
+        self.inner &= !Self::RECRUITAFRIEND;
         *self
     }
 

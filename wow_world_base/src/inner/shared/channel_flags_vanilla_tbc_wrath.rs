@@ -141,7 +141,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_custom(&mut self) -> Self {
-        self.inner &= Self::CUSTOM.reverse_bits();
+        self.inner &= !Self::CUSTOM;
         *self
     }
 
@@ -159,7 +159,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_trade(&mut self) -> Self {
-        self.inner &= Self::TRADE.reverse_bits();
+        self.inner &= !Self::TRADE;
         *self
     }
 
@@ -177,7 +177,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_not_lfg(&mut self) -> Self {
-        self.inner &= Self::NOT_LFG.reverse_bits();
+        self.inner &= !Self::NOT_LFG;
         *self
     }
 
@@ -195,7 +195,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_general(&mut self) -> Self {
-        self.inner &= Self::GENERAL.reverse_bits();
+        self.inner &= !Self::GENERAL;
         *self
     }
 
@@ -213,7 +213,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_city(&mut self) -> Self {
-        self.inner &= Self::CITY.reverse_bits();
+        self.inner &= !Self::CITY;
         *self
     }
 
@@ -231,7 +231,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_lfg(&mut self) -> Self {
-        self.inner &= Self::LFG.reverse_bits();
+        self.inner &= !Self::LFG;
         *self
     }
 
@@ -249,7 +249,7 @@ impl ChannelFlags {
     }
 
     pub fn clear_voice(&mut self) -> Self {
-        self.inner &= Self::VOICE.reverse_bits();
+        self.inner &= !Self::VOICE;
         *self
     }
 

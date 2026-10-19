@@ -515,7 +515,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_character_info(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::CHARACTER_INFO.reverse_bits();
+        self.inner &= !LfgUpdateFlag::CHARACTER_INFO;
         self.character_info = None;
         self
     }
@@ -546,7 +546,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_comment(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::COMMENT.reverse_bits();
+        self.inner &= !LfgUpdateFlag::COMMENT;
         self.comment = None;
         self
     }
@@ -577,7 +577,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_group_leader(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::GROUP_LEADER.reverse_bits();
+        self.inner &= !LfgUpdateFlag::GROUP_LEADER;
         self.group_leader = None;
         self
     }
@@ -608,7 +608,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_group_guid(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::GROUP_GUID.reverse_bits();
+        self.inner &= !LfgUpdateFlag::GROUP_GUID;
         self.group_guid = None;
         self
     }
@@ -639,7 +639,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_roles(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::ROLES.reverse_bits();
+        self.inner &= !LfgUpdateFlag::ROLES;
         self.roles = None;
         self
     }
@@ -670,7 +670,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_area(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::AREA.reverse_bits();
+        self.inner &= !LfgUpdateFlag::AREA;
         self.area = None;
         self
     }
@@ -701,7 +701,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_status(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::STATUS.reverse_bits();
+        self.inner &= !LfgUpdateFlag::STATUS;
         self.status = None;
         self
     }
@@ -731,7 +731,7 @@ impl LfgListPlayer_LfgUpdateFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_bound(mut self) -> Self {
-        self.inner &= LfgUpdateFlag::BOUND.reverse_bits();
+        self.inner &= !LfgUpdateFlag::BOUND;
         self
     }
 

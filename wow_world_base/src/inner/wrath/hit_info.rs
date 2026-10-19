@@ -362,7 +362,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk1(&mut self) -> Self {
-        self.inner &= Self::UNK1.reverse_bits();
+        self.inner &= !Self::UNK1;
         *self
     }
 
@@ -380,7 +380,7 @@ impl HitInfo {
     }
 
     pub fn clear_affects_victim(&mut self) -> Self {
-        self.inner &= Self::AFFECTS_VICTIM.reverse_bits();
+        self.inner &= !Self::AFFECTS_VICTIM;
         *self
     }
 
@@ -398,7 +398,7 @@ impl HitInfo {
     }
 
     pub fn clear_offhand(&mut self) -> Self {
-        self.inner &= Self::OFFHAND.reverse_bits();
+        self.inner &= !Self::OFFHAND;
         *self
     }
 
@@ -416,7 +416,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk2(&mut self) -> Self {
-        self.inner &= Self::UNK2.reverse_bits();
+        self.inner &= !Self::UNK2;
         *self
     }
 
@@ -434,7 +434,7 @@ impl HitInfo {
     }
 
     pub fn clear_miss(&mut self) -> Self {
-        self.inner &= Self::MISS.reverse_bits();
+        self.inner &= !Self::MISS;
         *self
     }
 
@@ -452,7 +452,7 @@ impl HitInfo {
     }
 
     pub fn clear_full_absorb(&mut self) -> Self {
-        self.inner &= Self::FULL_ABSORB.reverse_bits();
+        self.inner &= !Self::FULL_ABSORB;
         *self
     }
 
@@ -470,7 +470,7 @@ impl HitInfo {
     }
 
     pub fn clear_partial_absorb(&mut self) -> Self {
-        self.inner &= Self::PARTIAL_ABSORB.reverse_bits();
+        self.inner &= !Self::PARTIAL_ABSORB;
         *self
     }
 
@@ -488,7 +488,7 @@ impl HitInfo {
     }
 
     pub fn clear_all_absorb(&mut self) -> Self {
-        self.inner &= Self::ALL_ABSORB.reverse_bits();
+        self.inner &= !Self::ALL_ABSORB;
         *self
     }
 
@@ -506,7 +506,7 @@ impl HitInfo {
     }
 
     pub fn clear_full_resist(&mut self) -> Self {
-        self.inner &= Self::FULL_RESIST.reverse_bits();
+        self.inner &= !Self::FULL_RESIST;
         *self
     }
 
@@ -524,7 +524,7 @@ impl HitInfo {
     }
 
     pub fn clear_partial_resist(&mut self) -> Self {
-        self.inner &= Self::PARTIAL_RESIST.reverse_bits();
+        self.inner &= !Self::PARTIAL_RESIST;
         *self
     }
 
@@ -542,7 +542,7 @@ impl HitInfo {
     }
 
     pub fn clear_all_resist(&mut self) -> Self {
-        self.inner &= Self::ALL_RESIST.reverse_bits();
+        self.inner &= !Self::ALL_RESIST;
         *self
     }
 
@@ -561,7 +561,7 @@ impl HitInfo {
     }
 
     pub fn clear_criticalhit(&mut self) -> Self {
-        self.inner &= Self::CRITICALHIT.reverse_bits();
+        self.inner &= !Self::CRITICALHIT;
         *self
     }
 
@@ -579,7 +579,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk10(&mut self) -> Self {
-        self.inner &= Self::UNK10.reverse_bits();
+        self.inner &= !Self::UNK10;
         *self
     }
 
@@ -597,7 +597,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk11(&mut self) -> Self {
-        self.inner &= Self::UNK11.reverse_bits();
+        self.inner &= !Self::UNK11;
         *self
     }
 
@@ -615,7 +615,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk12(&mut self) -> Self {
-        self.inner &= Self::UNK12.reverse_bits();
+        self.inner &= !Self::UNK12;
         *self
     }
 
@@ -634,7 +634,7 @@ impl HitInfo {
     }
 
     pub fn clear_block(&mut self) -> Self {
-        self.inner &= Self::BLOCK.reverse_bits();
+        self.inner &= !Self::BLOCK;
         *self
     }
 
@@ -653,7 +653,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk14(&mut self) -> Self {
-        self.inner &= Self::UNK14.reverse_bits();
+        self.inner &= !Self::UNK14;
         *self
     }
 
@@ -672,7 +672,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk15(&mut self) -> Self {
-        self.inner &= Self::UNK15.reverse_bits();
+        self.inner &= !Self::UNK15;
         *self
     }
 
@@ -690,7 +690,7 @@ impl HitInfo {
     }
 
     pub fn clear_glancing(&mut self) -> Self {
-        self.inner &= Self::GLANCING.reverse_bits();
+        self.inner &= !Self::GLANCING;
         *self
     }
 
@@ -708,7 +708,7 @@ impl HitInfo {
     }
 
     pub fn clear_crushing(&mut self) -> Self {
-        self.inner &= Self::CRUSHING.reverse_bits();
+        self.inner &= !Self::CRUSHING;
         *self
     }
 
@@ -726,7 +726,7 @@ impl HitInfo {
     }
 
     pub fn clear_no_animation(&mut self) -> Self {
-        self.inner &= Self::NO_ANIMATION.reverse_bits();
+        self.inner &= !Self::NO_ANIMATION;
         *self
     }
 
@@ -744,7 +744,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk19(&mut self) -> Self {
-        self.inner &= Self::UNK19.reverse_bits();
+        self.inner &= !Self::UNK19;
         *self
     }
 
@@ -762,7 +762,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk20(&mut self) -> Self {
-        self.inner &= Self::UNK20.reverse_bits();
+        self.inner &= !Self::UNK20;
         *self
     }
 
@@ -781,7 +781,7 @@ impl HitInfo {
     }
 
     pub fn clear_swingnohitsound(&mut self) -> Self {
-        self.inner &= Self::SWINGNOHITSOUND.reverse_bits();
+        self.inner &= !Self::SWINGNOHITSOUND;
         *self
     }
 
@@ -799,7 +799,7 @@ impl HitInfo {
     }
 
     pub fn clear_unk22(&mut self) -> Self {
-        self.inner &= Self::UNK22.reverse_bits();
+        self.inner &= !Self::UNK22;
         *self
     }
 
@@ -817,7 +817,7 @@ impl HitInfo {
     }
 
     pub fn clear_rage_gain(&mut self) -> Self {
-        self.inner &= Self::RAGE_GAIN.reverse_bits();
+        self.inner &= !Self::RAGE_GAIN;
         *self
     }
 
@@ -836,7 +836,7 @@ impl HitInfo {
     }
 
     pub fn clear_fake_damage(&mut self) -> Self {
-        self.inner &= Self::FAKE_DAMAGE.reverse_bits();
+        self.inner &= !Self::FAKE_DAMAGE;
         *self
     }
 

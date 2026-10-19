@@ -141,7 +141,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_self(&mut self) -> Self {
-        self.inner &= Self::SELF.reverse_bits();
+        self.inner &= !Self::SELF;
         *self
     }
 
@@ -159,7 +159,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_transport(&mut self) -> Self {
-        self.inner &= Self::TRANSPORT.reverse_bits();
+        self.inner &= !Self::TRANSPORT;
         *self
     }
 
@@ -177,7 +177,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_melee_attacking(&mut self) -> Self {
-        self.inner &= Self::MELEE_ATTACKING.reverse_bits();
+        self.inner &= !Self::MELEE_ATTACKING;
         *self
     }
 
@@ -195,7 +195,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_high_guid(&mut self) -> Self {
-        self.inner &= Self::HIGH_GUID.reverse_bits();
+        self.inner &= !Self::HIGH_GUID;
         *self
     }
 
@@ -213,7 +213,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_all(&mut self) -> Self {
-        self.inner &= Self::ALL.reverse_bits();
+        self.inner &= !Self::ALL;
         *self
     }
 
@@ -231,7 +231,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_living(&mut self) -> Self {
-        self.inner &= Self::LIVING.reverse_bits();
+        self.inner &= !Self::LIVING;
         *self
     }
 
@@ -249,7 +249,7 @@ impl UpdateFlag {
     }
 
     pub fn clear_has_position(&mut self) -> Self {
-        self.inner &= Self::HAS_POSITION.reverse_bits();
+        self.inner &= !Self::HAS_POSITION;
         *self
     }
 

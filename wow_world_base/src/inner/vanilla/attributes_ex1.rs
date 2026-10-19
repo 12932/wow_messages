@@ -418,7 +418,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_dismiss_pet_first(&mut self) -> Self {
-        self.inner &= Self::DISMISS_PET_FIRST.reverse_bits();
+        self.inner &= !Self::DISMISS_PET_FIRST;
         *self
     }
 
@@ -436,7 +436,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_use_all_mana(&mut self) -> Self {
-        self.inner &= Self::USE_ALL_MANA.reverse_bits();
+        self.inner &= !Self::USE_ALL_MANA;
         *self
     }
 
@@ -454,7 +454,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_is_channeled(&mut self) -> Self {
-        self.inner &= Self::IS_CHANNELED.reverse_bits();
+        self.inner &= !Self::IS_CHANNELED;
         *self
     }
 
@@ -472,7 +472,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_redirection(&mut self) -> Self {
-        self.inner &= Self::NO_REDIRECTION.reverse_bits();
+        self.inner &= !Self::NO_REDIRECTION;
         *self
     }
 
@@ -490,7 +490,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_skill_increase(&mut self) -> Self {
-        self.inner &= Self::NO_SKILL_INCREASE.reverse_bits();
+        self.inner &= !Self::NO_SKILL_INCREASE;
         *self
     }
 
@@ -508,7 +508,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_allow_while_stealthed(&mut self) -> Self {
-        self.inner &= Self::ALLOW_WHILE_STEALTHED.reverse_bits();
+        self.inner &= !Self::ALLOW_WHILE_STEALTHED;
         *self
     }
 
@@ -526,7 +526,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_is_self_channeled(&mut self) -> Self {
-        self.inner &= Self::IS_SELF_CHANNELED.reverse_bits();
+        self.inner &= !Self::IS_SELF_CHANNELED;
         *self
     }
 
@@ -544,7 +544,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_reflection(&mut self) -> Self {
-        self.inner &= Self::NO_REFLECTION.reverse_bits();
+        self.inner &= !Self::NO_REFLECTION;
         *self
     }
 
@@ -562,7 +562,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_only_peaceful_targets(&mut self) -> Self {
-        self.inner &= Self::ONLY_PEACEFUL_TARGETS.reverse_bits();
+        self.inner &= !Self::ONLY_PEACEFUL_TARGETS;
         *self
     }
 
@@ -580,7 +580,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_initiates_combat_enables_auto_attack(&mut self) -> Self {
-        self.inner &= Self::INITIATES_COMBAT_ENABLES_AUTO_ATTACK.reverse_bits();
+        self.inner &= !Self::INITIATES_COMBAT_ENABLES_AUTO_ATTACK;
         *self
     }
 
@@ -598,7 +598,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_threat(&mut self) -> Self {
-        self.inner &= Self::NO_THREAT.reverse_bits();
+        self.inner &= !Self::NO_THREAT;
         *self
     }
 
@@ -616,7 +616,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_aura_unique(&mut self) -> Self {
-        self.inner &= Self::AURA_UNIQUE.reverse_bits();
+        self.inner &= !Self::AURA_UNIQUE;
         *self
     }
 
@@ -634,7 +634,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_failure_breaks_stealth(&mut self) -> Self {
-        self.inner &= Self::FAILURE_BREAKS_STEALTH.reverse_bits();
+        self.inner &= !Self::FAILURE_BREAKS_STEALTH;
         *self
     }
 
@@ -652,7 +652,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_toggle_farsight(&mut self) -> Self {
-        self.inner &= Self::TOGGLE_FARSIGHT.reverse_bits();
+        self.inner &= !Self::TOGGLE_FARSIGHT;
         *self
     }
 
@@ -670,7 +670,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_track_target_in_channel(&mut self) -> Self {
-        self.inner &= Self::TRACK_TARGET_IN_CHANNEL.reverse_bits();
+        self.inner &= !Self::TRACK_TARGET_IN_CHANNEL;
         *self
     }
 
@@ -688,7 +688,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_immunity_purges_effect(&mut self) -> Self {
-        self.inner &= Self::IMMUNITY_PURGES_EFFECT.reverse_bits();
+        self.inner &= !Self::IMMUNITY_PURGES_EFFECT;
         *self
     }
 
@@ -706,7 +706,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_immunity_to_hostile_and_friendly_effects(&mut self) -> Self {
-        self.inner &= Self::IMMUNITY_TO_HOSTILE_AND_FRIENDLY_EFFECTS.reverse_bits();
+        self.inner &= !Self::IMMUNITY_TO_HOSTILE_AND_FRIENDLY_EFFECTS;
         *self
     }
 
@@ -724,7 +724,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_autocast_ai(&mut self) -> Self {
-        self.inner &= Self::NO_AUTOCAST_AI.reverse_bits();
+        self.inner &= !Self::NO_AUTOCAST_AI;
         *self
     }
 
@@ -742,7 +742,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_prevents_anim(&mut self) -> Self {
-        self.inner &= Self::PREVENTS_ANIM.reverse_bits();
+        self.inner &= !Self::PREVENTS_ANIM;
         *self
     }
 
@@ -760,7 +760,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_exclude_caster(&mut self) -> Self {
-        self.inner &= Self::EXCLUDE_CASTER.reverse_bits();
+        self.inner &= !Self::EXCLUDE_CASTER;
         *self
     }
 
@@ -778,7 +778,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_finishing_move_damage(&mut self) -> Self {
-        self.inner &= Self::FINISHING_MOVE_DAMAGE.reverse_bits();
+        self.inner &= !Self::FINISHING_MOVE_DAMAGE;
         *self
     }
 
@@ -796,7 +796,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_threat_only_on_miss(&mut self) -> Self {
-        self.inner &= Self::THREAT_ONLY_ON_MISS.reverse_bits();
+        self.inner &= !Self::THREAT_ONLY_ON_MISS;
         *self
     }
 
@@ -814,7 +814,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_finishing_move_duration(&mut self) -> Self {
-        self.inner &= Self::FINISHING_MOVE_DURATION.reverse_bits();
+        self.inner &= !Self::FINISHING_MOVE_DURATION;
         *self
     }
 
@@ -832,7 +832,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_unk23(&mut self) -> Self {
-        self.inner &= Self::UNK23.reverse_bits();
+        self.inner &= !Self::UNK23;
         *self
     }
 
@@ -850,7 +850,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_special_skillup(&mut self) -> Self {
-        self.inner &= Self::SPECIAL_SKILLUP.reverse_bits();
+        self.inner &= !Self::SPECIAL_SKILLUP;
         *self
     }
 
@@ -868,7 +868,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_aura_stays_after_combat(&mut self) -> Self {
-        self.inner &= Self::AURA_STAYS_AFTER_COMBAT.reverse_bits();
+        self.inner &= !Self::AURA_STAYS_AFTER_COMBAT;
         *self
     }
 
@@ -886,7 +886,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_require_all_targets(&mut self) -> Self {
-        self.inner &= Self::REQUIRE_ALL_TARGETS.reverse_bits();
+        self.inner &= !Self::REQUIRE_ALL_TARGETS;
         *self
     }
 
@@ -904,7 +904,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_discount_power_on_miss(&mut self) -> Self {
-        self.inner &= Self::DISCOUNT_POWER_ON_MISS.reverse_bits();
+        self.inner &= !Self::DISCOUNT_POWER_ON_MISS;
         *self
     }
 
@@ -922,7 +922,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_no_aura_icon(&mut self) -> Self {
-        self.inner &= Self::NO_AURA_ICON.reverse_bits();
+        self.inner &= !Self::NO_AURA_ICON;
         *self
     }
 
@@ -940,7 +940,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_name_in_channel_bar(&mut self) -> Self {
-        self.inner &= Self::NAME_IN_CHANNEL_BAR.reverse_bits();
+        self.inner &= !Self::NAME_IN_CHANNEL_BAR;
         *self
     }
 
@@ -958,7 +958,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_combo_on_block(&mut self) -> Self {
-        self.inner &= Self::COMBO_ON_BLOCK.reverse_bits();
+        self.inner &= !Self::COMBO_ON_BLOCK;
         *self
     }
 
@@ -976,7 +976,7 @@ impl AttributesEx1 {
     }
 
     pub fn clear_cast_when_learned(&mut self) -> Self {
-        self.inner &= Self::CAST_WHEN_LEARNED.reverse_bits();
+        self.inner &= !Self::CAST_WHEN_LEARNED;
         *self
     }
 

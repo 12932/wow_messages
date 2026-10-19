@@ -112,7 +112,7 @@ impl EmoteFlags {
     }
 
     pub fn clear_talk(&mut self) -> Self {
-        self.inner &= Self::TALK.reverse_bits();
+        self.inner &= !Self::TALK;
         *self
     }
 
@@ -130,7 +130,7 @@ impl EmoteFlags {
     }
 
     pub fn clear_question(&mut self) -> Self {
-        self.inner &= Self::QUESTION.reverse_bits();
+        self.inner &= !Self::QUESTION;
         *self
     }
 
@@ -148,7 +148,7 @@ impl EmoteFlags {
     }
 
     pub fn clear_exclamation(&mut self) -> Self {
-        self.inner &= Self::EXCLAMATION.reverse_bits();
+        self.inner &= !Self::EXCLAMATION;
         *self
     }
 
@@ -166,7 +166,7 @@ impl EmoteFlags {
     }
 
     pub fn clear_shout(&mut self) -> Self {
-        self.inner &= Self::SHOUT.reverse_bits();
+        self.inner &= !Self::SHOUT;
         *self
     }
 
@@ -184,7 +184,7 @@ impl EmoteFlags {
     }
 
     pub fn clear_laugh(&mut self) -> Self {
-        self.inner &= Self::LAUGH.reverse_bits();
+        self.inner &= !Self::LAUGH;
         *self
     }
 

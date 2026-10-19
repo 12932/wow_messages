@@ -111,7 +111,7 @@ impl SimpleIfFlag_SimpleFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_one(mut self) -> Self {
-        self.inner &= SimpleFlag::ONE.reverse_bits();
+        self.inner &= !SimpleFlag::ONE;
         self
     }
 
@@ -134,7 +134,7 @@ impl SimpleIfFlag_SimpleFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_two(mut self) -> Self {
-        self.inner &= SimpleFlag::TWO.reverse_bits();
+        self.inner &= !SimpleFlag::TWO;
         self
     }
 

@@ -86,7 +86,7 @@ impl SimpleFlag {
     }
 
     pub fn clear_one(&mut self) -> Self {
-        self.inner &= Self::ONE.reverse_bits();
+        self.inner &= !Self::ONE;
         *self
     }
 
@@ -104,7 +104,7 @@ impl SimpleFlag {
     }
 
     pub fn clear_two(&mut self) -> Self {
-        self.inner &= Self::TWO.reverse_bits();
+        self.inner &= !Self::TWO;
         *self
     }
 

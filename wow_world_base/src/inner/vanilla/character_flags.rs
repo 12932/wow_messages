@@ -119,7 +119,7 @@ impl CharacterFlags {
     }
 
     pub fn clear_locked_for_transfer(&mut self) -> Self {
-        self.inner &= Self::LOCKED_FOR_TRANSFER.reverse_bits();
+        self.inner &= !Self::LOCKED_FOR_TRANSFER;
         *self
     }
 
@@ -137,7 +137,7 @@ impl CharacterFlags {
     }
 
     pub fn clear_hide_helm(&mut self) -> Self {
-        self.inner &= Self::HIDE_HELM.reverse_bits();
+        self.inner &= !Self::HIDE_HELM;
         *self
     }
 
@@ -155,7 +155,7 @@ impl CharacterFlags {
     }
 
     pub fn clear_hide_cloak(&mut self) -> Self {
-        self.inner &= Self::HIDE_CLOAK.reverse_bits();
+        self.inner &= !Self::HIDE_CLOAK;
         *self
     }
 
@@ -173,7 +173,7 @@ impl CharacterFlags {
     }
 
     pub fn clear_ghost(&mut self) -> Self {
-        self.inner &= Self::GHOST.reverse_bits();
+        self.inner &= !Self::GHOST;
         *self
     }
 
@@ -191,7 +191,7 @@ impl CharacterFlags {
     }
 
     pub fn clear_rename(&mut self) -> Self {
-        self.inner &= Self::RENAME.reverse_bits();
+        self.inner &= !Self::RENAME;
         *self
     }
 

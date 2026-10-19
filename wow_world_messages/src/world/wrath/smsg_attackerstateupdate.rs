@@ -563,7 +563,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk1(mut self) -> Self {
-        self.inner &= HitInfo::UNK1.reverse_bits();
+        self.inner &= !HitInfo::UNK1;
         self.unk1 = None;
         self
     }
@@ -591,7 +591,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_affects_victim(mut self) -> Self {
-        self.inner &= HitInfo::AFFECTS_VICTIM.reverse_bits();
+        self.inner &= !HitInfo::AFFECTS_VICTIM;
         self
     }
 
@@ -618,7 +618,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_offhand(mut self) -> Self {
-        self.inner &= HitInfo::OFFHAND.reverse_bits();
+        self.inner &= !HitInfo::OFFHAND;
         self
     }
 
@@ -645,7 +645,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk2(mut self) -> Self {
-        self.inner &= HitInfo::UNK2.reverse_bits();
+        self.inner &= !HitInfo::UNK2;
         self
     }
 
@@ -672,7 +672,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_miss(mut self) -> Self {
-        self.inner &= HitInfo::MISS.reverse_bits();
+        self.inner &= !HitInfo::MISS;
         self
     }
 
@@ -699,7 +699,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_full_absorb(mut self) -> Self {
-        self.inner &= HitInfo::FULL_ABSORB.reverse_bits();
+        self.inner &= !HitInfo::FULL_ABSORB;
         self
     }
 
@@ -726,7 +726,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_partial_absorb(mut self) -> Self {
-        self.inner &= HitInfo::PARTIAL_ABSORB.reverse_bits();
+        self.inner &= !HitInfo::PARTIAL_ABSORB;
         self
     }
 
@@ -754,7 +754,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_all_absorb(mut self) -> Self {
-        self.inner &= HitInfo::ALL_ABSORB.reverse_bits();
+        self.inner &= !HitInfo::ALL_ABSORB;
         self.all_absorb = None;
         self
     }
@@ -782,7 +782,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_full_resist(mut self) -> Self {
-        self.inner &= HitInfo::FULL_RESIST.reverse_bits();
+        self.inner &= !HitInfo::FULL_RESIST;
         self
     }
 
@@ -809,7 +809,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_partial_resist(mut self) -> Self {
-        self.inner &= HitInfo::PARTIAL_RESIST.reverse_bits();
+        self.inner &= !HitInfo::PARTIAL_RESIST;
         self
     }
 
@@ -837,7 +837,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_all_resist(mut self) -> Self {
-        self.inner &= HitInfo::ALL_RESIST.reverse_bits();
+        self.inner &= !HitInfo::ALL_RESIST;
         self.all_resist = None;
         self
     }
@@ -865,7 +865,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_criticalhit(mut self) -> Self {
-        self.inner &= HitInfo::CRITICALHIT.reverse_bits();
+        self.inner &= !HitInfo::CRITICALHIT;
         self
     }
 
@@ -892,7 +892,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk10(mut self) -> Self {
-        self.inner &= HitInfo::UNK10.reverse_bits();
+        self.inner &= !HitInfo::UNK10;
         self
     }
 
@@ -919,7 +919,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk11(mut self) -> Self {
-        self.inner &= HitInfo::UNK11.reverse_bits();
+        self.inner &= !HitInfo::UNK11;
         self
     }
 
@@ -946,7 +946,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk12(mut self) -> Self {
-        self.inner &= HitInfo::UNK12.reverse_bits();
+        self.inner &= !HitInfo::UNK12;
         self
     }
 
@@ -974,7 +974,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_block(mut self) -> Self {
-        self.inner &= HitInfo::BLOCK.reverse_bits();
+        self.inner &= !HitInfo::BLOCK;
         self.block = None;
         self
     }
@@ -1002,7 +1002,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk14(mut self) -> Self {
-        self.inner &= HitInfo::UNK14.reverse_bits();
+        self.inner &= !HitInfo::UNK14;
         self
     }
 
@@ -1029,7 +1029,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk15(mut self) -> Self {
-        self.inner &= HitInfo::UNK15.reverse_bits();
+        self.inner &= !HitInfo::UNK15;
         self
     }
 
@@ -1056,7 +1056,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_glancing(mut self) -> Self {
-        self.inner &= HitInfo::GLANCING.reverse_bits();
+        self.inner &= !HitInfo::GLANCING;
         self
     }
 
@@ -1083,7 +1083,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_crushing(mut self) -> Self {
-        self.inner &= HitInfo::CRUSHING.reverse_bits();
+        self.inner &= !HitInfo::CRUSHING;
         self
     }
 
@@ -1110,7 +1110,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_no_animation(mut self) -> Self {
-        self.inner &= HitInfo::NO_ANIMATION.reverse_bits();
+        self.inner &= !HitInfo::NO_ANIMATION;
         self
     }
 
@@ -1138,7 +1138,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk19(mut self) -> Self {
-        self.inner &= HitInfo::UNK19.reverse_bits();
+        self.inner &= !HitInfo::UNK19;
         self.unk19 = None;
         self
     }
@@ -1166,7 +1166,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk20(mut self) -> Self {
-        self.inner &= HitInfo::UNK20.reverse_bits();
+        self.inner &= !HitInfo::UNK20;
         self
     }
 
@@ -1193,7 +1193,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_swingnohitsound(mut self) -> Self {
-        self.inner &= HitInfo::SWINGNOHITSOUND.reverse_bits();
+        self.inner &= !HitInfo::SWINGNOHITSOUND;
         self
     }
 
@@ -1220,7 +1220,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk22(mut self) -> Self {
-        self.inner &= HitInfo::UNK22.reverse_bits();
+        self.inner &= !HitInfo::UNK22;
         self
     }
 
@@ -1247,7 +1247,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_rage_gain(mut self) -> Self {
-        self.inner &= HitInfo::RAGE_GAIN.reverse_bits();
+        self.inner &= !HitInfo::RAGE_GAIN;
         self
     }
 
@@ -1274,7 +1274,7 @@ impl SMSG_ATTACKERSTATEUPDATE_HitInfo {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_fake_damage(mut self) -> Self {
-        self.inner &= HitInfo::FAKE_DAMAGE.reverse_bits();
+        self.inner &= !HitInfo::FAKE_DAMAGE;
         self
     }
 

@@ -838,7 +838,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_status(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::STATUS.reverse_bits();
+        self.inner &= !GroupUpdateFlags::STATUS;
         self.status = None;
         self
     }
@@ -881,7 +881,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_cur_hp(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::CUR_HP.reverse_bits();
+        self.inner &= !GroupUpdateFlags::CUR_HP;
         self.cur_hp = None;
         self
     }
@@ -924,7 +924,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_max_hp(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::MAX_HP.reverse_bits();
+        self.inner &= !GroupUpdateFlags::MAX_HP;
         self.max_hp = None;
         self
     }
@@ -967,7 +967,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_power_type(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::POWER_TYPE.reverse_bits();
+        self.inner &= !GroupUpdateFlags::POWER_TYPE;
         self.power_type = None;
         self
     }
@@ -1010,7 +1010,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_cur_power(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::CUR_POWER.reverse_bits();
+        self.inner &= !GroupUpdateFlags::CUR_POWER;
         self.cur_power = None;
         self
     }
@@ -1053,7 +1053,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_max_power(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::MAX_POWER.reverse_bits();
+        self.inner &= !GroupUpdateFlags::MAX_POWER;
         self.max_power = None;
         self
     }
@@ -1096,7 +1096,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_level(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::LEVEL.reverse_bits();
+        self.inner &= !GroupUpdateFlags::LEVEL;
         self.level = None;
         self
     }
@@ -1139,7 +1139,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_zone(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::ZONE.reverse_bits();
+        self.inner &= !GroupUpdateFlags::ZONE;
         self.zone = None;
         self
     }
@@ -1182,7 +1182,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_position(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::POSITION.reverse_bits();
+        self.inner &= !GroupUpdateFlags::POSITION;
         self.position = None;
         self
     }
@@ -1225,7 +1225,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_auras(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::AURAS.reverse_bits();
+        self.inner &= !GroupUpdateFlags::AURAS;
         self.auras = None;
         self
     }
@@ -1267,7 +1267,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_auras_2(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::AURAS_2.reverse_bits();
+        self.inner &= !GroupUpdateFlags::AURAS_2;
         self
     }
 
@@ -1309,7 +1309,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_guid(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_GUID.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_GUID;
         self.pet_guid = None;
         self
     }
@@ -1352,7 +1352,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_name(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_NAME.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_NAME;
         self.pet_name = None;
         self
     }
@@ -1395,7 +1395,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_model_id(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_MODEL_ID.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_MODEL_ID;
         self.pet_model_id = None;
         self
     }
@@ -1438,7 +1438,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_cur_hp(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_CUR_HP.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_CUR_HP;
         self.pet_cur_hp = None;
         self
     }
@@ -1481,7 +1481,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_max_hp(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_MAX_HP.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_MAX_HP;
         self.pet_max_hp = None;
         self
     }
@@ -1524,7 +1524,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_power_type(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_POWER_TYPE.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_POWER_TYPE;
         self.pet_power_type = None;
         self
     }
@@ -1567,7 +1567,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_cur_power(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_CUR_POWER.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_CUR_POWER;
         self.pet_cur_power = None;
         self
     }
@@ -1610,7 +1610,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_max_power(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_MAX_POWER.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_MAX_POWER;
         self.pet_max_power = None;
         self
     }
@@ -1653,7 +1653,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_auras(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_AURAS.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_AURAS;
         self.pet_auras = None;
         self
     }
@@ -1695,7 +1695,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_pet_auras_2(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::PET_AURAS_2.reverse_bits();
+        self.inner &= !GroupUpdateFlags::PET_AURAS_2;
         self
     }
 
@@ -1736,7 +1736,7 @@ impl SMSG_PARTY_MEMBER_STATS_FULL_GroupUpdateFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_mode_offline(mut self) -> Self {
-        self.inner &= GroupUpdateFlags::MODE_OFFLINE.reverse_bits();
+        self.inner &= !GroupUpdateFlags::MODE_OFFLINE;
         self
     }
 

@@ -405,7 +405,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_faction_horde(&mut self) -> Self {
-        self.inner &= Self::FACTION_HORDE.reverse_bits();
+        self.inner &= !Self::FACTION_HORDE;
         *self
     }
 
@@ -423,7 +423,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_faction_alliance(&mut self) -> Self {
-        self.inner &= Self::FACTION_ALLIANCE.reverse_bits();
+        self.inner &= !Self::FACTION_ALLIANCE;
         *self
     }
 
@@ -442,7 +442,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_dont_ignore_buy_price(&mut self) -> Self {
-        self.inner &= Self::DONT_IGNORE_BUY_PRICE.reverse_bits();
+        self.inner &= !Self::DONT_IGNORE_BUY_PRICE;
         *self
     }
 
@@ -460,7 +460,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_classify_as_caster(&mut self) -> Self {
-        self.inner &= Self::CLASSIFY_AS_CASTER.reverse_bits();
+        self.inner &= !Self::CLASSIFY_AS_CASTER;
         *self
     }
 
@@ -478,7 +478,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_classify_as_physical(&mut self) -> Self {
-        self.inner &= Self::CLASSIFY_AS_PHYSICAL.reverse_bits();
+        self.inner &= !Self::CLASSIFY_AS_PHYSICAL;
         *self
     }
 
@@ -496,7 +496,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_everyone_can_roll_need(&mut self) -> Self {
-        self.inner &= Self::EVERYONE_CAN_ROLL_NEED.reverse_bits();
+        self.inner &= !Self::EVERYONE_CAN_ROLL_NEED;
         *self
     }
 
@@ -514,7 +514,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_trade_bind_on_acquire(&mut self) -> Self {
-        self.inner &= Self::NO_TRADE_BIND_ON_ACQUIRE.reverse_bits();
+        self.inner &= !Self::NO_TRADE_BIND_ON_ACQUIRE;
         *self
     }
 
@@ -532,7 +532,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_can_trade_bind_on_acquire(&mut self) -> Self {
-        self.inner &= Self::CAN_TRADE_BIND_ON_ACQUIRE.reverse_bits();
+        self.inner &= !Self::CAN_TRADE_BIND_ON_ACQUIRE;
         *self
     }
 
@@ -550,7 +550,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_can_only_roll_greed(&mut self) -> Self {
-        self.inner &= Self::CAN_ONLY_ROLL_GREED.reverse_bits();
+        self.inner &= !Self::CAN_ONLY_ROLL_GREED;
         *self
     }
 
@@ -568,7 +568,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_caster_weapon(&mut self) -> Self {
-        self.inner &= Self::CASTER_WEAPON.reverse_bits();
+        self.inner &= !Self::CASTER_WEAPON;
         *self
     }
 
@@ -586,7 +586,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_delete_on_login(&mut self) -> Self {
-        self.inner &= Self::DELETE_ON_LOGIN.reverse_bits();
+        self.inner &= !Self::DELETE_ON_LOGIN;
         *self
     }
 
@@ -604,7 +604,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_internal_item(&mut self) -> Self {
-        self.inner &= Self::INTERNAL_ITEM.reverse_bits();
+        self.inner &= !Self::INTERNAL_ITEM;
         *self
     }
 
@@ -622,7 +622,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_vendor_value(&mut self) -> Self {
-        self.inner &= Self::NO_VENDOR_VALUE.reverse_bits();
+        self.inner &= !Self::NO_VENDOR_VALUE;
         *self
     }
 
@@ -640,7 +640,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_show_before_discovered(&mut self) -> Self {
-        self.inner &= Self::SHOW_BEFORE_DISCOVERED.reverse_bits();
+        self.inner &= !Self::SHOW_BEFORE_DISCOVERED;
         *self
     }
 
@@ -658,7 +658,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_override_gold_cost(&mut self) -> Self {
-        self.inner &= Self::OVERRIDE_GOLD_COST.reverse_bits();
+        self.inner &= !Self::OVERRIDE_GOLD_COST;
         *self
     }
 
@@ -676,7 +676,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_ignore_default_rated_bg_restrictions(&mut self) -> Self {
-        self.inner &= Self::IGNORE_DEFAULT_RATED_BG_RESTRICTIONS.reverse_bits();
+        self.inner &= !Self::IGNORE_DEFAULT_RATED_BG_RESTRICTIONS;
         *self
     }
 
@@ -694,7 +694,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_not_usable_in_rated_bg(&mut self) -> Self {
-        self.inner &= Self::NOT_USABLE_IN_RATED_BG.reverse_bits();
+        self.inner &= !Self::NOT_USABLE_IN_RATED_BG;
         *self
     }
 
@@ -712,7 +712,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_bnet_account_trade_ok(&mut self) -> Self {
-        self.inner &= Self::BNET_ACCOUNT_TRADE_OK.reverse_bits();
+        self.inner &= !Self::BNET_ACCOUNT_TRADE_OK;
         *self
     }
 
@@ -730,7 +730,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_confirm_before_use(&mut self) -> Self {
-        self.inner &= Self::CONFIRM_BEFORE_USE.reverse_bits();
+        self.inner &= !Self::CONFIRM_BEFORE_USE;
         *self
     }
 
@@ -748,7 +748,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_reevaluate_bonding_on_transform(&mut self) -> Self {
-        self.inner &= Self::REEVALUATE_BONDING_ON_TRANSFORM.reverse_bits();
+        self.inner &= !Self::REEVALUATE_BONDING_ON_TRANSFORM;
         *self
     }
 
@@ -766,7 +766,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_transform_on_charge_depletion(&mut self) -> Self {
-        self.inner &= Self::NO_TRANSFORM_ON_CHARGE_DEPLETION.reverse_bits();
+        self.inner &= !Self::NO_TRANSFORM_ON_CHARGE_DEPLETION;
         *self
     }
 
@@ -784,7 +784,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_alter_item_visual(&mut self) -> Self {
-        self.inner &= Self::NO_ALTER_ITEM_VISUAL.reverse_bits();
+        self.inner &= !Self::NO_ALTER_ITEM_VISUAL;
         *self
     }
 
@@ -802,7 +802,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_source_for_item_visual(&mut self) -> Self {
-        self.inner &= Self::NO_SOURCE_FOR_ITEM_VISUAL.reverse_bits();
+        self.inner &= !Self::NO_SOURCE_FOR_ITEM_VISUAL;
         *self
     }
 
@@ -820,7 +820,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_ignore_quality_for_item_visual_source(&mut self) -> Self {
-        self.inner &= Self::IGNORE_QUALITY_FOR_ITEM_VISUAL_SOURCE.reverse_bits();
+        self.inner &= !Self::IGNORE_QUALITY_FOR_ITEM_VISUAL_SOURCE;
         *self
     }
 
@@ -838,7 +838,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_no_durability(&mut self) -> Self {
-        self.inner &= Self::NO_DURABILITY.reverse_bits();
+        self.inner &= !Self::NO_DURABILITY;
         *self
     }
 
@@ -856,7 +856,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_role_tank(&mut self) -> Self {
-        self.inner &= Self::ROLE_TANK.reverse_bits();
+        self.inner &= !Self::ROLE_TANK;
         *self
     }
 
@@ -874,7 +874,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_role_healer(&mut self) -> Self {
-        self.inner &= Self::ROLE_HEALER.reverse_bits();
+        self.inner &= !Self::ROLE_HEALER;
         *self
     }
 
@@ -892,7 +892,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_role_damage(&mut self) -> Self {
-        self.inner &= Self::ROLE_DAMAGE.reverse_bits();
+        self.inner &= !Self::ROLE_DAMAGE;
         *self
     }
 
@@ -910,7 +910,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_can_drop_in_challenge_mode(&mut self) -> Self {
-        self.inner &= Self::CAN_DROP_IN_CHALLENGE_MODE.reverse_bits();
+        self.inner &= !Self::CAN_DROP_IN_CHALLENGE_MODE;
         *self
     }
 
@@ -928,7 +928,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_never_stack_in_loot_ui(&mut self) -> Self {
-        self.inner &= Self::NEVER_STACK_IN_LOOT_UI.reverse_bits();
+        self.inner &= !Self::NEVER_STACK_IN_LOOT_UI;
         *self
     }
 
@@ -946,7 +946,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_disenchant_to_loot_table(&mut self) -> Self {
-        self.inner &= Self::DISENCHANT_TO_LOOT_TABLE.reverse_bits();
+        self.inner &= !Self::DISENCHANT_TO_LOOT_TABLE;
         *self
     }
 
@@ -964,7 +964,7 @@ impl ItemFlag2 {
     }
 
     pub fn clear_used_in_a_tradeskill(&mut self) -> Self {
-        self.inner &= Self::USED_IN_A_TRADESKILL.reverse_bits();
+        self.inner &= !Self::USED_IN_A_TRADESKILL;
         *self
     }
 

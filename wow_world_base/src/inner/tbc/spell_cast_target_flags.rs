@@ -252,7 +252,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unused1(&mut self) -> Self {
-        self.inner &= Self::UNUSED1.reverse_bits();
+        self.inner &= !Self::UNUSED1;
         *self
     }
 
@@ -270,7 +270,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit(&mut self) -> Self {
-        self.inner &= Self::UNIT.reverse_bits();
+        self.inner &= !Self::UNIT;
         *self
     }
 
@@ -289,7 +289,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_raid(&mut self) -> Self {
-        self.inner &= Self::UNIT_RAID.reverse_bits();
+        self.inner &= !Self::UNIT_RAID;
         *self
     }
 
@@ -308,7 +308,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_party(&mut self) -> Self {
-        self.inner &= Self::UNIT_PARTY.reverse_bits();
+        self.inner &= !Self::UNIT_PARTY;
         *self
     }
 
@@ -326,7 +326,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_item(&mut self) -> Self {
-        self.inner &= Self::ITEM.reverse_bits();
+        self.inner &= !Self::ITEM;
         *self
     }
 
@@ -344,7 +344,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_source_location(&mut self) -> Self {
-        self.inner &= Self::SOURCE_LOCATION.reverse_bits();
+        self.inner &= !Self::SOURCE_LOCATION;
         *self
     }
 
@@ -362,7 +362,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_dest_location(&mut self) -> Self {
-        self.inner &= Self::DEST_LOCATION.reverse_bits();
+        self.inner &= !Self::DEST_LOCATION;
         *self
     }
 
@@ -381,7 +381,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_enemy(&mut self) -> Self {
-        self.inner &= Self::UNIT_ENEMY.reverse_bits();
+        self.inner &= !Self::UNIT_ENEMY;
         *self
     }
 
@@ -400,7 +400,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_ally(&mut self) -> Self {
-        self.inner &= Self::UNIT_ALLY.reverse_bits();
+        self.inner &= !Self::UNIT_ALLY;
         *self
     }
 
@@ -419,7 +419,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_corpse_enemy(&mut self) -> Self {
-        self.inner &= Self::CORPSE_ENEMY.reverse_bits();
+        self.inner &= !Self::CORPSE_ENEMY;
         *self
     }
 
@@ -438,7 +438,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_dead(&mut self) -> Self {
-        self.inner &= Self::UNIT_DEAD.reverse_bits();
+        self.inner &= !Self::UNIT_DEAD;
         *self
     }
 
@@ -457,7 +457,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_gameobject(&mut self) -> Self {
-        self.inner &= Self::GAMEOBJECT.reverse_bits();
+        self.inner &= !Self::GAMEOBJECT;
         *self
     }
 
@@ -476,7 +476,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_trade_item(&mut self) -> Self {
-        self.inner &= Self::TRADE_ITEM.reverse_bits();
+        self.inner &= !Self::TRADE_ITEM;
         *self
     }
 
@@ -495,7 +495,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_string(&mut self) -> Self {
-        self.inner &= Self::STRING.reverse_bits();
+        self.inner &= !Self::STRING;
         *self
     }
 
@@ -514,7 +514,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_locked(&mut self) -> Self {
-        self.inner &= Self::LOCKED.reverse_bits();
+        self.inner &= !Self::LOCKED;
         *self
     }
 
@@ -533,7 +533,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_corpse_ally(&mut self) -> Self {
-        self.inner &= Self::CORPSE_ALLY.reverse_bits();
+        self.inner &= !Self::CORPSE_ALLY;
         *self
     }
 
@@ -552,7 +552,7 @@ impl SpellCastTargetFlags {
     }
 
     pub fn clear_unit_minipet(&mut self) -> Self {
-        self.inner &= Self::UNIT_MINIPET.reverse_bits();
+        self.inner &= !Self::UNIT_MINIPET;
         *self
     }
 

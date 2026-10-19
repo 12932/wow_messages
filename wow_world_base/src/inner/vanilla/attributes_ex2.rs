@@ -418,7 +418,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_allow_dead_target(&mut self) -> Self {
-        self.inner &= Self::ALLOW_DEAD_TARGET.reverse_bits();
+        self.inner &= !Self::ALLOW_DEAD_TARGET;
         *self
     }
 
@@ -436,7 +436,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_no_shapeshift_ui(&mut self) -> Self {
-        self.inner &= Self::NO_SHAPESHIFT_UI.reverse_bits();
+        self.inner &= !Self::NO_SHAPESHIFT_UI;
         *self
     }
 
@@ -454,7 +454,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_ignore_line_of_sight(&mut self) -> Self {
-        self.inner &= Self::IGNORE_LINE_OF_SIGHT.reverse_bits();
+        self.inner &= !Self::IGNORE_LINE_OF_SIGHT;
         *self
     }
 
@@ -472,7 +472,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_allow_low_level_buff(&mut self) -> Self {
-        self.inner &= Self::ALLOW_LOW_LEVEL_BUFF.reverse_bits();
+        self.inner &= !Self::ALLOW_LOW_LEVEL_BUFF;
         *self
     }
 
@@ -490,7 +490,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_use_shapeshift_bar(&mut self) -> Self {
-        self.inner &= Self::USE_SHAPESHIFT_BAR.reverse_bits();
+        self.inner &= !Self::USE_SHAPESHIFT_BAR;
         *self
     }
 
@@ -508,7 +508,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_auto_repeat(&mut self) -> Self {
-        self.inner &= Self::AUTO_REPEAT.reverse_bits();
+        self.inner &= !Self::AUTO_REPEAT;
         *self
     }
 
@@ -526,7 +526,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_cannot_cast_on_tapped(&mut self) -> Self {
-        self.inner &= Self::CANNOT_CAST_ON_TAPPED.reverse_bits();
+        self.inner &= !Self::CANNOT_CAST_ON_TAPPED;
         *self
     }
 
@@ -544,7 +544,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_do_not_report_spell_failure(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_REPORT_SPELL_FAILURE.reverse_bits();
+        self.inner &= !Self::DO_NOT_REPORT_SPELL_FAILURE;
         *self
     }
 
@@ -562,7 +562,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_include_in_advanced_combat_log(&mut self) -> Self {
-        self.inner &= Self::INCLUDE_IN_ADVANCED_COMBAT_LOG.reverse_bits();
+        self.inner &= !Self::INCLUDE_IN_ADVANCED_COMBAT_LOG;
         *self
     }
 
@@ -580,7 +580,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_always_cast_as_unit(&mut self) -> Self {
-        self.inner &= Self::ALWAYS_CAST_AS_UNIT.reverse_bits();
+        self.inner &= !Self::ALWAYS_CAST_AS_UNIT;
         *self
     }
 
@@ -598,7 +598,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_special_taming_flag(&mut self) -> Self {
-        self.inner &= Self::SPECIAL_TAMING_FLAG.reverse_bits();
+        self.inner &= !Self::SPECIAL_TAMING_FLAG;
         *self
     }
 
@@ -616,7 +616,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_no_target_per_second_costs(&mut self) -> Self {
-        self.inner &= Self::NO_TARGET_PER_SECOND_COSTS.reverse_bits();
+        self.inner &= !Self::NO_TARGET_PER_SECOND_COSTS;
         *self
     }
 
@@ -634,7 +634,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_chain_from_caster(&mut self) -> Self {
-        self.inner &= Self::CHAIN_FROM_CASTER.reverse_bits();
+        self.inner &= !Self::CHAIN_FROM_CASTER;
         *self
     }
 
@@ -652,7 +652,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_enchant_own_item_only(&mut self) -> Self {
-        self.inner &= Self::ENCHANT_OWN_ITEM_ONLY.reverse_bits();
+        self.inner &= !Self::ENCHANT_OWN_ITEM_ONLY;
         *self
     }
 
@@ -670,7 +670,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_allow_while_invisible(&mut self) -> Self {
-        self.inner &= Self::ALLOW_WHILE_INVISIBLE.reverse_bits();
+        self.inner &= !Self::ALLOW_WHILE_INVISIBLE;
         *self
     }
 
@@ -688,7 +688,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_unk15(&mut self) -> Self {
-        self.inner &= Self::UNK15.reverse_bits();
+        self.inner &= !Self::UNK15;
         *self
     }
 
@@ -706,7 +706,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_no_active_pets(&mut self) -> Self {
-        self.inner &= Self::NO_ACTIVE_PETS.reverse_bits();
+        self.inner &= !Self::NO_ACTIVE_PETS;
         *self
     }
 
@@ -724,7 +724,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_do_not_reset_combat_timers(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_RESET_COMBAT_TIMERS.reverse_bits();
+        self.inner &= !Self::DO_NOT_RESET_COMBAT_TIMERS;
         *self
     }
 
@@ -742,7 +742,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_req_dead_pet(&mut self) -> Self {
-        self.inner &= Self::REQ_DEAD_PET.reverse_bits();
+        self.inner &= !Self::REQ_DEAD_PET;
         *self
     }
 
@@ -760,7 +760,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_allow_while_not_shapeshifted(&mut self) -> Self {
-        self.inner &= Self::ALLOW_WHILE_NOT_SHAPESHIFTED.reverse_bits();
+        self.inner &= !Self::ALLOW_WHILE_NOT_SHAPESHIFTED;
         *self
     }
 
@@ -778,7 +778,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_initiate_combat_post_cast(&mut self) -> Self {
-        self.inner &= Self::INITIATE_COMBAT_POST_CAST.reverse_bits();
+        self.inner &= !Self::INITIATE_COMBAT_POST_CAST;
         *self
     }
 
@@ -796,7 +796,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_fail_on_all_targets_immune(&mut self) -> Self {
-        self.inner &= Self::FAIL_ON_ALL_TARGETS_IMMUNE.reverse_bits();
+        self.inner &= !Self::FAIL_ON_ALL_TARGETS_IMMUNE;
         *self
     }
 
@@ -814,7 +814,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_no_initial_threat(&mut self) -> Self {
-        self.inner &= Self::NO_INITIAL_THREAT.reverse_bits();
+        self.inner &= !Self::NO_INITIAL_THREAT;
         *self
     }
 
@@ -832,7 +832,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_proc_cooldown_on_failure(&mut self) -> Self {
-        self.inner &= Self::PROC_COOLDOWN_ON_FAILURE.reverse_bits();
+        self.inner &= !Self::PROC_COOLDOWN_ON_FAILURE;
         *self
     }
 
@@ -850,7 +850,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_item_cast_with_owner_skill(&mut self) -> Self {
-        self.inner &= Self::ITEM_CAST_WITH_OWNER_SKILL.reverse_bits();
+        self.inner &= !Self::ITEM_CAST_WITH_OWNER_SKILL;
         *self
     }
 
@@ -868,7 +868,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_dont_block_mana_regen(&mut self) -> Self {
-        self.inner &= Self::DONT_BLOCK_MANA_REGEN.reverse_bits();
+        self.inner &= !Self::DONT_BLOCK_MANA_REGEN;
         *self
     }
 
@@ -886,7 +886,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_no_school_immunities(&mut self) -> Self {
-        self.inner &= Self::NO_SCHOOL_IMMUNITIES.reverse_bits();
+        self.inner &= !Self::NO_SCHOOL_IMMUNITIES;
         *self
     }
 
@@ -904,7 +904,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_ignore_weaponskill(&mut self) -> Self {
-        self.inner &= Self::IGNORE_WEAPONSKILL.reverse_bits();
+        self.inner &= !Self::IGNORE_WEAPONSKILL;
         *self
     }
 
@@ -922,7 +922,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_not_an_action(&mut self) -> Self {
-        self.inner &= Self::NOT_AN_ACTION.reverse_bits();
+        self.inner &= !Self::NOT_AN_ACTION;
         *self
     }
 
@@ -940,7 +940,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_cant_crit(&mut self) -> Self {
-        self.inner &= Self::CANT_CRIT.reverse_bits();
+        self.inner &= !Self::CANT_CRIT;
         *self
     }
 
@@ -958,7 +958,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_active_threat(&mut self) -> Self {
-        self.inner &= Self::ACTIVE_THREAT.reverse_bits();
+        self.inner &= !Self::ACTIVE_THREAT;
         *self
     }
 
@@ -976,7 +976,7 @@ impl AttributesEx2 {
     }
 
     pub fn clear_retain_item_cast(&mut self) -> Self {
-        self.inner &= Self::RETAIN_ITEM_CAST.reverse_bits();
+        self.inner &= !Self::RETAIN_ITEM_CAST;
         *self
     }
 

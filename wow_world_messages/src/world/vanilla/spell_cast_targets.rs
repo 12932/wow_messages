@@ -499,7 +499,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unused1(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNUSED1.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNUSED1;
         self
     }
 
@@ -529,7 +529,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT;
         self.unit = None;
         self
     }
@@ -559,7 +559,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unused2(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNUSED2.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNUSED2;
         self
     }
 
@@ -588,7 +588,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unused3(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNUSED3.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNUSED3;
         self
     }
 
@@ -618,7 +618,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_item(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::ITEM.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::ITEM | SpellCastTargetFlags::TRADE_ITEM);
         self.item = None;
         self
     }
@@ -649,7 +649,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_source_location(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::SOURCE_LOCATION.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::SOURCE_LOCATION;
         self.source_location = None;
         self
     }
@@ -680,7 +680,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_dest_location(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::DEST_LOCATION.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::DEST_LOCATION;
         self.dest_location = None;
         self
     }
@@ -710,7 +710,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_unk(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_UNK.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_UNK;
         self
     }
 
@@ -739,7 +739,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_corpse(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_CORPSE.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_CORPSE;
         self
     }
 
@@ -769,7 +769,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_gameobject(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::GAMEOBJECT.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::GAMEOBJECT | SpellCastTargetFlags::OBJECT_UNK);
         self.gameobject = None;
         self
     }
@@ -800,7 +800,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_string(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::STRING.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::STRING;
         self.string = None;
         self
     }
@@ -830,7 +830,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk1(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNK1.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNK1;
         self
     }
 
@@ -860,7 +860,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_corpse(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::CORPSE.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::CORPSE | SpellCastTargetFlags::PVP_CORPSE);
         self.corpse = None;
         self
     }

@@ -123,7 +123,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_visible_to_client(&mut self) -> Self {
-        self.inner &= Self::VISIBLE_TO_CLIENT.reverse_bits();
+        self.inner &= !Self::VISIBLE_TO_CLIENT;
         *self
     }
 
@@ -141,7 +141,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_enable_at_war(&mut self) -> Self {
-        self.inner &= Self::ENABLE_AT_WAR.reverse_bits();
+        self.inner &= !Self::ENABLE_AT_WAR;
         *self
     }
 
@@ -159,7 +159,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_hide_in_client(&mut self) -> Self {
-        self.inner &= Self::HIDE_IN_CLIENT.reverse_bits();
+        self.inner &= !Self::HIDE_IN_CLIENT;
         *self
     }
 
@@ -177,7 +177,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_force_hide_in_client(&mut self) -> Self {
-        self.inner &= Self::FORCE_HIDE_IN_CLIENT.reverse_bits();
+        self.inner &= !Self::FORCE_HIDE_IN_CLIENT;
         *self
     }
 
@@ -195,7 +195,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_force_at_peace(&mut self) -> Self {
-        self.inner &= Self::FORCE_AT_PEACE.reverse_bits();
+        self.inner &= !Self::FORCE_AT_PEACE;
         *self
     }
 
@@ -213,7 +213,7 @@ impl ReputationFlags {
     }
 
     pub fn clear_faction_inactive(&mut self) -> Self {
-        self.inner &= Self::FACTION_INACTIVE.reverse_bits();
+        self.inner &= !Self::FACTION_INACTIVE;
         *self
     }
 

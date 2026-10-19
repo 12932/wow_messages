@@ -167,7 +167,7 @@ impl AreaFlags {
     }
 
     pub fn clear_snow(&mut self) -> Self {
-        self.inner &= Self::SNOW.reverse_bits();
+        self.inner &= !Self::SNOW;
         *self
     }
 
@@ -185,7 +185,7 @@ impl AreaFlags {
     }
 
     pub fn clear_unk(&mut self) -> Self {
-        self.inner &= Self::UNK.reverse_bits();
+        self.inner &= !Self::UNK;
         *self
     }
 
@@ -203,7 +203,7 @@ impl AreaFlags {
     }
 
     pub fn clear_development(&mut self) -> Self {
-        self.inner &= Self::DEVELOPMENT.reverse_bits();
+        self.inner &= !Self::DEVELOPMENT;
         *self
     }
 
@@ -221,7 +221,7 @@ impl AreaFlags {
     }
 
     pub fn clear_unk2(&mut self) -> Self {
-        self.inner &= Self::UNK2.reverse_bits();
+        self.inner &= !Self::UNK2;
         *self
     }
 
@@ -239,7 +239,7 @@ impl AreaFlags {
     }
 
     pub fn clear_unk3(&mut self) -> Self {
-        self.inner &= Self::UNK3.reverse_bits();
+        self.inner &= !Self::UNK3;
         *self
     }
 
@@ -257,7 +257,7 @@ impl AreaFlags {
     }
 
     pub fn clear_city_slave(&mut self) -> Self {
-        self.inner &= Self::CITY_SLAVE.reverse_bits();
+        self.inner &= !Self::CITY_SLAVE;
         *self
     }
 
@@ -275,7 +275,7 @@ impl AreaFlags {
     }
 
     pub fn clear_city_allow_duels(&mut self) -> Self {
-        self.inner &= Self::CITY_ALLOW_DUELS.reverse_bits();
+        self.inner &= !Self::CITY_ALLOW_DUELS;
         *self
     }
 
@@ -293,7 +293,7 @@ impl AreaFlags {
     }
 
     pub fn clear_unk4(&mut self) -> Self {
-        self.inner &= Self::UNK4.reverse_bits();
+        self.inner &= !Self::UNK4;
         *self
     }
 
@@ -311,7 +311,7 @@ impl AreaFlags {
     }
 
     pub fn clear_city(&mut self) -> Self {
-        self.inner &= Self::CITY.reverse_bits();
+        self.inner &= !Self::CITY;
         *self
     }
 
@@ -329,7 +329,7 @@ impl AreaFlags {
     }
 
     pub fn clear_test(&mut self) -> Self {
-        self.inner &= Self::TEST.reverse_bits();
+        self.inner &= !Self::TEST;
         *self
     }
 

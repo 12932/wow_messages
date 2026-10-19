@@ -270,11 +270,20 @@ fn print_constructors_for_new_flag(s: &mut Writer, rd: &RustDefiner) {
             format!("clear_{}(mut self)", enumerator.name().to_lowercase()),
             "Self",
             |s| {
-                s.wln(format!(
-                    "self.inner &= {ty}::{name}.reverse_bits();",
-                    ty = rd.original_ty_name(),
-                    name = enumerator.name()
-                ));
+                // An else-if chain's setter takes any of its flags, so
+                // clearing it clears them all.
+                let ty = rd.original_ty_name();
+                let mask = match enumerator.members().first().map(|m| m.ty()) {
+                    Some(RustType::Enum { enumerators, .. }) if enumerator.contains_elseif() => {
+                        let flags: Vec<String> = enumerators
+                            .iter()
+                            .map(|e| format!("{ty}::{name}", name = e.name()))
+                            .collect();
+                        format!("({})", flags.join(" | "))
+                    }
+                    _ => format!("{ty}::{name}", name = enumerator.name()),
+                };
+                s.wln(format!("self.inner &= !{mask};"));
                 if enumerator.has_members_in_struct() {
                     s.wln(format!("self.{} = None;", enumerator.name().to_lowercase()));
                 }

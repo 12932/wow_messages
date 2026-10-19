@@ -547,7 +547,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_done(mut self) -> Self {
-        self.inner &= SplineFlag::DONE.reverse_bits();
+        self.inner &= !SplineFlag::DONE;
         self
     }
 
@@ -571,7 +571,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_falling(mut self) -> Self {
-        self.inner &= SplineFlag::FALLING.reverse_bits();
+        self.inner &= !SplineFlag::FALLING;
         self
     }
 
@@ -595,7 +595,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown3(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN3.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN3;
         self
     }
 
@@ -619,7 +619,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown4(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN4.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN4;
         self
     }
 
@@ -643,7 +643,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown5(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN5.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN5;
         self
     }
 
@@ -667,7 +667,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown6(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN6.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN6;
         self
     }
 
@@ -691,7 +691,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown7(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN7.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN7;
         self
     }
 
@@ -715,7 +715,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown8(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN8.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN8;
         self
     }
 
@@ -739,7 +739,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_runmode(mut self) -> Self {
-        self.inner &= SplineFlag::RUNMODE.reverse_bits();
+        self.inner &= !SplineFlag::RUNMODE;
         self
     }
 
@@ -763,7 +763,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_flying(mut self) -> Self {
-        self.inner &= SplineFlag::FLYING.reverse_bits();
+        self.inner &= !SplineFlag::FLYING;
         self
     }
 
@@ -787,7 +787,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_no_spline(mut self) -> Self {
-        self.inner &= SplineFlag::NO_SPLINE.reverse_bits();
+        self.inner &= !SplineFlag::NO_SPLINE;
         self
     }
 
@@ -812,7 +812,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_parabolic(mut self) -> Self {
-        self.inner &= SplineFlag::PARABOLIC.reverse_bits();
+        self.inner &= !SplineFlag::PARABOLIC;
         self.parabolic = None;
         self
     }
@@ -837,7 +837,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown13(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN13.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN13;
         self
     }
 
@@ -861,7 +861,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown14(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN14.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN14;
         self
     }
 
@@ -885,7 +885,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown15(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN15.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN15;
         self
     }
 
@@ -909,7 +909,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown16(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN16.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN16;
         self
     }
 
@@ -933,7 +933,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_final_point(mut self) -> Self {
-        self.inner &= SplineFlag::FINAL_POINT.reverse_bits();
+        self.inner &= !SplineFlag::FINAL_POINT;
         self
     }
 
@@ -957,7 +957,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_final_target(mut self) -> Self {
-        self.inner &= SplineFlag::FINAL_TARGET.reverse_bits();
+        self.inner &= !SplineFlag::FINAL_TARGET;
         self
     }
 
@@ -981,7 +981,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_final_angle(mut self) -> Self {
-        self.inner &= SplineFlag::FINAL_ANGLE.reverse_bits();
+        self.inner &= !SplineFlag::FINAL_ANGLE;
         self
     }
 
@@ -1005,7 +1005,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown19(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN19.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN19;
         self
     }
 
@@ -1029,7 +1029,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_cyclic(mut self) -> Self {
-        self.inner &= SplineFlag::CYCLIC.reverse_bits();
+        self.inner &= !SplineFlag::CYCLIC;
         self
     }
 
@@ -1054,7 +1054,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_enter_cycle(mut self) -> Self {
-        self.inner &= SplineFlag::ENTER_CYCLE.reverse_bits();
+        self.inner &= !SplineFlag::ENTER_CYCLE;
         self.enter_cycle = None;
         self
     }
@@ -1079,7 +1079,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_frozen(mut self) -> Self {
-        self.inner &= SplineFlag::FROZEN.reverse_bits();
+        self.inner &= !SplineFlag::FROZEN;
         self
     }
 
@@ -1103,7 +1103,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown23(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN23.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN23;
         self
     }
 
@@ -1127,7 +1127,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown24(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN24.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN24;
         self
     }
 
@@ -1151,7 +1151,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown25(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN25.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN25;
         self
     }
 
@@ -1175,7 +1175,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown26(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN26.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN26;
         self
     }
 
@@ -1199,7 +1199,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown27(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN27.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN27;
         self
     }
 
@@ -1223,7 +1223,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown28(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN28.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN28;
         self
     }
 
@@ -1247,7 +1247,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown29(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN29.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN29;
         self
     }
 
@@ -1271,7 +1271,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown30(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN30.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN30;
         self
     }
 
@@ -1295,7 +1295,7 @@ impl SMSG_MONSTER_MOVE_TRANSPORT_SplineFlag {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unknown31(mut self) -> Self {
-        self.inner &= SplineFlag::UNKNOWN31.reverse_bits();
+        self.inner &= !SplineFlag::UNKNOWN31;
         self
     }
 

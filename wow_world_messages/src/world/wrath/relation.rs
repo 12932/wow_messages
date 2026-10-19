@@ -251,7 +251,7 @@ impl Relation_RelationType {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_friend(mut self) -> Self {
-        self.inner &= RelationType::FRIEND.reverse_bits();
+        self.inner &= !RelationType::FRIEND;
         self.friend = None;
         self
     }
@@ -275,7 +275,7 @@ impl Relation_RelationType {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_ignored(mut self) -> Self {
-        self.inner &= RelationType::IGNORED.reverse_bits();
+        self.inner &= !RelationType::IGNORED;
         self
     }
 
@@ -298,7 +298,7 @@ impl Relation_RelationType {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_muted(mut self) -> Self {
-        self.inner &= RelationType::MUTED.reverse_bits();
+        self.inner &= !RelationType::MUTED;
         self
     }
 
@@ -321,7 +321,7 @@ impl Relation_RelationType {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_recruitafriend(mut self) -> Self {
-        self.inner &= RelationType::RECRUITAFRIEND.reverse_bits();
+        self.inner &= !RelationType::RECRUITAFRIEND;
         self
     }
 

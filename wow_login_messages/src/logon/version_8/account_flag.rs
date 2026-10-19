@@ -86,7 +86,7 @@ impl AccountFlag {
     }
 
     pub fn clear_gm(&mut self) -> Self {
-        self.inner &= Self::GM.reverse_bits();
+        self.inner &= !Self::GM;
         *self
     }
 
@@ -104,7 +104,7 @@ impl AccountFlag {
     }
 
     pub fn clear_trial(&mut self) -> Self {
-        self.inner &= Self::TRIAL.reverse_bits();
+        self.inner &= !Self::TRIAL;
         *self
     }
 
@@ -122,7 +122,7 @@ impl AccountFlag {
     }
 
     pub fn clear_propass(&mut self) -> Self {
-        self.inner &= Self::PROPASS.reverse_bits();
+        self.inner &= !Self::PROPASS;
         *self
     }
 

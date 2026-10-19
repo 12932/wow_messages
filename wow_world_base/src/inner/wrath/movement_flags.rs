@@ -592,7 +592,7 @@ impl MovementFlags {
     }
 
     pub fn clear_forward(&mut self) -> Self {
-        self.inner &= Self::FORWARD.reverse_bits();
+        self.inner &= !Self::FORWARD;
         *self
     }
 
@@ -610,7 +610,7 @@ impl MovementFlags {
     }
 
     pub fn clear_backward(&mut self) -> Self {
-        self.inner &= Self::BACKWARD.reverse_bits();
+        self.inner &= !Self::BACKWARD;
         *self
     }
 
@@ -628,7 +628,7 @@ impl MovementFlags {
     }
 
     pub fn clear_strafe_left(&mut self) -> Self {
-        self.inner &= Self::STRAFE_LEFT.reverse_bits();
+        self.inner &= !Self::STRAFE_LEFT;
         *self
     }
 
@@ -646,7 +646,7 @@ impl MovementFlags {
     }
 
     pub fn clear_strafe_right(&mut self) -> Self {
-        self.inner &= Self::STRAFE_RIGHT.reverse_bits();
+        self.inner &= !Self::STRAFE_RIGHT;
         *self
     }
 
@@ -664,7 +664,7 @@ impl MovementFlags {
     }
 
     pub fn clear_left(&mut self) -> Self {
-        self.inner &= Self::LEFT.reverse_bits();
+        self.inner &= !Self::LEFT;
         *self
     }
 
@@ -682,7 +682,7 @@ impl MovementFlags {
     }
 
     pub fn clear_right(&mut self) -> Self {
-        self.inner &= Self::RIGHT.reverse_bits();
+        self.inner &= !Self::RIGHT;
         *self
     }
 
@@ -700,7 +700,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pitch_up(&mut self) -> Self {
-        self.inner &= Self::PITCH_UP.reverse_bits();
+        self.inner &= !Self::PITCH_UP;
         *self
     }
 
@@ -718,7 +718,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pitch_down(&mut self) -> Self {
-        self.inner &= Self::PITCH_DOWN.reverse_bits();
+        self.inner &= !Self::PITCH_DOWN;
         *self
     }
 
@@ -737,7 +737,7 @@ impl MovementFlags {
     }
 
     pub fn clear_walking(&mut self) -> Self {
-        self.inner &= Self::WALKING.reverse_bits();
+        self.inner &= !Self::WALKING;
         *self
     }
 
@@ -756,7 +756,7 @@ impl MovementFlags {
     }
 
     pub fn clear_on_transport(&mut self) -> Self {
-        self.inner &= Self::ON_TRANSPORT.reverse_bits();
+        self.inner &= !Self::ON_TRANSPORT;
         *self
     }
 
@@ -775,7 +775,7 @@ impl MovementFlags {
     }
 
     pub fn clear_disable_gravity(&mut self) -> Self {
-        self.inner &= Self::DISABLE_GRAVITY.reverse_bits();
+        self.inner &= !Self::DISABLE_GRAVITY;
         *self
     }
 
@@ -794,7 +794,7 @@ impl MovementFlags {
     }
 
     pub fn clear_root(&mut self) -> Self {
-        self.inner &= Self::ROOT.reverse_bits();
+        self.inner &= !Self::ROOT;
         *self
     }
 
@@ -813,7 +813,7 @@ impl MovementFlags {
     }
 
     pub fn clear_falling(&mut self) -> Self {
-        self.inner &= Self::FALLING.reverse_bits();
+        self.inner &= !Self::FALLING;
         *self
     }
 
@@ -831,7 +831,7 @@ impl MovementFlags {
     }
 
     pub fn clear_falling_far(&mut self) -> Self {
-        self.inner &= Self::FALLING_FAR.reverse_bits();
+        self.inner &= !Self::FALLING_FAR;
         *self
     }
 
@@ -849,7 +849,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_stop(&mut self) -> Self {
-        self.inner &= Self::PENDING_STOP.reverse_bits();
+        self.inner &= !Self::PENDING_STOP;
         *self
     }
 
@@ -867,7 +867,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_strafe_stop(&mut self) -> Self {
-        self.inner &= Self::PENDING_STRAFE_STOP.reverse_bits();
+        self.inner &= !Self::PENDING_STRAFE_STOP;
         *self
     }
 
@@ -885,7 +885,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_forward(&mut self) -> Self {
-        self.inner &= Self::PENDING_FORWARD.reverse_bits();
+        self.inner &= !Self::PENDING_FORWARD;
         *self
     }
 
@@ -903,7 +903,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_backward(&mut self) -> Self {
-        self.inner &= Self::PENDING_BACKWARD.reverse_bits();
+        self.inner &= !Self::PENDING_BACKWARD;
         *self
     }
 
@@ -921,7 +921,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_strafe_left(&mut self) -> Self {
-        self.inner &= Self::PENDING_STRAFE_LEFT.reverse_bits();
+        self.inner &= !Self::PENDING_STRAFE_LEFT;
         *self
     }
 
@@ -939,7 +939,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_strafe_right(&mut self) -> Self {
-        self.inner &= Self::PENDING_STRAFE_RIGHT.reverse_bits();
+        self.inner &= !Self::PENDING_STRAFE_RIGHT;
         *self
     }
 
@@ -957,7 +957,7 @@ impl MovementFlags {
     }
 
     pub fn clear_pending_root(&mut self) -> Self {
-        self.inner &= Self::PENDING_ROOT.reverse_bits();
+        self.inner &= !Self::PENDING_ROOT;
         *self
     }
 
@@ -976,7 +976,7 @@ impl MovementFlags {
     }
 
     pub fn clear_swimming(&mut self) -> Self {
-        self.inner &= Self::SWIMMING.reverse_bits();
+        self.inner &= !Self::SWIMMING;
         *self
     }
 
@@ -995,7 +995,7 @@ impl MovementFlags {
     }
 
     pub fn clear_ascending(&mut self) -> Self {
-        self.inner &= Self::ASCENDING.reverse_bits();
+        self.inner &= !Self::ASCENDING;
         *self
     }
 
@@ -1013,7 +1013,7 @@ impl MovementFlags {
     }
 
     pub fn clear_descending(&mut self) -> Self {
-        self.inner &= Self::DESCENDING.reverse_bits();
+        self.inner &= !Self::DESCENDING;
         *self
     }
 
@@ -1032,7 +1032,7 @@ impl MovementFlags {
     }
 
     pub fn clear_can_fly(&mut self) -> Self {
-        self.inner &= Self::CAN_FLY.reverse_bits();
+        self.inner &= !Self::CAN_FLY;
         *self
     }
 
@@ -1051,7 +1051,7 @@ impl MovementFlags {
     }
 
     pub fn clear_flying(&mut self) -> Self {
-        self.inner &= Self::FLYING.reverse_bits();
+        self.inner &= !Self::FLYING;
         *self
     }
 
@@ -1070,7 +1070,7 @@ impl MovementFlags {
     }
 
     pub fn clear_spline_elevation(&mut self) -> Self {
-        self.inner &= Self::SPLINE_ELEVATION.reverse_bits();
+        self.inner &= !Self::SPLINE_ELEVATION;
         *self
     }
 
@@ -1089,7 +1089,7 @@ impl MovementFlags {
     }
 
     pub fn clear_spline_enabled(&mut self) -> Self {
-        self.inner &= Self::SPLINE_ENABLED.reverse_bits();
+        self.inner &= !Self::SPLINE_ENABLED;
         *self
     }
 
@@ -1108,7 +1108,7 @@ impl MovementFlags {
     }
 
     pub fn clear_waterwalking(&mut self) -> Self {
-        self.inner &= Self::WATERWALKING.reverse_bits();
+        self.inner &= !Self::WATERWALKING;
         *self
     }
 
@@ -1127,7 +1127,7 @@ impl MovementFlags {
     }
 
     pub fn clear_falling_slow(&mut self) -> Self {
-        self.inner &= Self::FALLING_SLOW.reverse_bits();
+        self.inner &= !Self::FALLING_SLOW;
         *self
     }
 
@@ -1146,7 +1146,7 @@ impl MovementFlags {
     }
 
     pub fn clear_hover(&mut self) -> Self {
-        self.inner &= Self::HOVER.reverse_bits();
+        self.inner &= !Self::HOVER;
         *self
     }
 
@@ -1164,7 +1164,7 @@ impl MovementFlags {
     }
 
     pub fn clear_no_strafe(&mut self) -> Self {
-        self.inner &= Self::NO_STRAFE.reverse_bits();
+        self.inner &= !Self::NO_STRAFE;
         *self
     }
 
@@ -1182,7 +1182,7 @@ impl MovementFlags {
     }
 
     pub fn clear_no_jumping(&mut self) -> Self {
-        self.inner &= Self::NO_JUMPING.reverse_bits();
+        self.inner &= !Self::NO_JUMPING;
         *self
     }
 
@@ -1201,7 +1201,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk3(&mut self) -> Self {
-        self.inner &= Self::UNK3.reverse_bits();
+        self.inner &= !Self::UNK3;
         *self
     }
 
@@ -1219,7 +1219,7 @@ impl MovementFlags {
     }
 
     pub fn clear_full_speed_turning(&mut self) -> Self {
-        self.inner &= Self::FULL_SPEED_TURNING.reverse_bits();
+        self.inner &= !Self::FULL_SPEED_TURNING;
         *self
     }
 
@@ -1237,7 +1237,7 @@ impl MovementFlags {
     }
 
     pub fn clear_full_speed_pitching(&mut self) -> Self {
-        self.inner &= Self::FULL_SPEED_PITCHING.reverse_bits();
+        self.inner &= !Self::FULL_SPEED_PITCHING;
         *self
     }
 
@@ -1255,7 +1255,7 @@ impl MovementFlags {
     }
 
     pub fn clear_always_allow_pitching(&mut self) -> Self {
-        self.inner &= Self::ALWAYS_ALLOW_PITCHING.reverse_bits();
+        self.inner &= !Self::ALWAYS_ALLOW_PITCHING;
         *self
     }
 
@@ -1273,7 +1273,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk7(&mut self) -> Self {
-        self.inner &= Self::UNK7.reverse_bits();
+        self.inner &= !Self::UNK7;
         *self
     }
 
@@ -1291,7 +1291,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk8(&mut self) -> Self {
-        self.inner &= Self::UNK8.reverse_bits();
+        self.inner &= !Self::UNK8;
         *self
     }
 
@@ -1309,7 +1309,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk9(&mut self) -> Self {
-        self.inner &= Self::UNK9.reverse_bits();
+        self.inner &= !Self::UNK9;
         *self
     }
 
@@ -1327,7 +1327,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk10(&mut self) -> Self {
-        self.inner &= Self::UNK10.reverse_bits();
+        self.inner &= !Self::UNK10;
         *self
     }
 
@@ -1345,7 +1345,7 @@ impl MovementFlags {
     }
 
     pub fn clear_interpolated_movement(&mut self) -> Self {
-        self.inner &= Self::INTERPOLATED_MOVEMENT.reverse_bits();
+        self.inner &= !Self::INTERPOLATED_MOVEMENT;
         *self
     }
 
@@ -1363,7 +1363,7 @@ impl MovementFlags {
     }
 
     pub fn clear_interpolated_turning(&mut self) -> Self {
-        self.inner &= Self::INTERPOLATED_TURNING.reverse_bits();
+        self.inner &= !Self::INTERPOLATED_TURNING;
         *self
     }
 
@@ -1381,7 +1381,7 @@ impl MovementFlags {
     }
 
     pub fn clear_interpolated_pitching(&mut self) -> Self {
-        self.inner &= Self::INTERPOLATED_PITCHING.reverse_bits();
+        self.inner &= !Self::INTERPOLATED_PITCHING;
         *self
     }
 
@@ -1399,7 +1399,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk14(&mut self) -> Self {
-        self.inner &= Self::UNK14.reverse_bits();
+        self.inner &= !Self::UNK14;
         *self
     }
 
@@ -1417,7 +1417,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk15(&mut self) -> Self {
-        self.inner &= Self::UNK15.reverse_bits();
+        self.inner &= !Self::UNK15;
         *self
     }
 
@@ -1435,7 +1435,7 @@ impl MovementFlags {
     }
 
     pub fn clear_unk16(&mut self) -> Self {
-        self.inner &= Self::UNK16.reverse_bits();
+        self.inner &= !Self::UNK16;
         *self
     }
 
@@ -1453,7 +1453,7 @@ impl MovementFlags {
     }
 
     pub fn clear_on_transport_and_interpolated_movement(&mut self) -> Self {
-        self.inner &= Self::ON_TRANSPORT_AND_INTERPOLATED_MOVEMENT.reverse_bits();
+        self.inner &= !Self::ON_TRANSPORT_AND_INTERPOLATED_MOVEMENT;
         *self
     }
 

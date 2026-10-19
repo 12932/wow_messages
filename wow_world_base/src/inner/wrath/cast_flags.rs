@@ -417,7 +417,7 @@ impl CastFlags {
     }
 
     pub fn clear_pending(&mut self) -> Self {
-        self.inner &= Self::PENDING.reverse_bits();
+        self.inner &= !Self::PENDING;
         *self
     }
 
@@ -435,7 +435,7 @@ impl CastFlags {
     }
 
     pub fn clear_has_trajectory(&mut self) -> Self {
-        self.inner &= Self::HAS_TRAJECTORY.reverse_bits();
+        self.inner &= !Self::HAS_TRAJECTORY;
         *self
     }
 
@@ -453,7 +453,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_3(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_3.reverse_bits();
+        self.inner &= !Self::UNKNOWN_3;
         *self
     }
 
@@ -472,7 +472,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_4(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_4.reverse_bits();
+        self.inner &= !Self::UNKNOWN_4;
         *self
     }
 
@@ -490,7 +490,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_5(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_5.reverse_bits();
+        self.inner &= !Self::UNKNOWN_5;
         *self
     }
 
@@ -509,7 +509,7 @@ impl CastFlags {
     }
 
     pub fn clear_ammo(&mut self) -> Self {
-        self.inner &= Self::AMMO.reverse_bits();
+        self.inner &= !Self::AMMO;
         *self
     }
 
@@ -527,7 +527,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_7(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_7.reverse_bits();
+        self.inner &= !Self::UNKNOWN_7;
         *self
     }
 
@@ -545,7 +545,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_8(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_8.reverse_bits();
+        self.inner &= !Self::UNKNOWN_8;
         *self
     }
 
@@ -563,7 +563,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_9(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_9.reverse_bits();
+        self.inner &= !Self::UNKNOWN_9;
         *self
     }
 
@@ -581,7 +581,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_10(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_10.reverse_bits();
+        self.inner &= !Self::UNKNOWN_10;
         *self
     }
 
@@ -599,7 +599,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_11(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_11.reverse_bits();
+        self.inner &= !Self::UNKNOWN_11;
         *self
     }
 
@@ -617,7 +617,7 @@ impl CastFlags {
     }
 
     pub fn clear_power_left_self(&mut self) -> Self {
-        self.inner &= Self::POWER_LEFT_SELF.reverse_bits();
+        self.inner &= !Self::POWER_LEFT_SELF;
         *self
     }
 
@@ -635,7 +635,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_13(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_13.reverse_bits();
+        self.inner &= !Self::UNKNOWN_13;
         *self
     }
 
@@ -653,7 +653,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_14(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_14.reverse_bits();
+        self.inner &= !Self::UNKNOWN_14;
         *self
     }
 
@@ -671,7 +671,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_15(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_15.reverse_bits();
+        self.inner &= !Self::UNKNOWN_15;
         *self
     }
 
@@ -689,7 +689,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_16(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_16.reverse_bits();
+        self.inner &= !Self::UNKNOWN_16;
         *self
     }
 
@@ -707,7 +707,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_17(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_17.reverse_bits();
+        self.inner &= !Self::UNKNOWN_17;
         *self
     }
 
@@ -725,7 +725,7 @@ impl CastFlags {
     }
 
     pub fn clear_adjust_missile(&mut self) -> Self {
-        self.inner &= Self::ADJUST_MISSILE.reverse_bits();
+        self.inner &= !Self::ADJUST_MISSILE;
         *self
     }
 
@@ -744,7 +744,7 @@ impl CastFlags {
     }
 
     pub fn clear_no_gcd(&mut self) -> Self {
-        self.inner &= Self::NO_GCD.reverse_bits();
+        self.inner &= !Self::NO_GCD;
         *self
     }
 
@@ -762,7 +762,7 @@ impl CastFlags {
     }
 
     pub fn clear_visual_chain(&mut self) -> Self {
-        self.inner &= Self::VISUAL_CHAIN.reverse_bits();
+        self.inner &= !Self::VISUAL_CHAIN;
         *self
     }
 
@@ -780,7 +780,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_21(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_21.reverse_bits();
+        self.inner &= !Self::UNKNOWN_21;
         *self
     }
 
@@ -798,7 +798,7 @@ impl CastFlags {
     }
 
     pub fn clear_rune_list(&mut self) -> Self {
-        self.inner &= Self::RUNE_LIST.reverse_bits();
+        self.inner &= !Self::RUNE_LIST;
         *self
     }
 
@@ -816,7 +816,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_23(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_23.reverse_bits();
+        self.inner &= !Self::UNKNOWN_23;
         *self
     }
 
@@ -834,7 +834,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_24(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_24.reverse_bits();
+        self.inner &= !Self::UNKNOWN_24;
         *self
     }
 
@@ -852,7 +852,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_25(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_25.reverse_bits();
+        self.inner &= !Self::UNKNOWN_25;
         *self
     }
 
@@ -870,7 +870,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_26(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_26.reverse_bits();
+        self.inner &= !Self::UNKNOWN_26;
         *self
     }
 
@@ -888,7 +888,7 @@ impl CastFlags {
     }
 
     pub fn clear_immunity(&mut self) -> Self {
-        self.inner &= Self::IMMUNITY.reverse_bits();
+        self.inner &= !Self::IMMUNITY;
         *self
     }
 
@@ -906,7 +906,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_28(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_28.reverse_bits();
+        self.inner &= !Self::UNKNOWN_28;
         *self
     }
 
@@ -924,7 +924,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_29(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_29.reverse_bits();
+        self.inner &= !Self::UNKNOWN_29;
         *self
     }
 
@@ -942,7 +942,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_30(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_30.reverse_bits();
+        self.inner &= !Self::UNKNOWN_30;
         *self
     }
 
@@ -961,7 +961,7 @@ impl CastFlags {
     }
 
     pub fn clear_heal_prediction(&mut self) -> Self {
-        self.inner &= Self::HEAL_PREDICTION.reverse_bits();
+        self.inner &= !Self::HEAL_PREDICTION;
         *self
     }
 
@@ -979,7 +979,7 @@ impl CastFlags {
     }
 
     pub fn clear_unknown_32(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN_32.reverse_bits();
+        self.inner &= !Self::UNKNOWN_32;
         *self
     }
 

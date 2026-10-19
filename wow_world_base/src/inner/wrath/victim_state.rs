@@ -153,7 +153,7 @@ impl VictimState {
     }
 
     pub fn clear_hit(&mut self) -> Self {
-        self.inner &= Self::HIT.reverse_bits();
+        self.inner &= !Self::HIT;
         *self
     }
 
@@ -171,7 +171,7 @@ impl VictimState {
     }
 
     pub fn clear_dodge(&mut self) -> Self {
-        self.inner &= Self::DODGE.reverse_bits();
+        self.inner &= !Self::DODGE;
         *self
     }
 
@@ -189,7 +189,7 @@ impl VictimState {
     }
 
     pub fn clear_parry(&mut self) -> Self {
-        self.inner &= Self::PARRY.reverse_bits();
+        self.inner &= !Self::PARRY;
         *self
     }
 
@@ -207,7 +207,7 @@ impl VictimState {
     }
 
     pub fn clear_interrupt(&mut self) -> Self {
-        self.inner &= Self::INTERRUPT.reverse_bits();
+        self.inner &= !Self::INTERRUPT;
         *self
     }
 
@@ -226,7 +226,7 @@ impl VictimState {
     }
 
     pub fn clear_blocks(&mut self) -> Self {
-        self.inner &= Self::BLOCKS.reverse_bits();
+        self.inner &= !Self::BLOCKS;
         *self
     }
 
@@ -244,7 +244,7 @@ impl VictimState {
     }
 
     pub fn clear_evades(&mut self) -> Self {
-        self.inner &= Self::EVADES.reverse_bits();
+        self.inner &= !Self::EVADES;
         *self
     }
 
@@ -262,7 +262,7 @@ impl VictimState {
     }
 
     pub fn clear_is_immune(&mut self) -> Self {
-        self.inner &= Self::IS_IMMUNE.reverse_bits();
+        self.inner &= !Self::IS_IMMUNE;
         *self
     }
 
@@ -280,7 +280,7 @@ impl VictimState {
     }
 
     pub fn clear_deflects(&mut self) -> Self {
-        self.inner &= Self::DEFLECTS.reverse_bits();
+        self.inner &= !Self::DEFLECTS;
         *self
     }
 

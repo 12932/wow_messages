@@ -152,7 +152,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_character_info(&mut self) -> Self {
-        self.inner &= Self::CHARACTER_INFO.reverse_bits();
+        self.inner &= !Self::CHARACTER_INFO;
         *self
     }
 
@@ -170,7 +170,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_comment(&mut self) -> Self {
-        self.inner &= Self::COMMENT.reverse_bits();
+        self.inner &= !Self::COMMENT;
         *self
     }
 
@@ -188,7 +188,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_group_leader(&mut self) -> Self {
-        self.inner &= Self::GROUP_LEADER.reverse_bits();
+        self.inner &= !Self::GROUP_LEADER;
         *self
     }
 
@@ -206,7 +206,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_group_guid(&mut self) -> Self {
-        self.inner &= Self::GROUP_GUID.reverse_bits();
+        self.inner &= !Self::GROUP_GUID;
         *self
     }
 
@@ -224,7 +224,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_roles(&mut self) -> Self {
-        self.inner &= Self::ROLES.reverse_bits();
+        self.inner &= !Self::ROLES;
         *self
     }
 
@@ -242,7 +242,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_area(&mut self) -> Self {
-        self.inner &= Self::AREA.reverse_bits();
+        self.inner &= !Self::AREA;
         *self
     }
 
@@ -260,7 +260,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_status(&mut self) -> Self {
-        self.inner &= Self::STATUS.reverse_bits();
+        self.inner &= !Self::STATUS;
         *self
     }
 
@@ -278,7 +278,7 @@ impl LfgUpdateFlag {
     }
 
     pub fn clear_bound(&mut self) -> Self {
-        self.inner &= Self::BOUND.reverse_bits();
+        self.inner &= !Self::BOUND;
         *self
     }
 

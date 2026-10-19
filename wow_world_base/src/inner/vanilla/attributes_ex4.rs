@@ -198,7 +198,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_no_cast_log(&mut self) -> Self {
-        self.inner &= Self::NO_CAST_LOG.reverse_bits();
+        self.inner &= !Self::NO_CAST_LOG;
         *self
     }
 
@@ -216,7 +216,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_class_trigger_only_on_target(&mut self) -> Self {
-        self.inner &= Self::CLASS_TRIGGER_ONLY_ON_TARGET.reverse_bits();
+        self.inner &= !Self::CLASS_TRIGGER_ONLY_ON_TARGET;
         *self
     }
 
@@ -234,7 +234,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_aura_expires_offline(&mut self) -> Self {
-        self.inner &= Self::AURA_EXPIRES_OFFLINE.reverse_bits();
+        self.inner &= !Self::AURA_EXPIRES_OFFLINE;
         *self
     }
 
@@ -252,7 +252,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_no_helpful_threat(&mut self) -> Self {
-        self.inner &= Self::NO_HELPFUL_THREAT.reverse_bits();
+        self.inner &= !Self::NO_HELPFUL_THREAT;
         *self
     }
 
@@ -270,7 +270,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_no_harmful_threat(&mut self) -> Self {
-        self.inner &= Self::NO_HARMFUL_THREAT.reverse_bits();
+        self.inner &= !Self::NO_HARMFUL_THREAT;
         *self
     }
 
@@ -288,7 +288,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_allow_client_targeting(&mut self) -> Self {
-        self.inner &= Self::ALLOW_CLIENT_TARGETING.reverse_bits();
+        self.inner &= !Self::ALLOW_CLIENT_TARGETING;
         *self
     }
 
@@ -306,7 +306,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_cannot_be_stolen(&mut self) -> Self {
-        self.inner &= Self::CANNOT_BE_STOLEN.reverse_bits();
+        self.inner &= !Self::CANNOT_BE_STOLEN;
         *self
     }
 
@@ -324,7 +324,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_allow_cast_while_casting(&mut self) -> Self {
-        self.inner &= Self::ALLOW_CAST_WHILE_CASTING.reverse_bits();
+        self.inner &= !Self::ALLOW_CAST_WHILE_CASTING;
         *self
     }
 
@@ -342,7 +342,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_ignore_damage_taken_modifiers(&mut self) -> Self {
-        self.inner &= Self::IGNORE_DAMAGE_TAKEN_MODIFIERS.reverse_bits();
+        self.inner &= !Self::IGNORE_DAMAGE_TAKEN_MODIFIERS;
         *self
     }
 
@@ -360,7 +360,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_combat_feedback_when_usable(&mut self) -> Self {
-        self.inner &= Self::COMBAT_FEEDBACK_WHEN_USABLE.reverse_bits();
+        self.inner &= !Self::COMBAT_FEEDBACK_WHEN_USABLE;
         *self
     }
 
@@ -378,7 +378,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_weapon_speed_cost_scaling(&mut self) -> Self {
-        self.inner &= Self::WEAPON_SPEED_COST_SCALING.reverse_bits();
+        self.inner &= !Self::WEAPON_SPEED_COST_SCALING;
         *self
     }
 
@@ -396,7 +396,7 @@ impl AttributesEx4 {
     }
 
     pub fn clear_no_partial_immunity(&mut self) -> Self {
-        self.inner &= Self::NO_PARTIAL_IMMUNITY.reverse_bits();
+        self.inner &= !Self::NO_PARTIAL_IMMUNITY;
         *self
     }
 

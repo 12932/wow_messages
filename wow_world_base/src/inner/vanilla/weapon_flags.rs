@@ -101,7 +101,7 @@ impl WeaponFlags {
     }
 
     pub fn clear_sheathe_weapons_automatically(&mut self) -> Self {
-        self.inner &= Self::SHEATHE_WEAPONS_AUTOMATICALLY.reverse_bits();
+        self.inner &= !Self::SHEATHE_WEAPONS_AUTOMATICALLY;
         *self
     }
 
@@ -119,7 +119,7 @@ impl WeaponFlags {
     }
 
     pub fn clear_sheathe_weapons_automatically_2(&mut self) -> Self {
-        self.inner &= Self::SHEATHE_WEAPONS_AUTOMATICALLY_2.reverse_bits();
+        self.inner &= !Self::SHEATHE_WEAPONS_AUTOMATICALLY_2;
         *self
     }
 
@@ -137,7 +137,7 @@ impl WeaponFlags {
     }
 
     pub fn clear_unsheathe_weapons(&mut self) -> Self {
-        self.inner &= Self::UNSHEATHE_WEAPONS.reverse_bits();
+        self.inner &= !Self::UNSHEATHE_WEAPONS;
         *self
     }
 

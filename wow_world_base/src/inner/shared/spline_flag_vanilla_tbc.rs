@@ -416,7 +416,7 @@ impl SplineFlag {
     }
 
     pub fn clear_done(&mut self) -> Self {
-        self.inner &= Self::DONE.reverse_bits();
+        self.inner &= !Self::DONE;
         *self
     }
 
@@ -435,7 +435,7 @@ impl SplineFlag {
     }
 
     pub fn clear_falling(&mut self) -> Self {
-        self.inner &= Self::FALLING.reverse_bits();
+        self.inner &= !Self::FALLING;
         *self
     }
 
@@ -453,7 +453,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown3(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN3.reverse_bits();
+        self.inner &= !Self::UNKNOWN3;
         *self
     }
 
@@ -471,7 +471,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown4(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN4.reverse_bits();
+        self.inner &= !Self::UNKNOWN4;
         *self
     }
 
@@ -489,7 +489,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown5(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN5.reverse_bits();
+        self.inner &= !Self::UNKNOWN5;
         *self
     }
 
@@ -507,7 +507,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown6(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN6.reverse_bits();
+        self.inner &= !Self::UNKNOWN6;
         *self
     }
 
@@ -525,7 +525,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown7(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN7.reverse_bits();
+        self.inner &= !Self::UNKNOWN7;
         *self
     }
 
@@ -543,7 +543,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown8(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN8.reverse_bits();
+        self.inner &= !Self::UNKNOWN8;
         *self
     }
 
@@ -561,7 +561,7 @@ impl SplineFlag {
     }
 
     pub fn clear_run_mode(&mut self) -> Self {
-        self.inner &= Self::RUN_MODE.reverse_bits();
+        self.inner &= !Self::RUN_MODE;
         *self
     }
 
@@ -580,7 +580,7 @@ impl SplineFlag {
     }
 
     pub fn clear_flying(&mut self) -> Self {
-        self.inner &= Self::FLYING.reverse_bits();
+        self.inner &= !Self::FLYING;
         *self
     }
 
@@ -598,7 +598,7 @@ impl SplineFlag {
     }
 
     pub fn clear_no_spline(&mut self) -> Self {
-        self.inner &= Self::NO_SPLINE.reverse_bits();
+        self.inner &= !Self::NO_SPLINE;
         *self
     }
 
@@ -616,7 +616,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown12(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN12.reverse_bits();
+        self.inner &= !Self::UNKNOWN12;
         *self
     }
 
@@ -634,7 +634,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown13(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN13.reverse_bits();
+        self.inner &= !Self::UNKNOWN13;
         *self
     }
 
@@ -652,7 +652,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown14(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN14.reverse_bits();
+        self.inner &= !Self::UNKNOWN14;
         *self
     }
 
@@ -670,7 +670,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown15(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN15.reverse_bits();
+        self.inner &= !Self::UNKNOWN15;
         *self
     }
 
@@ -688,7 +688,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown16(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN16.reverse_bits();
+        self.inner &= !Self::UNKNOWN16;
         *self
     }
 
@@ -706,7 +706,7 @@ impl SplineFlag {
     }
 
     pub fn clear_final_point(&mut self) -> Self {
-        self.inner &= Self::FINAL_POINT.reverse_bits();
+        self.inner &= !Self::FINAL_POINT;
         *self
     }
 
@@ -724,7 +724,7 @@ impl SplineFlag {
     }
 
     pub fn clear_final_target(&mut self) -> Self {
-        self.inner &= Self::FINAL_TARGET.reverse_bits();
+        self.inner &= !Self::FINAL_TARGET;
         *self
     }
 
@@ -742,7 +742,7 @@ impl SplineFlag {
     }
 
     pub fn clear_final_angle(&mut self) -> Self {
-        self.inner &= Self::FINAL_ANGLE.reverse_bits();
+        self.inner &= !Self::FINAL_ANGLE;
         *self
     }
 
@@ -761,7 +761,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown19(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN19.reverse_bits();
+        self.inner &= !Self::UNKNOWN19;
         *self
     }
 
@@ -780,7 +780,7 @@ impl SplineFlag {
     }
 
     pub fn clear_cyclic(&mut self) -> Self {
-        self.inner &= Self::CYCLIC.reverse_bits();
+        self.inner &= !Self::CYCLIC;
         *self
     }
 
@@ -799,7 +799,7 @@ impl SplineFlag {
     }
 
     pub fn clear_enter_cycle(&mut self) -> Self {
-        self.inner &= Self::ENTER_CYCLE.reverse_bits();
+        self.inner &= !Self::ENTER_CYCLE;
         *self
     }
 
@@ -818,7 +818,7 @@ impl SplineFlag {
     }
 
     pub fn clear_frozen(&mut self) -> Self {
-        self.inner &= Self::FROZEN.reverse_bits();
+        self.inner &= !Self::FROZEN;
         *self
     }
 
@@ -836,7 +836,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown23(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN23.reverse_bits();
+        self.inner &= !Self::UNKNOWN23;
         *self
     }
 
@@ -854,7 +854,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown24(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN24.reverse_bits();
+        self.inner &= !Self::UNKNOWN24;
         *self
     }
 
@@ -873,7 +873,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown25(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN25.reverse_bits();
+        self.inner &= !Self::UNKNOWN25;
         *self
     }
 
@@ -891,7 +891,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown26(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN26.reverse_bits();
+        self.inner &= !Self::UNKNOWN26;
         *self
     }
 
@@ -909,7 +909,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown27(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN27.reverse_bits();
+        self.inner &= !Self::UNKNOWN27;
         *self
     }
 
@@ -927,7 +927,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown28(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN28.reverse_bits();
+        self.inner &= !Self::UNKNOWN28;
         *self
     }
 
@@ -945,7 +945,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown29(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN29.reverse_bits();
+        self.inner &= !Self::UNKNOWN29;
         *self
     }
 
@@ -963,7 +963,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown30(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN30.reverse_bits();
+        self.inner &= !Self::UNKNOWN30;
         *self
     }
 
@@ -981,7 +981,7 @@ impl SplineFlag {
     }
 
     pub fn clear_unknown31(&mut self) -> Self {
-        self.inner &= Self::UNKNOWN31.reverse_bits();
+        self.inner &= !Self::UNKNOWN31;
         *self
     }
 

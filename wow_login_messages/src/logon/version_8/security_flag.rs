@@ -96,7 +96,7 @@ impl SecurityFlag {
     }
 
     pub fn clear_pin(&mut self) -> Self {
-        self.inner &= Self::PIN.reverse_bits();
+        self.inner &= !Self::PIN;
         *self
     }
 
@@ -116,7 +116,7 @@ impl SecurityFlag {
     }
 
     pub fn clear_matrix_card(&mut self) -> Self {
-        self.inner &= Self::MATRIX_CARD.reverse_bits();
+        self.inner &= !Self::MATRIX_CARD;
         *self
     }
 
@@ -134,7 +134,7 @@ impl SecurityFlag {
     }
 
     pub fn clear_authenticator(&mut self) -> Self {
-        self.inner &= Self::AUTHENTICATOR.reverse_bits();
+        self.inner &= !Self::AUTHENTICATOR;
         *self
     }
 

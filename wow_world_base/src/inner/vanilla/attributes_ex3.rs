@@ -418,7 +418,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_pvp_enabling(&mut self) -> Self {
-        self.inner &= Self::PVP_ENABLING.reverse_bits();
+        self.inner &= !Self::PVP_ENABLING;
         *self
     }
 
@@ -436,7 +436,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_proc_equip_requirement(&mut self) -> Self {
-        self.inner &= Self::NO_PROC_EQUIP_REQUIREMENT.reverse_bits();
+        self.inner &= !Self::NO_PROC_EQUIP_REQUIREMENT;
         *self
     }
 
@@ -454,7 +454,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_casting_bar_text(&mut self) -> Self {
-        self.inner &= Self::NO_CASTING_BAR_TEXT.reverse_bits();
+        self.inner &= !Self::NO_CASTING_BAR_TEXT;
         *self
     }
 
@@ -472,7 +472,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_completely_blocked(&mut self) -> Self {
-        self.inner &= Self::COMPLETELY_BLOCKED.reverse_bits();
+        self.inner &= !Self::COMPLETELY_BLOCKED;
         *self
     }
 
@@ -490,7 +490,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_res_timer(&mut self) -> Self {
-        self.inner &= Self::NO_RES_TIMER.reverse_bits();
+        self.inner &= !Self::NO_RES_TIMER;
         *self
     }
 
@@ -508,7 +508,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_durability_loss(&mut self) -> Self {
-        self.inner &= Self::NO_DURABILITY_LOSS.reverse_bits();
+        self.inner &= !Self::NO_DURABILITY_LOSS;
         *self
     }
 
@@ -526,7 +526,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_avoidance(&mut self) -> Self {
-        self.inner &= Self::NO_AVOIDANCE.reverse_bits();
+        self.inner &= !Self::NO_AVOIDANCE;
         *self
     }
 
@@ -544,7 +544,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_dot_stacking_rule(&mut self) -> Self {
-        self.inner &= Self::DOT_STACKING_RULE.reverse_bits();
+        self.inner &= !Self::DOT_STACKING_RULE;
         *self
     }
 
@@ -562,7 +562,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_only_on_player(&mut self) -> Self {
-        self.inner &= Self::ONLY_ON_PLAYER.reverse_bits();
+        self.inner &= !Self::ONLY_ON_PLAYER;
         *self
     }
 
@@ -580,7 +580,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_not_a_proc(&mut self) -> Self {
-        self.inner &= Self::NOT_A_PROC.reverse_bits();
+        self.inner &= !Self::NOT_A_PROC;
         *self
     }
 
@@ -598,7 +598,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_requires_main_hand_weapon(&mut self) -> Self {
-        self.inner &= Self::REQUIRES_MAIN_HAND_WEAPON.reverse_bits();
+        self.inner &= !Self::REQUIRES_MAIN_HAND_WEAPON;
         *self
     }
 
@@ -616,7 +616,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_only_battlegrounds(&mut self) -> Self {
-        self.inner &= Self::ONLY_BATTLEGROUNDS.reverse_bits();
+        self.inner &= !Self::ONLY_BATTLEGROUNDS;
         *self
     }
 
@@ -634,7 +634,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_only_on_ghosts(&mut self) -> Self {
-        self.inner &= Self::ONLY_ON_GHOSTS.reverse_bits();
+        self.inner &= !Self::ONLY_ON_GHOSTS;
         *self
     }
 
@@ -652,7 +652,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_hide_channel_bar(&mut self) -> Self {
-        self.inner &= Self::HIDE_CHANNEL_BAR.reverse_bits();
+        self.inner &= !Self::HIDE_CHANNEL_BAR;
         *self
     }
 
@@ -670,7 +670,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_hide_in_raid_filter(&mut self) -> Self {
-        self.inner &= Self::HIDE_IN_RAID_FILTER.reverse_bits();
+        self.inner &= !Self::HIDE_IN_RAID_FILTER;
         *self
     }
 
@@ -688,7 +688,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_normal_ranged_attack(&mut self) -> Self {
-        self.inner &= Self::NORMAL_RANGED_ATTACK.reverse_bits();
+        self.inner &= !Self::NORMAL_RANGED_ATTACK;
         *self
     }
 
@@ -706,7 +706,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_suppress_caster_procs(&mut self) -> Self {
-        self.inner &= Self::SUPPRESS_CASTER_PROCS.reverse_bits();
+        self.inner &= !Self::SUPPRESS_CASTER_PROCS;
         *self
     }
 
@@ -724,7 +724,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_suppress_target_procs(&mut self) -> Self {
-        self.inner &= Self::SUPPRESS_TARGET_PROCS.reverse_bits();
+        self.inner &= !Self::SUPPRESS_TARGET_PROCS;
         *self
     }
 
@@ -742,7 +742,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_always_hit(&mut self) -> Self {
-        self.inner &= Self::ALWAYS_HIT.reverse_bits();
+        self.inner &= !Self::ALWAYS_HIT;
         *self
     }
 
@@ -760,7 +760,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_instant_target_procs(&mut self) -> Self {
-        self.inner &= Self::INSTANT_TARGET_PROCS.reverse_bits();
+        self.inner &= !Self::INSTANT_TARGET_PROCS;
         *self
     }
 
@@ -778,7 +778,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_allow_aura_while_dead(&mut self) -> Self {
-        self.inner &= Self::ALLOW_AURA_WHILE_DEAD.reverse_bits();
+        self.inner &= !Self::ALLOW_AURA_WHILE_DEAD;
         *self
     }
 
@@ -796,7 +796,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_only_proc_outdoors(&mut self) -> Self {
-        self.inner &= Self::ONLY_PROC_OUTDOORS.reverse_bits();
+        self.inner &= !Self::ONLY_PROC_OUTDOORS;
         *self
     }
 
@@ -814,7 +814,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_casting_cancels_autorepeat(&mut self) -> Self {
-        self.inner &= Self::CASTING_CANCELS_AUTOREPEAT.reverse_bits();
+        self.inner &= !Self::CASTING_CANCELS_AUTOREPEAT;
         *self
     }
 
@@ -832,7 +832,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_no_damage_history(&mut self) -> Self {
-        self.inner &= Self::NO_DAMAGE_HISTORY.reverse_bits();
+        self.inner &= !Self::NO_DAMAGE_HISTORY;
         *self
     }
 
@@ -850,7 +850,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_requires_offhand_weapon(&mut self) -> Self {
-        self.inner &= Self::REQUIRES_OFFHAND_WEAPON.reverse_bits();
+        self.inner &= !Self::REQUIRES_OFFHAND_WEAPON;
         *self
     }
 
@@ -868,7 +868,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_treat_as_periodic(&mut self) -> Self {
-        self.inner &= Self::TREAT_AS_PERIODIC.reverse_bits();
+        self.inner &= !Self::TREAT_AS_PERIODIC;
         *self
     }
 
@@ -886,7 +886,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_can_proc_from_procs(&mut self) -> Self {
-        self.inner &= Self::CAN_PROC_FROM_PROCS.reverse_bits();
+        self.inner &= !Self::CAN_PROC_FROM_PROCS;
         *self
     }
 
@@ -904,7 +904,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_only_proc_on_caster(&mut self) -> Self {
-        self.inner &= Self::ONLY_PROC_ON_CASTER.reverse_bits();
+        self.inner &= !Self::ONLY_PROC_ON_CASTER;
         *self
     }
 
@@ -922,7 +922,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_ignore_caster_and_target_restrictions(&mut self) -> Self {
-        self.inner &= Self::IGNORE_CASTER_AND_TARGET_RESTRICTIONS.reverse_bits();
+        self.inner &= !Self::IGNORE_CASTER_AND_TARGET_RESTRICTIONS;
         *self
     }
 
@@ -940,7 +940,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_ignore_caster_modifiers(&mut self) -> Self {
-        self.inner &= Self::IGNORE_CASTER_MODIFIERS.reverse_bits();
+        self.inner &= !Self::IGNORE_CASTER_MODIFIERS;
         *self
     }
 
@@ -958,7 +958,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_do_not_display_range(&mut self) -> Self {
-        self.inner &= Self::DO_NOT_DISPLAY_RANGE.reverse_bits();
+        self.inner &= !Self::DO_NOT_DISPLAY_RANGE;
         *self
     }
 
@@ -976,7 +976,7 @@ impl AttributesEx3 {
     }
 
     pub fn clear_not_on_aoe_immune(&mut self) -> Self {
-        self.inner &= Self::NOT_ON_AOE_IMMUNE.reverse_bits();
+        self.inner &= !Self::NOT_ON_AOE_IMMUNE;
         *self
     }
 

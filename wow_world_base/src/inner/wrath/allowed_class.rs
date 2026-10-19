@@ -174,7 +174,7 @@ impl AllowedClass {
     }
 
     pub fn clear_warrior(&mut self) -> Self {
-        self.inner &= Self::WARRIOR.reverse_bits();
+        self.inner &= !Self::WARRIOR;
         *self
     }
 
@@ -192,7 +192,7 @@ impl AllowedClass {
     }
 
     pub fn clear_paladin(&mut self) -> Self {
-        self.inner &= Self::PALADIN.reverse_bits();
+        self.inner &= !Self::PALADIN;
         *self
     }
 
@@ -210,7 +210,7 @@ impl AllowedClass {
     }
 
     pub fn clear_hunter(&mut self) -> Self {
-        self.inner &= Self::HUNTER.reverse_bits();
+        self.inner &= !Self::HUNTER;
         *self
     }
 
@@ -228,7 +228,7 @@ impl AllowedClass {
     }
 
     pub fn clear_rogue(&mut self) -> Self {
-        self.inner &= Self::ROGUE.reverse_bits();
+        self.inner &= !Self::ROGUE;
         *self
     }
 
@@ -246,7 +246,7 @@ impl AllowedClass {
     }
 
     pub fn clear_priest(&mut self) -> Self {
-        self.inner &= Self::PRIEST.reverse_bits();
+        self.inner &= !Self::PRIEST;
         *self
     }
 
@@ -264,7 +264,7 @@ impl AllowedClass {
     }
 
     pub fn clear_death_knight(&mut self) -> Self {
-        self.inner &= Self::DEATH_KNIGHT.reverse_bits();
+        self.inner &= !Self::DEATH_KNIGHT;
         *self
     }
 
@@ -282,7 +282,7 @@ impl AllowedClass {
     }
 
     pub fn clear_shaman(&mut self) -> Self {
-        self.inner &= Self::SHAMAN.reverse_bits();
+        self.inner &= !Self::SHAMAN;
         *self
     }
 
@@ -300,7 +300,7 @@ impl AllowedClass {
     }
 
     pub fn clear_mage(&mut self) -> Self {
-        self.inner &= Self::MAGE.reverse_bits();
+        self.inner &= !Self::MAGE;
         *self
     }
 
@@ -318,7 +318,7 @@ impl AllowedClass {
     }
 
     pub fn clear_warlock(&mut self) -> Self {
-        self.inner &= Self::WARLOCK.reverse_bits();
+        self.inner &= !Self::WARLOCK;
         *self
     }
 
@@ -336,7 +336,7 @@ impl AllowedClass {
     }
 
     pub fn clear_druid(&mut self) -> Self {
-        self.inner &= Self::DRUID.reverse_bits();
+        self.inner &= !Self::DRUID;
         *self
     }
 

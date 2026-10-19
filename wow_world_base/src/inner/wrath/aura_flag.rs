@@ -163,7 +163,7 @@ impl AuraFlag {
     }
 
     pub fn clear_effect_1(&mut self) -> Self {
-        self.inner &= Self::EFFECT_1.reverse_bits();
+        self.inner &= !Self::EFFECT_1;
         *self
     }
 
@@ -181,7 +181,7 @@ impl AuraFlag {
     }
 
     pub fn clear_effect_2(&mut self) -> Self {
-        self.inner &= Self::EFFECT_2.reverse_bits();
+        self.inner &= !Self::EFFECT_2;
         *self
     }
 
@@ -199,7 +199,7 @@ impl AuraFlag {
     }
 
     pub fn clear_effect_3(&mut self) -> Self {
-        self.inner &= Self::EFFECT_3.reverse_bits();
+        self.inner &= !Self::EFFECT_3;
         *self
     }
 
@@ -217,7 +217,7 @@ impl AuraFlag {
     }
 
     pub fn clear_not_caster(&mut self) -> Self {
-        self.inner &= Self::NOT_CASTER.reverse_bits();
+        self.inner &= !Self::NOT_CASTER;
         *self
     }
 
@@ -235,7 +235,7 @@ impl AuraFlag {
     }
 
     pub fn clear_set(&mut self) -> Self {
-        self.inner &= Self::SET.reverse_bits();
+        self.inner &= !Self::SET;
         *self
     }
 
@@ -253,7 +253,7 @@ impl AuraFlag {
     }
 
     pub fn clear_cancellable(&mut self) -> Self {
-        self.inner &= Self::CANCELLABLE.reverse_bits();
+        self.inner &= !Self::CANCELLABLE;
         *self
     }
 
@@ -271,7 +271,7 @@ impl AuraFlag {
     }
 
     pub fn clear_duration(&mut self) -> Self {
-        self.inner &= Self::DURATION.reverse_bits();
+        self.inner &= !Self::DURATION;
         *self
     }
 
@@ -290,7 +290,7 @@ impl AuraFlag {
     }
 
     pub fn clear_hide(&mut self) -> Self {
-        self.inner &= Self::HIDE.reverse_bits();
+        self.inner &= !Self::HIDE;
         *self
     }
 
@@ -308,7 +308,7 @@ impl AuraFlag {
     }
 
     pub fn clear_negative(&mut self) -> Self {
-        self.inner &= Self::NEGATIVE.reverse_bits();
+        self.inner &= !Self::NEGATIVE;
         *self
     }
 

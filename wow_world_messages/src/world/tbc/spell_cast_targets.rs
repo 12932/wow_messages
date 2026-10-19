@@ -600,7 +600,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unused1(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNUSED1.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNUSED1;
         self
     }
 
@@ -630,7 +630,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::UNIT | SpellCastTargetFlags::UNIT_MINIPET | SpellCastTargetFlags::UNIT_ENEMY);
         self.unit = None;
         self
     }
@@ -660,7 +660,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_raid(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_RAID.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_RAID;
         self
     }
 
@@ -689,7 +689,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_party(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_PARTY.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_PARTY;
         self
     }
 
@@ -719,7 +719,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_item(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::ITEM.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::ITEM | SpellCastTargetFlags::TRADE_ITEM);
         self.item = None;
         self
     }
@@ -750,7 +750,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_source_location(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::SOURCE_LOCATION.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::SOURCE_LOCATION;
         self.source_location = None;
         self
     }
@@ -781,7 +781,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_dest_location(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::DEST_LOCATION.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::DEST_LOCATION;
         self.dest_location = None;
         self
     }
@@ -811,7 +811,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_ally(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_ALLY.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_ALLY;
         self
     }
 
@@ -840,7 +840,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit_dead(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::UNIT_DEAD.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::UNIT_DEAD;
         self
     }
 
@@ -870,7 +870,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_gameobject(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::GAMEOBJECT.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::GAMEOBJECT | SpellCastTargetFlags::LOCKED);
         self.gameobject = None;
         self
     }
@@ -901,7 +901,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_string(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::STRING.reverse_bits();
+        self.inner &= !SpellCastTargetFlags::STRING;
         self.string = None;
         self
     }
@@ -932,7 +932,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_corpse_ally(mut self) -> Self {
-        self.inner &= SpellCastTargetFlags::CORPSE_ALLY.reverse_bits();
+        self.inner &= !(SpellCastTargetFlags::CORPSE_ALLY | SpellCastTargetFlags::CORPSE_ENEMY);
         self.corpse_ally = None;
         self
     }

@@ -152,7 +152,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_unused(&mut self) -> Self {
-        self.inner &= Self::UNUSED.reverse_bits();
+        self.inner &= !Self::UNUSED;
         *self
     }
 
@@ -170,7 +170,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_recurring_bill(&mut self) -> Self {
-        self.inner &= Self::RECURRING_BILL.reverse_bits();
+        self.inner &= !Self::RECURRING_BILL;
         *self
     }
 
@@ -188,7 +188,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_free_trial(&mut self) -> Self {
-        self.inner &= Self::FREE_TRIAL.reverse_bits();
+        self.inner &= !Self::FREE_TRIAL;
         *self
     }
 
@@ -207,7 +207,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_igr(&mut self) -> Self {
-        self.inner &= Self::IGR.reverse_bits();
+        self.inner &= !Self::IGR;
         *self
     }
 
@@ -225,7 +225,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_usage(&mut self) -> Self {
-        self.inner &= Self::USAGE.reverse_bits();
+        self.inner &= !Self::USAGE;
         *self
     }
 
@@ -243,7 +243,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_time_mixture(&mut self) -> Self {
-        self.inner &= Self::TIME_MIXTURE.reverse_bits();
+        self.inner &= !Self::TIME_MIXTURE;
         *self
     }
 
@@ -261,7 +261,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_restricted(&mut self) -> Self {
-        self.inner &= Self::RESTRICTED.reverse_bits();
+        self.inner &= !Self::RESTRICTED;
         *self
     }
 
@@ -279,7 +279,7 @@ impl BillingPlanFlags {
     }
 
     pub fn clear_enable_cais(&mut self) -> Self {
-        self.inner &= Self::ENABLE_CAIS.reverse_bits();
+        self.inner &= !Self::ENABLE_CAIS;
         *self
     }
 

@@ -405,7 +405,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_pickup(&mut self) -> Self {
-        self.inner &= Self::NO_PICKUP.reverse_bits();
+        self.inner &= !Self::NO_PICKUP;
         *self
     }
 
@@ -424,7 +424,7 @@ impl ItemFlag {
     }
 
     pub fn clear_conjured(&mut self) -> Self {
-        self.inner &= Self::CONJURED.reverse_bits();
+        self.inner &= !Self::CONJURED;
         *self
     }
 
@@ -443,7 +443,7 @@ impl ItemFlag {
     }
 
     pub fn clear_lootable(&mut self) -> Self {
-        self.inner &= Self::LOOTABLE.reverse_bits();
+        self.inner &= !Self::LOOTABLE;
         *self
     }
 
@@ -462,7 +462,7 @@ impl ItemFlag {
     }
 
     pub fn clear_heroic_tooltip(&mut self) -> Self {
-        self.inner &= Self::HEROIC_TOOLTIP.reverse_bits();
+        self.inner &= !Self::HEROIC_TOOLTIP;
         *self
     }
 
@@ -481,7 +481,7 @@ impl ItemFlag {
     }
 
     pub fn clear_deprecated(&mut self) -> Self {
-        self.inner &= Self::DEPRECATED.reverse_bits();
+        self.inner &= !Self::DEPRECATED;
         *self
     }
 
@@ -500,7 +500,7 @@ impl ItemFlag {
     }
 
     pub fn clear_indestructible(&mut self) -> Self {
-        self.inner &= Self::INDESTRUCTIBLE.reverse_bits();
+        self.inner &= !Self::INDESTRUCTIBLE;
         *self
     }
 
@@ -519,7 +519,7 @@ impl ItemFlag {
     }
 
     pub fn clear_player_cast(&mut self) -> Self {
-        self.inner &= Self::PLAYER_CAST.reverse_bits();
+        self.inner &= !Self::PLAYER_CAST;
         *self
     }
 
@@ -538,7 +538,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_equip_cooldown(&mut self) -> Self {
-        self.inner &= Self::NO_EQUIP_COOLDOWN.reverse_bits();
+        self.inner &= !Self::NO_EQUIP_COOLDOWN;
         *self
     }
 
@@ -556,7 +556,7 @@ impl ItemFlag {
     }
 
     pub fn clear_multi_loot_quest(&mut self) -> Self {
-        self.inner &= Self::MULTI_LOOT_QUEST.reverse_bits();
+        self.inner &= !Self::MULTI_LOOT_QUEST;
         *self
     }
 
@@ -575,7 +575,7 @@ impl ItemFlag {
     }
 
     pub fn clear_wrapper(&mut self) -> Self {
-        self.inner &= Self::WRAPPER.reverse_bits();
+        self.inner &= !Self::WRAPPER;
         *self
     }
 
@@ -593,7 +593,7 @@ impl ItemFlag {
     }
 
     pub fn clear_uses_resources(&mut self) -> Self {
-        self.inner &= Self::USES_RESOURCES.reverse_bits();
+        self.inner &= !Self::USES_RESOURCES;
         *self
     }
 
@@ -612,7 +612,7 @@ impl ItemFlag {
     }
 
     pub fn clear_multi_drop(&mut self) -> Self {
-        self.inner &= Self::MULTI_DROP.reverse_bits();
+        self.inner &= !Self::MULTI_DROP;
         *self
     }
 
@@ -631,7 +631,7 @@ impl ItemFlag {
     }
 
     pub fn clear_item_purchase_record(&mut self) -> Self {
-        self.inner &= Self::ITEM_PURCHASE_RECORD.reverse_bits();
+        self.inner &= !Self::ITEM_PURCHASE_RECORD;
         *self
     }
 
@@ -650,7 +650,7 @@ impl ItemFlag {
     }
 
     pub fn clear_charter(&mut self) -> Self {
-        self.inner &= Self::CHARTER.reverse_bits();
+        self.inner &= !Self::CHARTER;
         *self
     }
 
@@ -669,7 +669,7 @@ impl ItemFlag {
     }
 
     pub fn clear_has_text(&mut self) -> Self {
-        self.inner &= Self::HAS_TEXT.reverse_bits();
+        self.inner &= !Self::HAS_TEXT;
         *self
     }
 
@@ -687,7 +687,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_disenchant(&mut self) -> Self {
-        self.inner &= Self::NO_DISENCHANT.reverse_bits();
+        self.inner &= !Self::NO_DISENCHANT;
         *self
     }
 
@@ -705,7 +705,7 @@ impl ItemFlag {
     }
 
     pub fn clear_real_duration(&mut self) -> Self {
-        self.inner &= Self::REAL_DURATION.reverse_bits();
+        self.inner &= !Self::REAL_DURATION;
         *self
     }
 
@@ -723,7 +723,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_creator(&mut self) -> Self {
-        self.inner &= Self::NO_CREATOR.reverse_bits();
+        self.inner &= !Self::NO_CREATOR;
         *self
     }
 
@@ -742,7 +742,7 @@ impl ItemFlag {
     }
 
     pub fn clear_is_prospectable(&mut self) -> Self {
-        self.inner &= Self::IS_PROSPECTABLE.reverse_bits();
+        self.inner &= !Self::IS_PROSPECTABLE;
         *self
     }
 
@@ -761,7 +761,7 @@ impl ItemFlag {
     }
 
     pub fn clear_unique_equipped(&mut self) -> Self {
-        self.inner &= Self::UNIQUE_EQUIPPED.reverse_bits();
+        self.inner &= !Self::UNIQUE_EQUIPPED;
         *self
     }
 
@@ -779,7 +779,7 @@ impl ItemFlag {
     }
 
     pub fn clear_ignore_for_auras(&mut self) -> Self {
-        self.inner &= Self::IGNORE_FOR_AURAS.reverse_bits();
+        self.inner &= !Self::IGNORE_FOR_AURAS;
         *self
     }
 
@@ -798,7 +798,7 @@ impl ItemFlag {
     }
 
     pub fn clear_ignore_default_arena_restrictions(&mut self) -> Self {
-        self.inner &= Self::IGNORE_DEFAULT_ARENA_RESTRICTIONS.reverse_bits();
+        self.inner &= !Self::IGNORE_DEFAULT_ARENA_RESTRICTIONS;
         *self
     }
 
@@ -817,7 +817,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_durability_loss(&mut self) -> Self {
-        self.inner &= Self::NO_DURABILITY_LOSS.reverse_bits();
+        self.inner &= !Self::NO_DURABILITY_LOSS;
         *self
     }
 
@@ -836,7 +836,7 @@ impl ItemFlag {
     }
 
     pub fn clear_use_when_shapeshifted(&mut self) -> Self {
-        self.inner &= Self::USE_WHEN_SHAPESHIFTED.reverse_bits();
+        self.inner &= !Self::USE_WHEN_SHAPESHIFTED;
         *self
     }
 
@@ -854,7 +854,7 @@ impl ItemFlag {
     }
 
     pub fn clear_has_quest_glow(&mut self) -> Self {
-        self.inner &= Self::HAS_QUEST_GLOW.reverse_bits();
+        self.inner &= !Self::HAS_QUEST_GLOW;
         *self
     }
 
@@ -873,7 +873,7 @@ impl ItemFlag {
     }
 
     pub fn clear_hide_unusable_recipe(&mut self) -> Self {
-        self.inner &= Self::HIDE_UNUSABLE_RECIPE.reverse_bits();
+        self.inner &= !Self::HIDE_UNUSABLE_RECIPE;
         *self
     }
 
@@ -892,7 +892,7 @@ impl ItemFlag {
     }
 
     pub fn clear_not_useable_in_arena(&mut self) -> Self {
-        self.inner &= Self::NOT_USEABLE_IN_ARENA.reverse_bits();
+        self.inner &= !Self::NOT_USEABLE_IN_ARENA;
         *self
     }
 
@@ -911,7 +911,7 @@ impl ItemFlag {
     }
 
     pub fn clear_is_bound_to_account(&mut self) -> Self {
-        self.inner &= Self::IS_BOUND_TO_ACCOUNT.reverse_bits();
+        self.inner &= !Self::IS_BOUND_TO_ACCOUNT;
         *self
     }
 
@@ -930,7 +930,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_reagent_cost(&mut self) -> Self {
-        self.inner &= Self::NO_REAGENT_COST.reverse_bits();
+        self.inner &= !Self::NO_REAGENT_COST;
         *self
     }
 
@@ -949,7 +949,7 @@ impl ItemFlag {
     }
 
     pub fn clear_is_millable(&mut self) -> Self {
-        self.inner &= Self::IS_MILLABLE.reverse_bits();
+        self.inner &= !Self::IS_MILLABLE;
         *self
     }
 
@@ -967,7 +967,7 @@ impl ItemFlag {
     }
 
     pub fn clear_report_to_guild_chat(&mut self) -> Self {
-        self.inner &= Self::REPORT_TO_GUILD_CHAT.reverse_bits();
+        self.inner &= !Self::REPORT_TO_GUILD_CHAT;
         *self
     }
 
@@ -985,7 +985,7 @@ impl ItemFlag {
     }
 
     pub fn clear_no_progressive_loot(&mut self) -> Self {
-        self.inner &= Self::NO_PROGRESSIVE_LOOT.reverse_bits();
+        self.inner &= !Self::NO_PROGRESSIVE_LOOT;
         *self
     }
 
