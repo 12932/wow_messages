@@ -69,7 +69,84 @@ smsg SMSG_AUCTION_COMMAND_RESULT = 0x025B {
         }
     }
 } {
-    paste_versions = "1.12 2.4.3";
+    versions = "2.4.3";
+}
+
+smsg SMSG_AUCTION_COMMAND_RESULT = 0x025B {
+    u32 auction_id;
+    AuctionCommandAction action;
+    if (action == BID_PLACED) {
+        AuctionCommandResult result;
+        if (result == OK) {
+            u32 auction_outbid1;
+        } else if (result == ERR_INVENTORY) {
+            (u32)InventoryResult inventory_result;
+        } else if (result == ERR_HIGHER_BID) {
+            Guid higher_bidder;
+            u32 new_bid;
+            u32 auction_outbid2;
+        }
+    } else {
+        AuctionCommandResultTwo result2;
+        if (result2 == ERR_INVENTORY) {
+            (u32)InventoryResult inventory_result2;
+        } else if (result2 == ERR_HIGHER_BID) {
+            Guid higher_bidder2;
+            u32 new_bid2;
+            u32 auction_outbid3;
+        }
+    }
+} {
+    versions = "1.12";
+    comment = "mangos-classic's `WorldSession::SendAuctionCommandResult` writes an inventory error's reason as a u32, and the 1.12 client's handler (0x4CC460) reads it as one.";
+}
+
+test SMSG_AUCTION_COMMAND_RESULT {
+    auction_id = 9;
+    action = REMOVED;
+    result2 = ERR_INVENTORY;
+    inventory_result2 = ITEM_NOT_FOUND;
+} [
+    0x00, 0x12, /* size */
+    0x5B, 0x02, /* opcode */
+    0x09, 0x00, 0x00, 0x00, /* auction_id */
+    0x01, 0x00, 0x00, 0x00, /* action */
+    0x01, 0x00, 0x00, 0x00, /* result2 */
+    0x17, 0x00, 0x00, 0x00, /* inventory_result2 */
+] {
+    versions = "1.12";
+}
+
+test SMSG_AUCTION_COMMAND_RESULT {
+    auction_id = 9;
+    action = BID_PLACED;
+    result = ERR_INVENTORY;
+    inventory_result = BAG_FULL;
+} [
+    0x00, 0x12, /* size */
+    0x5B, 0x02, /* opcode */
+    0x09, 0x00, 0x00, 0x00, /* auction_id */
+    0x02, 0x00, 0x00, 0x00, /* action */
+    0x01, 0x00, 0x00, 0x00, /* result */
+    0x04, 0x00, 0x00, 0x00, /* inventory_result */
+] {
+    versions = "1.12";
+}
+
+test SMSG_AUCTION_COMMAND_RESULT {
+    auction_id = 9;
+    action = BID_PLACED;
+    result = OK;
+    auction_outbid1 = 5;
+} [
+    0x00, 0x12, /* size */
+    0x5B, 0x02, /* opcode */
+    0x09, 0x00, 0x00, 0x00, /* auction_id */
+    0x02, 0x00, 0x00, 0x00, /* action */
+    0x00, 0x00, 0x00, 0x00, /* result */
+    0x05, 0x00, 0x00, 0x00, /* auction_outbid1 */
+] {
+    versions = "1.12";
 }
 
 /* TODO RUST_SAME_ENUM_USED_MULTIPLE_TIMES Manually duplicated to work with Rust codegen */

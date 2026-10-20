@@ -6,7 +6,8 @@ use crate::vanilla::{
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm:47`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm#L47):
+/// mangos-classic's `WorldSession::SendAuctionCommandResult` writes an inventory error's reason as a u32, and the 1.12 client's handler (0x4CC460) reads it as one.
+/// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm:75`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm#L75):
 /// ```text
 /// smsg SMSG_AUCTION_COMMAND_RESULT = 0x025B {
 ///     u32 auction_id;
@@ -17,7 +18,7 @@ use crate::vanilla::{
 ///             u32 auction_outbid1;
 ///         }
 ///         else if (result == ERR_INVENTORY) {
-///             InventoryResult inventory_result;
+///             (u32)InventoryResult inventory_result;
 ///         }
 ///         else if (result == ERR_HIGHER_BID) {
 ///             Guid higher_bidder;
@@ -28,7 +29,7 @@ use crate::vanilla::{
 ///     else {
 ///         AuctionCommandResultTwo result2;
 ///         if (result2 == ERR_INVENTORY) {
-///             InventoryResult inventory_result2;
+///             (u32)InventoryResult inventory_result2;
 ///         }
 ///         else if (result2 == ERR_HIGHER_BID) {
 ///             Guid higher_bidder2;
@@ -65,7 +66,7 @@ impl SMSG_AUCTION_COMMAND_RESULT {
                     AuctionCommandResultTwo::Ok => SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::Ok,
                     AuctionCommandResultTwo::ErrInventory => {
                         // inventory_result2: InventoryResult
-                        let inventory_result2 = crate::util::read_u8_le(&mut r)?.try_into()?;
+                        let inventory_result2 = (crate::util::read_u32_le(&mut r)? as u8).try_into()?;
 
                         SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
                             inventory_result2,
@@ -107,7 +108,7 @@ impl SMSG_AUCTION_COMMAND_RESULT {
                     AuctionCommandResultTwo::Ok => SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::Ok,
                     AuctionCommandResultTwo::ErrInventory => {
                         // inventory_result2: InventoryResult
-                        let inventory_result2 = crate::util::read_u8_le(&mut r)?.try_into()?;
+                        let inventory_result2 = (crate::util::read_u32_le(&mut r)? as u8).try_into()?;
 
                         SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
                             inventory_result2,
@@ -156,7 +157,7 @@ impl SMSG_AUCTION_COMMAND_RESULT {
                     }
                     AuctionCommandResult::ErrInventory => {
                         // inventory_result: InventoryResult
-                        let inventory_result = crate::util::read_u8_le(&mut r)?.try_into()?;
+                        let inventory_result = (crate::util::read_u32_le(&mut r)? as u8).try_into()?;
 
                         SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrInventory {
                             inventory_result,
@@ -208,193 +209,6 @@ impl crate::Message for SMSG_AUCTION_COMMAND_RESULT {
         "SMSG_AUCTION_COMMAND_RESULT"
     }
 
-    #[cfg(feature = "print-testcase")]
-    fn to_test_case_string(&self) -> Option<String> {
-        use std::fmt::Write;
-        use crate::traits::Message;
-
-        let mut s = String::new();
-
-        writeln!(s, "test SMSG_AUCTION_COMMAND_RESULT {{").unwrap();
-        // Members
-        writeln!(s, "    auction_id = {};", self.auction_id).unwrap();
-        writeln!(s, "    action = {};", AuctionCommandAction::try_from(self.action.as_int()).unwrap().as_test_case_value()).unwrap();
-        match &self.action {
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::Started {
-                result2,
-            } => {
-                writeln!(s, "    result2 = {};", AuctionCommandResultTwo::try_from(result2.as_int()).unwrap().as_test_case_value()).unwrap();
-                match &result2 {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
-                        inventory_result2,
-                    } => {
-                        writeln!(s, "    inventory_result2 = {};", inventory_result2.as_test_case_value()).unwrap();
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
-                        auction_outbid3,
-                        higher_bidder2,
-                        new_bid2,
-                    } => {
-                        writeln!(s, "    higher_bidder2 = {};", higher_bidder2.guid()).unwrap();
-                        writeln!(s, "    new_bid2 = {};", new_bid2).unwrap();
-                        writeln!(s, "    auction_outbid3 = {};", auction_outbid3).unwrap();
-                    }
-                    _ => {}
-                }
-
-            }
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::Removed {
-                result2,
-            } => {
-                writeln!(s, "    result2 = {};", AuctionCommandResultTwo::try_from(result2.as_int()).unwrap().as_test_case_value()).unwrap();
-                match &result2 {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
-                        inventory_result2,
-                    } => {
-                        writeln!(s, "    inventory_result2 = {};", inventory_result2.as_test_case_value()).unwrap();
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
-                        auction_outbid3,
-                        higher_bidder2,
-                        new_bid2,
-                    } => {
-                        writeln!(s, "    higher_bidder2 = {};", higher_bidder2.guid()).unwrap();
-                        writeln!(s, "    new_bid2 = {};", new_bid2).unwrap();
-                        writeln!(s, "    auction_outbid3 = {};", auction_outbid3).unwrap();
-                    }
-                    _ => {}
-                }
-
-            }
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::BidPlaced {
-                result,
-            } => {
-                writeln!(s, "    result = {};", AuctionCommandResult::try_from(result.as_int()).unwrap().as_test_case_value()).unwrap();
-                match &result {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::Ok {
-                        auction_outbid1,
-                    } => {
-                        writeln!(s, "    auction_outbid1 = {};", auction_outbid1).unwrap();
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrInventory {
-                        inventory_result,
-                    } => {
-                        writeln!(s, "    inventory_result = {};", inventory_result.as_test_case_value()).unwrap();
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrHigherBid {
-                        auction_outbid2,
-                        higher_bidder,
-                        new_bid,
-                    } => {
-                        writeln!(s, "    higher_bidder = {};", higher_bidder.guid()).unwrap();
-                        writeln!(s, "    new_bid = {};", new_bid).unwrap();
-                        writeln!(s, "    auction_outbid2 = {};", auction_outbid2).unwrap();
-                    }
-                    _ => {}
-                }
-
-            }
-        }
-
-
-        writeln!(s, "}} [").unwrap();
-
-        let [a, b] = (u16::try_from(self.size() + 2).unwrap()).to_be_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* size */").unwrap();
-        let [a, b] = 603_u16.to_le_bytes();
-        writeln!(s, "    {a:#04X}, {b:#04X}, /* opcode */").unwrap();
-        let mut bytes: Vec<u8> = Vec::new();
-        self.write_into_vec(&mut bytes).unwrap();
-        let mut bytes = bytes.into_iter();
-
-        crate::util::write_bytes(&mut s, &mut bytes, 4, "auction_id", "    ");
-        crate::util::write_bytes(&mut s, &mut bytes, 4, "action", "    ");
-        match &self.action {
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::Started {
-                result2,
-            } => {
-                crate::util::write_bytes(&mut s, &mut bytes, 4, "result2", "    ");
-                match &result2 {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
-                        inventory_result2,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 1, "inventory_result2", "    ");
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
-                        auction_outbid3,
-                        higher_bidder2,
-                        new_bid2,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 8, "higher_bidder2", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "new_bid2", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "auction_outbid3", "    ");
-                    }
-                    _ => {}
-                }
-
-            }
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::Removed {
-                result2,
-            } => {
-                crate::util::write_bytes(&mut s, &mut bytes, 4, "result2", "    ");
-                match &result2 {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
-                        inventory_result2,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 1, "inventory_result2", "    ");
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
-                        auction_outbid3,
-                        higher_bidder2,
-                        new_bid2,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 8, "higher_bidder2", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "new_bid2", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "auction_outbid3", "    ");
-                    }
-                    _ => {}
-                }
-
-            }
-            crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::BidPlaced {
-                result,
-            } => {
-                crate::util::write_bytes(&mut s, &mut bytes, 4, "result", "    ");
-                match &result {
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::Ok {
-                        auction_outbid1,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "auction_outbid1", "    ");
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrInventory {
-                        inventory_result,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 1, "inventory_result", "    ");
-                    }
-                    crate::vanilla::SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrHigherBid {
-                        auction_outbid2,
-                        higher_bidder,
-                        new_bid,
-                    } => {
-                        crate::util::write_bytes(&mut s, &mut bytes, 8, "higher_bidder", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "new_bid", "    ");
-                        crate::util::write_bytes(&mut s, &mut bytes, 4, "auction_outbid2", "    ");
-                    }
-                    _ => {}
-                }
-
-            }
-        }
-
-
-
-        writeln!(s, "] {{").unwrap();
-        writeln!(s, "    versions = \"{}\";", std::env::var("WOWM_TEST_CASE_WORLD_VERSION").unwrap_or("1.12".to_string())).unwrap();
-        writeln!(s, "}}\n").unwrap();
-
-        Some(s)
-    }
-
     fn size_without_header(&self) -> u32 {
         self.size() as u32
     }
@@ -418,7 +232,7 @@ impl crate::Message for SMSG_AUCTION_COMMAND_RESULT {
                         inventory_result2,
                     } => {
                         // inventory_result2: InventoryResult
-                        w.write_all(&(inventory_result2.as_int().to_le_bytes()))?;
+                        w.write_all(&u32::from(inventory_result2.as_int()).to_le_bytes())?;
 
                     }
                     SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
@@ -451,7 +265,7 @@ impl crate::Message for SMSG_AUCTION_COMMAND_RESULT {
                         inventory_result2,
                     } => {
                         // inventory_result2: InventoryResult
-                        w.write_all(&(inventory_result2.as_int().to_le_bytes()))?;
+                        w.write_all(&u32::from(inventory_result2.as_int()).to_le_bytes())?;
 
                     }
                     SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrHigherBid {
@@ -491,7 +305,7 @@ impl crate::Message for SMSG_AUCTION_COMMAND_RESULT {
                         inventory_result,
                     } => {
                         // inventory_result: InventoryResult
-                        w.write_all(&(inventory_result.as_int().to_le_bytes()))?;
+                        w.write_all(&u32::from(inventory_result.as_int()).to_le_bytes())?;
 
                     }
                     SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrHigherBid {
@@ -600,7 +414,7 @@ impl SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo {
                 ..
             } => {
                 4
-                + 1 // inventory_result2: InventoryResult
+                + 4 // inventory_result2: InventoryResult
             }
             Self::ErrHigherBid {
                 ..
@@ -689,7 +503,7 @@ impl SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult {
                 ..
             } => {
                 4
-                + 1 // inventory_result: InventoryResult
+                + 4 // inventory_result: InventoryResult
             }
             Self::ErrHigherBid {
                 ..
@@ -770,5 +584,248 @@ impl SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction {
             }
         }
     }
+}
+
+#[cfg(test)]
+mod test {
+    #![allow(clippy::missing_const_for_fn)]
+    use super::SMSG_AUCTION_COMMAND_RESULT;
+    use super::*;
+    use super::super::*;
+    use crate::vanilla::opcodes::ServerOpcodeMessage;
+    use crate::Guid;
+    use crate::vanilla::{ClientMessage, ServerMessage};
+
+    const HEADER_SIZE: usize = 2 + 2;
+    fn assert(t: &SMSG_AUCTION_COMMAND_RESULT, expected: &SMSG_AUCTION_COMMAND_RESULT) {
+        assert_eq!(t.auction_id, expected.auction_id);
+        assert_eq!(t.action, expected.action);
+    }
+
+    const RAW0: [u8; 20] = [ 0x00, 0x12, 0x5B, 0x02, 0x09, 0x00, 0x00, 0x00, 0x01,
+         0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, ];
+
+    pub(crate) fn expected0() -> SMSG_AUCTION_COMMAND_RESULT {
+        SMSG_AUCTION_COMMAND_RESULT {
+            auction_id: 0x9,
+            action: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::Removed {
+                result2: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResultTwo::ErrInventory {
+                    inventory_result2: InventoryResult::ItemNotFound,
+                },
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 104.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_auction_command_result0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW0)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 104.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_auction_command_result0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 104.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_auction_command_result0() {
+        let expected = expected0();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW0)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW0.len());
+
+        let mut dest = Vec::with_capacity(RAW0.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 20] = [ 0x00, 0x12, 0x5B, 0x02, 0x09, 0x00, 0x00, 0x00, 0x02,
+         0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, ];
+
+    pub(crate) fn expected1() -> SMSG_AUCTION_COMMAND_RESULT {
+        SMSG_AUCTION_COMMAND_RESULT {
+            auction_id: 0x9,
+            action: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::BidPlaced {
+                result: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::ErrInventory {
+                    inventory_result: InventoryResult::BagFull,
+                },
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 120.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_auction_command_result1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 120.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_auction_command_result1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 120.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_auction_command_result1() {
+        let expected = expected1();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    const RAW2: [u8; 20] = [ 0x00, 0x12, 0x5B, 0x02, 0x09, 0x00, 0x00, 0x00, 0x02,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, ];
+
+    pub(crate) fn expected2() -> SMSG_AUCTION_COMMAND_RESULT {
+        SMSG_AUCTION_COMMAND_RESULT {
+            auction_id: 0x9,
+            action: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandAction::BidPlaced {
+                result: SMSG_AUCTION_COMMAND_RESULT_AuctionCommandResult::Ok {
+                    auction_outbid1: 0x5,
+                },
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 136.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn smsg_auction_command_result2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW2)).unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 136.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_smsg_auction_command_result2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.tokio_write_unencrypted_server(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/auction/smsg/smsg_auction_command_result.wowm` line 136.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_smsg_auction_command_result2() {
+        let expected = expected2();
+        let t = ServerOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ServerOpcodeMessage::SMSG_AUCTION_COMMAND_RESULT(t) => t,
+            opcode => panic!("incorrect opcode. Expected SMSG_AUCTION_COMMAND_RESULT, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.astd_write_unencrypted_server(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
 }
 

@@ -8441,7 +8441,6 @@ impl ServerOpcodeMessage {
             Self::SMSG_SPELLNONMELEEDAMAGELOG(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_ZONE_UNDER_ATTACK(c) => crate::Message::to_test_case_string(c),
             Self::MSG_AUCTION_HELLO(c) => crate::Message::to_test_case_string(c),
-            Self::SMSG_AUCTION_COMMAND_RESULT(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_AUCTION_LIST_RESULT(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_AUCTION_OWNER_LIST_RESULT(c) => crate::Message::to_test_case_string(c),
             Self::SMSG_AUCTION_BIDDER_NOTIFICATION(c) => crate::Message::to_test_case_string(c),
