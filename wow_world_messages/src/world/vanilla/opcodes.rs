@@ -2775,7 +2775,6 @@ impl ClientOpcodeMessage {
             Self::CMSG_SEND_MAIL(c) => crate::Message::to_test_case_string(c),
             Self::CMSG_GET_MAIL_LIST(c) => crate::Message::to_test_case_string(c),
             Self::CMSG_BATTLEFIELD_LIST(c) => crate::Message::to_test_case_string(c),
-            Self::CMSG_BATTLEFIELD_JOIN(c) => crate::Message::to_test_case_string(c),
             Self::CMSG_ITEM_TEXT_QUERY(c) => crate::Message::to_test_case_string(c),
             Self::CMSG_MAIL_TAKE_MONEY(c) => crate::Message::to_test_case_string(c),
             Self::CMSG_MAIL_TAKE_ITEM(c) => crate::Message::to_test_case_string(c),

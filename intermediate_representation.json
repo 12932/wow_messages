@@ -522118,8 +522118,8 @@
         },
         "sizes": {
           "constant_sized": true,
-          "minimum_size": 4,
-          "maximum_size": 4
+          "minimum_size": 9,
+          "maximum_size": 9
         },
         "members": [
           {
@@ -522140,9 +522140,42 @@
               "used_in_if": false,
               "tags": {}
             }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "instance_id",
+              "data_type": {
+                "data_type_tag": "Integer",
+                "content": "U32"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {
+                "comment": "The instance picked from the battlefield list, 0 for the first available."
+              }
+            }
+          },
+          {
+            "struct_member_tag": "Definition",
+            "struct_member_content": {
+              "name": "join_as_group",
+              "data_type": {
+                "data_type_tag": "Bool",
+                "content": "U8"
+              },
+              "constant_value": null,
+              "used_as_size_in": null,
+              "size_of_fields_before_size": null,
+              "used_in_if": false,
+              "tags": {}
+            }
           }
         ],
         "tags": {
+          "comment": "The 1.12.1 client (0x4AA00B) writes this as `CMSG_BATTLEMASTER_JOIN` without its battlemaster's guid: when it joins from a list shown with no battlemaster.",
           "version": {
             "version_type_tag": "world",
             "version_type": {
@@ -522158,11 +522191,158 @@
             }
           }
         },
-        "tests": [],
+        "tests": [
+          {
+            "subject": "CMSG_BATTLEFIELD_JOIN",
+            "members": [
+              {
+                "variable_name": "map",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "529",
+                    "original_string": "ARATHI_BASIN"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "instance_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "join_as_group",
+                "value": {
+                  "test_value_tag": "Bool",
+                  "content": true
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              13,
+              62,
+              2,
+              0,
+              0,
+              17,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/battleground/cmsg_battlefield_join.wowm",
+              "start_position": 13,
+              "end_position": 25
+            }
+          },
+          {
+            "subject": "CMSG_BATTLEFIELD_JOIN",
+            "members": [
+              {
+                "variable_name": "map",
+                "value": {
+                  "test_value_tag": "Enum",
+                  "content": {
+                    "value": "489",
+                    "original_string": "WARSONG_GULCH"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "instance_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "3",
+                    "original_string": "3"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "join_as_group",
+                "value": {
+                  "test_value_tag": "Bool",
+                  "content": false
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              13,
+              62,
+              2,
+              0,
+              0,
+              233,
+              1,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/battleground/cmsg_battlefield_join.wowm",
+              "start_position": 25,
+              "end_position": 36
+            }
+          }
+        ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/battleground/cmsg_battlefield_join.wowm",
           "start_position": 3,
-          "end_position": 7
+          "end_position": 11
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,

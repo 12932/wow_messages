@@ -2,5 +2,34 @@
 
 cmsg CMSG_BATTLEFIELD_JOIN = 0x023E {
     Map map;
+    u32 instance_id {
+        comment = "The instance picked from the battlefield list, 0 for the first available.";
+    }
+    Bool join_as_group;
+} {
+    comment = "The 1.12.1 client (0x4AA00B) writes this as `CMSG_BATTLEMASTER_JOIN` without its battlemaster's guid: when it joins from a list shown with no battlemaster.";
 }
 
+test CMSG_BATTLEFIELD_JOIN {
+    map = ARATHI_BASIN;
+    instance_id = 0;
+    join_as_group = TRUE;
+} [
+    0x00, 0x0D, /* size */
+    0x3E, 0x02, 0x00, 0x00, /* opcode */
+    0x11, 0x02, 0x00, 0x00, /* map */
+    0x00, 0x00, 0x00, 0x00, /* instance_id */
+    0x01, /* join_as_group */
+]
+
+test CMSG_BATTLEFIELD_JOIN {
+    map = WARSONG_GULCH;
+    instance_id = 3;
+    join_as_group = FALSE;
+} [
+    0x00, 0x0D, /* size */
+    0x3E, 0x02, 0x00, 0x00, /* opcode */
+    0xE9, 0x01, 0x00, 0x00, /* map */
+    0x03, 0x00, 0x00, 0x00, /* instance_id */
+    0x00, /* join_as_group */
+]
