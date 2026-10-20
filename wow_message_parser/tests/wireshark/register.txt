@@ -2932,12 +2932,6 @@
                 NULL, HFILL
             }
         },
-        { &hf_woww_object_unk,
-            { "Object Unk", "woww.object.unk",
-                FT_UINT64, BASE_HEX_DEC, NULL, 0,
-                NULL, HFILL
-            }
-        },
         { &hf_woww_objective_text,
             { "Objective Text", "woww.objective.text",
                 FT_STRINGZ, BASE_NONE, NULL, 0,

@@ -18,7 +18,7 @@ pub struct CMSG_CAST_SPELL {
 impl crate::private::Sealed for CMSG_CAST_SPELL {}
 impl CMSG_CAST_SPELL {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(6..=322).contains(&body_size) {
+        if !(6..=304).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -162,6 +162,335 @@ mod test {
         expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
 
         assert_eq!(dest, RAW0);
+    }
+
+    const RAW1: [u8; 27] = [ 0x00, 0x19, 0x2E, 0x01, 0x00, 0x00, 0x78, 0x50, 0x00,
+         0x00, 0x40, 0x02, 0x81, 0x2A, 0xF1, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00,
+         0x00, 0x40, 0x00, 0x00, 0x40, 0x40, ];
+
+    pub(crate) fn expected1() -> CMSG_CAST_SPELL {
+        CMSG_CAST_SPELL {
+            spell: 0x5078,
+            targets: SpellCastTargets {
+                target_flags: SpellCastTargets_SpellCastTargetFlags::empty()
+                    .set_unit(SpellCastTargets_SpellCastTargetFlags_Unit::PvpCorpse {
+                        pvp_corpse: Guid::new(0xF10000000000002A),
+                    })
+                    .set_dest_location(SpellCastTargets_SpellCastTargetFlags_DestLocation {
+                        destination: Vector3d {
+                            x: 1_f32,
+                            y: 2_f32,
+                            z: 3_f32,
+                        },
+                    })
+                    ,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 45.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn cmsg_cast_spell1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW1)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 45.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_cmsg_cast_spell1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 45.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_cmsg_cast_spell1() {
+        let expected = expected1();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW1)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW1.len());
+
+        let mut dest = Vec::with_capacity(RAW1.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW1);
+    }
+
+    const RAW2: [u8; 27] = [ 0x00, 0x19, 0x2E, 0x01, 0x00, 0x00, 0x78, 0x50, 0x00,
+         0x00, 0x40, 0x80, 0x81, 0x2A, 0xF1, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00,
+         0x00, 0x40, 0x00, 0x00, 0x40, 0x40, ];
+
+    pub(crate) fn expected2() -> CMSG_CAST_SPELL {
+        CMSG_CAST_SPELL {
+            spell: 0x5078,
+            targets: SpellCastTargets {
+                target_flags: SpellCastTargets_SpellCastTargetFlags::empty()
+                    .set_unit(SpellCastTargets_SpellCastTargetFlags_Unit::Corpse {
+                        corpse: Guid::new(0xF10000000000002A),
+                    })
+                    .set_dest_location(SpellCastTargets_SpellCastTargetFlags_DestLocation {
+                        destination: Vector3d {
+                            x: 1_f32,
+                            y: 2_f32,
+                            z: 3_f32,
+                        },
+                    })
+                    ,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 74.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn cmsg_cast_spell2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW2)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 74.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_cmsg_cast_spell2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 74.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_cmsg_cast_spell2() {
+        let expected = expected2();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW2)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW2.len());
+
+        let mut dest = Vec::with_capacity(RAW2.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW2);
+    }
+
+    const RAW3: [u8; 21] = [ 0x00, 0x13, 0x2E, 0x01, 0x00, 0x00, 0x78, 0x50, 0x00,
+         0x00, 0x12, 0x00, 0xCB, 0x23, 0x01, 0x26, 0x30, 0xF1, 0x81, 0x07, 0x40, ];
+
+    pub(crate) fn expected3() -> CMSG_CAST_SPELL {
+        CMSG_CAST_SPELL {
+            spell: 0x5078,
+            targets: SpellCastTargets {
+                target_flags: SpellCastTargets_SpellCastTargetFlags::empty()
+                    .set_unit(SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
+                        unit_target: Guid::new(0xF130000026000123),
+                    })
+                    .set_item(SpellCastTargets_SpellCastTargetFlags_Item::Item {
+                        item: Guid::new(0x4000000000000007),
+                    })
+                    ,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 103.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn cmsg_cast_spell3() {
+        let expected = expected3();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW3)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW3.len());
+
+        let mut dest = Vec::with_capacity(RAW3.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW3);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 103.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_cmsg_cast_spell3() {
+        let expected = expected3();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW3)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW3.len());
+
+        let mut dest = Vec::with_capacity(RAW3.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW3);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 103.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_cmsg_cast_spell3() {
+        let expected = expected3();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW3)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW3.len());
+
+        let mut dest = Vec::with_capacity(RAW3.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW3);
+    }
+
+    const RAW4: [u8; 18] = [ 0x00, 0x10, 0x2E, 0x01, 0x00, 0x00, 0x78, 0x50, 0x00,
+         0x00, 0x82, 0x40, 0xCB, 0x23, 0x01, 0x26, 0x30, 0xF1, ];
+
+    pub(crate) fn expected4() -> CMSG_CAST_SPELL {
+        CMSG_CAST_SPELL {
+            spell: 0x5078,
+            targets: SpellCastTargets {
+                target_flags: SpellCastTargets_SpellCastTargetFlags::empty()
+                    .set_unit(SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
+                        unit_target: Guid::new(0xF130000026000123),
+                    })
+                    .set_object_unk()
+                    .set_unk1()
+                    ,
+            },
+        }
+
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 124.
+    #[cfg(feature = "sync")]
+    #[cfg_attr(feature = "sync", test)]
+    fn cmsg_cast_spell4() {
+        let expected = expected4();
+        let t = ClientOpcodeMessage::read_unencrypted(&mut std::io::Cursor::new(&RAW4)).unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW4.len());
+
+        let mut dest = Vec::with_capacity(RAW4.len());
+        expected.write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).unwrap();
+
+        assert_eq!(dest, RAW4);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 124.
+    #[cfg(feature = "tokio")]
+    #[cfg_attr(feature = "tokio", tokio::test)]
+    async fn tokio_cmsg_cast_spell4() {
+        let expected = expected4();
+        let t = ClientOpcodeMessage::tokio_read_unencrypted(&mut std::io::Cursor::new(&RAW4)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW4.len());
+
+        let mut dest = Vec::with_capacity(RAW4.len());
+        expected.tokio_write_unencrypted_client(&mut std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW4);
+    }
+
+    // Generated from `wow_message_parser/wowm/world/spell/cmsg_cast_spell.wowm` line 124.
+    #[cfg(feature = "async-std")]
+    #[cfg_attr(feature = "async-std", async_std::test)]
+    async fn astd_cmsg_cast_spell4() {
+        let expected = expected4();
+        let t = ClientOpcodeMessage::astd_read_unencrypted(&mut async_std::io::Cursor::new(&RAW4)).await.unwrap();
+        let t = match t {
+            ClientOpcodeMessage::CMSG_CAST_SPELL(t) => t,
+            opcode => panic!("incorrect opcode. Expected CMSG_CAST_SPELL, got {opcode:#?}"),
+        };
+
+        assert(&t, &expected);
+        assert_eq!(t.size() + HEADER_SIZE, RAW4.len());
+
+        let mut dest = Vec::with_capacity(RAW4.len());
+        expected.astd_write_unencrypted_client(&mut async_std::io::Cursor::new(&mut dest)).await.unwrap();
+
+        assert_eq!(dest, RAW4);
     }
 
 }

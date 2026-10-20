@@ -487,7 +487,6 @@ static int hf_woww_npc = -1;
 static int hf_woww_number_of_battlegrounds = -1;
 static int hf_woww_number_of_choices = -1;
 static int hf_woww_object_type = -1;
-static int hf_woww_object_unk = -1;
 static int hf_woww_objective_text = -1;
 static int hf_woww_objective_texts = -1;
 static int hf_woww_objectives = -1;

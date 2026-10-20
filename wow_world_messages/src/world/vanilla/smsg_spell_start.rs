@@ -34,7 +34,7 @@ pub struct SMSG_SPELL_START {
 impl crate::private::Sealed for SMSG_SPELL_START {}
 impl SMSG_SPELL_START {
     fn read_inner(mut r: &mut &[u8], body_size: u32) -> Result<Self, crate::errors::ParseErrorKind> {
-        if !(14..=354).contains(&body_size) {
+        if !(14..=336).contains(&body_size) {
             return Err(crate::errors::ParseErrorKind::InvalidSize);
         }
 
@@ -116,20 +116,26 @@ impl crate::Message for SMSG_SPELL_START {
         // Members
         writeln!(s, "        target_flags = {};", SpellCastTargetFlags::new(self.targets.target_flags.as_int()).as_test_case_value()).unwrap();
         if let Some(if_statement) = &self.targets.target_flags.get_unit() {
-            writeln!(s, "        unit_target = {};", if_statement.unit_target.guid()).unwrap();
-        }
-
-        if let Some(if_statement) = &self.targets.target_flags.get_gameobject() {
             match if_statement {
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Gameobject::Gameobject {
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
+                    unit_target,
+                } => {
+                    writeln!(s, "        unit_target = {};", unit_target.guid()).unwrap();
+                }
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Gameobject {
                     gameobject,
                 } => {
                     writeln!(s, "        gameobject = {};", gameobject.guid()).unwrap();
                 }
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Gameobject::ObjectUnk {
-                    object_unk,
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Corpse {
+                    corpse,
                 } => {
-                    writeln!(s, "        object_unk = {};", object_unk.guid()).unwrap();
+                    writeln!(s, "        corpse = {};", corpse.guid()).unwrap();
+                }
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::PvpCorpse {
+                    pvp_corpse,
+                } => {
+                    writeln!(s, "        pvp_corpse = {};", pvp_corpse.guid()).unwrap();
                 }
             }
         }
@@ -175,21 +181,6 @@ impl crate::Message for SMSG_SPELL_START {
             writeln!(s, "        target_string = \"{}\";", if_statement.target_string).unwrap();
         }
 
-        if let Some(if_statement) = &self.targets.target_flags.get_corpse() {
-            match if_statement {
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Corpse::Corpse {
-                    corpse,
-                } => {
-                    writeln!(s, "        corpse = {};", corpse.guid()).unwrap();
-                }
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Corpse::PvpCorpse {
-                    pvp_corpse,
-                } => {
-                    writeln!(s, "        pvp_corpse = {};", pvp_corpse.guid()).unwrap();
-                }
-            }
-        }
-
 
         writeln!(s, "    }};").unwrap();
         if let Some(if_statement) = &self.flags.get_ammo() {
@@ -216,20 +207,26 @@ impl crate::Message for SMSG_SPELL_START {
         writeln!(s, "    /* targets: SpellCastTargets start */").unwrap();
         crate::util::write_bytes(&mut s, &mut bytes, 2, "target_flags", "        ");
         if let Some(if_statement) = &self.targets.target_flags.get_unit() {
-            crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&if_statement.unit_target), "unit_target", "        ");
-        }
-
-        if let Some(if_statement) = &self.targets.target_flags.get_gameobject() {
             match if_statement {
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Gameobject::Gameobject {
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
+                    unit_target,
+                } => {
+                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&unit_target), "unit_target", "        ");
+                }
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Gameobject {
                     gameobject,
                 } => {
                     crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&gameobject), "gameobject", "        ");
                 }
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Gameobject::ObjectUnk {
-                    object_unk,
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::Corpse {
+                    corpse,
                 } => {
-                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&object_unk), "object_unk", "        ");
+                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&corpse), "corpse", "        ");
+                }
+                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Unit::PvpCorpse {
+                    pvp_corpse,
+                } => {
+                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&pvp_corpse), "pvp_corpse", "        ");
                 }
             }
         }
@@ -267,21 +264,6 @@ impl crate::Message for SMSG_SPELL_START {
 
         if let Some(if_statement) = &self.targets.target_flags.get_string() {
             crate::util::write_bytes(&mut s, &mut bytes, if_statement.target_string.len() + 1, "target_string", "        ");
-        }
-
-        if let Some(if_statement) = &self.targets.target_flags.get_corpse() {
-            match if_statement {
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Corpse::Corpse {
-                    corpse,
-                } => {
-                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&corpse), "corpse", "        ");
-                }
-                crate::vanilla::SpellCastTargets_SpellCastTargetFlags_Corpse::PvpCorpse {
-                    pvp_corpse,
-                } => {
-                    crate::util::write_bytes(&mut s, &mut bytes, crate::util::packed_guid_size(&pvp_corpse), "pvp_corpse", "        ");
-                }
-            }
         }
 
         writeln!(s, "    /* targets: SpellCastTargets end */").unwrap();

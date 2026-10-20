@@ -6,6 +6,7 @@ use crate::vanilla::{
 };
 
 #[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
+/// The 1.12.1 client writes (0x7E4E10) and reads (0x7E4ED0) one object's guid for any of `UNIT`, `GAMEOBJECT`, `CORPSE` and `PVP_CORPSE` (its mask 0x8A02), then one item's for `ITEM` or `TRADE_ITEM`, the source, the destination and the string. A corpse is read before the locations, not after them as mangos-classic's `SpellCastTargets::read` has it. `OBJECT_UNK` and `UNK1` carry no guid.
 /// Auto generated from the original `wowm` in file [`wow_message_parser/wowm/world/common.wowm:163`](https://github.com/gtker/wow_messages/tree/main/wow_message_parser/wowm/world/common.wowm#L163):
 /// ```text
 /// struct SpellCastTargets {
@@ -13,11 +14,14 @@ use crate::vanilla::{
 ///     if (target_flags & UNIT) {
 ///         PackedGuid unit_target;
 ///     }
-///     if (target_flags & GAMEOBJECT) {
+///     else if (target_flags & GAMEOBJECT) {
 ///         PackedGuid gameobject;
 ///     }
-///     else if (target_flags & OBJECT_UNK) {
-///         PackedGuid object_unk;
+///     else if (target_flags & CORPSE) {
+///         PackedGuid corpse;
+///     }
+///     else if (target_flags & PVP_CORPSE) {
+///         PackedGuid pvp_corpse;
 ///     }
 ///     if (target_flags & ITEM) {
 ///         PackedGuid item;
@@ -34,12 +38,6 @@ use crate::vanilla::{
 ///     if (target_flags & STRING) {
 ///         CString target_string;
 ///     }
-///     if (target_flags & CORPSE) {
-///         PackedGuid corpse;
-///     }
-///     else if (target_flags & PVP_CORPSE) {
-///         PackedGuid pvp_corpse;
-///     }
 /// }
 /// ```
 pub struct SpellCastTargets {
@@ -52,25 +50,33 @@ impl SpellCastTargets {
         w.write_all(&(self.target_flags.as_int().to_le_bytes()))?;
 
         if let Some(if_statement) = &self.target_flags.unit {
-            // unit_target: PackedGuid
-            crate::util::write_packed_guid(&if_statement.unit_target, &mut w)?;
-
-        }
-
-        if let Some(if_statement) = &self.target_flags.gameobject {
             match if_statement {
-                SpellCastTargets_SpellCastTargetFlags_Gameobject::Gameobject {
+                SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
+                    unit_target,
+                } => {
+                    // unit_target: PackedGuid
+                    crate::util::write_packed_guid(&unit_target, &mut w)?;
+
+                }
+                SpellCastTargets_SpellCastTargetFlags_Unit::Gameobject {
                     gameobject,
                 } => {
                     // gameobject: PackedGuid
                     crate::util::write_packed_guid(&gameobject, &mut w)?;
 
                 }
-                SpellCastTargets_SpellCastTargetFlags_Gameobject::ObjectUnk {
-                    object_unk,
+                SpellCastTargets_SpellCastTargetFlags_Unit::Corpse {
+                    corpse,
                 } => {
-                    // object_unk: PackedGuid
-                    crate::util::write_packed_guid(&object_unk, &mut w)?;
+                    // corpse: PackedGuid
+                    crate::util::write_packed_guid(&corpse, &mut w)?;
+
+                }
+                SpellCastTargets_SpellCastTargetFlags_Unit::PvpCorpse {
+                    pvp_corpse,
+                } => {
+                    // pvp_corpse: PackedGuid
+                    crate::util::write_packed_guid(&pvp_corpse, &mut w)?;
 
                 }
             }
@@ -117,25 +123,6 @@ crate::util::vanilla_tbc_wrath_vector3d_write_into_vec(&if_statement.destination
 
         }
 
-        if let Some(if_statement) = &self.target_flags.corpse {
-            match if_statement {
-                SpellCastTargets_SpellCastTargetFlags_Corpse::Corpse {
-                    corpse,
-                } => {
-                    // corpse: PackedGuid
-                    crate::util::write_packed_guid(&corpse, &mut w)?;
-
-                }
-                SpellCastTargets_SpellCastTargetFlags_Corpse::PvpCorpse {
-                    pvp_corpse,
-                } => {
-                    // pvp_corpse: PackedGuid
-                    crate::util::write_packed_guid(&pvp_corpse, &mut w)?;
-
-                }
-            }
-        }
-
         Ok(())
     }
 }
@@ -149,28 +136,32 @@ impl SpellCastTargets {
             // unit_target: PackedGuid
             let unit_target = crate::util::read_packed_guid(&mut r)?;
 
-            Some(SpellCastTargets_SpellCastTargetFlags_Unit {
+            Some(SpellCastTargets_SpellCastTargetFlags_Unit::Unit {
                 unit_target,
             })
         }
-        else {
-            None
-        };
-
-        let target_flags_gameobject = if target_flags.is_gameobject() {
+        else if target_flags.is_gameobject() {
             // gameobject: PackedGuid
             let gameobject = crate::util::read_packed_guid(&mut r)?;
 
-            Some(SpellCastTargets_SpellCastTargetFlags_Gameobject::Gameobject {
+            Some(SpellCastTargets_SpellCastTargetFlags_Unit::Gameobject {
                 gameobject,
             })
         }
-        else if target_flags.is_object_unk() {
-            // object_unk: PackedGuid
-            let object_unk = crate::util::read_packed_guid(&mut r)?;
+        else if target_flags.is_corpse() {
+            // corpse: PackedGuid
+            let corpse = crate::util::read_packed_guid(&mut r)?;
 
-            Some(SpellCastTargets_SpellCastTargetFlags_Gameobject::ObjectUnk {
-                object_unk,
+            Some(SpellCastTargets_SpellCastTargetFlags_Unit::Corpse {
+                corpse,
+            })
+        }
+        else if target_flags.is_pvp_corpse() {
+            // pvp_corpse: PackedGuid
+            let pvp_corpse = crate::util::read_packed_guid(&mut r)?;
+
+            Some(SpellCastTargets_SpellCastTargetFlags_Unit::PvpCorpse {
+                pvp_corpse,
             })
         }
         else {
@@ -236,35 +227,13 @@ impl SpellCastTargets {
             None
         };
 
-        let target_flags_corpse = if target_flags.is_corpse() {
-            // corpse: PackedGuid
-            let corpse = crate::util::read_packed_guid(&mut r)?;
-
-            Some(SpellCastTargets_SpellCastTargetFlags_Corpse::Corpse {
-                corpse,
-            })
-        }
-        else if target_flags.is_pvp_corpse() {
-            // pvp_corpse: PackedGuid
-            let pvp_corpse = crate::util::read_packed_guid(&mut r)?;
-
-            Some(SpellCastTargets_SpellCastTargetFlags_Corpse::PvpCorpse {
-                pvp_corpse,
-            })
-        }
-        else {
-            None
-        };
-
         let target_flags = SpellCastTargets_SpellCastTargetFlags {
             inner: target_flags.as_int(),
             unit: target_flags_unit,
             item: target_flags_item,
             source_location: target_flags_source_location,
             dest_location: target_flags_dest_location,
-            gameobject: target_flags_gameobject,
             string: target_flags_string,
-            corpse: target_flags_corpse,
         };
 
         Ok(Self {
@@ -277,6 +246,76 @@ impl SpellCastTargets {
 impl SpellCastTargets {
     pub(crate) fn size(&self) -> usize {
         self.target_flags.size() // target_flags: SpellCastTargets_SpellCastTargetFlags
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum SpellCastTargets_SpellCastTargetFlags_Unit {
+    Unit {
+        unit_target: Guid,
+    },
+    Gameobject {
+        gameobject: Guid,
+    },
+    Corpse {
+        corpse: Guid,
+    },
+    PvpCorpse {
+        pvp_corpse: Guid,
+    },
+}
+
+impl SpellCastTargets_SpellCastTargetFlags_Unit {
+    pub(crate) const fn as_int(&self) -> u16 {
+        match self {
+            Self::Unit { .. } => 2,
+            Self::Gameobject { .. } => 2048,
+            Self::Corpse { .. } => 32768,
+            Self::PvpCorpse { .. } => 512,
+        }
+    }
+
+}
+
+impl std::fmt::Display for SpellCastTargets_SpellCastTargetFlags_Unit {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Unit{ .. } => f.write_str("Unit"),
+            Self::Gameobject{ .. } => f.write_str("Gameobject"),
+            Self::Corpse{ .. } => f.write_str("Corpse"),
+            Self::PvpCorpse{ .. } => f.write_str("PvpCorpse"),
+        }
+    }
+}
+
+impl SpellCastTargets_SpellCastTargetFlags_Unit {
+    pub(crate) const fn size(&self) -> usize {
+        match self {
+            Self::Unit {
+                unit_target,
+            } => {
+                // Not an actual enum sent over the wire
+                crate::util::packed_guid_size(&unit_target) // unit_target: PackedGuid
+            }
+            Self::Gameobject {
+                gameobject,
+            } => {
+                // Not an actual enum sent over the wire
+                crate::util::packed_guid_size(&gameobject) // gameobject: PackedGuid
+            }
+            Self::Corpse {
+                corpse,
+            } => {
+                // Not an actual enum sent over the wire
+                crate::util::packed_guid_size(&corpse) // corpse: PackedGuid
+            }
+            Self::PvpCorpse {
+                pvp_corpse,
+            } => {
+                // Not an actual enum sent over the wire
+                crate::util::packed_guid_size(&pvp_corpse) // pvp_corpse: PackedGuid
+            }
+        }
     }
 }
 
@@ -328,102 +367,6 @@ impl SpellCastTargets_SpellCastTargetFlags_Item {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub enum SpellCastTargets_SpellCastTargetFlags_Gameobject {
-    Gameobject {
-        gameobject: Guid,
-    },
-    ObjectUnk {
-        object_unk: Guid,
-    },
-}
-
-impl SpellCastTargets_SpellCastTargetFlags_Gameobject {
-    pub(crate) const fn as_int(&self) -> u16 {
-        match self {
-            Self::Gameobject { .. } => 2048,
-            Self::ObjectUnk { .. } => 128,
-        }
-    }
-
-}
-
-impl std::fmt::Display for SpellCastTargets_SpellCastTargetFlags_Gameobject {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Gameobject{ .. } => f.write_str("Gameobject"),
-            Self::ObjectUnk{ .. } => f.write_str("ObjectUnk"),
-        }
-    }
-}
-
-impl SpellCastTargets_SpellCastTargetFlags_Gameobject {
-    pub(crate) const fn size(&self) -> usize {
-        match self {
-            Self::Gameobject {
-                gameobject,
-            } => {
-                // Not an actual enum sent over the wire
-                crate::util::packed_guid_size(&gameobject) // gameobject: PackedGuid
-            }
-            Self::ObjectUnk {
-                object_unk,
-            } => {
-                // Not an actual enum sent over the wire
-                crate::util::packed_guid_size(&object_unk) // object_unk: PackedGuid
-            }
-        }
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub enum SpellCastTargets_SpellCastTargetFlags_Corpse {
-    Corpse {
-        corpse: Guid,
-    },
-    PvpCorpse {
-        pvp_corpse: Guid,
-    },
-}
-
-impl SpellCastTargets_SpellCastTargetFlags_Corpse {
-    pub(crate) const fn as_int(&self) -> u16 {
-        match self {
-            Self::Corpse { .. } => 32768,
-            Self::PvpCorpse { .. } => 512,
-        }
-    }
-
-}
-
-impl std::fmt::Display for SpellCastTargets_SpellCastTargetFlags_Corpse {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Corpse{ .. } => f.write_str("Corpse"),
-            Self::PvpCorpse{ .. } => f.write_str("PvpCorpse"),
-        }
-    }
-}
-
-impl SpellCastTargets_SpellCastTargetFlags_Corpse {
-    pub(crate) const fn size(&self) -> usize {
-        match self {
-            Self::Corpse {
-                corpse,
-            } => {
-                // Not an actual enum sent over the wire
-                crate::util::packed_guid_size(&corpse) // corpse: PackedGuid
-            }
-            Self::PvpCorpse {
-                pvp_corpse,
-            } => {
-                // Not an actual enum sent over the wire
-                crate::util::packed_guid_size(&pvp_corpse) // pvp_corpse: PackedGuid
-            }
-        }
-    }
-}
-
 #[derive(Debug, Clone, PartialEq, PartialOrd, Default)]
 pub struct SpellCastTargets_SpellCastTargetFlags {
     inner: u16,
@@ -431,22 +374,18 @@ pub struct SpellCastTargets_SpellCastTargetFlags {
     item: Option<SpellCastTargets_SpellCastTargetFlags_Item>,
     source_location: Option<SpellCastTargets_SpellCastTargetFlags_SourceLocation>,
     dest_location: Option<SpellCastTargets_SpellCastTargetFlags_DestLocation>,
-    gameobject: Option<SpellCastTargets_SpellCastTargetFlags_Gameobject>,
     string: Option<SpellCastTargets_SpellCastTargetFlags_String>,
-    corpse: Option<SpellCastTargets_SpellCastTargetFlags_Corpse>,
 }
 
 impl SpellCastTargets_SpellCastTargetFlags {
-    pub const fn new(inner: u16, unit: Option<SpellCastTargets_SpellCastTargetFlags_Unit>,item: Option<SpellCastTargets_SpellCastTargetFlags_Item>,source_location: Option<SpellCastTargets_SpellCastTargetFlags_SourceLocation>,dest_location: Option<SpellCastTargets_SpellCastTargetFlags_DestLocation>,gameobject: Option<SpellCastTargets_SpellCastTargetFlags_Gameobject>,string: Option<SpellCastTargets_SpellCastTargetFlags_String>,corpse: Option<SpellCastTargets_SpellCastTargetFlags_Corpse>,) -> Self {
+    pub const fn new(inner: u16, unit: Option<SpellCastTargets_SpellCastTargetFlags_Unit>,item: Option<SpellCastTargets_SpellCastTargetFlags_Item>,source_location: Option<SpellCastTargets_SpellCastTargetFlags_SourceLocation>,dest_location: Option<SpellCastTargets_SpellCastTargetFlags_DestLocation>,string: Option<SpellCastTargets_SpellCastTargetFlags_String>,) -> Self {
         Self {
             inner,
             unit, 
             item, 
             source_location, 
             dest_location, 
-            gameobject, 
             string, 
-            corpse, 
         }
     }
 
@@ -457,9 +396,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -469,9 +406,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
         && self.item.is_none()
         && self.source_location.is_none()
         && self.dest_location.is_none()
-        && self.gameobject.is_none()
         && self.string.is_none()
-        && self.corpse.is_none()
     }
 
     pub const fn new_unused1() -> Self {
@@ -481,9 +416,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -505,20 +438,18 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     pub const fn new_unit(unit: SpellCastTargets_SpellCastTargetFlags_Unit) -> Self {
         Self {
-            inner: SpellCastTargetFlags::UNIT,
+            inner: unit.as_int(),
             unit: Some(unit),
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn set_unit(mut self, unit: SpellCastTargets_SpellCastTargetFlags_Unit) -> Self {
-        self.inner |= SpellCastTargetFlags::UNIT;
+        self.inner |= unit.as_int();
         self.unit = Some(unit);
         self
     }
@@ -529,7 +460,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
 
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unit(mut self) -> Self {
-        self.inner &= !SpellCastTargetFlags::UNIT;
+        self.inner &= !(SpellCastTargetFlags::UNIT | SpellCastTargetFlags::GAMEOBJECT | SpellCastTargetFlags::CORPSE | SpellCastTargetFlags::PVP_CORPSE);
         self.unit = None;
         self
     }
@@ -541,9 +472,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -570,9 +499,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -599,9 +526,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: Some(item),
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -630,9 +555,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: Some(source_location),
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -661,9 +584,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: Some(dest_location),
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -685,6 +606,33 @@ impl SpellCastTargets_SpellCastTargetFlags {
         self
     }
 
+    pub const fn new_object_unk() -> Self {
+        Self {
+            inner: SpellCastTargetFlags::OBJECT_UNK,
+            unit: None,
+            item: None,
+            source_location: None,
+            dest_location: None,
+            string: None,
+        }
+    }
+
+    #[allow(clippy::missing_const_for_fn)] // false positive
+    pub fn set_object_unk(mut self) -> Self {
+        self.inner |= SpellCastTargetFlags::OBJECT_UNK;
+        self
+    }
+
+    pub const fn get_object_unk(&self) -> bool {
+        (self.inner & SpellCastTargetFlags::OBJECT_UNK) != 0
+    }
+
+    #[allow(clippy::missing_const_for_fn)] // false positive
+    pub fn clear_object_unk(mut self) -> Self {
+        self.inner &= !SpellCastTargetFlags::OBJECT_UNK;
+        self
+    }
+
     pub const fn new_unit_unk() -> Self {
         Self {
             inner: SpellCastTargetFlags::UNIT_UNK,
@@ -692,9 +640,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -721,9 +667,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -743,37 +687,6 @@ impl SpellCastTargets_SpellCastTargetFlags {
         self
     }
 
-    pub const fn new_gameobject(gameobject: SpellCastTargets_SpellCastTargetFlags_Gameobject) -> Self {
-        Self {
-            inner: gameobject.as_int(),
-            unit: None,
-            item: None,
-            source_location: None,
-            dest_location: None,
-            gameobject: Some(gameobject),
-            string: None,
-            corpse: None,
-        }
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn set_gameobject(mut self, gameobject: SpellCastTargets_SpellCastTargetFlags_Gameobject) -> Self {
-        self.inner |= gameobject.as_int();
-        self.gameobject = Some(gameobject);
-        self
-    }
-
-    pub const fn get_gameobject(&self) -> Option<&SpellCastTargets_SpellCastTargetFlags_Gameobject> {
-        self.gameobject.as_ref()
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn clear_gameobject(mut self) -> Self {
-        self.inner &= !(SpellCastTargetFlags::GAMEOBJECT | SpellCastTargetFlags::OBJECT_UNK);
-        self.gameobject = None;
-        self
-    }
-
     pub const fn new_string(string: SpellCastTargets_SpellCastTargetFlags_String) -> Self {
         Self {
             inner: SpellCastTargetFlags::STRING,
@@ -781,9 +694,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: Some(string),
-            corpse: None,
         }
     }
 
@@ -812,9 +723,7 @@ impl SpellCastTargets_SpellCastTargetFlags {
             item: None,
             source_location: None,
             dest_location: None,
-            gameobject: None,
             string: None,
-            corpse: None,
         }
     }
 
@@ -831,37 +740,6 @@ impl SpellCastTargets_SpellCastTargetFlags {
     #[allow(clippy::missing_const_for_fn)] // false positive
     pub fn clear_unk1(mut self) -> Self {
         self.inner &= !SpellCastTargetFlags::UNK1;
-        self
-    }
-
-    pub const fn new_corpse(corpse: SpellCastTargets_SpellCastTargetFlags_Corpse) -> Self {
-        Self {
-            inner: corpse.as_int(),
-            unit: None,
-            item: None,
-            source_location: None,
-            dest_location: None,
-            gameobject: None,
-            string: None,
-            corpse: Some(corpse),
-        }
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn set_corpse(mut self, corpse: SpellCastTargets_SpellCastTargetFlags_Corpse) -> Self {
-        self.inner |= corpse.as_int();
-        self.corpse = Some(corpse);
-        self
-    }
-
-    pub const fn get_corpse(&self) -> Option<&SpellCastTargets_SpellCastTargetFlags_Corpse> {
-        self.corpse.as_ref()
-    }
-
-    #[allow(clippy::missing_const_for_fn)] // false positive
-    pub fn clear_corpse(mut self) -> Self {
-        self.inner &= !(SpellCastTargetFlags::CORPSE | SpellCastTargetFlags::PVP_CORPSE);
-        self.corpse = None;
         self
     }
 
@@ -902,37 +780,12 @@ impl SpellCastTargets_SpellCastTargetFlags {
             }
         }
         + {
-            if let Some(s) = &self.gameobject {
-                s.size()
-            } else {
-                0
-            }
-        }
-        + {
             if let Some(s) = &self.string {
                 s.size()
             } else {
                 0
             }
         }
-        + {
-            if let Some(s) = &self.corpse {
-                s.size()
-            } else {
-                0
-            }
-        }
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct SpellCastTargets_SpellCastTargetFlags_Unit {
-    pub unit_target: Guid,
-}
-
-impl SpellCastTargets_SpellCastTargetFlags_Unit {
-    pub(crate) const fn size(&self) -> usize {
-        crate::util::packed_guid_size(&self.unit_target) // unit_target: PackedGuid
     }
 }
 

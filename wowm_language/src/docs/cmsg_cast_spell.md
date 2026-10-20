@@ -39,6 +39,49 @@ CMSG have a header of 6 bytes.
 120, 80, 0, 0, // spell: u32
 0, 0, // SpellCastTargets.target_flags: SpellCastTargetFlags  SELF (0)
 ```
+#### Example 2
+
+```c
+0, 25, // size
+46, 1, 0, 0, // opcode (302)
+120, 80, 0, 0, // spell: u32
+64, 2, // SpellCastTargets.target_flags: SpellCastTargetFlags  DEST_LOCATION| PVP_CORPSE (576)
+129, 42, 241, // SpellCastTargets.pvp_corpse: PackedGuid
+0, 0, 128, 63, // Vector3d.x: f32
+0, 0, 0, 64, // Vector3d.y: f32
+0, 0, 64, 64, // Vector3d.z: f32
+```
+#### Example 3
+
+```c
+0, 25, // size
+46, 1, 0, 0, // opcode (302)
+120, 80, 0, 0, // spell: u32
+64, 128, // SpellCastTargets.target_flags: SpellCastTargetFlags  DEST_LOCATION| CORPSE (32832)
+129, 42, 241, // SpellCastTargets.corpse: PackedGuid
+0, 0, 128, 63, // Vector3d.x: f32
+0, 0, 0, 64, // Vector3d.y: f32
+0, 0, 64, 64, // Vector3d.z: f32
+```
+#### Example 4
+
+```c
+0, 19, // size
+46, 1, 0, 0, // opcode (302)
+120, 80, 0, 0, // spell: u32
+18, 0, // SpellCastTargets.target_flags: SpellCastTargetFlags  UNIT| ITEM (18)
+203, 35, 1, 38, 48, 241, // SpellCastTargets.unit_target: PackedGuid
+129, 7, 64, // SpellCastTargets.item: PackedGuid
+```
+#### Example 5
+
+```c
+0, 16, // size
+46, 1, 0, 0, // opcode (302)
+120, 80, 0, 0, // spell: u32
+130, 64, // SpellCastTargets.target_flags: SpellCastTargetFlags  UNIT| OBJECT_UNK| UNK1 (16514)
+203, 35, 1, 38, 48, 241, // SpellCastTargets.unit_target: PackedGuid
+```
 ## Client Version 2.4.3
 
 ### Wowm Representation
