@@ -1,3 +1,41 @@
+flag HitInfo : u32 {
+    NORMAL_SWING        = 0x00000000;
+    UNK1                = 0x00000001 {
+        comment = "The 1.12 client reads a debug trailer after the blocked amount when this is set (mangos-classic's `HITINFO_UNK0`).";
+    }
+    AFFECTS_VICTIM      = 0x00000002 {
+        comment = "no being hit animation on victim without it";
+    }
+    LEFT_SWING          = 0x00000004;
+    EARLY_CRITICAL_HIT  = 0x00000008 {
+        comment = "According to vmangos used as crit prior to 1.9.";
+    }
+    MISS                = 0x00000010;
+    ABSORB              = 0x00000020 {
+        comment = "plays absorb sound";
+    }
+    RESIST              = 0x00000040 {
+        comment = "resisted atleast some damage";
+    }
+    CRITICAL_HIT        = 0x00000080;
+    UNK9                = 0x00000100 {
+        comment = "wotlk?";
+    }
+    BLOCK               = 0x00000800 {
+        comment = "mangos-classic's `HITINFO_BLOCK`.";
+    }
+    UNK10               = 0x00002000 {
+        comment = "wotlk?";
+    }
+    GLANCING            = 0x00004000;
+    CRUSHING            = 0x00008000;
+    NO_ACTION           = 0x00010000;
+    SWING_NO_HIT_SOUND  = 0x00080000;
+} {
+    versions = "1.12";
+    comment = "A set of flags in 1.12: a crushing blow is `AFFECTS_VICTIM | CRUSHING` (0x8002), a main hand's miss `AFFECTS_VICTIM | MISS` (0x12). The client's `SMSG_ATTACKERSTATEUPDATE` parse (0x625C60) branches on `UNK1` alone.";
+}
+
 enum HitInfo : u32 {
     NORMAL_SWING        = 0x00000000;
     UNK1                = 0x00000001 {
@@ -29,7 +67,7 @@ enum HitInfo : u32 {
     NO_ACTION           = 0x00010000;
     SWING_NO_HIT_SOUND  = 0x00080000;
 } {
-    versions = "1.12 2";
+    versions = "2";
 }
 
 
@@ -60,8 +98,50 @@ smsg SMSG_ATTACKERSTATEUPDATE = 0x014A {
         comment = "vmangos: spell id, seen with heroic strike and disarm as examples";
     }
     u32 blocked_amount;
+    if (hit_info & UNK1) {
+        u32 debug_int1;
+        f32 debug_float1;
+        f32 debug_float2;
+        f32 debug_float3;
+        f32 debug_float4;
+        f32 debug_float5;
+        f32 debug_float6;
+        f32 debug_float7;
+        f32 debug_float8;
+        f32 debug_float9 {
+            comment = "The first of five pairs of floats.";
+        }
+        f32 debug_float10;
+        f32 debug_float11;
+        f32 debug_float12;
+        f32 debug_float13;
+        f32 debug_float14;
+        f32 debug_float15;
+        f32 debug_float16;
+        f32 debug_float17;
+        f32 debug_float18;
+        u32 debug_int2;
+    }
 } {
-    paste_versions = "1.12 2.4.3";
+    versions = "1.12";
+    comment = "mangos-classic's `Unit::SendAttackStateUpdate` writes the debug trailer (a u32, eight floats, five pairs of floats and a u32, all 0) under `HITINFO_UNK0`, and the 1.12 client's parse (0x625C60) reads it under the same flag.";
+}
+
+smsg SMSG_ATTACKERSTATEUPDATE = 0x014A {
+    HitInfo hit_info;
+    PackedGuid attacker;
+    PackedGuid target;
+    u32 total_damage;
+    u8 amount_of_damages;
+    DamageInfo[amount_of_damages] damages;
+    u32 damage_state;
+    u32 unknown1;
+    u32 spell_id {
+        comment = "vmangos: spell id, seen with heroic strike and disarm as examples";
+    }
+    u32 blocked_amount;
+} {
+    versions = "2.4.3";
 }
 
 
@@ -109,3 +189,163 @@ test SMSG_ATTACKERSTATEUPDATE {
     versions = "1.12";
 }
 
+
+/* A crushing blow, 0x8002 (mangos-classic's HITINFO_NORMALSWING2 | HITINFO_CRUSHING). */
+test SMSG_ATTACKERSTATEUPDATE {
+    hit_info = AFFECTS_VICTIM | CRUSHING;
+    attacker = 23;
+    target = 100;
+    total_damage = 120;
+    amount_of_damages = 1;
+    damages = [
+        {
+            spell_school_mask = 0;
+            damage_float = 120.0;
+            damage_uint = 120;
+            absorb = 0;
+            resist = 0;
+        },
+    ];
+    damage_state = 1;
+    unknown1 = 0;
+    spell_id = 0;
+    blocked_amount = 0;
+} [
+    0x00, 0x33, /* size */
+    0x4A, 0x01, /* opcode */
+    0x02, 0x80, 0x00, 0x00, /* hit_info */
+    0x01, 0x17, /* attacker */
+    0x01, 0x64, /* target */
+    0x78, 0x00, 0x00, 0x00, /* total_damage */
+    0x01, /* amount_of_damages */
+    /* damages: DamageInfo[amount_of_damages] start */
+    /* damages: DamageInfo[amount_of_damages] 0 start */
+        0x00, 0x00, 0x00, 0x00, /* spell_school_mask */
+        0x00, 0x00, 0xF0, 0x42, /* damage_float */
+        0x78, 0x00, 0x00, 0x00, /* damage_uint */
+        0x00, 0x00, 0x00, 0x00, /* absorb */
+        0x00, 0x00, 0x00, 0x00, /* resist */
+    /* damages: DamageInfo[amount_of_damages] 0 end */
+    /* damages: DamageInfo[amount_of_damages] end */
+    0x01, 0x00, 0x00, 0x00, /* damage_state */
+    0x00, 0x00, 0x00, 0x00, /* unknown1 */
+    0x00, 0x00, 0x00, 0x00, /* spell_id */
+    0x00, 0x00, 0x00, 0x00, /* blocked_amount */
+] {
+    versions = "1.12";
+}
+
+/* A main hand's miss, 0x12 (mangos-classic's HITINFO_NORMALSWING2 | HITINFO_MISS). */
+test SMSG_ATTACKERSTATEUPDATE {
+    hit_info = AFFECTS_VICTIM | MISS;
+    attacker = 23;
+    target = 100;
+    total_damage = 0;
+    amount_of_damages = 1;
+    damages = [
+        {
+            spell_school_mask = 0;
+            damage_float = 0.0;
+            damage_uint = 0;
+            absorb = 0;
+            resist = 0;
+        },
+    ];
+    damage_state = 0;
+    unknown1 = 0;
+    spell_id = 0;
+    blocked_amount = 0;
+} [
+    0x00, 0x33, /* size */
+    0x4A, 0x01, /* opcode */
+    0x12, 0x00, 0x00, 0x00, /* hit_info */
+    0x01, 0x17, /* attacker */
+    0x01, 0x64, /* target */
+    0x00, 0x00, 0x00, 0x00, /* total_damage */
+    0x01, /* amount_of_damages */
+    /* damages: DamageInfo[amount_of_damages] start */
+    /* damages: DamageInfo[amount_of_damages] 0 start */
+        0x00, 0x00, 0x00, 0x00, /* spell_school_mask */
+        0x00, 0x00, 0x00, 0x00, /* damage_float */
+        0x00, 0x00, 0x00, 0x00, /* damage_uint */
+        0x00, 0x00, 0x00, 0x00, /* absorb */
+        0x00, 0x00, 0x00, 0x00, /* resist */
+    /* damages: DamageInfo[amount_of_damages] 0 end */
+    /* damages: DamageInfo[amount_of_damages] end */
+    0x00, 0x00, 0x00, 0x00, /* damage_state */
+    0x00, 0x00, 0x00, 0x00, /* unknown1 */
+    0x00, 0x00, 0x00, 0x00, /* spell_id */
+    0x00, 0x00, 0x00, 0x00, /* blocked_amount */
+] {
+    versions = "1.12";
+}
+
+/* A blow with the debug trailer (0x1), as the 1.12 client's parse reads it. */
+test SMSG_ATTACKERSTATEUPDATE {
+    hit_info = UNK1 | AFFECTS_VICTIM;
+    attacker = 23;
+    target = 100;
+    total_damage = 0;
+    amount_of_damages = 0;
+    damages = [ ];
+    damage_state = 1;
+    unknown1 = 0;
+    spell_id = 0;
+    blocked_amount = 0;
+    debug_int1 = 7;
+    debug_float1 = 1.0;
+    debug_float2 = 0.0;
+    debug_float3 = 0.0;
+    debug_float4 = 0.0;
+    debug_float5 = 0.0;
+    debug_float6 = 0.0;
+    debug_float7 = 0.0;
+    debug_float8 = 0.0;
+    debug_float9 = 0.0;
+    debug_float10 = 0.0;
+    debug_float11 = 0.0;
+    debug_float12 = 0.0;
+    debug_float13 = 0.0;
+    debug_float14 = 0.0;
+    debug_float15 = 0.0;
+    debug_float16 = 0.0;
+    debug_float17 = 0.0;
+    debug_float18 = 2.0;
+    debug_int2 = 9;
+} [
+    0x00, 0x6F, /* size */
+    0x4A, 0x01, /* opcode */
+    0x03, 0x00, 0x00, 0x00, /* hit_info */
+    0x01, 0x17, /* attacker */
+    0x01, 0x64, /* target */
+    0x00, 0x00, 0x00, 0x00, /* total_damage */
+    0x00, /* amount_of_damages */
+    /* damages: DamageInfo[amount_of_damages] start */
+    /* damages: DamageInfo[amount_of_damages] end */
+    0x01, 0x00, 0x00, 0x00, /* damage_state */
+    0x00, 0x00, 0x00, 0x00, /* unknown1 */
+    0x00, 0x00, 0x00, 0x00, /* spell_id */
+    0x00, 0x00, 0x00, 0x00, /* blocked_amount */
+    0x07, 0x00, 0x00, 0x00, /* debug_int1 */
+    0x00, 0x00, 0x80, 0x3F, /* debug_float1 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float2 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float3 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float4 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float5 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float6 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float7 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float8 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float9 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float10 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float11 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float12 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float13 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float14 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float15 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float16 */
+    0x00, 0x00, 0x00, 0x00, /* debug_float17 */
+    0x00, 0x00, 0x00, 0x40, /* debug_float18 */
+    0x09, 0x00, 0x00, 0x00, /* debug_int2 */
+] {
+    versions = "1.12";
+}

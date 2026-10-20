@@ -1288,6 +1288,18 @@
                 NULL, HFILL
             }
         },
+        { &hf_woww_debug_float,
+            { "Debug Float", "woww.debug.float",
+                FT_FLOAT, BASE_NONE, NULL, 0,
+                NULL, HFILL
+            }
+        },
+        { &hf_woww_debug_int,
+            { "Debug Int", "woww.debug.int",
+                FT_UINT32, BASE_HEX_DEC, NULL, 0,
+                NULL, HFILL
+            }
+        },
         { &hf_woww_debug_log_format,
             { "Debug Log Format", "woww.debug.log.format",
                 FT_UINT8, BASE_HEX_DEC, NULL, 0,
@@ -1944,7 +1956,7 @@
         },
         { &hf_woww_hit_info,
             { "Hit Info", "woww.hit.info",
-                FT_UINT32, BASE_HEX_DEC, VALS(e_hit_info_strings), 0,
+                FT_UINT32, BASE_HEX_DEC, NULL, 0,
                 NULL, HFILL
             }
         },

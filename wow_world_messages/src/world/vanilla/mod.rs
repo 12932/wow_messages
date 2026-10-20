@@ -33,7 +33,6 @@ pub use wow_world_base::shared::group_loot_setting_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::group_type_vanilla_tbc::*;
 pub use wow_world_base::shared::guild_command_vanilla_tbc::*;
 pub use wow_world_base::shared::guild_member_status_vanilla_tbc_wrath::*;
-pub use wow_world_base::shared::hit_info_vanilla_tbc::*;
 pub use wow_world_base::shared::instance_reset_failed_reason_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::inventory_type_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::item_class_vanilla_tbc::*;

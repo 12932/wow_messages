@@ -54,7 +54,6 @@ pub use wow_world_base::shared::guild_command_vanilla_tbc::*;
 pub use wow_world_base::shared::guild_emblem_result_tbc_wrath::*;
 pub use wow_world_base::shared::guild_event_tbc_wrath::*;
 pub use wow_world_base::shared::guild_member_status_vanilla_tbc_wrath::*;
-pub use wow_world_base::shared::hit_info_vanilla_tbc::*;
 pub use wow_world_base::shared::instance_reset_failed_reason_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::inventory_type_vanilla_tbc_wrath::*;
 pub use wow_world_base::shared::item_class_vanilla_tbc::*;

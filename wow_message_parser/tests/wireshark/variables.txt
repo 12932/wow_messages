@@ -49,6 +49,7 @@
     guint32 effect = 0;
     guint32 exp_type = 0;
     guint32 flags = 0;
+    guint32 hit_info = 0;
     guint32 info_block = 0;
     guint32 key_version = 0;
     guint32 layout = 0;

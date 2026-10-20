@@ -6247,42 +6247,6 @@ static const value_string e_ai_reaction_strings[] =  {
 };
 
 typedef enum {
-    HIT_INFO_NORMAL_SWING = 0x00000,
-    HIT_INFO_UNK1 = 0x00001,
-    HIT_INFO_AFFECTS_VICTIM = 0x00002,
-    HIT_INFO_LEFT_SWING = 0x00004,
-    HIT_INFO_EARLY_CRITICAL_HIT = 0x00008,
-    HIT_INFO_MISS = 0x00010,
-    HIT_INFO_ABSORB = 0x00020,
-    HIT_INFO_RESIST = 0x00040,
-    HIT_INFO_CRITICAL_HIT = 0x00080,
-    HIT_INFO_UNK9 = 0x00100,
-    HIT_INFO_UNK10 = 0x02000,
-    HIT_INFO_GLANCING = 0x04000,
-    HIT_INFO_CRUSHING = 0x08000,
-    HIT_INFO_NO_ACTION = 0x10000,
-    HIT_INFO_SWING_NO_HIT_SOUND = 0x80000,
-} e_hit_info;
-static const value_string e_hit_info_strings[] =  {
-    { HIT_INFO_NORMAL_SWING, "Normal Swing" },
-    { HIT_INFO_UNK1, "Unk1" },
-    { HIT_INFO_AFFECTS_VICTIM, "Affects Victim" },
-    { HIT_INFO_LEFT_SWING, "Left Swing" },
-    { HIT_INFO_EARLY_CRITICAL_HIT, "Early Critical Hit" },
-    { HIT_INFO_MISS, "Miss" },
-    { HIT_INFO_ABSORB, "Absorb" },
-    { HIT_INFO_RESIST, "Resist" },
-    { HIT_INFO_CRITICAL_HIT, "Critical Hit" },
-    { HIT_INFO_UNK9, "Unk9" },
-    { HIT_INFO_UNK10, "Unk10" },
-    { HIT_INFO_GLANCING, "Glancing" },
-    { HIT_INFO_CRUSHING, "Crushing" },
-    { HIT_INFO_NO_ACTION, "No Action" },
-    { HIT_INFO_SWING_NO_HIT_SOUND, "Swing No Hit Sound" },
-    { 0, NULL }
-};
-
-typedef enum {
     AUCTION_COMMAND_ACTION_STARTED = 0x0,
     AUCTION_COMMAND_ACTION_REMOVED = 0x1,
     AUCTION_COMMAND_ACTION_BID_PLACED = 0x2,
@@ -9143,6 +9107,25 @@ typedef enum {
     SPELL_CAST_TARGET_FLAGS_UNK1 = 0x4000,
     SPELL_CAST_TARGET_FLAGS_CORPSE = 0x8000,
 } e_spell_cast_target_flags;
+
+typedef enum {
+    HIT_INFO_NORMAL_SWING = 0x00000,
+    HIT_INFO_UNK1 = 0x00001,
+    HIT_INFO_AFFECTS_VICTIM = 0x00002,
+    HIT_INFO_LEFT_SWING = 0x00004,
+    HIT_INFO_EARLY_CRITICAL_HIT = 0x00008,
+    HIT_INFO_MISS = 0x00010,
+    HIT_INFO_ABSORB = 0x00020,
+    HIT_INFO_RESIST = 0x00040,
+    HIT_INFO_CRITICAL_HIT = 0x00080,
+    HIT_INFO_UNK9 = 0x00100,
+    HIT_INFO_BLOCK = 0x00800,
+    HIT_INFO_UNK10 = 0x02000,
+    HIT_INFO_GLANCING = 0x04000,
+    HIT_INFO_CRUSHING = 0x08000,
+    HIT_INFO_NO_ACTION = 0x10000,
+    HIT_INFO_SWING_NO_HIT_SOUND = 0x80000,
+} e_hit_info;
 
 typedef enum {
     CHANNEL_FLAGS_NONE = 0x00,

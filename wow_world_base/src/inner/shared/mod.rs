@@ -111,8 +111,6 @@ pub mod guild_emblem_result_tbc_wrath;
 pub mod guild_event_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod guild_member_status_vanilla_tbc_wrath;
-#[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc"))]
-pub mod hit_info_vanilla_tbc;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]
 pub mod instance_reset_failed_reason_vanilla_tbc_wrath;
 #[cfg(any(feature = "shared", feature = "vanilla", feature = "tbc", feature = "wrath"))]

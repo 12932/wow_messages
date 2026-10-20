@@ -3701,7 +3701,7 @@
             add_sized_cstring(ptv, &hf_woww_message);
             break;
         case SMSG_ATTACKERSTATEUPDATE:
-            ptvcursor_add(ptv, hf_woww_hit_info, 4, ENC_LITTLE_ENDIAN);
+            ptvcursor_add_ret_uint(ptv, hf_woww_hit_info, 4, ENC_LITTLE_ENDIAN, &hit_info);
             add_packed_guid(ptv, pinfo);
             add_packed_guid(ptv, pinfo);
             ptvcursor_add(ptv, hf_woww_total_damage, 4, ENC_LITTLE_ENDIAN);
@@ -3719,6 +3719,28 @@
             ptvcursor_add(ptv, hf_woww_unknown_int, 4, ENC_LITTLE_ENDIAN);
             ptvcursor_add(ptv, hf_woww_spell_id, 4, ENC_LITTLE_ENDIAN);
             ptvcursor_add(ptv, hf_woww_blocked_amount, 4, ENC_LITTLE_ENDIAN);
+            if (hit_info & HIT_INFO_UNK1) {
+                ptvcursor_add(ptv, hf_woww_debug_int, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_float, 4, ENC_LITTLE_ENDIAN);
+                ptvcursor_add(ptv, hf_woww_debug_int, 4, ENC_LITTLE_ENDIAN);
+            }
             break;
         case SMSG_ATTACKSTART:
             ptvcursor_add(ptv, hf_woww_attacker, 8, ENC_LITTLE_ENDIAN);

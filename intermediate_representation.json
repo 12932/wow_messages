@@ -36544,6 +36544,189 @@
         "definer_type": "Flag",
         "enumerators": [
           {
+            "name": "NORMAL_SWING",
+            "value": {
+              "value": "0",
+              "original_string": "0x00000000"
+            },
+            "tags": {}
+          },
+          {
+            "name": "UNK1",
+            "value": {
+              "value": "1",
+              "original_string": "0x00000001"
+            },
+            "tags": {
+              "comment": "The 1.12 client reads a debug trailer after the blocked amount when this is set (mangos-classic's `HITINFO_UNK0`)."
+            }
+          },
+          {
+            "name": "AFFECTS_VICTIM",
+            "value": {
+              "value": "2",
+              "original_string": "0x00000002"
+            },
+            "tags": {
+              "comment": "no being hit animation on victim without it"
+            }
+          },
+          {
+            "name": "LEFT_SWING",
+            "value": {
+              "value": "4",
+              "original_string": "0x00000004"
+            },
+            "tags": {}
+          },
+          {
+            "name": "EARLY_CRITICAL_HIT",
+            "value": {
+              "value": "8",
+              "original_string": "0x00000008"
+            },
+            "tags": {
+              "comment": "According to vmangos used as crit prior to 1.9."
+            }
+          },
+          {
+            "name": "MISS",
+            "value": {
+              "value": "16",
+              "original_string": "0x00000010"
+            },
+            "tags": {}
+          },
+          {
+            "name": "ABSORB",
+            "value": {
+              "value": "32",
+              "original_string": "0x00000020"
+            },
+            "tags": {
+              "comment": "plays absorb sound"
+            }
+          },
+          {
+            "name": "RESIST",
+            "value": {
+              "value": "64",
+              "original_string": "0x00000040"
+            },
+            "tags": {
+              "comment": "resisted atleast some damage"
+            }
+          },
+          {
+            "name": "CRITICAL_HIT",
+            "value": {
+              "value": "128",
+              "original_string": "0x00000080"
+            },
+            "tags": {}
+          },
+          {
+            "name": "UNK9",
+            "value": {
+              "value": "256",
+              "original_string": "0x00000100"
+            },
+            "tags": {
+              "comment": "wotlk?"
+            }
+          },
+          {
+            "name": "BLOCK",
+            "value": {
+              "value": "2048",
+              "original_string": "0x00000800"
+            },
+            "tags": {
+              "comment": "mangos-classic's `HITINFO_BLOCK`."
+            }
+          },
+          {
+            "name": "UNK10",
+            "value": {
+              "value": "8192",
+              "original_string": "0x00002000"
+            },
+            "tags": {
+              "comment": "wotlk?"
+            }
+          },
+          {
+            "name": "GLANCING",
+            "value": {
+              "value": "16384",
+              "original_string": "0x00004000"
+            },
+            "tags": {}
+          },
+          {
+            "name": "CRUSHING",
+            "value": {
+              "value": "32768",
+              "original_string": "0x00008000"
+            },
+            "tags": {}
+          },
+          {
+            "name": "NO_ACTION",
+            "value": {
+              "value": "65536",
+              "original_string": "0x00010000"
+            },
+            "tags": {}
+          },
+          {
+            "name": "SWING_NO_HIT_SOUND",
+            "value": {
+              "value": "524288",
+              "original_string": "0x00080000"
+            },
+            "tags": {}
+          }
+        ],
+        "integer_type": "U32",
+        "tags": {
+          "comment": "A set of flags in 1.12: a crushing blow is `AFFECTS_VICTIM | CRUSHING` (0x8002), a main hand's miss `AFFECTS_VICTIM | MISS` (0x12). The client's `SMSG_ATTACKERSTATEUPDATE` parse (0x625C60) branches on `UNK1` alone.",
+          "version": {
+            "version_type_tag": "world",
+            "version_type": {
+              "world_version_tag": "specific",
+              "versions": [
+                {
+                  "major": 1,
+                  "minor": 12,
+                  "patch": null,
+                  "build": null
+                }
+              ]
+            }
+          }
+        },
+        "objects_used_in": [
+          {
+            "object_name": "SMSG_ATTACKERSTATEUPDATE",
+            "definer_usage": "InIfStatement"
+          },
+          {
+            "object_name": "SMSG_SPELLNONMELEEDAMAGELOG",
+            "definer_usage": "RegularUse"
+          }
+        ],
+        "file_info": {
+          "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
+          "start_position": 1,
+          "end_position": 37
+        }
+      },
+      {
+        "name": "HitInfo",
+        "definer_type": "Flag",
+        "enumerators": [
+          {
             "name": "NORMALSWING",
             "value": {
               "value": "0",
@@ -129374,12 +129557,6 @@
               "world_version_tag": "specific",
               "versions": [
                 {
-                  "major": 1,
-                  "minor": 12,
-                  "patch": null,
-                  "build": null
-                },
-                {
                   "major": 2,
                   "minor": null,
                   "patch": null,
@@ -129401,8 +129578,8 @@
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-          "start_position": 1,
-          "end_position": 33
+          "start_position": 39,
+          "end_position": 71
         }
       },
       {
@@ -206601,8 +206778,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-          "start_position": 36,
-          "end_position": 48
+          "start_position": 74,
+          "end_position": 86
         },
         "only_has_io_error": true,
         "has_manual_size_field": false,
@@ -452465,7 +452642,7 @@
         "sizes": {
           "constant_sized": false,
           "minimum_size": 27,
-          "maximum_size": 5163
+          "maximum_size": 5243
         },
         "members": [
           {
@@ -452473,7 +452650,7 @@
             "struct_member_content": {
               "name": "hit_info",
               "data_type": {
-                "data_type_tag": "Enum",
+                "data_type_tag": "Flag",
                 "content": {
                   "type_name": "HitInfo",
                   "integer_type": "U32",
@@ -452483,7 +452660,7 @@
               "constant_value": null,
               "used_as_size_in": null,
               "size_of_fields_before_size": null,
-              "used_in_if": false,
+              "used_in_if": true,
               "tags": {}
             }
           },
@@ -452670,8 +452847,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-                          "start_position": 36,
-                          "end_position": 48
+                          "start_position": 74,
+                          "end_position": 86
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -452754,9 +452931,324 @@
               "used_in_if": false,
               "tags": {}
             }
+          },
+          {
+            "struct_member_tag": "IfStatement",
+            "struct_member_content": {
+              "conditional": {
+                "variable_name": "hit_info",
+                "equations": {
+                  "equation_tag": "BitwiseAnd",
+                  "values": {
+                    "value": [
+                      "UNK1"
+                    ]
+                  }
+                }
+              },
+              "members": [
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_int1",
+                    "data_type": {
+                      "data_type_tag": "Integer",
+                      "content": "U32"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float1",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float2",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float3",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float4",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float5",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float6",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float7",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float8",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float9",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {
+                      "comment": "The first of five pairs of floats."
+                    }
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float10",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float11",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float12",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float13",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float14",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float15",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float16",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float17",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_float18",
+                    "data_type": {
+                      "data_type_tag": "FloatingPoint"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                },
+                {
+                  "struct_member_tag": "Definition",
+                  "struct_member_content": {
+                    "name": "debug_int2",
+                    "data_type": {
+                      "data_type_tag": "Integer",
+                      "content": "U32"
+                    },
+                    "constant_value": null,
+                    "used_as_size_in": null,
+                    "size_of_fields_before_size": null,
+                    "used_in_if": false,
+                    "tags": {}
+                  }
+                }
+              ],
+              "else_if_statements": [],
+              "else_members": [],
+              "original_type": {
+                "data_type_tag": "Flag",
+                "content": {
+                  "type_name": "HitInfo",
+                  "integer_type": "U32",
+                  "upcast": false
+                }
+              },
+              "part_of_separate_if_statement": false,
+              "is_else_if_flag": false
+            }
           }
         ],
         "tags": {
+          "comment": "mangos-classic's `Unit::SendAttackStateUpdate` writes the debug trailer (a u32, eight floats, five pairs of floats and a u32, all 0) under `HITINFO_UNK0`, and the 1.12 client's parse (0x625C60) reads it under the same flag.",
           "version": {
             "version_type_tag": "world",
             "version_type": {
@@ -452779,11 +453271,10 @@
               {
                 "variable_name": "hit_info",
                 "value": {
-                  "test_value_tag": "Enum",
-                  "content": {
-                    "value": "128",
-                    "original_string": "CRITICAL_HIT"
-                  }
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "CRITICAL_HIT"
+                  ]
                 },
                 "tags": {}
               },
@@ -453022,17 +453513,997 @@
             },
             "file_info": {
               "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-              "start_position": 68,
-              "end_position": 110
+              "start_position": 148,
+              "end_position": 190
+            }
+          },
+          {
+            "subject": "SMSG_ATTACKERSTATEUPDATE",
+            "members": [
+              {
+                "variable_name": "hit_info",
+                "value": {
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "AFFECTS_VICTIM",
+                    "CRUSHING"
+                  ]
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "attacker",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "23",
+                    "original_string": "23"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "target",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "100",
+                    "original_string": "100"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "total_damage",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "120",
+                    "original_string": "120"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "amount_of_damages",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damages",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "DamageInfo",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "spell_school_mask",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "damage_float",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 120.0,
+                              "original_string": "120.0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "damage_uint",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "120",
+                              "original_string": "120"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "absorb",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "resist",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_damages"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damage_state",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "unknown1",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "spell_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "blocked_amount",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              51,
+              74,
+              1,
+              2,
+              128,
+              0,
+              0,
+              1,
+              23,
+              1,
+              100,
+              120,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              240,
+              66,
+              120,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
+              "start_position": 194,
+              "end_position": 236
+            }
+          },
+          {
+            "subject": "SMSG_ATTACKERSTATEUPDATE",
+            "members": [
+              {
+                "variable_name": "hit_info",
+                "value": {
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "AFFECTS_VICTIM",
+                    "MISS"
+                  ]
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "attacker",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "23",
+                    "original_string": "23"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "target",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "100",
+                    "original_string": "100"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "total_damage",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "amount_of_damages",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damages",
+                "value": {
+                  "test_value_tag": "ArrayOfSubObject",
+                  "content": {
+                    "type_name": "DamageInfo",
+                    "members": [
+                      [
+                        {
+                          "variable_name": "spell_school_mask",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "damage_float",
+                          "value": {
+                            "test_value_tag": "FloatingPoint",
+                            "content": {
+                              "value": 0.0,
+                              "original_string": "0.0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "damage_uint",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "absorb",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        },
+                        {
+                          "variable_name": "resist",
+                          "value": {
+                            "test_value_tag": "Integer",
+                            "content": {
+                              "value": "0",
+                              "original_string": "0"
+                            }
+                          },
+                          "tags": {}
+                        }
+                      ]
+                    ],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_damages"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damage_state",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "unknown1",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "spell_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "blocked_amount",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              51,
+              74,
+              1,
+              18,
+              0,
+              0,
+              0,
+              1,
+              23,
+              1,
+              100,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
+              "start_position": 239,
+              "end_position": 281
+            }
+          },
+          {
+            "subject": "SMSG_ATTACKERSTATEUPDATE",
+            "members": [
+              {
+                "variable_name": "hit_info",
+                "value": {
+                  "test_value_tag": "Flag",
+                  "content": [
+                    "UNK1",
+                    "AFFECTS_VICTIM"
+                  ]
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "attacker",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "23",
+                    "original_string": "23"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "target",
+                "value": {
+                  "test_value_tag": "Guid",
+                  "content": {
+                    "value": "100",
+                    "original_string": "100"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "total_damage",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "amount_of_damages",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damages",
+                "value": {
+                  "test_value_tag": "Array",
+                  "content": {
+                    "values": [],
+                    "size": {
+                      "array_size_tag": "Variable",
+                      "size": "amount_of_damages"
+                    }
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "damage_state",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "1",
+                    "original_string": "1"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "unknown1",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "spell_id",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "blocked_amount",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "0",
+                    "original_string": "0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_int1",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "7",
+                    "original_string": "7"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float1",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 1.0,
+                    "original_string": "1.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float2",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float3",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float4",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float5",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float6",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float7",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float8",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float9",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float10",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float11",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float12",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float13",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float14",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float15",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float16",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float17",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 0.0,
+                    "original_string": "0.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_float18",
+                "value": {
+                  "test_value_tag": "FloatingPoint",
+                  "content": {
+                    "value": 2.0,
+                    "original_string": "2.0"
+                  }
+                },
+                "tags": {}
+              },
+              {
+                "variable_name": "debug_int2",
+                "value": {
+                  "test_value_tag": "Integer",
+                  "content": {
+                    "value": "9",
+                    "original_string": "9"
+                  }
+                },
+                "tags": {}
+              }
+            ],
+            "raw_bytes": [
+              0,
+              111,
+              74,
+              1,
+              3,
+              0,
+              0,
+              0,
+              1,
+              23,
+              1,
+              100,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              128,
+              63,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              64,
+              9,
+              0,
+              0,
+              0
+            ],
+            "tags": {
+              "version": {
+                "version_type_tag": "world",
+                "version_type": {
+                  "world_version_tag": "specific",
+                  "versions": [
+                    {
+                      "major": 1,
+                      "minor": 12,
+                      "patch": null,
+                      "build": null
+                    }
+                  ]
+                }
+              }
+            },
+            "file_info": {
+              "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
+              "start_position": 284,
+              "end_position": 351
             }
           }
         ],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-          "start_position": 50,
-          "end_position": 65
+          "start_position": 88,
+          "end_position": 128
         },
-        "only_has_io_error": false,
+        "only_has_io_error": true,
         "has_manual_size_field": false,
         "manual_size_subtraction": null
       },
@@ -453250,8 +454721,8 @@
                         "tests": [],
                         "file_info": {
                           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-                          "start_position": 36,
-                          "end_position": 48
+                          "start_position": 74,
+                          "end_position": 86
                         },
                         "only_has_io_error": true,
                         "has_manual_size_field": false,
@@ -453355,8 +454826,8 @@
         "tests": [],
         "file_info": {
           "file_name": "wow_message_parser/wowm/world/combat/smsg_attackerstateupdate.wowm",
-          "start_position": 50,
-          "end_position": 65
+          "start_position": 130,
+          "end_position": 145
         },
         "only_has_io_error": false,
         "has_manual_size_field": false,
@@ -527037,7 +528508,7 @@
             "struct_member_content": {
               "name": "hit_info",
               "data_type": {
-                "data_type_tag": "Enum",
+                "data_type_tag": "Flag",
                 "content": {
                   "type_name": "HitInfo",
                   "integer_type": "U32",
